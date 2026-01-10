@@ -1,0 +1,16 @@
+name = "formula-ocr-api"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# KV 命名空间绑定
+[[kv_namespaces]]
+binding = "USERS"
+id = "23a0822d80fc47f594e650acaceedef4"
+
+# 环境变量（敏感信息用 secrets）
+[vars]
+CORS_ORIGIN = "https://formula-ocr.pages.dev"
+
+# 生产环境 secrets（通过 wrangler secret put 设置）
+# ZHIPU_API_KEY = "xxx"
+# ADMIN_SECRET = "xxx"
