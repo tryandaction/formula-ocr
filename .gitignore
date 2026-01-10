@@ -1,0 +1,32 @@
+# 私密信息（绝对不要提交！）
+.secrets.md
+
+# IDE
+.idea/
+.vscode/
+
+# Kiro
+.kiro/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+
+# Build outputs
+dist/
+.wrangler/
+
+# Environment files
+.env
+.env.local
+
+# Keep example env files
+!.env.example
