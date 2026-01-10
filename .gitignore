@@ -37,3 +37,6 @@ dist/
 
 # Secrets
 .secrets.md
+
+# AI System Prompt (私密文档)
+AI_SYSTEM_PROMPT.md

@@ -10,10 +10,30 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 ├── formula-ocr/          # 前端 (React + Vite)
 │   ├── src/
 │   │   ├── components/   # React 组件
+│   │   │   ├── ImageUploader.tsx      # 图片上传组件
+│   │   │   ├── FormulaResults.tsx     # 识别结果展示
+│   │   │   ├── DocumentUploader.tsx   # 文档上传组件
+│   │   │   ├── DocumentPreview.tsx    # 文档预览组件
+│   │   │   ├── HistoryPanel.tsx       # 历史记录面板
+│   │   │   ├── PaymentModal.tsx       # 支付弹窗
+│   │   │   ├── UserStatusBadge.tsx    # 用户状态徽章
+│   │   │   ├── PricingSection.tsx     # 定价展示
+│   │   │   ├── FAQ.tsx                # 常见问题
+│   │   │   ├── DiffViewer.tsx         # LaTeX 差异对比
+│   │   │   ├── QualityIndicator.tsx   # 图片质量指示器
+│   │   │   ├── FormulaTypeSelector.tsx # 公式类型选择
+│   │   │   └── MultiFormulaDetector.tsx # 多公式检测器
 │   │   ├── utils/        # 工具函数和 API 客户端
-│   │   │   ├── api.ts           # 后端 API 客户端
-│   │   │   ├── activation.ts    # 激活码本地验证
-│   │   │   └── providers/       # 多 AI 服务商支持
+│   │   │   ├── api.ts              # 后端 API 客户端
+│   │   │   ├── activation.ts       # 激活码本地验证
+│   │   │   ├── userService.ts      # 用户服务（设备ID、层级）
+│   │   │   ├── formatConverter.ts  # 格式转换（LaTeX/Markdown/MathML/Unicode）
+│   │   │   ├── diffUtils.ts        # LaTeX 差异对比工具
+│   │   │   ├── documentParser.ts   # 文档解析服务
+│   │   │   ├── imageQuality.ts     # 图片质量检测
+│   │   │   ├── formulaDetection.ts # 多公式检测
+│   │   │   ├── historyService.ts   # 历史记录服务（IndexedDB）
+│   │   │   └── providers/          # 多 AI 服务商支持
 │   │   └── App.tsx       # 主应用
 │   ├── dist/             # 构建产物
 │   └── .env              # 环境变量（不提交）
@@ -22,6 +42,7 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 │   ├── src/
 │   │   ├── index.ts      # 路由入口
 │   │   ├── activation.ts # 激活码系统
+│   │   ├── payment.ts    # 支付系统（订单管理）
 │   │   ├── quota.ts      # 额度管理
 │   │   ├── zhipu.ts      # 智谱 API 代理
 │   │   └── utils.ts      # 工具函数
@@ -42,10 +63,17 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 
 ## 部署信息
 
-| 服务 | URL |
-|------|-----|
-| 前端 | https://formula-ocr.pages.dev |
-| 后端 API | https://formula-ocr-api.formula-ocr.workers.dev |
+### 线上访问地址
+| 服务 | URL | 说明 |
+|------|-----|------|
+| 🌐 前端网站 | https://formula-ocr.pages.dev | Cloudflare Pages |
+| 🔌 后端 API | https://formula-ocr-api.formula-ocr.workers.dev | Cloudflare Workers |
+
+### 管理后台
+| 平台 | URL | 用途 |
+|------|-----|------|
+| Cloudflare Dashboard | https://dash.cloudflare.com | Workers/Pages/KV 管理 |
+| 智谱 AI 控制台 | https://open.bigmodel.cn | API 用量和费用监控 |
 
 ## API 接口
 
@@ -58,12 +86,16 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 | GET | `/api/quota/check` | 检查额度 |
 | POST | `/api/activate` | 激活码验证 |
 | POST | `/api/recognize` | 公式识别 |
+| GET | `/api/payment/plans` | 获取套餐列表 |
+| POST | `/api/payment/create-order` | 创建支付订单 |
+| GET | `/api/payment/query-order` | 查询订单状态 |
 
 ### 管理员接口
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | POST | `/api/admin/generate-code` | 生成激活码 |
+| POST | `/api/admin/confirm-payment` | 确认支付（手动） |
 
 所有接口需要 `X-User-ID` 请求头（设备标识）。
 管理员接口需要 `X-Admin-Key` 请求头。
@@ -77,12 +109,25 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 
 ## 付费方案
 
-| 金额 | 有效期 |
-|------|--------|
-| ¥5 | 30 天 |
-| ¥10 | 90 天 |
-| ¥20 | 180 天 |
-| ¥50 | 365 天 |
+| 套餐 | 金额 | 有效期 |
+|------|------|--------|
+| 月度会员 | ¥5 | 30 天 |
+| 季度会员 | ¥10 | 90 天 |
+| 年度会员 | ¥20 | 365 天 |
+
+### 支付流程
+
+1. 用户选择套餐，前端调用 `/api/payment/create-order` 创建订单
+2. 用户扫码支付（微信/支付宝）
+3. 前端轮询 `/api/payment/query-order` 查询订单状态
+4. 管理员确认支付后，调用 `/api/admin/confirm-payment` 升级用户权益
+5. 用户权益即时生效，无需激活码
+
+### 激活码（备用方案）
+
+激活码格式: `FOCR-XXXX-XXXX-XXXX`
+
+用于特殊场景（如赠送、补偿等），通过 `/api/activate` 接口验证。
 
 ## 本地开发
 
@@ -166,6 +211,8 @@ VITE_ZHIPU_API_KEY=xxx  # 可选，直连模式用
 | `usage:{userId}:{month}` | 每月使用量 |
 | `usage:{userId}:total` | 总使用量 |
 | `code:{code}` | 激活码数据 |
+| `order:{orderId}` | 订单数据 |
+| `user:{userId}:latest_order` | 用户最新订单引用 |
 
 ## 注意事项
 
@@ -201,6 +248,77 @@ npx wrangler whoami
 
 ## 相关链接
 
+- [GitHub 仓库](https://github.com/tryandaction/formula-ocr)
+- [GitHub Pages](https://tryandaction.github.io/formula-ocr)
 - [智谱 AI 控制台](https://open.bigmodel.cn/)
 - [Cloudflare Dashboard](https://dash.cloudflare.com/)
 - [Wrangler 文档](https://developers.cloudflare.com/workers/wrangler/)
+
+---
+
+## 更新日志
+
+### v1.2.0 (2026-01-10)
+
+**新功能：**
+- 📄 文档解析（Beta）：支持 PDF、DOCX、Markdown 文件上传
+- 🔍 PDF 公式检测：自动检测 PDF 中的公式区域
+- 👁️ 文档预览：页面缩略图、公式高亮、定位跳转
+- 📊 图片质量检测：检测模糊、分辨率、对比度问题
+- 🎯 公式类型选择：数学/物理/化学类型提示
+- 🔢 多公式分离：检测并分离图片中的多个公式
+- 📈 置信度显示：显示识别结果的置信度
+- 📜 历史记录：本地存储识别历史（IndexedDB）
+- ⭐ 收藏功能：收藏常用公式
+- 📊 使用统计：总识别次数、本月次数、收藏数
+
+**新文件：**
+- `formula-ocr/src/utils/documentParser.ts` - 文档解析服务
+- `formula-ocr/src/utils/imageQuality.ts` - 图片质量检测
+- `formula-ocr/src/utils/formulaDetection.ts` - 多公式检测
+- `formula-ocr/src/utils/historyService.ts` - 历史记录服务
+- `formula-ocr/src/components/DocumentUploader.tsx` - 文档上传组件
+- `formula-ocr/src/components/DocumentPreview.tsx` - 文档预览组件
+- `formula-ocr/src/components/QualityIndicator.tsx` - 质量指示器
+- `formula-ocr/src/components/FormulaTypeSelector.tsx` - 公式类型选择
+- `formula-ocr/src/components/MultiFormulaDetector.tsx` - 多公式检测器
+- `formula-ocr/src/components/HistoryPanel.tsx` - 历史记录面板
+
+**依赖更新：**
+- 新增 `pdfjs-dist` - PDF 解析库
+
+### v1.1.0 (2026-01-10)
+
+**新功能：**
+- ✨ 支付系统：支持微信/支付宝扫码支付，支付后即时生效
+- ✨ 多格式输出：支持 LaTeX、Markdown、MathML、Unicode 四种格式
+- ✨ 用户状态徽章：显示用户层级和剩余额度
+- ✨ 额度耗尽提示：引导用户升级
+- ✨ 定价展示组件：清晰展示付费方案
+- ✨ FAQ 组件：常见问题解答
+- ✨ 键盘快捷键：↑↓导航、Ctrl+C复制、Del删除、Enter展开
+
+**优化：**
+- 🎨 拖拽上传：移除全屏蓝色覆盖，只高亮拖拽区域
+- 🎨 图片队列：显示真实缩略图，完成状态显示小绿勾
+- 🎨 识别结果：支持网格/列表视图切换，公式编号
+- 🎨 LaTeX 编辑：差异高亮显示
+- 🎨 结果选中：点击选中，蓝色高亮显示
+- 🎨 搜索过滤：实时搜索公式内容
+
+**新文件：**
+- `formula-ocr/src/utils/formatConverter.ts` - 格式转换工具
+- `formula-ocr/src/utils/userService.ts` - 用户服务
+- `formula-ocr/src/utils/diffUtils.ts` - 差异对比工具
+- `formula-ocr/src/components/PaymentModal.tsx` - 支付弹窗
+- `formula-ocr/src/components/UserStatusBadge.tsx` - 用户状态组件
+- `formula-ocr/src/components/PricingSection.tsx` - 定价展示
+- `formula-ocr/src/components/FAQ.tsx` - 常见问题
+- `formula-ocr/src/components/DiffViewer.tsx` - 差异查看器
+- `formula-ocr-worker/src/payment.ts` - 支付系统
+
+### v1.0.0 (初始版本)
+
+- 基础公式识别功能
+- 激活码系统
+- 额度管理

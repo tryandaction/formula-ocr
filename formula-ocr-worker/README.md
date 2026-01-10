@@ -6,18 +6,18 @@
 
 - 🆓 免费用户：每天10次，每月100次
 - 💎 付费用户：每天200次，每月5000次
-- 🔑 激活码系统：支持多种付费方案
+- 💳 支付系统：支付后即时生效
+- 🔑 激活码系统：备用方案
 - 🚀 全球边缘加速
 - 💰 完全免费（每天10万请求内）
 
 ## 付费方案
 
-| 金额 | 有效期 |
-|------|--------|
-| ¥5 | 30天 |
-| ¥10 | 90天 |
-| ¥20 | 180天 |
-| ¥50 | 365天 |
+| 套餐 | 金额 | 有效期 |
+|------|------|--------|
+| 月度会员 | ¥5 | 30天 |
+| 季度会员 | ¥10 | 90天 |
+| 年度会员 | ¥20 | 365天 |
 
 ## 部署步骤
 
@@ -49,9 +49,17 @@ npx wrangler kv:namespace create USERS
 npx wrangler secret put ZHIPU_API_KEY
 # 输入你的智谱 API Key
 
-# 管理员密钥（用于生成激活码）
+# 管理员密钥（用于生成激活码和确认支付）
 npx wrangler secret put ADMIN_SECRET
 # 输入一个随机字符串作为管理员密钥
+
+# Resend API Key（用于发送验证邮件）
+npx wrangler secret put RESEND_API_KEY
+# 输入你的 Resend API Key（从 https://resend.com 获取）
+
+# 管理员邮箱列表（逗号分隔，这些邮箱拥有无限额度和模拟模式）
+npx wrangler secret put ADMIN_EMAILS
+# 输入: admin@example.com,another@example.com
 ```
 
 ### 5. 更新配置
@@ -71,26 +79,16 @@ npm run deploy
 
 ## API 接口
 
-### 获取用户信息
+### 用户相关
 
 ```
 GET /api/user/info
 Header: X-User-ID: <设备ID>
 ```
 
-### 检查额度
-
 ```
 GET /api/quota/check
 Header: X-User-ID: <设备ID>
-```
-
-### 激活码验证
-
-```
-POST /api/activate
-Header: X-User-ID: <设备ID>
-Body: { "code": "FOCR-XXXX-XXXX-XXXX" }
 ```
 
 ### 公式识别
@@ -101,7 +99,34 @@ Header: X-User-ID: <设备ID>
 Body: { "image": "data:image/png;base64,..." }
 ```
 
-### 管理员：生成激活码
+### 支付相关
+
+```
+GET /api/payment/plans
+返回: { "plans": [...] }
+```
+
+```
+POST /api/payment/create-order
+Header: X-User-ID: <设备ID>
+Body: { "planId": "monthly" | "quarterly" | "yearly" }
+返回: { "success": true, "order": {...} }
+```
+
+```
+GET /api/payment/query-order?orderId=ORD-XXXXXXXX-XXXXXX
+返回: { "success": true, "order": {...} }
+```
+
+### 激活码（备用）
+
+```
+POST /api/activate
+Header: X-User-ID: <设备ID>
+Body: { "code": "FOCR-XXXX-XXXX-XXXX" }
+```
+
+### 管理员接口
 
 ```
 POST /api/admin/generate-code
@@ -109,9 +134,39 @@ Header: X-Admin-Key: <管理员密钥>
 Body: { "amount": 10, "count": 5 }
 ```
 
-## 前端集成
+```
+POST /api/admin/confirm-payment
+Header: X-Admin-Key: <管理员密钥>
+Body: { "orderId": "ORD-XXXXXXXX-XXXXXX" }
+```
 
-在前端代码中：
+```
+POST /api/admin/simulate
+Header: X-User-ID: <管理员设备ID>
+Body: { "mode": "none" | "anonymous" | "registered" | "paid" }
+说明: 管理员可切换模拟模式体验不同用户层级
+- none: 管理员模式（无限额度）
+- anonymous: 模拟游客体验
+- registered: 模拟注册用户体验
+- paid: 模拟付费用户体验
+```
+
+### 管理员功能
+
+管理员邮箱配置后，该邮箱绑定的账户将拥有：
+- 🔓 无限使用额度
+- 🎭 模拟模式：可在前端切换体验不同用户层级
+- 📊 管理后台访问权限
+
+## 支付流程
+
+1. 前端调用 `/api/payment/create-order` 创建订单
+2. 用户扫码支付（微信/支付宝）
+3. 前端轮询 `/api/payment/query-order` 查询状态
+4. 管理员收到付款后，调用 `/api/admin/confirm-payment` 确认
+5. 用户权益即时生效
+
+## 前端集成
 
 ```typescript
 const API_BASE = 'https://formula-ocr-api.your-account.workers.dev';
@@ -143,6 +198,19 @@ async function recognize(imageBase64: string) {
       'X-User-ID': getDeviceId()
     },
     body: JSON.stringify({ image: imageBase64 })
+  });
+  return res.json();
+}
+
+// 创建订单
+async function createOrder(planId: string) {
+  const res = await fetch(`${API_BASE}/api/payment/create-order`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-ID': getDeviceId()
+    },
+    body: JSON.stringify({ planId })
   });
   return res.json();
 }

@@ -1,19 +1,21 @@
 {
   "name": "formula-ocr",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=formula-ocr"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
     "@types/katex": "^0.16.8",
     "autoprefixer": "^10.4.23",
     "katex": "^0.16.27",
+    "pdfjs-dist": "^5.4.530",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.18"

@@ -8,3 +8,48 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* 拖拽区域动画 */
+@keyframes border-dance {
+  0% {
+    background-position: 0 0, 100% 100%, 0 100%, 100% 0;
+  }
+  100% {
+    background-position: 100% 0, 0 100%, 0 0, 100% 100%;
+  }
+}
+
+/* 脉冲动画 - 用于拖拽提示 */
+@keyframes pulse-border {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+  }
+}
+
+.drop-zone-active {
+  animation: pulse-border 1.5s ease-in-out infinite;
+}
+
+/* 加载动画优化 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* 图片缩略图悬停效果 */
+.image-thumbnail-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image-thumbnail-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

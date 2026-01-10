@@ -10,12 +10,24 @@ const ALLOWED_ORIGINS = [
   'http://127.0.0.1:5173',
 ];
 
+// 允许的来源模式（支持 Cloudflare Pages 预览部署）
+const ALLOWED_ORIGIN_PATTERNS = [
+  /^https:\/\/[a-z0-9]+\.formula-ocr\.pages\.dev$/,  // Cloudflare Pages 预览部署
+];
+
 // 检查来源是否允许
 function isOriginAllowed(origin: string | null, configOrigin: string): boolean {
   if (!origin) return false;
   if (configOrigin === '*') return true;
   if (origin === configOrigin) return true;
-  return ALLOWED_ORIGINS.includes(origin);
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  
+  // 检查模式匹配（支持预览部署）
+  for (const pattern of ALLOWED_ORIGIN_PATTERNS) {
+    if (pattern.test(origin)) return true;
+  }
+  
+  return false;
 }
 
 // CORS 响应头

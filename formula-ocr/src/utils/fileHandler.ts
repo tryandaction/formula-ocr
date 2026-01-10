@@ -6,8 +6,16 @@ export interface FileValidationResult {
 }
 
 // Supported formats and size limit
-const ALLOWED_FORMATS = ['image/jpeg', 'image/png', 'image/heic'];
+const ALLOWED_FORMATS = ['image/jpeg', 'image/png', 'image/heic', 'image/webp'];
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+// 图片压缩配置
+const COMPRESS_CONFIG = {
+  maxWidth: 2048,      // 最大宽度
+  maxHeight: 2048,     // 最大高度
+  quality: 0.85,       // JPEG 质量
+  targetSize: 1024 * 1024, // 目标大小 1MB（超过此大小会压缩）
+};
 
 /**
  * Validates a file for upload
@@ -19,7 +27,7 @@ export function validateFile(file: File): FileValidationResult {
   if (!ALLOWED_FORMATS.includes(file.type)) {
     return {
       valid: false,
-      error: 'Please upload a JPG, PNG, or HEIC image'
+      error: '请上传 JPG、PNG、WebP 或 HEIC 格式的图片'
     };
   }
 
@@ -27,7 +35,7 @@ export function validateFile(file: File): FileValidationResult {
   if (file.size > MAX_FILE_SIZE) {
     return {
       valid: false,
-      error: 'File size must be under 10MB'
+      error: '文件大小不能超过 10MB'
     };
   }
 
@@ -35,11 +43,78 @@ export function validateFile(file: File): FileValidationResult {
 }
 
 /**
- * Converts a file to base64 string
+ * 压缩图片
+ * @param file - 原始文件
+ * @returns Promise resolving to compressed base64 or original if small enough
+ */
+async function compressImage(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    // 如果文件已经很小，直接返回
+    if (file.size <= COMPRESS_CONFIG.targetSize) {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(new Error('Failed to read file'));
+      reader.readAsDataURL(file);
+      return;
+    }
+
+    // 创建图片对象
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      
+      // 计算缩放比例
+      let { width, height } = img;
+      const maxWidth = COMPRESS_CONFIG.maxWidth;
+      const maxHeight = COMPRESS_CONFIG.maxHeight;
+      
+      if (width > maxWidth || height > maxHeight) {
+        const ratio = Math.min(maxWidth / width, maxHeight / height);
+        width = Math.round(width * ratio);
+        height = Math.round(height * ratio);
+      }
+      
+      // 创建 canvas 进行压缩
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        reject(new Error('Failed to get canvas context'));
+        return;
+      }
+      
+      // 绘制图片
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      // 转换为 base64
+      const base64 = canvas.toDataURL('image/jpeg', COMPRESS_CONFIG.quality);
+      resolve(base64);
+    };
+    
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Failed to load image'));
+    };
+    
+    img.src = url;
+  });
+}
+
+/**
+ * Converts a file to base64 string (with optional compression)
  * @param file - The file to convert
+ * @param compress - Whether to compress large images (default: true)
  * @returns Promise resolving to base64 data URL
  */
-export function convertToBase64(file: File): Promise<string> {
+export function convertToBase64(file: File, compress: boolean = true): Promise<string> {
+  if (compress && file.type.startsWith('image/')) {
+    return compressImage(file);
+  }
+  
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => {
