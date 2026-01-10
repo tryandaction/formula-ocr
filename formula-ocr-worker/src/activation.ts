@@ -4,12 +4,11 @@
 
 import { randomString } from './utils';
 
-// 金额对应有效期（天）
+// 金额对应有效期（天）- 与套餐配置保持一致
 export const AMOUNT_TO_DAYS: Record<number, number> = {
-  5: 30,    // ¥5 = 30天
-  10: 90,   // ¥10 = 90天
-  20: 180,  // ¥20 = 180天
-  50: 365,  // ¥50 = 365天
+  5: 30,    // ¥5 = 30天（月度会员）
+  14: 90,   // ¥14 = 90天（季度会员）
+  40: 365,  // ¥40 = 365天（年度会员）
 };
 
 export interface ActivationCodeData {

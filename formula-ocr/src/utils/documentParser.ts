@@ -136,9 +136,10 @@ export async function validateDocument(file: File): Promise<DocumentValidationRe
 async function getPdfPageCount(file: File): Promise<number> {
   const pdfjs = await import('pdfjs-dist');
   
-  // 设置 worker - 使用本地 worker 或 CDN
+  // 设置 worker - 使用 unpkg CDN，它会自动同步 npm 版本
+  // PDF.js 5.x 使用 .mjs 格式
   if (!pdfjs.GlobalWorkerOptions.workerSrc) {
-    pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+    pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
   }
   
   const buffer = await file.arrayBuffer();
@@ -155,7 +156,8 @@ let pdfjsModule: typeof import('pdfjs-dist') | null = null;
 export async function preloadPdfJs(): Promise<void> {
   if (!pdfjsModule) {
     pdfjsModule = await import('pdfjs-dist');
-    pdfjsModule.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsModule.version}/pdf.worker.min.js`;
+    // 使用 unpkg CDN，PDF.js 5.x 使用 .mjs 格式
+    pdfjsModule.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsModule.version}/build/pdf.worker.min.mjs`;
   }
 }
 

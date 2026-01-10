@@ -236,3 +236,26 @@ export async function setSimulateMode(mode: SimulateMode): Promise<{ success: bo
     body: JSON.stringify({ mode }),
   });
 }
+
+// 支付验证结果
+export interface VerifyPaymentResult {
+  success: boolean;
+  message: string;
+  order?: {
+    orderId: string;
+    amount: number;
+    days: number;
+    status: string;
+  };
+}
+
+/**
+ * 用户自助验证支付
+ * 用户支付后输入验证码，系统自动确认并升级权益
+ */
+export async function verifyPayment(verifyCode: string): Promise<VerifyPaymentResult> {
+  return apiRequest<VerifyPaymentResult>('/api/payment/verify', {
+    method: 'POST',
+    body: JSON.stringify({ verifyCode }),
+  });
+}

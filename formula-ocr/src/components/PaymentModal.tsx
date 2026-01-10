@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { getOrCreateDeviceId } from '../utils/userService';
+import { verifyPayment } from '../utils/api';
 
 // 套餐类型
 interface Plan {
@@ -13,6 +14,8 @@ interface Plan {
 // 订单类型
 interface Order {
   orderId: string;
+  visibleId: string;
+  verifyCode: string;
   userId: string;
   planId: string;
   amount: number;
@@ -50,33 +53,17 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   }, [isOpen]);
 
-  // 轮询订单状态
+  // 重置状态
   useEffect(() => {
-    if (!order || order.status !== 'pending') return;
-
-    const interval = setInterval(async () => {
-      try {
-        const response = await fetch(
-          `${API_BASE}/api/payment/query-order?orderId=${order.orderId}`
-        );
-        const data = await response.json();
-        
-        if (data.success && data.order) {
-          setOrder(data.order);
-          if (data.order.status === 'paid') {
-            setStep('success');
-            onPaymentSuccess();
-          } else if (data.order.status === 'expired') {
-            setError('订单已过期，请重新下单');
-          }
-        }
-      } catch (err) {
-        console.error('Failed to query order:', err);
-      }
-    }, 3000); // 每3秒轮询一次
-
-    return () => clearInterval(interval);
-  }, [order, onPaymentSuccess]);
+    if (!isOpen) {
+      // 延迟重置，避免关闭动画时看到状态变化
+      setTimeout(() => {
+        setStep('select');
+        setOrder(null);
+        setError(null);
+      }, 300);
+    }
+  }, [isOpen]);
 
   const fetchPlans = async () => {
     try {
@@ -122,10 +109,12 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   }, [selectedPlan]);
 
+  const handlePaymentVerified = useCallback(() => {
+    setStep('success');
+    onPaymentSuccess();
+  }, [onPaymentSuccess]);
+
   const handleClose = () => {
-    setStep('select');
-    setOrder(null);
-    setError(null);
     onClose();
   };
 
@@ -171,7 +160,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           )}
 
           {step === 'pay' && order && (
-            <PaymentQRCode order={order} />
+            <PaymentStep 
+              order={order} 
+              onVerified={handlePaymentVerified}
+              onError={setError}
+            />
           )}
 
           {step === 'success' && (
@@ -182,7 +175,6 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     </div>
   );
 };
-
 
 // 套餐选择器
 interface PlanSelectorProps {
@@ -268,111 +260,157 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
   );
 };
 
-// 支付二维码
-interface PaymentQRCodeProps {
+
+// 支付步骤
+interface PaymentStepProps {
   order: Order;
-  onManualVerify?: (orderId: string) => void;
+  onVerified: () => void;
+  onError: (error: string) => void;
 }
 
-const PaymentQRCode: React.FC<PaymentQRCodeProps> = ({ order }) => {
-  const [showManualInput, setShowManualInput] = useState(false);
-  const remainingTime = Math.max(0, Math.floor((order.expiresAt - Date.now()) / 1000));
-  const minutes = Math.floor(remainingTime / 60);
-  const seconds = remainingTime % 60;
+const PaymentStep: React.FC<PaymentStepProps> = ({ order, onVerified, onError }) => {
+  const [verifyCode, setVerifyCode] = useState('');
+  const [verifying, setVerifying] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(Math.max(0, Math.floor((order.expiresAt - Date.now()) / 1000)));
+
+  // 倒计时
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const remaining = Math.max(0, Math.floor((order.expiresAt - Date.now()) / 1000));
+      setTimeLeft(remaining);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [order.expiresAt]);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleVerify = async () => {
+    if (!verifyCode.trim()) {
+      onError('请输入验证码');
+      return;
+    }
+
+    setVerifying(true);
+    try {
+      const result = await verifyPayment(verifyCode.trim());
+      if (result.success) {
+        onVerified();
+      } else {
+        onError(result.message || '验证失败');
+      }
+    } catch (err) {
+      onError(err instanceof Error ? err.message : '验证失败，请重试');
+    } finally {
+      setVerifying(false);
+    }
+  };
 
   return (
-    <div className="text-center">
-      <h3 className="font-medium text-gray-800 mb-2">扫码支付</h3>
-      <p className="text-sm text-gray-500 mb-4">
-        订单号: {order.orderId}
-      </p>
+    <div>
+      {/* 步骤指示 */}
+      <div className="flex items-center justify-center gap-2 mb-6">
+        <div className="flex items-center gap-1">
+          <div className="w-6 h-6 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center">1</div>
+          <span className="text-sm text-gray-600">扫码支付</span>
+        </div>
+        <div className="w-8 h-0.5 bg-gray-300"></div>
+        <div className="flex items-center gap-1">
+          <div className="w-6 h-6 rounded-full bg-gray-300 text-white text-xs flex items-center justify-center">2</div>
+          <span className="text-sm text-gray-400">输入验证码</span>
+        </div>
+      </div>
 
-      {/* 支付二维码区域 */}
-      <div className="bg-gray-50 rounded-xl p-6 mb-4">
-        <div className="flex justify-center gap-6">
-          {/* 微信支付 */}
+      {/* 验证码显示 */}
+      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-4 mb-4">
+        <div className="text-center">
+          <p className="text-sm text-gray-600 mb-2">支付时请备注以下验证码</p>
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-3xl font-bold text-amber-600 tracking-widest font-mono">
+              {order.verifyCode}
+            </span>
+            <button
+              onClick={() => handleCopy(order.verifyCode)}
+              className="px-2 py-1 text-xs bg-amber-100 hover:bg-amber-200 rounded transition-colors"
+            >
+              {copied ? '✓' : '复制'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* 支付二维码 */}
+      <div className="bg-gray-50 rounded-xl p-4 mb-4">
+        <div className="flex justify-center gap-4">
           <div className="text-center">
-            <div className="w-32 h-32 bg-white rounded-lg border border-gray-200 flex items-center justify-center mb-2">
+            <div className="w-28 h-28 bg-white rounded-lg border border-gray-200 flex items-center justify-center mb-1">
               <img 
                 src="/wechat-pay.png" 
                 alt="微信支付" 
-                className="w-28 h-28 object-contain"
+                className="w-24 h-24 object-contain"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%2307C160" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="white" font-size="12">微信</text></svg>';
+                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%2307C160" width="100" height="100" rx="8"/><text x="50" y="55" text-anchor="middle" fill="white" font-size="14">微信</text></svg>';
                 }}
               />
             </div>
-            <span className="text-xs text-gray-500">微信支付</span>
+            <span className="text-xs text-gray-500">微信</span>
           </div>
-
-          {/* 支付宝 */}
           <div className="text-center">
-            <div className="w-32 h-32 bg-white rounded-lg border border-gray-200 flex items-center justify-center mb-2">
+            <div className="w-28 h-28 bg-white rounded-lg border border-gray-200 flex items-center justify-center mb-1">
               <img 
                 src="/alipay.png" 
                 alt="支付宝" 
-                className="w-28 h-28 object-contain"
+                className="w-24 h-24 object-contain"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%231677FF" width="100" height="100"/><text x="50" y="55" text-anchor="middle" fill="white" font-size="12">支付宝</text></svg>';
+                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%231677FF" width="100" height="100" rx="8"/><text x="50" y="55" text-anchor="middle" fill="white" font-size="14">支付宝</text></svg>';
                 }}
               />
             </div>
             <span className="text-xs text-gray-500">支付宝</span>
           </div>
         </div>
+        <p className="text-center mt-3 text-lg font-bold text-amber-600">¥{order.amount}</p>
+        <p className="text-center text-xs text-gray-400 mt-1">
+          订单 {minutes}:{seconds.toString().padStart(2, '0')} 后过期
+        </p>
+      </div>
 
-        <div className="mt-4 text-2xl font-bold text-amber-600">
-          ¥{order.amount}
+      {/* 验证码输入 */}
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+        <p className="text-sm text-blue-700 mb-3">
+          <span className="font-medium">💡 支付完成后</span>，请在下方输入您支付时备注的验证码
+        </p>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={verifyCode}
+            onChange={(e) => setVerifyCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+            placeholder="输入6位验证码"
+            maxLength={6}
+            className="flex-1 px-4 py-2 border border-blue-300 rounded-lg text-center text-lg font-mono tracking-widest focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          <button
+            onClick={handleVerify}
+            disabled={verifyCode.length !== 6 || verifying}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {verifying ? '验证中...' : '确认'}
+          </button>
         </div>
       </div>
 
-      {/* 倒计时 */}
-      <div className="text-sm text-gray-500 mb-4">
-        订单将在 <span className="text-amber-600 font-medium">{minutes}:{seconds.toString().padStart(2, '0')}</span> 后过期
-      </div>
-
-      {/* 状态提示 */}
-      <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
-        <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
-        等待支付确认...
-      </div>
-
-      <p className="mt-4 text-xs text-gray-400">
-        支付完成后，系统将自动确认并升级您的账户
-      </p>
-
-      {/* 手动验证入口 */}
-      <div className="mt-4 pt-4 border-t border-gray-100">
-        {!showManualInput ? (
-          <button
-            onClick={() => setShowManualInput(true)}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            已支付但未自动确认？点击这里
-          </button>
-        ) : (
-          <div className="text-left">
-            <p className="text-xs text-gray-500 mb-2">
-              如果您已完成支付但系统未自动确认，请联系客服并提供以下订单号：
-            </p>
-            <div className="flex items-center gap-2">
-              <code className="flex-1 px-3 py-2 bg-gray-100 rounded text-sm font-mono text-gray-700">
-                {order.orderId}
-              </code>
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(order.orderId);
-                }}
-                className="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded text-sm transition-colors"
-              >
-                复制
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mt-2">
-              客服邮箱: support@formula-ocr.com
-            </p>
-          </div>
-        )}
+      {/* 说明 */}
+      <div className="text-xs text-gray-500 space-y-1">
+        <p>• 扫码支付时，请在备注/留言中填写验证码 <span className="font-mono text-amber-600">{order.verifyCode}</span></p>
+        <p>• 支付完成后，输入验证码即可自动开通会员</p>
+        <p>• 如遇问题，请联系客服：support@formula-ocr.com</p>
       </div>
     </div>
   );

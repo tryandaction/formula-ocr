@@ -16,8 +16,16 @@
 | 套餐 | 金额 | 有效期 |
 |------|------|--------|
 | 月度会员 | ¥5 | 30天 |
-| 季度会员 | ¥10 | 90天 |
-| 年度会员 | ¥20 | 365天 |
+| 季度会员 | ¥14 | 90天 |
+| 年度会员 | ¥40 | 365天 |
+
+## 支付流程（全自动）
+
+1. 用户选择套餐，系统创建订单并生成6位验证码
+2. 用户扫码支付时备注验证码
+3. 支付完成后，用户输入验证码
+4. 系统自动验证并升级用户权益
+5. 无需管理员介入，全程自助完成！
 
 ## 部署步骤
 
@@ -110,12 +118,20 @@ GET /api/payment/plans
 POST /api/payment/create-order
 Header: X-User-ID: <设备ID>
 Body: { "planId": "monthly" | "quarterly" | "yearly" }
+返回: { "success": true, "order": { orderId, verifyCode, ... } }
+```
+
+```
+GET /api/payment/query-order?orderId=ORD-XXXXXXXX-XXXXXXXX
 返回: { "success": true, "order": {...} }
 ```
 
 ```
-GET /api/payment/query-order?orderId=ORD-XXXXXXXX-XXXXXX
-返回: { "success": true, "order": {...} }
+POST /api/payment/verify
+Header: X-User-ID: <设备ID>
+Body: { "verifyCode": "123456" }
+返回: { "success": true, "message": "支付验证成功！已为您开通 30 天会员" }
+说明: 用户自助验证支付，输入支付时备注的验证码
 ```
 
 ### 激活码（备用）
@@ -137,7 +153,8 @@ Body: { "amount": 10, "count": 5 }
 ```
 POST /api/admin/confirm-payment
 Header: X-Admin-Key: <管理员密钥>
-Body: { "orderId": "ORD-XXXXXXXX-XXXXXX" }
+Body: { "orderId": "ORD-XXXXXXXX-XXXXXXXX" }
+说明: 备用功能，正常情况下用户通过验证码自助完成
 ```
 
 ```
@@ -158,13 +175,15 @@ Body: { "mode": "none" | "anonymous" | "registered" | "paid" }
 - 🎭 模拟模式：可在前端切换体验不同用户层级
 - 📊 管理后台访问权限
 
-## 支付流程
+## ~~支付流程（旧）~~
 
-1. 前端调用 `/api/payment/create-order` 创建订单
-2. 用户扫码支付（微信/支付宝）
-3. 前端轮询 `/api/payment/query-order` 查询状态
-4. 管理员收到付款后，调用 `/api/admin/confirm-payment` 确认
-5. 用户权益即时生效
+> 以下流程已废弃，现在使用全自动验证码流程
+
+~~1. 前端调用 `/api/payment/create-order` 创建订单~~
+~~2. 用户扫码支付（微信/支付宝）~~
+~~3. 前端轮询 `/api/payment/query-order` 查询状态~~
+~~4. 管理员收到付款后，调用 `/api/admin/confirm-payment` 确认~~
+~~5. 用户权益即时生效~~
 
 ## 前端集成
 
@@ -211,6 +230,19 @@ async function createOrder(planId: string) {
       'X-User-ID': getDeviceId()
     },
     body: JSON.stringify({ planId })
+  });
+  return res.json();
+}
+
+// 验证支付（用户自助）
+async function verifyPayment(verifyCode: string) {
+  const res = await fetch(`${API_BASE}/api/payment/verify`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-ID': getDeviceId()
+    },
+    body: JSON.stringify({ verifyCode })
   });
   return res.json();
 }

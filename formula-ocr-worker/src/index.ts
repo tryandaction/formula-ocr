@@ -9,10 +9,10 @@
  */
 
 import { handleCORS, jsonResponse, errorResponse } from './utils';
-import { checkQuota, recordUsage, getUserInfo, setSimulateMode, isAdminEmail, addAdminEmail, type SimulateMode } from './quota';
+import { checkQuota, recordUsage, getUserInfo, setSimulateMode, addAdminEmail, type SimulateMode } from './quota';
 import { validateActivationCode, activateUser, generateActivationCode } from './activation';
 import { proxyZhipuAPI } from './zhipu';
-import { createOrder, queryOrder, confirmPayment, getPlans, type PlanId } from './payment';
+import { createOrder, queryOrder, confirmPayment, verifyPayment, getPlans, type PlanId } from './payment';
 import { sendVerificationCode, verifyEmailCode, recoverByEmail, isValidEmail } from './auth';
 
 export interface Env {
@@ -61,7 +61,8 @@ export default {
               '/api/auth/recover',
               '/api/payment/plans',
               '/api/payment/create-order',
-              '/api/payment/query-order'
+              '/api/payment/query-order',
+              '/api/payment/verify'
             ]
           }, env.CORS_ORIGIN, 200, requestOrigin);
 
@@ -120,6 +121,10 @@ export default {
         // 支付：查询订单
         case '/api/payment/query-order':
           return await handleQueryOrder(request, env, requestOrigin);
+
+        // 支付：用户自助验证支付
+        case '/api/payment/verify':
+          return await handleVerifyPayment(request, env, requestOrigin);
 
         // 健康检查
         case '/api/health':
@@ -302,6 +307,26 @@ async function handleQueryOrder(request: Request, env: Env, requestOrigin: strin
   }
 
   return jsonResponse(result, env.CORS_ORIGIN, 200, requestOrigin);
+}
+
+// 用户自助验证支付
+async function handleVerifyPayment(request: Request, env: Env, requestOrigin: string | null): Promise<Response> {
+  if (request.method !== 'POST') {
+    return errorResponse('Method not allowed', 405, env.CORS_ORIGIN, requestOrigin);
+  }
+
+  const userId = request.headers.get('X-User-ID');
+  if (!userId) {
+    return errorResponse('Missing X-User-ID header', 400, env.CORS_ORIGIN, requestOrigin);
+  }
+
+  const body = await request.json() as { verifyCode: string };
+  if (!body.verifyCode) {
+    return errorResponse('Missing verifyCode', 400, env.CORS_ORIGIN, requestOrigin);
+  }
+
+  const result = await verifyPayment(env.USERS, body.verifyCode, userId);
+  return jsonResponse(result, env.CORS_ORIGIN, result.success ? 200 : 400, requestOrigin);
 }
 
 // 管理员：确认支付
