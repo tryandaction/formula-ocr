@@ -106,20 +106,37 @@ npm run dev
 
 ## 部署命令
 
-### 部署后端
+### 部署后端 (Cloudflare Worker)
 
 ```bash
 cd formula-ocr-worker
 npm run deploy
 ```
 
-### 部署前端
+首次部署前需要设置 Secrets：
+```bash
+npx wrangler secret put ZHIPU_API_KEY
+npx wrangler secret put ADMIN_SECRET
+```
 
+### 部署前端 (Cloudflare Pages)
+
+方式一：命令行部署
 ```bash
 cd formula-ocr
 npm run build
 npx wrangler pages deploy dist --project-name formula-ocr
 ```
+
+方式二：GitHub 自动部署（推荐）
+1. 在 Cloudflare Pages 创建项目，连接 GitHub 仓库
+2. 设置构建配置：
+   - 构建命令: `cd formula-ocr && npm install && npm run build`
+   - 输出目录: `formula-ocr/dist`
+3. 在 Cloudflare Pages 设置环境变量：
+   - `VITE_API_BASE` = `https://formula-ocr-api.formula-ocr.workers.dev`
+
+**注意**: 前端环境变量需要在 Cloudflare Pages 的项目设置中配置，不是通过 .env 文件！
 
 ## 环境变量
 
@@ -153,15 +170,19 @@ VITE_ZHIPU_API_KEY=xxx  # 可选，直连模式用
 ## 注意事项
 
 1. **敏感文件不要提交 Git**
-   - `.env` - 前端环境变量
-   - `.secrets.md` - 私密信息汇总
-   - `.wrangler/` - Wrangler 本地状态
+   - `.env` - 前端环境变量（已在 .gitignore）
+   - `.secrets.md` - 私密信息汇总（已在 .gitignore）
+   - `.wrangler/` - Wrangler 本地状态（已在 .gitignore）
 
-2. **CORS 配置**
-   - `wrangler.toml` 中的 `CORS_ORIGIN` 需要匹配前端域名
-   - 开发时可临时设为 `*`
+2. **生产环境变量配置**
+   - 后端 Secrets: 通过 `wrangler secret put` 设置
+   - 前端环境变量: 在 Cloudflare Pages 项目设置中配置
 
-3. **Secrets 更新**
+3. **CORS 配置**
+   - `wrangler.toml` 中的 `CORS_ORIGIN` 设为生产域名
+   - 后端代码已支持本地开发域名 (localhost:5173)
+
+4. **Secrets 更新**
    - 修改后需要重新 `wrangler secret put`
    - 然后重新部署 Worker
 
