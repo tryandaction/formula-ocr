@@ -510,7 +510,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
           <div className="bg-white rounded-t-2xl max-h-[70vh] flex flex-col animate-slide-up">
             {/* 抽屉头部 */}
             <div className="flex items-center justify-between p-4 border-b border-gray-100">
-              <h3 className="font-semibold text-gray-800">公式列表</h3>
+              <h3 className="font-semibold text-gray-800">公式列表 (第 {currentPage + 1} 页)</h3>
               <button
                 onClick={() => setShowMobilePanel(false)}
                 className="p-2 hover:bg-gray-100 rounded-lg"
@@ -519,23 +519,84 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
               </button>
             </div>
             
+            {/* 批量识别按钮 */}
+            {document.formulas.filter(f => f.pageNumber === currentPage + 1).length > 0 && (
+              <div className="px-4 py-2 border-b border-gray-100">
+                <button
+                  onClick={() => {
+                    handleRecognizeAll();
+                  }}
+                  className="w-full py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <span>✨</span>
+                  提取全部公式
+                </button>
+              </div>
+            )}
+            
             {/* 公式列表 */}
-            <div className="flex-1 overflow-y-auto p-4">
-              <FormulaPanel
-                formulas={document.formulas}
-                currentPage={currentPage}
-                selectedId={selectedFormulaId}
-                hoveredId={hoveredFormulaId}
-                recognizedFormulas={recognizedFormulas}
-                onFormulaSelect={(formula) => {
-                  handleFormulaClick(formula);
-                  setShowMobilePanel(false);
-                }}
-                onFormulaHover={handleFormulaHover}
-                onRecognize={handleRecognize}
-                onRecognizeAll={handleRecognizeAll}
-                onCopy={handleCopy}
-              />
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {document.formulas.filter(f => f.pageNumber === currentPage + 1).length === 0 ? (
+                <div className="text-center py-8 text-gray-400">
+                  <div className="text-4xl mb-2">📭</div>
+                  <p>此页未检测到公式</p>
+                </div>
+              ) : (
+                document.formulas
+                  .filter(f => f.pageNumber === currentPage + 1)
+                  .map((formula, index) => {
+                    const recognized = recognizedFormulas.get(formula.id);
+                    const isSelected = formula.id === selectedFormulaId;
+                    
+                    return (
+                      <div
+                        key={formula.id}
+                        className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                          isSelected 
+                            ? 'border-green-500 bg-green-50' 
+                            : 'border-gray-200 bg-white'
+                        }`}
+                        onClick={() => {
+                          handleFormulaClick(formula);
+                          setShowMobilePanel(false);
+                        }}
+                      >
+                        {/* 公式缩略图 */}
+                        <div className="mb-2 bg-gray-50 rounded overflow-hidden">
+                          <img
+                            src={formula.imageData}
+                            alt={`公式 ${index + 1}`}
+                            className="w-full h-auto max-h-20 object-contain"
+                          />
+                        </div>
+                        
+                        {/* 公式信息 */}
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">
+                            公式 {currentPage + 1}-{index + 1}
+                          </span>
+                          {recognized?.status === 'done' && (
+                            <span className="px-2 py-0.5 text-xs bg-emerald-100 text-emerald-700 rounded-full">
+                              已识别
+                            </span>
+                          )}
+                          {recognized?.status === 'processing' && (
+                            <span className="px-2 py-0.5 text-xs bg-yellow-100 text-yellow-700 rounded-full">
+                              识别中...
+                            </span>
+                          )}
+                        </div>
+                        
+                        {/* 识别结果 */}
+                        {recognized?.status === 'done' && recognized.latex && (
+                          <div className="mt-2 bg-gray-900 text-gray-100 p-2 rounded text-xs font-mono overflow-x-auto">
+                            {recognized.latex}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })
+              )}
             </div>
           </div>
         </div>
