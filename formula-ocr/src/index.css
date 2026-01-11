@@ -53,3 +53,37 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* 移动端底部抽屉动画 */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* 垂直文字 */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* KaTeX 预览样式 */
+.katex-preview {
+  overflow-x: auto;
+}
+
+.katex-preview .katex {
+  font-size: 1.1em;
+}
+
+/* 公式高亮框过渡 */
+.formula-highlight {
+  transition: all 0.15s ease;
+}
