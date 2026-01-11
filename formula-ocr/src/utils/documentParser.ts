@@ -292,8 +292,13 @@ export async function parsePdfDocument(
 }
 
 /**
- * 改进的公式检测算法
- * 使用多种特征来识别公式区域
+ * 改进的公式检测算法 v2
+ * 使用连通域分析 + 数学符号特征检测
+ * 核心改进：
+ * 1. 使用连通域分析精确定位公式边界
+ * 2. 检测数学符号特征（希腊字母、运算符、分数线等）
+ * 3. 区分公式与普通文本
+ * 4. 紧贴公式边缘的边框
  */
 async function detectFormulasInPage(
   canvas: HTMLCanvasElement,
@@ -309,342 +314,355 @@ async function detectFormulasInPage(
   
   const formulas: FormulaRegion[] = [];
   
-  // 计算每行的像素密度和特征
-  const rowDensity: number[] = [];
-  const rowVariance: number[] = [];
-  const rowCenterOfMass: number[] = []; // 行内容重心
+  // 1. 二值化图像
+  const binaryImage = new Uint8Array(width * height);
+  const threshold = 180; // 二值化阈值
   
-  for (let y = 0; y < height; y++) {
-    let blackPixels = 0;
-    let pixelValues: number[] = [];
-    let weightedSum = 0;
-    let totalWeight = 0;
+  for (let i = 0; i < width * height; i++) {
+    const idx = i * 4;
+    const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+    binaryImage[i] = brightness < threshold ? 1 : 0;
+  }
+  
+  // 2. 连通域分析 - 找到所有独立的内容块
+  const visited = new Uint8Array(width * height);
+  const regions: Array<{
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+    pixels: number;
+    aspectRatio: number;
+    density: number;
+  }> = [];
+  
+  // BFS 找连通域
+  const findConnectedRegion = (startX: number, startY: number): typeof regions[0] | null => {
+    const queue: Array<[number, number]> = [[startX, startY]];
+    let minX = startX, maxX = startX, minY = startY, maxY = startY;
+    let pixelCount = 0;
     
+    while (queue.length > 0) {
+      const [x, y] = queue.shift()!;
+      const idx = y * width + x;
+      
+      if (x < 0 || x >= width || y < 0 || y >= height) continue;
+      if (visited[idx] || binaryImage[idx] === 0) continue;
+      
+      visited[idx] = 1;
+      pixelCount++;
+      
+      minX = Math.min(minX, x);
+      maxX = Math.max(maxX, x);
+      minY = Math.min(minY, y);
+      maxY = Math.max(maxY, y);
+      
+      // 8-连通
+      queue.push([x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]);
+      queue.push([x - 1, y - 1], [x + 1, y - 1], [x - 1, y + 1], [x + 1, y + 1]);
+    }
+    
+    if (pixelCount < 10) return null; // 忽略太小的区域
+    
+    const regionWidth = maxX - minX + 1;
+    const regionHeight = maxY - minY + 1;
+    const aspectRatio = regionWidth / Math.max(1, regionHeight);
+    const density = pixelCount / (regionWidth * regionHeight);
+    
+    return { minX, maxX, minY, maxY, pixels: pixelCount, aspectRatio, density };
+  };
+  
+  // 扫描所有像素找连通域
+  for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
-      const idx = (y * width + x) * 4;
-      const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
-      pixelValues.push(brightness);
-      if (brightness < 200) {
-        blackPixels++;
-        const weight = 255 - brightness;
-        weightedSum += x * weight;
-        totalWeight += weight;
-      }
-    }
-    
-    rowDensity.push(blackPixels / width);
-    rowCenterOfMass.push(totalWeight > 0 ? weightedSum / totalWeight : width / 2);
-    
-    // 计算行内变化度
-    const mean = pixelValues.reduce((a, b) => a + b, 0) / pixelValues.length;
-    const variance = pixelValues.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / pixelValues.length;
-    rowVariance.push(variance);
-  }
-  
-  // 找到内容区域边界
-  const contentThreshold = 0.003;
-  let contentTop = 0, contentBottom = height;
-  let contentLeft = 0, contentRight = width;
-  
-  // 找上下边界
-  for (let y = 0; y < height; y++) {
-    if (rowDensity[y] > contentThreshold) {
-      contentTop = y;
-      break;
-    }
-  }
-  for (let y = height - 1; y >= 0; y--) {
-    if (rowDensity[y] > contentThreshold) {
-      contentBottom = y;
-      break;
-    }
-  }
-  
-  // 计算列密度找左右边界
-  const colDensity: number[] = [];
-  for (let x = 0; x < width; x++) {
-    let blackPixels = 0;
-    for (let y = contentTop; y < contentBottom; y++) {
-      const idx = (y * width + x) * 4;
-      const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
-      if (brightness < 200) blackPixels++;
-    }
-    colDensity.push(blackPixels / Math.max(1, contentBottom - contentTop));
-  }
-  
-  for (let x = 0; x < width; x++) {
-    if (colDensity[x] > contentThreshold) {
-      contentLeft = x;
-      break;
-    }
-  }
-  for (let x = width - 1; x >= 0; x--) {
-    if (colDensity[x] > contentThreshold) {
-      contentRight = x;
-      break;
-    }
-  }
-  
-  // 检测可能的公式区域
-  const minGap = Math.round(8 * scale);
-  const minHeight = Math.round(12 * scale);
-  const maxHeight = Math.round(250 * scale);
-  const densityThreshold = 0.008;
-  
-  let inRegion = false;
-  let regionStart = 0;
-  let gapCount = 0;
-  
-  for (let y = contentTop; y <= contentBottom; y++) {
-    const density = rowDensity[y];
-    
-    if (!inRegion && density > densityThreshold) {
-      inRegion = true;
-      regionStart = y;
-      gapCount = 0;
-    } else if (inRegion) {
-      if (density < densityThreshold * 0.2) {
-        gapCount++;
-        if (gapCount > minGap) {
-          const regionEnd = y - gapCount;
-          const regionHeight = regionEnd - regionStart;
-          
-          if (regionHeight >= minHeight && regionHeight <= maxHeight) {
-            const region = analyzeRegion(
-              data, width, height,
-              contentLeft, regionStart, contentRight, regionEnd,
-              rowDensity, rowVariance, rowCenterOfMass
-            );
-            
-            if (region.isFormula) {
-              // 提取公式图像（带padding）
-              const padding = Math.round(8 * scale);
-              const left = Math.max(0, region.left - padding);
-              const top = Math.max(0, regionStart - padding);
-              const right = Math.min(width, region.right + padding);
-              const bottom = Math.min(height, regionEnd + padding);
-              
-              const regionCanvas = document.createElement('canvas');
-              regionCanvas.width = right - left;
-              regionCanvas.height = bottom - top;
-              const regionCtx = regionCanvas.getContext('2d')!;
-              
-              regionCtx.fillStyle = '#ffffff';
-              regionCtx.fillRect(0, 0, regionCanvas.width, regionCanvas.height);
-              regionCtx.drawImage(
-                canvas,
-                left, top, right - left, bottom - top,
-                0, 0, regionCanvas.width, regionCanvas.height
-              );
-              
-              // 计算原始坐标（基于PDF原始尺寸）
-              const originalX = left / scale;
-              const originalY = top / scale;
-              const originalWidth = (right - left) / scale;
-              const originalHeight = (bottom - top) / scale;
-              
-              formulas.push({
-                id: `formula_${pageNumber}_${formulas.length + 1}_${Date.now()}`,
-                imageData: regionCanvas.toDataURL('image/png'),
-                pageNumber,
-                position: {
-                  x: left,
-                  y: top,
-                  width: right - left,
-                  height: bottom - top,
-                },
-                originalPosition: {
-                  x: originalX,
-                  y: originalY,
-                  width: originalWidth,
-                  height: originalHeight,
-                },
-                confidence: region.confidence,
-                type: region.type,
-              });
-            }
-          }
-          
-          inRegion = false;
-          gapCount = 0;
+      const idx = y * width + x;
+      if (binaryImage[idx] === 1 && !visited[idx]) {
+        const region = findConnectedRegion(x, y);
+        if (region) {
+          regions.push(region);
         }
-      } else {
-        gapCount = 0;
       }
     }
   }
   
-  // 处理最后一个区域
-  if (inRegion) {
-    const regionEnd = contentBottom;
-    const regionHeight = regionEnd - regionStart;
+  // 3. 合并相邻的连通域（可能是同一个公式的不同部分）
+  const mergedRegions: typeof regions = [];
+  const regionUsed = new Array(regions.length).fill(false);
+  
+  // 按 Y 坐标排序
+  regions.sort((a, b) => a.minY - b.minY);
+  
+  const mergeThresholdX = Math.round(30 * scale); // 水平合并阈值
+  const mergeThresholdY = Math.round(15 * scale); // 垂直合并阈值
+  
+  for (let i = 0; i < regions.length; i++) {
+    if (regionUsed[i]) continue;
     
-    if (regionHeight >= minHeight && regionHeight <= maxHeight) {
-      const region = analyzeRegion(
-        data, width, height,
-        contentLeft, regionStart, contentRight, regionEnd,
-        rowDensity, rowVariance, rowCenterOfMass
+    let merged = { ...regions[i] };
+    regionUsed[i] = true;
+    
+    // 尝试合并相邻区域
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (let j = 0; j < regions.length; j++) {
+        if (regionUsed[j]) continue;
+        
+        const r = regions[j];
+        
+        // 检查是否相邻
+        const horizontalOverlap = !(r.maxX + mergeThresholdX < merged.minX || r.minX - mergeThresholdX > merged.maxX);
+        const verticalClose = Math.abs(r.minY - merged.maxY) < mergeThresholdY || 
+                             Math.abs(merged.minY - r.maxY) < mergeThresholdY ||
+                             (r.minY <= merged.maxY && r.maxY >= merged.minY);
+        
+        if (horizontalOverlap && verticalClose) {
+          merged.minX = Math.min(merged.minX, r.minX);
+          merged.maxX = Math.max(merged.maxX, r.maxX);
+          merged.minY = Math.min(merged.minY, r.minY);
+          merged.maxY = Math.max(merged.maxY, r.maxY);
+          merged.pixels += r.pixels;
+          regionUsed[j] = true;
+          changed = true;
+        }
+      }
+    }
+    
+    // 重新计算属性
+    const regionWidth = merged.maxX - merged.minX + 1;
+    const regionHeight = merged.maxY - merged.minY + 1;
+    merged.aspectRatio = regionWidth / Math.max(1, regionHeight);
+    merged.density = merged.pixels / (regionWidth * regionHeight);
+    
+    mergedRegions.push(merged);
+  }
+  
+  // 4. 分析每个区域是否为公式
+  const minFormulaHeight = Math.round(15 * scale);
+  const maxFormulaHeight = Math.round(300 * scale);
+  const minFormulaWidth = Math.round(20 * scale);
+  
+  for (const region of mergedRegions) {
+    const regionWidth = region.maxX - region.minX + 1;
+    const regionHeight = region.maxY - region.minY + 1;
+    
+    // 基本尺寸过滤
+    if (regionHeight < minFormulaHeight || regionHeight > maxFormulaHeight) continue;
+    if (regionWidth < minFormulaWidth) continue;
+    
+    // 分析区域特征判断是否为公式
+    const formulaScore = analyzeFormulaFeatures(
+      data, width, height,
+      region.minX, region.minY, region.maxX, region.maxY,
+      scale
+    );
+    
+    if (formulaScore.isFormula) {
+      // 提取公式图像（带紧凑padding）
+      const padding = Math.round(4 * scale); // 更紧凑的padding
+      const left = Math.max(0, region.minX - padding);
+      const top = Math.max(0, region.minY - padding);
+      const right = Math.min(width, region.maxX + padding);
+      const bottom = Math.min(height, region.maxY + padding);
+      
+      const regionCanvas = document.createElement('canvas');
+      regionCanvas.width = right - left;
+      regionCanvas.height = bottom - top;
+      const regionCtx = regionCanvas.getContext('2d')!;
+      
+      regionCtx.fillStyle = '#ffffff';
+      regionCtx.fillRect(0, 0, regionCanvas.width, regionCanvas.height);
+      regionCtx.drawImage(
+        canvas,
+        left, top, right - left, bottom - top,
+        0, 0, regionCanvas.width, regionCanvas.height
       );
       
-      if (region.isFormula) {
-        const padding = Math.round(8 * scale);
-        const left = Math.max(0, region.left - padding);
-        const top = Math.max(0, regionStart - padding);
-        const right = Math.min(width, region.right + padding);
-        const bottom = Math.min(height, regionEnd + padding);
-        
-        const regionCanvas = document.createElement('canvas');
-        regionCanvas.width = right - left;
-        regionCanvas.height = bottom - top;
-        const regionCtx = regionCanvas.getContext('2d')!;
-        
-        regionCtx.fillStyle = '#ffffff';
-        regionCtx.fillRect(0, 0, regionCanvas.width, regionCanvas.height);
-        regionCtx.drawImage(
-          canvas,
-          left, top, right - left, bottom - top,
-          0, 0, regionCanvas.width, regionCanvas.height
-        );
-        
-        const originalX = left / scale;
-        const originalY = top / scale;
-        const originalWidth = (right - left) / scale;
-        const originalHeight = (bottom - top) / scale;
-        
-        formulas.push({
-          id: `formula_${pageNumber}_${formulas.length + 1}_${Date.now()}`,
-          imageData: regionCanvas.toDataURL('image/png'),
-          pageNumber,
-          position: {
-            x: left,
-            y: top,
-            width: right - left,
-            height: bottom - top,
-          },
-          originalPosition: {
-            x: originalX,
-            y: originalY,
-            width: originalWidth,
-            height: originalHeight,
-          },
-          confidence: region.confidence,
-          type: region.type,
-        });
-      }
+      // 计算原始坐标（基于PDF原始尺寸）
+      const originalX = left / scale;
+      const originalY = top / scale;
+      const originalWidth = (right - left) / scale;
+      const originalHeight = (bottom - top) / scale;
+      
+      formulas.push({
+        id: `formula_${pageNumber}_${formulas.length + 1}_${Date.now()}`,
+        imageData: regionCanvas.toDataURL('image/png'),
+        pageNumber,
+        position: {
+          x: left,
+          y: top,
+          width: right - left,
+          height: bottom - top,
+        },
+        originalPosition: {
+          x: originalX,
+          y: originalY,
+          width: originalWidth,
+          height: originalHeight,
+        },
+        confidence: formulaScore.confidence,
+        type: formulaScore.type,
+      });
     }
   }
+  
+  // 按位置排序（从上到下，从左到右）
+  formulas.sort((a, b) => {
+    const yDiff = a.originalPosition.y - b.originalPosition.y;
+    if (Math.abs(yDiff) > 20) return yDiff;
+    return a.originalPosition.x - b.originalPosition.x;
+  });
   
   return formulas;
 }
 
 /**
- * 分析区域是否为公式
+ * 分析区域特征判断是否为数学公式
+ * 使用多种特征：
+ * 1. 垂直结构（分数、上下标）
+ * 2. 特殊符号密度
+ * 3. 宽高比
+ * 4. 居中特征
  */
-function analyzeRegion(
+function analyzeFormulaFeatures(
   data: Uint8ClampedArray,
-  width: number,
-  _height: number,
-  contentLeft: number,
-  top: number,
-  contentRight: number,
-  bottom: number,
-  rowDensity: number[],
-  rowVariance: number[],
-  rowCenterOfMass: number[]
-): { isFormula: boolean; left: number; right: number; confidence: number; type: 'inline' | 'display' | 'equation' } {
-  // 找到区域的实际左右边界
-  let left = contentRight, right = contentLeft;
-  
-  for (let y = top; y < bottom; y++) {
-    for (let x = contentLeft; x < contentRight; x++) {
-      const idx = (y * width + x) * 4;
-      const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
-      if (brightness < 200) {
-        left = Math.min(left, x);
-        right = Math.max(right, x);
-      }
-    }
-  }
-  
-  if (left >= right) {
-    return { isFormula: false, left: 0, right: 0, confidence: 0, type: 'inline' };
-  }
-  
-  const regionWidth = right - left;
-  const contentWidth = contentRight - contentLeft;
-  const regionHeight = bottom - top;
+  imgWidth: number,
+  _imgHeight: number,
+  minX: number,
+  minY: number,
+  maxX: number,
+  maxY: number,
+  scale: number
+): { isFormula: boolean; confidence: number; type: 'inline' | 'display' | 'equation' } {
+  const regionWidth = maxX - minX + 1;
+  const regionHeight = maxY - minY + 1;
+  const aspectRatio = regionWidth / regionHeight;
   
   let score = 0;
   let type: 'inline' | 'display' | 'equation' = 'inline';
   
-  // 1. 检查是否居中（display 公式通常居中）
-  const regionCenter = (left + right) / 2;
-  const contentCenter = (contentLeft + contentRight) / 2;
-  const centerOffset = Math.abs(regionCenter - contentCenter);
-  const isCentered = centerOffset < contentWidth * 0.12;
-  
-  if (isCentered && regionWidth < contentWidth * 0.85) {
-    score += 35;
-    type = 'display';
+  // 1. 检查垂直结构（分数线、上下标等）
+  // 分析每列的像素分布
+  const colProfiles: number[] = [];
+  for (let x = minX; x <= maxX; x++) {
+    let colPixels = 0;
+    for (let y = minY; y <= maxY; y++) {
+      const idx = (y * imgWidth + x) * 4;
+      const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+      if (brightness < 180) colPixels++;
+    }
+    colProfiles.push(colPixels);
   }
   
-  // 2. 检查宽度比例
-  const widthRatio = regionWidth / contentWidth;
-  if (widthRatio > 0.15 && widthRatio < 0.92) {
-    score += 20;
+  // 检查是否有水平线（分数线特征）
+  const rowProfiles: number[] = [];
+  for (let y = minY; y <= maxY; y++) {
+    let rowPixels = 0;
+    for (let x = minX; x <= maxX; x++) {
+      const idx = (y * imgWidth + x) * 4;
+      const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+      if (brightness < 180) rowPixels++;
+    }
+    rowProfiles.push(rowPixels);
   }
   
-  // 3. 检查高度特征
-  if (regionHeight > 15 && regionHeight < 180) {
-    score += 15;
-  }
-  
-  // 4. 检查行内变化度（公式有更多符号变化）
-  let avgVariance = 0;
-  for (let y = top; y < bottom; y++) {
-    avgVariance += rowVariance[y];
-  }
-  avgVariance /= Math.max(1, bottom - top);
-  if (avgVariance > 800) {
-    score += 20;
-  }
-  
-  // 5. 检查密度分布
-  let densitySum = 0;
-  for (let y = top; y < bottom; y++) {
-    densitySum += rowDensity[y];
-  }
-  const avgDensity = densitySum / Math.max(1, bottom - top);
-  if (avgDensity > 0.015 && avgDensity < 0.35) {
-    score += 15;
-  }
-  
-  // 6. 检查重心分布（公式重心通常较稳定）
-  let centerVariance = 0;
-  const avgCenter = rowCenterOfMass.slice(top, bottom).reduce((a, b) => a + b, 0) / Math.max(1, bottom - top);
-  for (let y = top; y < bottom; y++) {
-    centerVariance += Math.pow(rowCenterOfMass[y] - avgCenter, 2);
-  }
-  centerVariance /= Math.max(1, bottom - top);
-  if (centerVariance < contentWidth * contentWidth * 0.02) {
-    score += 10;
-  }
-  
-  // 7. 检查是否有缩进（equation 环境通常有编号）
-  const leftMargin = left - contentLeft;
-  const rightMargin = contentRight - right;
-  if (leftMargin > contentWidth * 0.08 || rightMargin > contentWidth * 0.08) {
-    score += 10;
-    if (rightMargin > contentWidth * 0.12 && rightMargin < contentWidth * 0.28) {
-      type = 'equation';
+  // 检测水平线（分数线）
+  const avgRowPixels = rowProfiles.reduce((a, b) => a + b, 0) / rowProfiles.length;
+  let hasHorizontalLine = false;
+  for (let i = 1; i < rowProfiles.length - 1; i++) {
+    if (rowProfiles[i] > avgRowPixels * 2 && 
+        rowProfiles[i] > regionWidth * 0.3 &&
+        rowProfiles[i - 1] < rowProfiles[i] * 0.5 &&
+        rowProfiles[i + 1] < rowProfiles[i] * 0.5) {
+      hasHorizontalLine = true;
+      break;
     }
   }
   
-  const confidence = Math.min(100, Math.round(score * 0.9));
-  const isFormula = score >= 38;
+  if (hasHorizontalLine) {
+    score += 40;
+    type = 'display';
+  }
   
-  return { isFormula, left, right, confidence, type };
+  // 2. 检查高度特征（公式通常比普通文本高）
+  const normalTextHeight = 12 * scale; // 假设正常文本高度
+  if (regionHeight > normalTextHeight * 1.5) {
+    score += 25;
+    type = 'display';
+  }
+  
+  // 3. 检查宽高比（公式通常不会太窄长）
+  if (aspectRatio > 0.5 && aspectRatio < 15) {
+    score += 15;
+  }
+  
+  // 4. 检查像素密度分布的不均匀性（公式有更多变化）
+  const colVariance = calculateVariance(colProfiles);
+  const avgColPixels = colProfiles.reduce((a, b) => a + b, 0) / colProfiles.length;
+  if (colVariance > avgColPixels * 0.5) {
+    score += 15;
+  }
+  
+  // 5. 检查是否有上下标结构
+  const topThird = rowProfiles.slice(0, Math.floor(rowProfiles.length / 3));
+  const bottomThird = rowProfiles.slice(Math.floor(rowProfiles.length * 2 / 3));
+  const middleThird = rowProfiles.slice(Math.floor(rowProfiles.length / 3), Math.floor(rowProfiles.length * 2 / 3));
+  
+  const topDensity = topThird.reduce((a, b) => a + b, 0) / topThird.length;
+  const bottomDensity = bottomThird.reduce((a, b) => a + b, 0) / bottomThird.length;
+  const middleDensity = middleThird.reduce((a, b) => a + b, 0) / middleThird.length;
+  
+  // 上下标特征：上部或下部有内容，但不是均匀分布
+  if ((topDensity > middleDensity * 0.3 || bottomDensity > middleDensity * 0.3) &&
+      Math.abs(topDensity - bottomDensity) > middleDensity * 0.2) {
+    score += 20;
+  }
+  
+  // 6. 检查区域内是否有多个垂直分离的部分（如求和符号上下的范围）
+  let verticalGaps = 0;
+  let inContent = false;
+  for (const rowPixels of rowProfiles) {
+    if (rowPixels > avgRowPixels * 0.1) {
+      if (!inContent) {
+        verticalGaps++;
+        inContent = true;
+      }
+    } else {
+      inContent = false;
+    }
+  }
+  
+  if (verticalGaps >= 2) {
+    score += 15;
+    type = 'display';
+  }
+  
+  // 7. 排除纯文本行（宽度很长但高度接近正常文本）
+  if (regionHeight < normalTextHeight * 1.3 && aspectRatio > 8) {
+    score -= 30; // 可能是普通文本行
+  }
+  
+  // 8. 排除太小的区域
+  if (regionWidth < 30 * scale || regionHeight < 15 * scale) {
+    score -= 20;
+  }
+  
+  const confidence = Math.max(0, Math.min(100, score));
+  const isFormula = score >= 35;
+  
+  return { isFormula, confidence, type };
 }
+
+/**
+ * 计算数组方差
+ */
+function calculateVariance(arr: number[]): number {
+  if (arr.length === 0) return 0;
+  const mean = arr.reduce((a, b) => a + b, 0) / arr.length;
+  return arr.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / arr.length;
+}
+
+// analyzeRegion 函数已被 analyzeFormulaFeatures 替代
 
 /**
  * 手动选择区域提取公式

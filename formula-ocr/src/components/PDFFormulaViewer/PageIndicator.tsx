@@ -1,6 +1,7 @@
 /**
  * 页码指示器组件
  * 显示当前页码，支持输入跳转
+ * 优化：更好的视觉效果和交互体验
  */
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
@@ -81,15 +82,15 @@ export const PageIndicator: React.FC<PageIndicatorProps> = ({
   }, [currentPage, totalPages, onPageChange]);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center gap-1 bg-gray-100 rounded-lg px-1 py-0.5">
       {/* 上一页按钮 */}
       <button
         onClick={handlePrevPage}
         disabled={currentPage === 0}
-        className={`p-1.5 rounded transition-colors ${
+        className={`p-1.5 rounded-lg transition-colors ${
           currentPage === 0
             ? 'text-gray-300 cursor-not-allowed'
-            : 'text-gray-600 hover:bg-gray-100'
+            : 'text-gray-600 hover:bg-gray-200 hover:text-purple-600'
         }`}
         title="上一页 (PageUp)"
       >
@@ -99,7 +100,7 @@ export const PageIndicator: React.FC<PageIndicatorProps> = ({
       </button>
 
       {/* 页码显示/输入 */}
-      <div className="flex items-center gap-1 text-sm">
+      <div className="flex items-center gap-1.5 text-sm px-1">
         {isEditing ? (
           <input
             ref={inputRef}
@@ -108,29 +109,29 @@ export const PageIndicator: React.FC<PageIndicatorProps> = ({
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             onBlur={handleConfirm}
-            className="w-12 px-2 py-1 text-center border border-purple-400 rounded focus:outline-none focus:ring-2 focus:ring-purple-300"
+            className="w-12 px-2 py-1 text-center border-2 border-purple-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300 bg-white"
           />
         ) : (
           <button
             onClick={handleStartEdit}
-            className="px-2 py-1 hover:bg-gray-100 rounded transition-colors"
+            className="px-3 py-1 hover:bg-gray-200 rounded-lg transition-colors group"
             title="点击跳转到指定页"
           >
-            <span className="font-medium text-gray-700">{currentPage + 1}</span>
+            <span className="font-semibold text-purple-600 group-hover:text-purple-700">{currentPage + 1}</span>
           </button>
         )}
-        <span className="text-gray-400">/</span>
-        <span className="text-gray-600">{totalPages}</span>
+        <span className="text-gray-400 font-medium">/</span>
+        <span className="text-gray-600 font-medium">{totalPages}</span>
       </div>
 
       {/* 下一页按钮 */}
       <button
         onClick={handleNextPage}
         disabled={currentPage === totalPages - 1}
-        className={`p-1.5 rounded transition-colors ${
+        className={`p-1.5 rounded-lg transition-colors ${
           currentPage === totalPages - 1
             ? 'text-gray-300 cursor-not-allowed'
-            : 'text-gray-600 hover:bg-gray-100'
+            : 'text-gray-600 hover:bg-gray-200 hover:text-purple-600'
         }`}
         title="下一页 (PageDown)"
       >

@@ -1,19 +1,20 @@
 /**
  * 公式高亮组件
  * 在 PDF 页面上渲染公式高亮框，支持不同状态的颜色区分
+ * 优化：紧贴公式边缘的高亮框
  */
 
 import React, { useCallback } from 'react';
 import type { FormulaRegion } from '../../utils/documentParser';
 
-// 高亮颜色方案
+// 高亮颜色方案 - 更醒目的颜色
 const HIGHLIGHT_COLORS = {
-  default: 'border-purple-400 bg-purple-100/20 hover:bg-purple-100/40',
-  hovered: 'border-blue-500 bg-blue-100/30',
-  selected: 'border-green-500 bg-green-100/40 ring-2 ring-green-300',
-  recognized: 'border-emerald-500 bg-emerald-100/20',
-  processing: 'border-yellow-500 bg-yellow-100/30 animate-pulse',
-  error: 'border-red-400 bg-red-100/20',
+  default: 'border-purple-500 bg-purple-200/30 hover:bg-purple-300/40 shadow-sm',
+  hovered: 'border-blue-500 bg-blue-200/40 shadow-md',
+  selected: 'border-green-500 bg-green-200/50 ring-2 ring-green-400 shadow-lg',
+  recognized: 'border-emerald-500 bg-emerald-200/30 shadow-sm',
+  processing: 'border-yellow-500 bg-yellow-200/40 animate-pulse shadow-md',
+  error: 'border-red-500 bg-red-200/30 shadow-sm',
 };
 
 export type FormulaStatus = 'pending' | 'processing' | 'done' | 'error';
@@ -88,7 +89,7 @@ export const FormulaHighlighter: React.FC<FormulaHighlighterProps> = ({
 
   return (
     <>
-      {pageFormulas.map(formula => {
+      {pageFormulas.map((formula, index) => {
         // 使用原始坐标并应用缩放
         const { x, y, width, height } = formula.originalPosition;
         const scaledX = x * zoom;
@@ -98,36 +99,49 @@ export const FormulaHighlighter: React.FC<FormulaHighlighterProps> = ({
 
         const status = formulaStatuses.get(formula.id);
         const highlightClass = getHighlightClass(formula);
+        const isSelected = formula.id === selectedId;
 
         return (
           <div
             key={formula.id}
-            className={`absolute cursor-pointer border-2 rounded transition-all duration-150 ${highlightClass}`}
+            className={`absolute cursor-pointer border-2 rounded-sm transition-all duration-150 ${highlightClass}`}
             style={{
               left: `${scaledX}px`,
               top: `${scaledY}px`,
               width: `${scaledWidth}px`,
               height: `${scaledHeight}px`,
+              // 确保高亮框在图片上方
+              zIndex: isSelected ? 20 : 10,
             }}
             onClick={(e) => handleClick(e, formula)}
             onMouseEnter={() => handleMouseEnter(formula.id)}
             onMouseLeave={handleMouseLeave}
-            title={`公式 ${formula.pageNumber}-${pageFormulas.indexOf(formula) + 1}${status === 'done' ? ' (已识别)' : ''}`}
+            title={`公式 ${formula.pageNumber}-${index + 1}${status === 'done' ? ' (已识别 - 点击查看)' : ' (点击识别)'}`}
           >
+            {/* 公式序号标签 */}
+            <div className="absolute -top-5 left-0 px-1.5 py-0.5 bg-purple-600 text-white text-xs rounded-t font-medium whitespace-nowrap">
+              {formula.pageNumber}-{index + 1}
+            </div>
+            
             {/* 状态指示器 */}
             {status === 'processing' && (
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-500 rounded-full flex items-center justify-center">
-                <div className="w-2 h-2 bg-white rounded-full animate-ping" />
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center shadow-md">
+                <div className="w-2.5 h-2.5 bg-white rounded-full animate-ping" />
               </div>
             )}
             {status === 'done' && (
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">✓</span>
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full flex items-center justify-center shadow-md">
+                <span className="text-white text-xs font-bold">✓</span>
               </div>
             )}
             {status === 'error' && (
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-xs">!</span>
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center shadow-md">
+                <span className="text-white text-xs font-bold">!</span>
+              </div>
+            )}
+            {(!status || status === 'pending') && (
+              <div className="absolute -top-1 -right-1 w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center shadow-md opacity-70 hover:opacity-100">
+                <span className="text-white text-xs">🔍</span>
               </div>
             )}
           </div>

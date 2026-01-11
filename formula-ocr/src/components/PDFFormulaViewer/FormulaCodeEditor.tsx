@@ -1,6 +1,7 @@
 /**
  * 公式代码编辑器组件
  * 显示和编辑识别出的 LaTeX/Markdown 代码，支持实时预览
+ * 优化：更好的视觉效果和交互体验
  */
 
 import React, { useState, useCallback, useEffect, useRef } from 'react';
@@ -143,10 +144,11 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
   // 如果没有选中公式，显示空状态
   if (!formula) {
     return (
-      <div className="h-full flex items-center justify-center text-gray-400 p-4">
+      <div className="h-full flex items-center justify-center text-gray-400 p-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="text-center">
-          <div className="text-4xl mb-2">📝</div>
-          <p>选择一个公式查看详情</p>
+          <div className="text-5xl mb-3">📝</div>
+          <p className="font-medium text-gray-600">选择一个公式</p>
+          <p className="text-sm mt-1">点击 PDF 中的公式框查看详情</p>
         </div>
       </div>
     );
@@ -155,24 +157,27 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
   return (
     <div className="h-full flex flex-col bg-white">
       {/* 头部 */}
-      <div className="flex-shrink-0 p-3 border-b border-gray-100">
-        <div className="flex items-center justify-between mb-2">
-          <h4 className="font-medium text-gray-800">公式编辑器</h4>
+      <div className="flex-shrink-0 p-4 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-white">
+        <div className="flex items-center justify-between mb-3">
+          <h4 className="font-semibold text-gray-800 flex items-center gap-2">
+            <span>📝</span>
+            公式编辑器
+          </h4>
           {onClose && (
             <button
               onClick={onClose}
-              className="p-1 hover:bg-gray-100 rounded transition-colors"
+              className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              <span className="text-gray-400">✕</span>
+              <span className="text-gray-400 text-lg">✕</span>
             </button>
           )}
         </div>
 
         {/* 格式切换 */}
-        <div className="flex gap-1 p-1 bg-gray-100 rounded-lg">
+        <div className="flex gap-1 p-1 bg-gray-100 rounded-xl">
           <button
             onClick={() => handleFormatChange('latex')}
-            className={`flex-1 py-1.5 px-3 text-xs font-medium rounded transition-colors ${
+            className={`flex-1 py-2 px-4 text-sm font-medium rounded-lg transition-all ${
               format === 'latex'
                 ? 'bg-white text-purple-600 shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
@@ -182,7 +187,7 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
           </button>
           <button
             onClick={() => handleFormatChange('markdown')}
-            className={`flex-1 py-1.5 px-3 text-xs font-medium rounded transition-colors ${
+            className={`flex-1 py-2 px-4 text-sm font-medium rounded-lg transition-all ${
               format === 'markdown'
                 ? 'bg-white text-purple-600 shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
@@ -194,45 +199,50 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
       </div>
 
       {/* 公式原图 */}
-      <div className="flex-shrink-0 p-3 border-b border-gray-100">
-        <div className="bg-gray-50 rounded-lg p-2 overflow-hidden">
+      <div className="flex-shrink-0 p-4 border-b border-gray-100">
+        <div className="text-xs text-gray-500 mb-2 font-medium">原始公式</div>
+        <div className="bg-gray-50 rounded-xl p-3 overflow-hidden border border-gray-100">
           <img
             src={formula.imageData}
             alt="公式原图"
-            className="w-full h-auto max-h-20 object-contain"
+            className="w-full h-auto max-h-24 object-contain"
           />
         </div>
       </div>
 
       {/* 代码编辑区 */}
-      <div className="flex-1 flex flex-col min-h-0 p-3">
+      <div className="flex-1 flex flex-col min-h-0 p-4">
         {recognized?.status === 'done' ? (
           <>
             {/* 代码输入框 */}
-            <div className="flex-1 min-h-0 mb-3">
+            <div className="flex-1 min-h-0 mb-4">
+              <div className="text-xs text-gray-500 mb-2 font-medium">识别结果 (可编辑)</div>
               <textarea
                 ref={textareaRef}
                 value={editedCode}
                 onChange={handleCodeChange}
-                className="w-full h-full p-3 bg-gray-900 text-gray-100 font-mono text-sm rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full h-full p-4 bg-gray-900 text-gray-100 font-mono text-sm rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-inner"
                 placeholder="输入 LaTeX 代码..."
                 spellCheck={false}
               />
             </div>
 
             {/* 预览区 */}
-            <div className="flex-shrink-0 mb-3">
-              <div className="text-xs text-gray-500 mb-1">预览</div>
-              <div className="p-3 bg-gray-50 rounded-lg min-h-[60px] overflow-x-auto">
+            <div className="flex-shrink-0 mb-4">
+              <div className="text-xs text-gray-500 mb-2 font-medium">实时预览</div>
+              <div className="p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl min-h-[70px] overflow-x-auto border border-gray-100">
                 {previewError ? (
-                  <div className="text-red-500 text-sm">{previewError}</div>
+                  <div className="text-red-500 text-sm flex items-center gap-2">
+                    <span>⚠️</span>
+                    {previewError}
+                  </div>
                 ) : previewHtml ? (
                   <div 
-                    className="katex-preview"
+                    className="katex-preview text-center"
                     dangerouslySetInnerHTML={{ __html: previewHtml }}
                   />
                 ) : (
-                  <div className="text-gray-400 text-sm">输入代码以预览</div>
+                  <div className="text-gray-400 text-sm text-center">输入代码以预览</div>
                 )}
               </div>
             </div>
@@ -241,18 +251,18 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
             <div className="flex-shrink-0 flex gap-2">
               <button
                 onClick={handleCopy}
-                className={`flex-1 py-2 px-4 text-sm font-medium rounded-lg transition-colors flex items-center justify-center gap-2 ${
+                className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-xl transition-all flex items-center justify-center gap-2 ${
                   copySuccess
-                    ? 'bg-green-500 text-white'
-                    : 'bg-purple-500 hover:bg-purple-600 text-white'
+                    ? 'bg-green-500 text-white shadow-lg'
+                    : 'bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white shadow-md hover:shadow-lg'
                 }`}
               >
                 <span>{copySuccess ? '✓' : '📋'}</span>
-                {copySuccess ? '已复制' : '复制代码'}
+                {copySuccess ? '已复制!' : '复制代码'}
               </button>
               <button
                 onClick={handleReRecognize}
-                className="py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+                className="py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium rounded-xl transition-colors flex items-center gap-2"
               >
                 <span>🔄</span>
                 重新识别
@@ -262,37 +272,39 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
         ) : recognized?.status === 'processing' ? (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
-              <div className="w-8 h-8 border-3 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-gray-600">正在识别公式...</p>
+              <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-gray-600 font-medium">正在识别公式...</p>
+              <p className="text-sm text-gray-400 mt-1">请稍候</p>
             </div>
           </div>
         ) : recognized?.status === 'error' ? (
           <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="text-center mb-4">
-              <div className="text-4xl mb-2">❌</div>
-              <p className="text-red-600 mb-1">识别失败</p>
-              <p className="text-sm text-gray-500">{recognized.error}</p>
+            <div className="text-center mb-6">
+              <div className="text-5xl mb-3">❌</div>
+              <p className="text-red-600 font-medium text-lg">识别失败</p>
+              <p className="text-sm text-gray-500 mt-2 max-w-[200px]">{recognized.error}</p>
             </div>
             <button
               onClick={handleReRecognize}
-              className="py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+              className="py-2.5 px-6 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-medium rounded-xl transition-all flex items-center gap-2 shadow-md"
             >
               <span>🔄</span>
-              重试
+              重新识别
             </button>
           </div>
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="text-center mb-4">
-              <div className="text-4xl mb-2">🔍</div>
-              <p className="text-gray-600">点击识别按钮提取公式</p>
+            <div className="text-center mb-6">
+              <div className="text-5xl mb-3">🔍</div>
+              <p className="text-gray-600 font-medium">点击下方按钮识别公式</p>
+              <p className="text-sm text-gray-400 mt-1">将自动转换为 LaTeX 代码</p>
             </div>
             <button
               onClick={handleReRecognize}
-              className="py-2 px-4 bg-purple-500 hover:bg-purple-600 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+              className="py-3 px-8 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-medium rounded-xl transition-all flex items-center gap-2 shadow-lg hover:shadow-xl"
             >
               <span>✨</span>
-              识别公式
+              开始识别
             </button>
           </div>
         )}

@@ -1,7 +1,7 @@
 /**
  * 虚拟滚动容器组件
  * 实现 PDF 连续页面渲染，仅渲染可见页面及相邻页面
- * 包含性能优化：骨架屏、预加载、懒加载
+ * 优化：更好的性能和视觉效果
  */
 
 import React, { useRef, useEffect, useState, useCallback, useMemo } from 'react';
@@ -24,25 +24,35 @@ interface VirtualScrollContainerProps {
 }
 
 // 预渲染的页面数量（当前页前后各几页）
-const BUFFER_PAGES = 2;
+const BUFFER_PAGES = 3;
 // 页面间距
-const PAGE_GAP = 16;
+const PAGE_GAP = 24;
 
-// 骨架屏组件
-const PageSkeleton: React.FC<{ width: number; height: number }> = ({ width, height }) => (
+// 骨架屏组件 - 更好的加载动画
+const PageSkeleton: React.FC<{ width: number; height: number; pageNum: number }> = ({ width, height, pageNum }) => (
   <div 
-    className="bg-white shadow-lg animate-pulse"
+    className="bg-white shadow-lg rounded-sm animate-pulse relative"
     style={{ width: `${width}px`, height: `${height}px` }}
   >
-    <div className="h-full flex flex-col p-4 gap-3">
-      {/* 模拟文本行 */}
-      {Array.from({ length: Math.floor(height / 30) }).map((_, i) => (
-        <div 
-          key={i} 
-          className="h-3 bg-gray-200 rounded"
-          style={{ width: `${60 + Math.random() * 35}%` }}
-        />
+    <div className="absolute inset-0 flex flex-col p-6 gap-4">
+      {/* 模拟标题 */}
+      <div className="h-6 bg-gray-200 rounded w-3/4" />
+      
+      {/* 模拟段落 */}
+      {Array.from({ length: Math.floor(height / 50) }).map((_, i) => (
+        <div key={i} className="space-y-2">
+          <div className="h-3 bg-gray-200 rounded" style={{ width: `${70 + Math.random() * 25}%` }} />
+          <div className="h-3 bg-gray-200 rounded" style={{ width: `${60 + Math.random() * 35}%` }} />
+        </div>
       ))}
+    </div>
+    
+    {/* 加载指示器 */}
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-10 h-10 border-3 border-purple-500 border-t-transparent rounded-full animate-spin" />
+        <span className="text-sm text-gray-500">加载第 {pageNum} 页...</span>
+      </div>
     </div>
   </div>
 );
@@ -232,11 +242,14 @@ export const VirtualScrollContainer: React.FC<VirtualScrollContainerProps> = ({
       const scaledHeight = dim.height * zoom;
       const top = pageOffsets[i];
       const hasImage = !!pageImages[i];
+      const isCurrentPage = i === currentPage;
       
       pages.push(
         <div
           key={i}
-          className="absolute left-1/2 -translate-x-1/2"
+          className={`absolute left-1/2 -translate-x-1/2 transition-shadow duration-200 ${
+            isCurrentPage ? 'z-10' : 'z-0'
+          }`}
           style={{
             top: `${top}px`,
             width: `${scaledWidth}px`,
@@ -245,7 +258,9 @@ export const VirtualScrollContainer: React.FC<VirtualScrollContainerProps> = ({
         >
           {/* 页面图像或骨架屏 */}
           {hasImage ? (
-            <div className="relative w-full h-full bg-white shadow-lg">
+            <div className={`relative w-full h-full bg-white rounded-sm overflow-hidden ${
+              isCurrentPage ? 'shadow-xl ring-2 ring-purple-300' : 'shadow-lg'
+            }`}>
               <img
                 src={pageImages[i]}
                 alt={`Page ${i + 1}`}
@@ -261,13 +276,17 @@ export const VirtualScrollContainer: React.FC<VirtualScrollContainerProps> = ({
                 </div>
               )}
               
-              {/* 页码标签 */}
-              <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/50 text-white text-xs rounded">
-                {i + 1}
+              {/* 页码标签 - 更醒目 */}
+              <div className={`absolute bottom-3 right-3 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md ${
+                isCurrentPage 
+                  ? 'bg-purple-600 text-white' 
+                  : 'bg-black/60 text-white'
+              }`}>
+                {i + 1} / {pageCount}
               </div>
             </div>
           ) : (
-            <PageSkeleton width={scaledWidth} height={scaledHeight} />
+            <PageSkeleton width={scaledWidth} height={scaledHeight} pageNum={i + 1} />
           )}
         </div>
       );

@@ -74,6 +74,11 @@ body {
   text-orientation: mixed;
 }
 
+.writing-vertical-lr {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+}
+
 /* KaTeX 预览样式 */
 .katex-preview {
   overflow-x: auto;
