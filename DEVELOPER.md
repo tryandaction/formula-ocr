@@ -87,15 +87,21 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 | POST | `/api/activate` | 激活码验证 |
 | POST | `/api/recognize` | 公式识别 |
 | GET | `/api/payment/plans` | 获取套餐列表 |
-| POST | `/api/payment/create-order` | 创建支付订单 |
-| GET | `/api/payment/query-order` | 查询订单状态 |
+
+### 认证接口
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | `/api/auth/send-code` | 发送邮箱验证码 |
+| POST | `/api/auth/verify` | 验证邮箱 |
+| POST | `/api/auth/recover` | 账户恢复 |
 
 ### 管理员接口
 
 | 方法 | 路径 | 说明 |
 |------|------|------|
 | POST | `/api/admin/generate-code` | 生成激活码 |
-| POST | `/api/admin/confirm-payment` | 确认支付（手动） |
+| POST | `/api/admin/simulate` | 切换模拟模式 |
 
 所有接口需要 `X-User-ID` 请求头（设备标识）。
 管理员接口需要 `X-Admin-Key` 请求头。
@@ -112,22 +118,43 @@ Formula OCR 是一个将图片中的数学公式转换为 LaTeX 代码的 Web �
 | 套餐 | 金额 | 有效期 |
 |------|------|--------|
 | 月度会员 | ¥5 | 30 天 |
-| 季度会员 | ¥10 | 90 天 |
-| 年度会员 | ¥20 | 365 天 |
+| 季度会员 | ¥14 | 90 天 |
+| 年度会员 | ¥40 | 365 天 |
 
-### 支付流程
+### 支付流程（激活码模式）
 
-1. 用户选择套餐，前端调用 `/api/payment/create-order` 创建订单
-2. 用户扫码支付（微信/支付宝）
-3. 前端轮询 `/api/payment/query-order` 查询订单状态
-4. 管理员确认支付后，调用 `/api/admin/confirm-payment` 升级用户权益
-5. 用户权益即时生效，无需激活码
+```
+用户选择套餐 → 扫码支付 → 联系客服获取激活码 → 输入激活码 → 自动升级权益
+```
 
-### 激活码（备用方案）
+1. 用户在前端选择套餐，查看支付二维码和价格
+2. 用户扫码支付（无需备注任何内容）
+3. 支付后联系客服，客服确认收款后生成激活码
+4. 用户输入激活码，系统验证后自动升级权益
+
+### 激活码
 
 激活码格式: `FOCR-XXXX-XXXX-XXXX`
 
-用于特殊场景（如赠送、补偿等），通过 `/api/activate` 接口验证。
+特性：
+- 每个激活码只能使用一次
+- 激活码由管理员通过 `/api/admin/generate-code` 生成
+- 用于正常支付流程和特殊场景（赠送、补偿等）
+
+### 管理员生成激活码
+
+```bash
+curl -X POST https://formula-ocr-api.formula-ocr.workers.dev/api/admin/generate-code \
+  -H "Content-Type: application/json" \
+  -H "X-Admin-Key: YOUR_ADMIN_SECRET" \
+  -d '{"amount": 5, "count": 1}'
+```
+
+参数：
+- `amount`: 套餐金额（5/14/40 对应月度/季度/年度）
+- `count`: 生成数量（默认1，最多10）
+
+或者在浏览器控制台输入 `showAdminTools()` 打开管理员工具界面。
 
 ## 本地开发
 
@@ -211,8 +238,6 @@ VITE_ZHIPU_API_KEY=xxx  # 可选，直连模式用
 | `usage:{userId}:{month}` | 每月使用量 |
 | `usage:{userId}:total` | 总使用量 |
 | `code:{code}` | 激活码数据 |
-| `order:{orderId}` | 订单数据 |
-| `user:{userId}:latest_order` | 用户最新订单引用 |
 
 ## 注意事项
 

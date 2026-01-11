@@ -356,8 +356,8 @@ function App() {
       <PaymentModal
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
-        onPaymentSuccess={() => {
-          // 刷新额度
+        onPaymentSuccess={(_paidDays) => {
+          // 刷新额度（本地状态已在 PaymentModal 中更新）
           if (isBackendEnabled()) {
             checkQuota().then(setQuota).catch(console.error);
           }

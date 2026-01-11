@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getOrCreateDeviceId } from '../utils/userService';
-import { verifyPayment } from '../utils/api';
+import { setPaidUntil } from '../utils/userService';
+import { activateCode } from '../utils/api';
 
 // 套餐类型
 interface Plan {
@@ -11,28 +11,13 @@ interface Plan {
   description: string;
 }
 
-// 订单类型
-interface Order {
-  orderId: string;
-  visibleId: string;
-  verifyCode: string;
-  userId: string;
-  planId: string;
-  amount: number;
-  days: number;
-  status: 'pending' | 'paid' | 'expired' | 'cancelled';
-  createdAt: number;
-  paidAt: number | null;
-  expiresAt: number;
-}
-
 interface PaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onPaymentSuccess: () => void;
+  onPaymentSuccess: (paidDays: number) => void;
 }
 
-const API_BASE = import.meta.env.VITE_API_URL || '';
+const API_BASE = import.meta.env.VITE_API_BASE || '';
 
 export const PaymentModal: React.FC<PaymentModalProps> = ({
   isOpen,
@@ -41,10 +26,10 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 }) => {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
-  const [order, setOrder] = useState<Order | null>(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [step, setStep] = useState<'select' | 'pay' | 'success'>('select');
+  const [step, setStep] = useState<'select' | 'pay' | 'activate' | 'success'>('select');
+  const [activationCode, setActivationCode] = useState('');
+  const [activating, setActivating] = useState(false);
 
   // 加载套餐列表
   useEffect(() => {
@@ -56,11 +41,10 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   // 重置状态
   useEffect(() => {
     if (!isOpen) {
-      // 延迟重置，避免关闭动画时看到状态变化
       setTimeout(() => {
         setStep('select');
-        setOrder(null);
         setError(null);
+        setActivationCode('');
       }, 300);
     }
   }, [isOpen]);
@@ -78,41 +62,42 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
     }
   };
 
-  const createOrder = useCallback(async () => {
+  const handleProceedToPay = useCallback(() => {
     if (!selectedPlan) return;
+    setStep('pay');
+  }, [selectedPlan]);
 
-    setLoading(true);
+  const handleProceedToActivate = useCallback(() => {
+    setStep('activate');
+  }, []);
+
+  const handleActivate = useCallback(async () => {
+    if (!activationCode.trim()) {
+      setError('请输入激活码');
+      return;
+    }
+
+    setActivating(true);
     setError(null);
 
     try {
-      const response = await fetch(`${API_BASE}/api/payment/create-order`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-User-ID': getOrCreateDeviceId(),
-        },
-        body: JSON.stringify({ planId: selectedPlan.id }),
-      });
-
-      const data = await response.json();
-      
-      if (data.success && data.order) {
-        setOrder(data.order);
-        setStep('pay');
+      const result = await activateCode(activationCode.trim());
+      if (result.success) {
+        // 更新本地存储的付费状态
+        if (result.expiresAt) {
+          setPaidUntil(new Date(result.expiresAt));
+        }
+        setStep('success');
+        onPaymentSuccess(result.daysRemaining || 30);
       } else {
-        setError(data.error || '创建订单失败');
+        setError(result.message || '激活失败');
       }
     } catch (err) {
-      setError('网络错误，请重试');
+      setError(err instanceof Error ? err.message : '激活失败，请重试');
     } finally {
-      setLoading(false);
+      setActivating(false);
     }
-  }, [selectedPlan]);
-
-  const handlePaymentVerified = useCallback(() => {
-    setStep('success');
-    onPaymentSuccess();
-  }, [onPaymentSuccess]);
+  }, [activationCode, onPaymentSuccess]);
 
   const handleClose = () => {
     onClose();
@@ -154,16 +139,25 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
               plans={plans}
               selectedPlan={selectedPlan}
               onSelectPlan={setSelectedPlan}
-              onConfirm={createOrder}
-              loading={loading}
+              onConfirm={handleProceedToPay}
             />
           )}
 
-          {step === 'pay' && order && (
+          {step === 'pay' && selectedPlan && (
             <PaymentStep 
-              order={order} 
-              onVerified={handlePaymentVerified}
-              onError={setError}
+              plan={selectedPlan}
+              onProceedToActivate={handleProceedToActivate}
+              onBack={() => setStep('select')}
+            />
+          )}
+
+          {step === 'activate' && (
+            <ActivateStep
+              activationCode={activationCode}
+              onCodeChange={setActivationCode}
+              onActivate={handleActivate}
+              activating={activating}
+              onBack={() => setStep('pay')}
             />
           )}
 
@@ -182,7 +176,6 @@ interface PlanSelectorProps {
   selectedPlan: Plan | null;
   onSelectPlan: (plan: Plan) => void;
   onConfirm: () => void;
-  loading: boolean;
 }
 
 const PlanSelector: React.FC<PlanSelectorProps> = ({
@@ -190,7 +183,6 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
   selectedPlan,
   onSelectPlan,
   onConfirm,
-  loading,
 }) => {
   return (
     <div>
@@ -251,103 +243,52 @@ const PlanSelector: React.FC<PlanSelectorProps> = ({
 
       <button
         onClick={onConfirm}
-        disabled={!selectedPlan || loading}
+        disabled={!selectedPlan}
         className="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-medium hover:from-amber-600 hover:to-orange-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? '创建订单中...' : `立即支付 ¥${selectedPlan?.price || 0}`}
+        下一步：查看支付方式
       </button>
     </div>
   );
 };
 
-
 // 支付步骤
 interface PaymentStepProps {
-  order: Order;
-  onVerified: () => void;
-  onError: (error: string) => void;
+  plan: Plan;
+  onProceedToActivate: () => void;
+  onBack: () => void;
 }
 
-const PaymentStep: React.FC<PaymentStepProps> = ({ order, onVerified, onError }) => {
-  const [verifyCode, setVerifyCode] = useState('');
-  const [verifying, setVerifying] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(Math.max(0, Math.floor((order.expiresAt - Date.now()) / 1000)));
-
-  // 倒计时
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const remaining = Math.max(0, Math.floor((order.expiresAt - Date.now()) / 1000));
-      setTimeLeft(remaining);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [order.expiresAt]);
-
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-
-  const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const handleVerify = async () => {
-    if (!verifyCode.trim()) {
-      onError('请输入验证码');
-      return;
-    }
-
-    setVerifying(true);
-    try {
-      const result = await verifyPayment(verifyCode.trim());
-      if (result.success) {
-        onVerified();
-      } else {
-        onError(result.message || '验证失败');
-      }
-    } catch (err) {
-      onError(err instanceof Error ? err.message : '验证失败，请重试');
-    } finally {
-      setVerifying(false);
-    }
-  };
-
+const PaymentStep: React.FC<PaymentStepProps> = ({ plan, onProceedToActivate, onBack }) => {
   return (
     <div>
       {/* 步骤指示 */}
       <div className="flex items-center justify-center gap-2 mb-6">
         <div className="flex items-center gap-1">
           <div className="w-6 h-6 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center">1</div>
-          <span className="text-sm text-gray-600">扫码支付</span>
+          <span className="text-sm text-amber-600 font-medium">扫码支付</span>
         </div>
         <div className="w-8 h-0.5 bg-gray-300"></div>
         <div className="flex items-center gap-1">
           <div className="w-6 h-6 rounded-full bg-gray-300 text-white text-xs flex items-center justify-center">2</div>
-          <span className="text-sm text-gray-400">输入验证码</span>
+          <span className="text-sm text-gray-400">输入激活码</span>
         </div>
       </div>
 
-      {/* 验证码显示 */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-4 mb-4">
-        <div className="text-center">
-          <p className="text-sm text-gray-600 mb-2">支付时请备注以下验证码</p>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-3xl font-bold text-amber-600 tracking-widest font-mono">
-              {order.verifyCode}
-            </span>
-            <button
-              onClick={() => handleCopy(order.verifyCode)}
-              className="px-2 py-1 text-xs bg-amber-100 hover:bg-amber-200 rounded transition-colors"
-            >
-              {copied ? '✓' : '复制'}
-            </button>
+      {/* 套餐信息 */}
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <div className="font-medium text-gray-800">{plan.name}</div>
+            <div className="text-sm text-gray-500">{plan.days}天会员</div>
           </div>
+          <div className="text-2xl font-bold text-amber-600">¥{plan.price}</div>
         </div>
       </div>
 
       {/* 支付二维码 */}
       <div className="bg-gray-50 rounded-xl p-4 mb-4">
+        <p className="text-center text-sm text-gray-600 mb-3">请扫码支付 <span className="font-bold text-amber-600">¥{plan.price}</span></p>
         <div className="flex justify-center gap-4">
           <div className="text-center">
             <div className="w-28 h-28 bg-white rounded-lg border border-gray-200 flex items-center justify-center mb-1">
@@ -376,41 +317,117 @@ const PaymentStep: React.FC<PaymentStepProps> = ({ order, onVerified, onError })
             <span className="text-xs text-gray-500">支付宝</span>
           </div>
         </div>
-        <p className="text-center mt-3 text-lg font-bold text-amber-600">¥{order.amount}</p>
-        <p className="text-center text-xs text-gray-400 mt-1">
-          订单 {minutes}:{seconds.toString().padStart(2, '0')} 后过期
-        </p>
-      </div>
-
-      {/* 验证码输入 */}
-      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
-        <p className="text-sm text-blue-700 mb-3">
-          <span className="font-medium">💡 支付完成后</span>，请在下方输入您支付时备注的验证码
-        </p>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            value={verifyCode}
-            onChange={(e) => setVerifyCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-            placeholder="输入6位验证码"
-            maxLength={6}
-            className="flex-1 px-4 py-2 border border-blue-300 rounded-lg text-center text-lg font-mono tracking-widest focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-          <button
-            onClick={handleVerify}
-            disabled={verifyCode.length !== 6 || verifying}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            {verifying ? '验证中...' : '确认'}
-          </button>
-        </div>
       </div>
 
       {/* 说明 */}
-      <div className="text-xs text-gray-500 space-y-1">
-        <p>• 扫码支付时，请在备注/留言中填写验证码 <span className="font-mono text-amber-600">{order.verifyCode}</span></p>
-        <p>• 支付完成后，输入验证码即可自动开通会员</p>
-        <p>• 如遇问题，请联系客服：support@formula-ocr.com</p>
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-4">
+        <h4 className="font-medium text-blue-700 mb-2">📋 支付流程</h4>
+        <ol className="text-sm text-blue-600 space-y-1 list-decimal list-inside">
+          <li>扫描上方二维码完成支付</li>
+          <li>支付后联系客服获取激活码</li>
+          <li>输入激活码即可开通会员</li>
+        </ol>
+        <p className="text-xs text-blue-500 mt-2">
+          客服微信：formula-ocr（或扫码添加）
+        </p>
+      </div>
+
+      {/* 按钮 */}
+      <div className="flex gap-3">
+        <button
+          onClick={onBack}
+          className="flex-1 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-all"
+        >
+          返回
+        </button>
+        <button
+          onClick={onProceedToActivate}
+          className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-medium hover:from-amber-600 hover:to-orange-600 transition-all"
+        >
+          我已支付，输入激活码
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// 激活步骤
+interface ActivateStepProps {
+  activationCode: string;
+  onCodeChange: (code: string) => void;
+  onActivate: () => void;
+  activating: boolean;
+  onBack: () => void;
+}
+
+const ActivateStep: React.FC<ActivateStepProps> = ({
+  activationCode,
+  onCodeChange,
+  onActivate,
+  activating,
+  onBack,
+}) => {
+  // 格式化激活码输入
+  const handleCodeChange = (value: string) => {
+    // 移除非字母数字字符，转大写
+    const cleaned = value.replace(/[^A-Za-z0-9-]/g, '').toUpperCase();
+    onCodeChange(cleaned);
+  };
+
+  return (
+    <div>
+      {/* 步骤指示 */}
+      <div className="flex items-center justify-center gap-2 mb-6">
+        <div className="flex items-center gap-1">
+          <div className="w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center">✓</div>
+          <span className="text-sm text-green-600">已支付</span>
+        </div>
+        <div className="w-8 h-0.5 bg-amber-500"></div>
+        <div className="flex items-center gap-1">
+          <div className="w-6 h-6 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center">2</div>
+          <span className="text-sm text-amber-600 font-medium">输入激活码</span>
+        </div>
+      </div>
+
+      {/* 激活码输入 */}
+      <div className="bg-gray-50 rounded-xl p-6 mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          请输入激活码
+        </label>
+        <input
+          type="text"
+          value={activationCode}
+          onChange={(e) => handleCodeChange(e.target.value)}
+          placeholder="FOCR-XXXX-XXXX-XXXX"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg text-center text-lg font-mono tracking-wider focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+        />
+        <p className="text-xs text-gray-500 mt-2 text-center">
+          激活码格式：FOCR-XXXX-XXXX-XXXX
+        </p>
+      </div>
+
+      {/* 说明 */}
+      <div className="text-xs text-gray-500 space-y-1 mb-4">
+        <p>• 激活码由客服在确认支付后发放</p>
+        <p>• 每个激活码只能使用一次</p>
+        <p>• 激活后会员权益立即生效</p>
+      </div>
+
+      {/* 按钮 */}
+      <div className="flex gap-3">
+        <button
+          onClick={onBack}
+          className="flex-1 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-all"
+        >
+          返回
+        </button>
+        <button
+          onClick={onActivate}
+          disabled={!activationCode.trim() || activating}
+          className="flex-1 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-medium hover:from-amber-600 hover:to-orange-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {activating ? '激活中...' : '激活会员'}
+        </button>
       </div>
     </div>
   );
@@ -425,7 +442,7 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ onClose }) => {
   return (
     <div className="text-center py-6">
       <div className="text-6xl mb-4">🎉</div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2">支付成功！</h3>
+      <h3 className="text-xl font-bold text-gray-800 mb-2">激活成功！</h3>
       <p className="text-gray-600 mb-6">
         您的会员权益已生效，感谢您的支持！
       </p>

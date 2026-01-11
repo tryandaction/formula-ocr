@@ -237,25 +237,8 @@ export async function setSimulateMode(mode: SimulateMode): Promise<{ success: bo
   });
 }
 
-// 支付验证结果
-export interface VerifyPaymentResult {
-  success: boolean;
-  message: string;
-  order?: {
-    orderId: string;
-    amount: number;
-    days: number;
-    status: string;
-  };
-}
-
-/**
- * 用户自助验证支付
- * 用户支付后输入验证码，系统自动确认并升级权益
- */
-export async function verifyPayment(verifyCode: string): Promise<VerifyPaymentResult> {
-  return apiRequest<VerifyPaymentResult>('/api/payment/verify', {
-    method: 'POST',
-    body: JSON.stringify({ verifyCode }),
-  });
-}
+// 支付流程说明：
+// 1. 用户选择套餐，查看支付二维码
+// 2. 用户扫码支付后联系客服获取激活码
+// 3. 用户使用 activateCode() 函数激活会员
+// 激活码接口已在上方定义：activateCode(code: string)
