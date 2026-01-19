@@ -285,12 +285,25 @@ async function handleVerifyEmail(request: Request, env: Env, requestOrigin: stri
     return errorResponse('Missing X-User-ID header', 400, env.CORS_ORIGIN, requestOrigin);
   }
 
-  const body = await request.json() as { email: string; code: string };
-  if (!body.email || !body.code) {
-    return errorResponse('Missing email or code', 400, env.CORS_ORIGIN, requestOrigin);
+  let body: { email?: string; code?: string };
+  try {
+    body = await request.json() as { email?: string; code?: string };
+  } catch (e) {
+    console.error('Failed to parse request body:', e);
+    return errorResponse('Invalid JSON body', 400, env.CORS_ORIGIN, requestOrigin);
   }
 
-  const result = await verifyEmailCode(env.USERS, body.email, body.code, userId);
+  if (!body.email) {
+    return errorResponse('Missing email', 400, env.CORS_ORIGIN, requestOrigin);
+  }
+  if (!body.code) {
+    return errorResponse('Missing verification code', 400, env.CORS_ORIGIN, requestOrigin);
+  }
+
+  // 清理验证码（去除空格）
+  const cleanCode = body.code.trim().replace(/\s/g, '');
+  
+  const result = await verifyEmailCode(env.USERS, body.email.trim(), cleanCode, userId);
   return jsonResponse(result, env.CORS_ORIGIN, result.success ? 200 : 400, requestOrigin);
 }
 

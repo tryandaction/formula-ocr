@@ -196,17 +196,28 @@ export async function verifyEmailCode(
     return { success: false, message: '邮箱格式不正确' };
   }
 
+  if (!code || code.length !== 6) {
+    return { success: false, message: '验证码格式不正确，请输入6位数字' };
+  }
+
   // 获取存储的验证码
   const verificationDataStr = await kv.get(`verification:${email}`);
   if (!verificationDataStr) {
-    return { success: false, message: '验证码已过期或不存在' };
+    return { success: false, message: '验证码已过期或不存在，请重新发送' };
   }
 
-  const verificationData = JSON.parse(verificationDataStr);
+  let verificationData;
+  try {
+    verificationData = JSON.parse(verificationDataStr);
+  } catch (e) {
+    console.error('Failed to parse verification data:', e);
+    return { success: false, message: '验证数据异常，请重新发送验证码' };
+  }
   
   // 验证码匹配
   if (verificationData.code !== code) {
-    return { success: false, message: '验证码错误' };
+    console.log(`Code mismatch: expected ${verificationData.code}, got ${code}`);
+    return { success: false, message: '验证码错误，请检查后重试' };
   }
 
   // 验证成功，更新用户信息

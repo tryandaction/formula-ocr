@@ -76,6 +76,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
       return;
     }
 
+    if (code.trim().length !== 6) {
+      setError('请输入6位验证码');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
@@ -88,10 +93,20 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         onAuthSuccess(quota);
         onClose();
       } else {
-        setError(result.message);
+        setError(result.message || '验证失败，请重试');
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : '验证失败，请重试');
+      const errorMsg = e instanceof Error ? e.message : '验证失败，请重试';
+      // 提取更友好的错误信息
+      if (errorMsg.includes('400')) {
+        setError('验证码错误或已过期，请重新获取');
+      } else if (errorMsg.includes('403')) {
+        setError('请求被拒绝，请刷新页面后重试');
+      } else if (errorMsg.includes('网络') || errorMsg.includes('timeout')) {
+        setError('网络连接失败，请检查网络后重试');
+      } else {
+        setError(errorMsg);
+      }
     } finally {
       setLoading(false);
     }

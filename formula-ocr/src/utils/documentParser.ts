@@ -30,6 +30,9 @@ export interface FormulaRegion {
   };
   confidence?: number;
   type?: 'inline' | 'display' | 'equation'; // 公式类型
+  // Enhanced detection fields (optional)
+  formulaType?: 'display' | 'inline';
+  confidenceLevel?: 'high' | 'medium' | 'low';
 }
 
 export interface ParsedDocument {
@@ -59,6 +62,20 @@ const RENDER_SCALE = 2.0;
 // 公式提取时的渲染比例 - 更高清晰度
 const FORMULA_RENDER_SCALE = 3.0;
 const THUMBNAIL_WIDTH = 150;
+
+// Advanced detection configuration
+export interface DetectionConfig {
+  useAdvancedDetection?: boolean;
+  minConfidence?: number;
+  formulaTypeFilter?: 'display' | 'inline' | 'both';
+}
+
+// Default detection config
+const DEFAULT_DETECTION_CONFIG: DetectionConfig = {
+  useAdvancedDetection: true,
+  minConfidence: 0.6,
+  formulaTypeFilter: 'both',
+};
 
 // MIME 类型映射
 const MIME_TYPES: Record<string, DocumentType> = {
@@ -179,7 +196,8 @@ async function getPdfJs(): Promise<typeof import('pdfjs-dist')> {
  */
 export async function parsePdfDocument(
   file: File,
-  onProgress?: (progress: number, message: string) => void
+  onProgress?: (progress: number, message: string) => void,
+  detectionConfig: DetectionConfig = DEFAULT_DETECTION_CONFIG
 ): Promise<ParsedDocument> {
   const pdfjs = await getPdfJs();
   
@@ -244,38 +262,89 @@ export async function parsePdfDocument(
   // 第二遍：检测公式（使用更高分辨率）
   onProgress?.(80, '正在检测公式区域...');
   
-  for (let i = 1; i <= pageCount; i++) {
-    onProgress?.(80 + (i / pageCount) * 18, `正在分析第 ${i}/${pageCount} 页公式...`);
-    
-    const page = await pdf.getPage(i);
-    const formulaViewport = page.getViewport({ scale: FORMULA_RENDER_SCALE });
-    
-    // 创建高分辨率 canvas 用于公式检测
-    const formulaCanvas = document.createElement('canvas');
-    const formulaCtx = formulaCanvas.getContext('2d', { 
-      alpha: false,
-      willReadFrequently: true 
-    })!;
-    formulaCanvas.width = formulaViewport.width;
-    formulaCanvas.height = formulaViewport.height;
-    
-    formulaCtx.fillStyle = '#ffffff';
-    formulaCtx.fillRect(0, 0, formulaCanvas.width, formulaCanvas.height);
-    
-    await page.render({
-      canvasContext: formulaCtx,
-      viewport: formulaViewport,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any).promise;
-    
-    // 检测公式区域
-    const pageFormulas = await detectFormulasInPage(
-      formulaCanvas, 
-      i, 
-      FORMULA_RENDER_SCALE,
-      pageDimensions[i - 1]
-    );
-    formulas.push(...pageFormulas);
+  // Use advanced detection if enabled
+  if (detectionConfig.useAdvancedDetection) {
+    try {
+      const { detectFormulasInPage: detectAdvanced } = await import('./advancedFormulaDetection/pdfIntegration');
+      
+      for (let i = 0; i < pageCount; i++) {
+        onProgress?.(80 + ((i + 1) / pageCount) * 18, `正在分析第 ${i + 1}/${pageCount} 页公式...`);
+        
+        const pageFormulas = await detectAdvanced(
+          pageImages[i],
+          i + 1,
+          {
+            useAdvancedDetection: true,
+            minConfidence: detectionConfig.minConfidence ?? 0.6,
+            formulaTypeFilter: detectionConfig.formulaTypeFilter ?? 'both',
+            enableCache: true,
+            enableParallel: false,
+          }
+        );
+        
+        // Convert to FormulaRegion format with enhanced fields
+        for (const formula of pageFormulas) {
+          formulas.push({
+            ...formula,
+            position: {
+              x: formula.x,
+              y: formula.y,
+              width: formula.width,
+              height: formula.height,
+            },
+            originalPosition: {
+              x: formula.x / FORMULA_RENDER_SCALE,
+              y: formula.y / FORMULA_RENDER_SCALE,
+              width: formula.width / FORMULA_RENDER_SCALE,
+              height: formula.height / FORMULA_RENDER_SCALE,
+            },
+          });
+        }
+      }
+    } catch (error) {
+      console.warn('Advanced detection failed, falling back to basic detection:', error);
+      // Fall back to basic detection
+      await runBasicDetection();
+    }
+  } else {
+    // Use basic detection
+    await runBasicDetection();
+  }
+  
+  async function runBasicDetection() {
+    for (let i = 1; i <= pageCount; i++) {
+      onProgress?.(80 + (i / pageCount) * 18, `正在分析第 ${i}/${pageCount} 页公式...`);
+      
+      const page = await pdf.getPage(i);
+      const formulaViewport = page.getViewport({ scale: FORMULA_RENDER_SCALE });
+      
+      // 创建高分辨率 canvas 用于公式检测
+      const formulaCanvas = document.createElement('canvas');
+      const formulaCtx = formulaCanvas.getContext('2d', { 
+        alpha: false,
+        willReadFrequently: true 
+      })!;
+      formulaCanvas.width = formulaViewport.width;
+      formulaCanvas.height = formulaViewport.height;
+      
+      formulaCtx.fillStyle = '#ffffff';
+      formulaCtx.fillRect(0, 0, formulaCanvas.width, formulaCanvas.height);
+      
+      await page.render({
+        canvasContext: formulaCtx,
+        viewport: formulaViewport,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any).promise;
+      
+      // 检测公式区域
+      const pageFormulas = await detectFormulasInPage(
+        formulaCanvas, 
+        i, 
+        FORMULA_RENDER_SCALE,
+        pageDimensions[i - 1]
+      );
+      formulas.push(...pageFormulas);
+    }
   }
   
   onProgress?.(100, '解析完成');

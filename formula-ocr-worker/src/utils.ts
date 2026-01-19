@@ -5,14 +5,19 @@
 // 允许的来源列表
 const ALLOWED_ORIGINS = [
   'https://formula-ocr.pages.dev',
+  'https://formula-ocr-api.formula-ocr.workers.dev',
   'http://localhost:5173',
   'http://localhost:4173',
+  'http://localhost:3000',
   'http://127.0.0.1:5173',
+  'http://127.0.0.1:4173',
+  'http://127.0.0.1:3000',
 ];
 
 // 允许的来源模式（支持 Cloudflare Pages 预览部署）
 const ALLOWED_ORIGIN_PATTERNS = [
-  /^https:\/\/[a-z0-9]+\.formula-ocr\.pages\.dev$/,  // Cloudflare Pages 预览部署
+  /^https:\/\/[a-z0-9-]+\.formula-ocr\.pages\.dev$/,  // Cloudflare Pages 预览部署
+  /^https:\/\/[a-z0-9-]+\.pages\.dev$/,  // 其他 Pages 预览
 ];
 
 // 检查来源是否允许

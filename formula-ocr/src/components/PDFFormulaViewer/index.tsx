@@ -8,6 +8,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { VirtualScrollContainer } from './VirtualScrollContainer';
 import { FormulaHighlighter, type FormulaStatus } from './FormulaHighlighter';
 import { FormulaPanel } from './FormulaPanel';
+import { EnhancedFormulaPanel } from '../EnhancedFormulaPanel';
 import { FormulaCodeEditor } from './FormulaCodeEditor';
 import { PageIndicator } from './PageIndicator';
 import { ThumbnailNav } from './ThumbnailNav';
@@ -85,6 +86,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
   const [showMobilePanel, setShowMobilePanel] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
+  const [useEnhancedPanel, setUseEnhancedPanel] = useState(true); // Toggle for enhanced panel
 
   const containerRef = useRef<HTMLDivElement>(null);
   const documentIdRef = useRef<string | null>(null);
@@ -590,20 +592,51 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
 
         {/* 右侧公式面板 - 桌面端和平板端 */}
         {!isFullscreen && !isMobile && (
-          <FormulaPanel
-            formulas={document.formulas}
-            currentPage={currentPage}
-            selectedId={selectedFormulaId}
-            hoveredId={hoveredFormulaId}
-            recognizedFormulas={recognizedFormulas}
-            onFormulaSelect={handleFormulaClick}
-            onFormulaHover={handleFormulaHover}
-            onRecognize={handleRecognize}
-            onRecognizeAll={handleRecognizeAll}
-            onCopy={handleCopy}
-            isCollapsed={isPanelCollapsed}
-            onToggleCollapse={() => setIsPanelCollapsed(prev => !prev)}
-          />
+          <>
+            {useEnhancedPanel ? (
+              <EnhancedFormulaPanel
+                formulas={document.formulas}
+                currentPage={currentPage}
+                selectedId={selectedFormulaId}
+                hoveredId={hoveredFormulaId}
+                recognizedFormulas={recognizedFormulas}
+                enhancedInfo={new Map(
+                  document.formulas
+                    .filter(f => f.formulaType || f.confidence !== undefined)
+                    .map(f => [
+                      f.id,
+                      {
+                        formulaType: f.formulaType,
+                        confidence: f.confidence,
+                        confidenceLevel: f.confidenceLevel,
+                      }
+                    ])
+                )}
+                onFormulaSelect={handleFormulaClick}
+                onFormulaHover={handleFormulaHover}
+                onRecognize={handleRecognize}
+                onRecognizeAll={handleRecognizeAll}
+                onCopy={handleCopy}
+                isCollapsed={isPanelCollapsed}
+                onToggleCollapse={() => setIsPanelCollapsed(prev => !prev)}
+              />
+            ) : (
+              <FormulaPanel
+                formulas={document.formulas}
+                currentPage={currentPage}
+                selectedId={selectedFormulaId}
+                hoveredId={hoveredFormulaId}
+                recognizedFormulas={recognizedFormulas}
+                onFormulaSelect={handleFormulaClick}
+                onFormulaHover={handleFormulaHover}
+                onRecognize={handleRecognize}
+                onRecognizeAll={handleRecognizeAll}
+                onCopy={handleCopy}
+                isCollapsed={isPanelCollapsed}
+                onToggleCollapse={() => setIsPanelCollapsed(prev => !prev)}
+              />
+            )}
+          </>
         )}
 
         {/* 代码编辑器（浮动面板）- 非移动端 */}

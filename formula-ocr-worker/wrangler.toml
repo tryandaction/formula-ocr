@@ -9,7 +9,8 @@ id = "23a0822d80fc47f594e650acaceedef4"
 
 # 环境变量（敏感信息用 secrets）
 [vars]
-CORS_ORIGIN = "https://formula-ocr.pages.dev"
+# 使用 * 允许所有来源，实际 CORS 检查在 utils.ts 中进行
+CORS_ORIGIN = "*"
 
 # 生产环境 secrets（通过 wrangler secret put 设置）
 # ZHIPU_API_KEY = "xxx"
