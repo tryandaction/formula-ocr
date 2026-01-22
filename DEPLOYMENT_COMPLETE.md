@@ -8,7 +8,10 @@
 
 ## 🌐 访问地址
 
-**生产环境**: https://7d885cc8.formula-ocr.pages.dev
+**主域名**: https://formula-ocr.pages.dev  
+**最新部署**: https://c29e32c0.formula-ocr.pages.dev
+
+> 注意：主域名会自动指向最新的生产部署
 
 ## ✅ 部署清单
 
@@ -99,9 +102,10 @@
 
 ## 🔗 相关链接
 
-- **生产环境**: https://7d885cc8.formula-ocr.pages.dev
+- **主域名**: https://formula-ocr.pages.dev
+- **最新部署**: https://c29e32c0.formula-ocr.pages.dev
 - **GitHub仓库**: https://github.com/tryandaction/formula-ocr
-- **最新Commit**: 3847151
+- **最新Commit**: 9076cf9
 - **Cloudflare Dashboard**: https://dash.cloudflare.com/
 
 ## 🎯 验证步骤
@@ -202,7 +206,8 @@
 
 **项目状态**: 🎉 **部署成功，生产就绪！**
 
-**部署URL**: https://7d885cc8.formula-ocr.pages.dev
+**主域名**: https://formula-ocr.pages.dev  
+**最新部署**: https://c29e32c0.formula-ocr.pages.dev
 
 **下一步**: 访问网站，测试功能，收集反馈！
 
@@ -210,4 +215,4 @@
 
 **部署完成时间**: 2026-01-22  
 **版本**: v1.0.0  
-**状态**: ✅ 成功部署
+**状态**: ✅ 成功部署到生产环境
