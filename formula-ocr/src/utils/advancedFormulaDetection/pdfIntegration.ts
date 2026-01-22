@@ -28,7 +28,7 @@ export interface PDFDetectionConfig {
  */
 export const DEFAULT_PDF_CONFIG: PDFDetectionConfig = {
   useAdvancedDetection: true,
-  minConfidence: 0.6,
+  minConfidence: 0.75, // 提高到0.75以减少误检
   formulaTypeFilter: 'both',
   enableCache: true,
   enableParallel: false, // Will be enabled in Task 11

@@ -33,7 +33,7 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
   constructor() {
     this.preprocessor = new PagePreprocessor();
     this.featureExtractor = new FeatureExtractor();
-    this.contentClassifier = new ContentClassifier();
+    this.contentClassifier = new ContentClassifier(); // 已升级为深度优化版本
     this.formulaTypeClassifier = new FormulaTypeClassifier();
     this.boundaryDetector = new BoundaryDetector();
     this.confidenceScorer = new ConfidenceScorer();

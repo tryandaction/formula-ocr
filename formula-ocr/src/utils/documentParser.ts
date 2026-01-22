@@ -73,7 +73,7 @@ export interface DetectionConfig {
 // Default detection config
 const DEFAULT_DETECTION_CONFIG: DetectionConfig = {
   useAdvancedDetection: true,
-  minConfidence: 0.6,
+  minConfidence: 0.75, // 提高到0.75以减少误检
   formulaTypeFilter: 'both',
 };
 
@@ -275,7 +275,7 @@ export async function parsePdfDocument(
           i + 1,
           {
             useAdvancedDetection: true,
-            minConfidence: detectionConfig.minConfidence ?? 0.6,
+            minConfidence: detectionConfig.minConfidence ?? 0.75, // 提高默认阈值
             formulaTypeFilter: detectionConfig.formulaTypeFilter ?? 'both',
             enableCache: true,
             enableParallel: false,

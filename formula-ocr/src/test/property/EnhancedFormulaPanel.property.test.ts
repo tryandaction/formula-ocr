@@ -86,27 +86,41 @@ describe('Property Tests: Enhanced Formula Panel', () => {
     fc.assert(
       fc.property(
         fc.array(
-          fc.record({
-            id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
-            confidenceLevel: fc.constantFrom('high', 'medium', 'low'),
-          }),
+          fc.oneof(
+            // High confidence formulas
+            fc.record({
+              id: fc.string(),
+              confidence: fc.float({ min: 0.9, max: 1 }),
+              confidenceLevel: fc.constant('high' as const),
+            }),
+            // Medium confidence formulas
+            fc.record({
+              id: fc.string(),
+              confidence: fc.float({ min: 0.75, max: 0.9 }),
+              confidenceLevel: fc.constant('medium' as const),
+            }),
+            // Low confidence formulas
+            fc.record({
+              id: fc.string(),
+              confidence: fc.float({ min: 0, max: 0.75 }),
+              confidenceLevel: fc.constant('low' as const),
+            })
+          ),
           { minLength: 1, maxLength: 50 }
         ),
         (formulas) => {
           for (const formula of formulas) {
-            // Verify confidence level matches score
+            // Verify confidence level matches score (v2.1.1 thresholds)
             if (formula.confidenceLevel === 'high') {
-              // High confidence formulas should have score >= 0.85
-              // (allowing some tolerance for edge cases)
-              expect(formula.confidence).toBeGreaterThanOrEqual(0.6);
+              // High confidence formulas should have score >= 0.9
+              expect(formula.confidence).toBeGreaterThanOrEqual(0.9);
             } else if (formula.confidenceLevel === 'medium') {
-              // Medium confidence should be in middle range
-              expect(formula.confidence).toBeGreaterThanOrEqual(0);
-              expect(formula.confidence).toBeLessThanOrEqual(1);
+              // Medium confidence should be in range [0.75, 0.9)
+              expect(formula.confidence).toBeGreaterThanOrEqual(0.75);
+              expect(formula.confidence).toBeLessThan(0.9);
             } else if (formula.confidenceLevel === 'low') {
-              // Low confidence should be below medium threshold
-              expect(formula.confidence).toBeLessThan(0.85);
+              // Low confidence should be below 0.75
+              expect(formula.confidence).toBeLessThan(0.75);
             }
           }
         }

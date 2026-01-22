@@ -75,7 +75,7 @@ describe('Property Tests: Confidence Filter', () => {
           }),
           { minLength: 1, maxLength: 50 }
         ),
-        fc.float({ min: 0, max: 0.9 }),
+        fc.float({ min: 0, max: Math.fround(0.9) }),
         (formulas, threshold1) => {
           const threshold2 = threshold1 + 0.1;
           

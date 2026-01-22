@@ -125,10 +125,10 @@ describe('ConfidenceScorer Property Tests', () => {
         (detection, features, classification) => {
           const result = scorer.calculateConfidence(detection, features, classification);
           
-          // Verify level matches overall score
-          if (result.overall >= 0.85) {
+          // Verify level matches overall score (v2.1.1 thresholds)
+          if (result.overall >= 0.9) {
             expect(result.level).toBe('high');
-          } else if (result.overall >= 0.6) {
+          } else if (result.overall >= 0.75) {
             expect(result.level).toBe('medium');
           } else {
             expect(result.level).toBe('low');

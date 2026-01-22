@@ -8,16 +8,17 @@
 // ============================================================================
 
 export const DEFAULT_DETECTION_OPTIONS = {
-  minConfidence: 0.6,
+  minConfidence: 0.75, // 提高到0.75以减少误检
   includeInline: true,
   includeDisplay: true,
   resolution: 300,
   enablePreprocessing: true,
+  useDeepOptimization: true, // 使用深度优化分类器
 } as const;
 
 export const CONFIDENCE_THRESHOLDS = {
-  LOW: 0.6,
-  HIGH: 0.85,
+  LOW: 0.75, // 提高低阈值
+  HIGH: 0.9, // 提高高阈值
 } as const;
 
 // ============================================================================

@@ -10,11 +10,12 @@ import type { FormulaRegion } from '../documentParser';
 // ============================================================================
 
 export interface DetectionOptions {
-  minConfidence?: number;        // 最小置信度阈值 (默认 0.6)
+  minConfidence?: number;        // 最小置信度阈值 (默认 0.75，提高以减少误检)
   includeInline?: boolean;       // 是否包含行内公式 (默认 true)
   includeDisplay?: boolean;      // 是否包含独立公式 (默认 true)
   resolution?: number;           // 渲染分辨率 DPI (默认 300)
   enablePreprocessing?: boolean; // 是否启用预处理 (默认 true)
+  useDeepOptimization?: boolean; // 使用深度优化分类器 (默认 true)
 }
 
 export interface PageImage {

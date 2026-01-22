@@ -55,7 +55,7 @@ describe('ContentClassifier', () => {
 
       expect(result.type).toBe('formula');
       expect(result.confidence).toBeGreaterThan(0.5);
-      expect(result.reasoning).toContain('检测到积分符号');
+      expect(result.reasoning.join(' ')).toContain('包含积分符号');
     });
 
     it('should classify region with summation symbols as formula', () => {
@@ -69,7 +69,7 @@ describe('ContentClassifier', () => {
 
       expect(result.type).toBe('formula');
       expect(result.confidence).toBeGreaterThan(0.5);
-      expect(result.reasoning).toContain('检测到求和符号');
+      expect(result.reasoning.join(' ')).toContain('包含求和符号');
     });
 
     it('should classify region with fraction lines as formula', () => {
@@ -83,7 +83,7 @@ describe('ContentClassifier', () => {
 
       expect(result.type).toBe('formula');
       expect(result.confidence).toBeGreaterThan(0.5);
-      expect(result.reasoning).toContain('检测到分数线');
+      expect(result.reasoning.join(' ')).toContain('包含分数线');
     });
 
     it('should classify region with matrix brackets as formula', () => {
