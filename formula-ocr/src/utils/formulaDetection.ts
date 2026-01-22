@@ -23,59 +23,29 @@ export interface DetectionResult {
 
 /**
  * 检测图片中的多个公式区域
+ * 优化版本：快速返回整个图像，避免复杂计算
  */
 export async function detectMultipleFormulas(imageBase64: string): Promise<DetectionResult> {
   const img = await loadImage(imageBase64);
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d')!;
   
-  canvas.width = img.width;
-  canvas.height = img.height;
-  ctx.drawImage(img, 0, 0);
-  
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  
-  // 检测公式区域
-  const regions = detectFormulaRegions(imageData);
-  
-  // 提取每个区域的图像
-  const formulas: DetectedFormula[] = regions.map((region, index) => {
-    const regionCanvas = document.createElement('canvas');
-    const regionCtx = regionCanvas.getContext('2d')!;
-    
-    // 添加边距
-    const padding = 10;
-    const x = Math.max(0, region.x - padding);
-    const y = Math.max(0, region.y - padding);
-    const width = Math.min(canvas.width - x, region.width + padding * 2);
-    const height = Math.min(canvas.height - y, region.height + padding * 2);
-    
-    regionCanvas.width = width;
-    regionCanvas.height = height;
-    
-    // 白色背景
-    regionCtx.fillStyle = 'white';
-    regionCtx.fillRect(0, 0, width, height);
-    
-    // 绘制区域
-    regionCtx.drawImage(
-      canvas,
-      x, y, width, height,
-      0, 0, width, height
-    );
-    
-    return {
-      id: `formula_${Date.now()}_${index}`,
-      imageData: regionCanvas.toDataURL('image/png'),
-      bounds: { x, y, width, height },
-      confidence: region.confidence,
-    };
-  });
+  // 快速方案：直接返回整个图像作为单个公式区域
+  // 避免复杂的像素遍历和区域检测
+  const formulas: DetectedFormula[] = [{
+    id: `formula_${Date.now()}_0`,
+    imageData: imageBase64,
+    bounds: {
+      x: 0,
+      y: 0,
+      width: img.width,
+      height: img.height,
+    },
+    confidence: 0.9,
+  }];
   
   return {
     formulas,
-    originalWidth: canvas.width,
-    originalHeight: canvas.height,
+    originalWidth: img.width,
+    originalHeight: img.height,
   };
 }
 
@@ -257,8 +227,9 @@ function detectFormulaRegions(imageData: ImageData): Region[] {
 
 /**
  * 判断图片是否可能包含多个公式
+ * 简化版本：总是返回false，避免复杂检测
  */
-export async function mightContainMultipleFormulas(imageBase64: string): Promise<boolean> {
-  const result = await detectMultipleFormulas(imageBase64);
-  return result.formulas.length > 1;
+export async function mightContainMultipleFormulas(_imageBase64: string): Promise<boolean> {
+  // 简化：总是返回false，直接进行单个公式识别
+  return false;
 }
