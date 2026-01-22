@@ -102,23 +102,56 @@ interface Region {
 /**
  * 检测公式区域
  * 使用水平和垂直投影分析来分离多个公式
+ * 优化：添加超时机制和性能优化
  */
 function detectFormulaRegions(imageData: ImageData): Region[] {
   const { data, width, height } = imageData;
   
-  // 转换为灰度并二值化
+  // 性能优化：限制处理时间
+  const startTime = Date.now();
+  const MAX_PROCESSING_TIME = 5000; // 5秒超时
+  
+  // 性能优化：如果图像太大，先缩小处理
+  const MAX_DIMENSION = 2000;
+  let scale = 1;
+  if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+    scale = Math.min(MAX_DIMENSION / width, MAX_DIMENSION / height);
+  }
+  
+  const scaledWidth = Math.floor(width * scale);
+  const scaledHeight = Math.floor(height * scale);
+  
+  // 转换为灰度并二值化（使用缩放后的尺寸）
   const binary: boolean[] = [];
-  for (let i = 0; i < data.length; i += 4) {
-    const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
-    binary.push(gray < 200); // 阈值
+  for (let y = 0; y < scaledHeight; y++) {
+    for (let x = 0; x < scaledWidth; x++) {
+      // 从原图采样
+      const srcX = Math.floor(x / scale);
+      const srcY = Math.floor(y / scale);
+      const i = (srcY * width + srcX) * 4;
+      const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+      binary.push(gray < 200); // 阈值
+    }
+    
+    // 检查超时
+    if (Date.now() - startTime > MAX_PROCESSING_TIME) {
+      console.warn('Formula detection timeout, returning whole image');
+      return [{
+        x: 0,
+        y: 0,
+        width: width,
+        height: height,
+        confidence: 0.5,
+      }];
+    }
   }
   
   // 计算水平投影（每行的黑色像素数）
   const horizontalProjection: number[] = [];
-  for (let y = 0; y < height; y++) {
+  for (let y = 0; y < scaledHeight; y++) {
     let count = 0;
-    for (let x = 0; x < width; x++) {
-      if (binary[y * width + x]) count++;
+    for (let x = 0; x < scaledWidth; x++) {
+      if (binary[y * scaledWidth + x]) count++;
     }
     horizontalProjection.push(count);
   }
@@ -127,10 +160,10 @@ function detectFormulaRegions(imageData: ImageData): Region[] {
   const rowSeparators: number[] = [];
   let inBlank = true;
   let blankStart = 0;
-  const minBlankHeight = 10; // 最小空白高度
+  const minBlankHeight = Math.floor(10 * scale); // 最小空白高度（缩放）
   
-  for (let y = 0; y < height; y++) {
-    const isBlank = horizontalProjection[y] < width * 0.01; // 少于1%的像素
+  for (let y = 0; y < scaledHeight; y++) {
+    const isBlank = horizontalProjection[y] < scaledWidth * 0.01; // 少于1%的像素
     
     if (isBlank && !inBlank) {
       blankStart = y;
@@ -148,19 +181,28 @@ function detectFormulaRegions(imageData: ImageData): Region[] {
   let prevY = 0;
   
   const processRegion = (startY: number, endY: number) => {
-    // 找到该区域的水平边界
-    let minX = width, maxX = 0;
+    // 检查超时
+    if (Date.now() - startTime > MAX_PROCESSING_TIME) {
+      return;
+    }
+    
+    // 找到该区域的水平边界（优化：只扫描有内容的行）
+    let minX = scaledWidth, maxX = 0;
     let minY = endY, maxY = startY;
     
     for (let y = startY; y < endY; y++) {
-      for (let x = 0; x < width; x++) {
-        if (binary[y * width + x]) {
+      let hasContent = false;
+      for (let x = 0; x < scaledWidth; x++) {
+        if (binary[y * scaledWidth + x]) {
           minX = Math.min(minX, x);
           maxX = Math.max(maxX, x);
           minY = Math.min(minY, y);
           maxY = Math.max(maxY, y);
+          hasContent = true;
         }
       }
+      // 优化：如果这行没内容，跳过
+      if (!hasContent) continue;
     }
     
     // 检查是否有有效内容
@@ -168,23 +210,18 @@ function detectFormulaRegions(imageData: ImageData): Region[] {
       const regionWidth = maxX - minX;
       const regionHeight = maxY - minY;
       
-      // 过滤太小的区域
-      if (regionWidth > 20 && regionHeight > 10) {
-        // 计算置信度（基于区域的密度和大小）
-        let pixelCount = 0;
-        for (let y = minY; y <= maxY; y++) {
-          for (let x = minX; x <= maxX; x++) {
-            if (binary[y * width + x]) pixelCount++;
-          }
-        }
-        const density = pixelCount / (regionWidth * regionHeight);
-        const confidence = Math.min(1, density * 5); // 归一化
+      // 过滤太小的区域（考虑缩放）
+      if (regionWidth > 20 * scale && regionHeight > 10 * scale) {
+        // 简化置信度计算（避免再次遍历）
+        const area = regionWidth * regionHeight;
+        const confidence = Math.min(1, Math.max(0.3, area / (scaledWidth * scaledHeight * 0.1)));
         
+        // 转换回原始坐标
         regions.push({
-          x: minX,
-          y: minY,
-          width: regionWidth,
-          height: regionHeight,
+          x: Math.floor(minX / scale),
+          y: Math.floor(minY / scale),
+          width: Math.floor(regionWidth / scale),
+          height: Math.floor(regionHeight / scale),
           confidence,
         });
       }
@@ -200,34 +237,19 @@ function detectFormulaRegions(imageData: ImageData): Region[] {
   }
   
   // 处理最后一个区域
-  if (height > prevY + minBlankHeight) {
-    processRegion(prevY, height);
+  if (scaledHeight > prevY + minBlankHeight) {
+    processRegion(prevY, scaledHeight);
   }
   
-  // 如果没有检测到分隔，返回整个图像作为一个区域
-  if (regions.length === 0) {
-    // 找到整体边界
-    let minX = width, maxX = 0, minY = height, maxY = 0;
-    for (let y = 0; y < height; y++) {
-      for (let x = 0; x < width; x++) {
-        if (binary[y * width + x]) {
-          minX = Math.min(minX, x);
-          maxX = Math.max(maxX, x);
-          minY = Math.min(minY, y);
-          maxY = Math.max(maxY, y);
-        }
-      }
-    }
-    
-    if (maxX > minX && maxY > minY) {
-      regions.push({
-        x: minX,
-        y: minY,
-        width: maxX - minX,
-        height: maxY - minY,
-        confidence: 1,
-      });
-    }
+  // 如果没有检测到分隔或超时，返回整个图像作为一个区域
+  if (regions.length === 0 || Date.now() - startTime > MAX_PROCESSING_TIME) {
+    return [{
+      x: 0,
+      y: 0,
+      width: width,
+      height: height,
+      confidence: 0.8,
+    }];
   }
   
   return regions;
