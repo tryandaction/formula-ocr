@@ -8,3 +8,8 @@ export { ProgressIndicator } from './ProgressIndicator';
 export { NotificationSystem, useNotifications } from './NotificationSystem';
 export { WholePageFormulaDetector } from './WholePageFormulaDetector';
 export type { NotificationType, Notification } from './NotificationSystem';
+
+// 优化的组件
+export { OptimizedFormulaOverlay } from './OptimizedFormulaOverlay';
+export { VirtualScrollContainer } from './VirtualScrollContainer';
+export { OptimizedWholePageDetector } from './OptimizedWholePageDetector';

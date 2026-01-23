@@ -24,21 +24,66 @@ export class DetectionOptimizer {
    * @returns 初步检测结果
    */
   async detectFormulas(
-    _region: DetectionRegion,
-    _options: Partial<DetectionOptions> = {}
+    region: DetectionRegion,
+    options: Partial<DetectionOptions> = {}
   ): Promise<RawDetection[]> {
+    const opts = { ...DEFAULT_DETECTION_OPTIONS, ...options };
     
-    // 模拟检测过程（实际应该调用现有的检测组件）
-    const detections: RawDetection[] = [];
-    
-    // 这里应该集成现有的检测组件：
-    // - PagePreprocessor: 预处理
-    // - FeatureExtractor: 特征提取
-    // - ContentClassifier: 内容分类
-    // - AdvancedFormulaDetector: 高级检测
-    
-    // 暂时返回空数组，等待集成
-    return detections;
+    try {
+      // 集成高级公式检测器
+      const { AdvancedFormulaDetector } = await import('../advancedFormulaDetection');
+      const detector = new AdvancedFormulaDetector();
+      
+      // 从区域图像数据创建canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = region.width;
+      canvas.height = region.height;
+      const ctx = canvas.getContext('2d')!;
+      
+      // 绘制区域图像
+      if (region.imageData) {
+        ctx.putImageData(region.imageData, 0, 0);
+      }
+      
+      // 转换为base64
+      const imageBase64 = canvas.toDataURL('image/png');
+      
+      // 调用高级检测器
+      const detectedRegions = await detector.detectFormulas(imageBase64, {
+        minConfidence: opts.minConfidence,
+        maxResults: opts.maxResults,
+      });
+      
+      // 转换为RawDetection格式
+      const detections: RawDetection[] = detectedRegions.map((detected, idx) => ({
+        id: `detection_${region.x}_${region.y}_${idx}`,
+        boundingBox: {
+          x: region.x + detected.boundingBox.x,
+          y: region.y + detected.boundingBox.y,
+          width: detected.boundingBox.width,
+          height: detected.boundingBox.height,
+        },
+        confidence: detected.confidence,
+        type: detected.formulaType === 'display' ? 'display' : 'inline',
+        features: {
+          mathSymbolCount: detected.features?.mathSymbolDensity ? 10 : 0,
+          greekLetterCount: detected.features?.greekLetterDensity ? 5 : 0,
+          operatorCount: detected.features?.operatorDensity ? 8 : 0,
+          usesMathFont: detected.features?.mathSymbolDensity > 0.3,
+          hasFractionStructure: detected.features?.verticalStructure || false,
+          hasScripts: detected.features?.verticalStructure || false,
+          hasRoots: false,
+          hasLargeOperators: detected.features?.largeOperatorPresence || false,
+          hasBracketPairs: detected.features?.bracketBalance > 0,
+        },
+      }));
+      
+      return detections;
+    } catch (error) {
+      console.error('Detection failed:', error);
+      // 如果高级检测失败，返回空数组
+      return [];
+    }
   }
 
   /**
