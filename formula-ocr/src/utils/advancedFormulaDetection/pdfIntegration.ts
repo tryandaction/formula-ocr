@@ -4,7 +4,7 @@
  */
 
 import { AdvancedFormulaDetector } from './AdvancedFormulaDetector';
-import type { DetectionOptions, EnhancedFormulaRegion } from './interfaces';
+import type { EnhancedFormulaRegion, DetectionOptions } from './types';
 import type { FormulaRegion } from '../documentParser';
 
 /**
@@ -48,16 +48,16 @@ function convertToFormulaRegion(
     pageNumber,
     imageData,
     position: {
-      x: enhanced.boundary.x,
-      y: enhanced.boundary.y,
-      width: enhanced.boundary.width,
-      height: enhanced.boundary.height,
+      x: enhanced.position.x,
+      y: enhanced.position.y,
+      width: enhanced.position.width,
+      height: enhanced.position.height,
     },
     originalPosition: {
-      x: enhanced.boundary.x / scale,
-      y: enhanced.boundary.y / scale,
-      width: enhanced.boundary.width / scale,
-      height: enhanced.boundary.height / scale,
+      x: enhanced.position.x / scale,
+      y: enhanced.position.y / scale,
+      width: enhanced.position.width / scale,
+      height: enhanced.position.height / scale,
     },
     confidence: enhanced.confidence.overall,
     type: enhanced.formulaType === 'display' ? 'display' : 'inline',
@@ -104,12 +104,12 @@ export async function detectFormulasInPage(
     
     const options: DetectionOptions = {
       minConfidence: config.minConfidence,
-      formulaTypeFilter: config.formulaTypeFilter === 'both' ? undefined : config.formulaTypeFilter,
-      targetDPI: 300,
-      enableCache: config.enableCache,
+      includeInline: config.formulaTypeFilter !== 'display',
+      includeDisplay: config.formulaTypeFilter !== 'inline',
+      resolution: 300,
     };
 
-    const enhancedRegions = await detector.detectFormulas(pageImageData, options);
+    const enhancedRegions = await detector.detectFormulas(pageImageData, pageNumber, options);
     
     // Extract formula images and convert to FormulaRegion
     const formulas: FormulaRegion[] = [];
@@ -125,28 +125,33 @@ export async function detectFormulasInPage(
     const scale = Math.max(canvas.width / 800, canvas.height / 1000, 1);
     
     for (const region of enhancedRegions) {
-      // Extract formula image with padding
+      // Extract formula image with padding and upscaling for better OCR
+      const FORMULA_UPSCALE = 1.5;
       const padding = 10;
-      const x = Math.max(0, region.boundary.x - padding);
-      const y = Math.max(0, region.boundary.y - padding);
-      const width = Math.min(canvas.width - x, region.boundary.width + padding * 2);
-      const height = Math.min(canvas.height - y, region.boundary.height + padding * 2);
-      
+      const x = Math.max(0, region.position.x - padding);
+      const y = Math.max(0, region.position.y - padding);
+      const width = Math.min(canvas.width - x, region.position.width + padding * 2);
+      const height = Math.min(canvas.height - y, region.position.height + padding * 2);
+
       const regionCanvas = document.createElement('canvas');
       const regionCtx = regionCanvas.getContext('2d')!;
-      
-      regionCanvas.width = width;
-      regionCanvas.height = height;
-      
+
+      regionCanvas.width = Math.round(width * FORMULA_UPSCALE);
+      regionCanvas.height = Math.round(height * FORMULA_UPSCALE);
+
       // White background
       regionCtx.fillStyle = 'white';
-      regionCtx.fillRect(0, 0, width, height);
-      
-      // Draw region
+      regionCtx.fillRect(0, 0, regionCanvas.width, regionCanvas.height);
+
+      // High-quality upscale
+      regionCtx.imageSmoothingEnabled = true;
+      regionCtx.imageSmoothingQuality = 'high';
+
+      // Draw region with upscaling
       regionCtx.drawImage(
         canvas,
         x, y, width, height,
-        0, 0, width, height
+        0, 0, regionCanvas.width, regionCanvas.height
       );
       
       const imageData = regionCanvas.toDataURL('image/png');

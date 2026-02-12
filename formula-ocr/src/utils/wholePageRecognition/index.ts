@@ -76,13 +76,21 @@ export type { ImageReference, LazyLoadConfig } from './LazyImageLoader';
 export { ResourceManager, globalResourceManager } from './ResourceManager';
 export type { ResourceType, ResourceReference, ResourceManagerConfig } from './ResourceManager';
 
-// 工具函数将在后续实现后导出
-// export { WholePageProcessor } from './WholePageProcessor';
-// export { BatchProcessingManager } from './BatchProcessingManager';
-// export { DetectionOptimizer } from './DetectionOptimizer';
-// export { BoundaryLocator } from './BoundaryLocator';
-// export { ConfidenceScorer } from './ConfidenceScorer';
-// export { FormatConverter } from './FormatConverter';
-// export { ClipboardManager } from './ClipboardManager';
-// export { OperationManager } from './OperationManager';
-// export { CacheManager } from './CacheManager';
+// 核心处理组件
+export { WholePageProcessor } from './WholePageProcessor';
+export { BatchProcessingManager } from './BatchProcessingManager';
+export { DetectionOptimizer } from './DetectionOptimizer';
+export { BoundaryLocator } from './BoundaryLocator';
+export { ConfidenceScorer } from './ConfidenceScorer';
+export { FormatConverter } from './FormatConverter';
+export { ClipboardManager } from './ClipboardManager';
+export { OperationManager } from './OperationManager';
+export { CacheManager } from './CacheManager';
+
+// 统一识别引擎（新增 - 核心优化）
+export { RecognitionEngine } from './RecognitionEngine';
+export type { RecognizedFormula, RecognitionProgress, RecognitionOptions } from './RecognitionEngine';
+
+// 导出管理器（新增 - 核心优化）
+export { ExportManager } from './ExportManager';
+export type { ExportFormat, ExportOptions } from './ExportManager';

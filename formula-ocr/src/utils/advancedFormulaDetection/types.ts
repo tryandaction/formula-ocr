@@ -167,7 +167,7 @@ export interface DetectionCandidate {
 // Enhanced Formula Region
 // ============================================================================
 
-export interface EnhancedFormulaRegion extends FormulaRegion {
+export interface EnhancedFormulaRegion extends Omit<FormulaRegion, 'confidence'> {
   // 新增字段
   contentType: ContentType;
   formulaType: FormulaType;

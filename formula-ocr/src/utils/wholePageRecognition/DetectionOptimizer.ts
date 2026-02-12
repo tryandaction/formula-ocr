@@ -49,32 +49,30 @@ export class DetectionOptimizer {
       const imageBase64 = canvas.toDataURL('image/png');
       
       // 调用高级检测器
-      const detectedRegions = await detector.detectFormulas(imageBase64, {
-        minConfidence: opts.minConfidence,
-        maxResults: opts.maxResults,
-      });
+      const detectedRegions = await detector.detectFormulas(imageBase64, 1);
       
       // 转换为RawDetection格式
       const detections: RawDetection[] = detectedRegions.map((detected, idx) => ({
         id: `detection_${region.x}_${region.y}_${idx}`,
         boundingBox: {
-          x: region.x + detected.boundingBox.x,
-          y: region.y + detected.boundingBox.y,
-          width: detected.boundingBox.width,
-          height: detected.boundingBox.height,
+          x: region.x + detected.position.x,
+          y: region.y + detected.position.y,
+          width: detected.position.width,
+          height: detected.position.height,
+          rotation: 0,
         },
-        confidence: detected.confidence,
+        confidence: typeof detected.confidence === 'number' ? detected.confidence : detected.confidence.overall,
         type: detected.formulaType === 'display' ? 'display' : 'inline',
         features: {
-          mathSymbolCount: detected.features?.mathSymbolDensity ? 10 : 0,
-          greekLetterCount: detected.features?.greekLetterDensity ? 5 : 0,
-          operatorCount: detected.features?.operatorDensity ? 8 : 0,
-          usesMathFont: detected.features?.mathSymbolDensity > 0.3,
-          hasFractionStructure: detected.features?.verticalStructure || false,
-          hasScripts: detected.features?.verticalStructure || false,
-          hasRoots: false,
-          hasLargeOperators: detected.features?.largeOperatorPresence || false,
-          hasBracketPairs: detected.features?.bracketBalance > 0,
+          mathSymbolCount: detected.features?.hasIntegralSymbols || detected.features?.hasSummationSymbols ? 5 : 0,
+          greekLetterCount: detected.features?.hasGreekLetters ? 3 : 0,
+          operatorCount: detected.features?.hasIntegralSymbols || detected.features?.hasSummationSymbols ? 2 : 0,
+          usesMathFont: detected.features?.hasGreekLetters || false,
+          hasFractionStructure: detected.features?.hasFractionLines || false,
+          hasScripts: detected.features?.hasSuperscripts || detected.features?.hasSubscripts || false,
+          hasRoots: detected.features?.hasRootSymbols || false,
+          hasLargeOperators: detected.features?.hasIntegralSymbols || detected.features?.hasSummationSymbols || false,
+          hasBracketPairs: detected.features?.hasMatrixBrackets || false,
         },
       }));
       

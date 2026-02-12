@@ -27,6 +27,20 @@ export interface SerializedRecognizedFormula {
 }
 
 /**
+ * 检测到的公式位置（不含 imageData，恢复时从 pageImages 裁剪）
+ */
+export interface SerializedDetectedFormula {
+  id: string;
+  pageNumber: number;
+  position: { x: number; y: number; width: number; height: number };
+  originalPosition: { x: number; y: number; width: number; height: number };
+  confidence?: number;
+  type?: string;
+  formulaType?: string;
+  confidenceLevel?: string;
+}
+
+/**
  * PDF 阅读器状态
  */
 export interface PDFViewerState {
@@ -35,6 +49,7 @@ export interface PDFViewerState {
   zoom: number;
   scrollPosition: number;
   recognizedFormulas: SerializedRecognizedFormula[];
+  detectedFormulas?: SerializedDetectedFormula[];
   timestamp: number;
 }
 
@@ -303,4 +318,51 @@ export function deserializeRecognizedFormulas(
   });
   
   return map;
+}
+
+/**
+ * 将 FormulaRegion[] 序列化为位置信息（不含 imageData）
+ */
+export function serializeDetectedFormulas(
+  formulas: FormulaRegion[]
+): SerializedDetectedFormula[] {
+  return formulas.map(f => ({
+    id: f.id,
+    pageNumber: f.pageNumber,
+    position: { ...f.position },
+    originalPosition: { ...f.originalPosition },
+    confidence: f.confidence,
+    type: f.type,
+    formulaType: f.formulaType,
+    confidenceLevel: f.confidenceLevel,
+  }));
+}
+
+/**
+ * 从缓存位置 + pageImages 重建 FormulaRegion[]
+ */
+export function restoreDetectedFormulas(
+  serialized: SerializedDetectedFormula[],
+  pageImages: string[]
+): FormulaRegion[] {
+  const results: FormulaRegion[] = [];
+
+  for (const s of serialized) {
+    const pageImage = pageImages[s.pageNumber - 1];
+    if (!pageImage) continue;
+
+    results.push({
+      id: s.id,
+      pageNumber: s.pageNumber,
+      imageData: '', // 延迟裁剪，由 viewer 按需提取
+      position: { ...s.position },
+      originalPosition: { ...s.originalPosition },
+      confidence: s.confidence,
+      type: s.type as FormulaRegion['type'],
+      formulaType: s.formulaType as FormulaRegion['formulaType'],
+      confidenceLevel: s.confidenceLevel as FormulaRegion['confidenceLevel'],
+    });
+  }
+
+  return results;
 }

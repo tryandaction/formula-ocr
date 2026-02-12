@@ -25,14 +25,122 @@ interface QueueItem {
 
 // 配置
 const MAX_RETRIES = 3;
-const RETRY_DELAY_BASE = 1000; // 基础重试延迟（毫秒）
-const CONCURRENT_LIMIT = 2; // 并发限制
-const QUEUE_DELAY = 500; // 队列处理间隔
+const RETRY_DELAY_BASE = 1000;
+const CONCURRENT_LIMIT = 4;
+const QUEUE_DELAY = 200;
 
 // 队列状态
 let queue: QueueItem[] = [];
 let processing = 0;
 let isProcessing = false;
+
+/**
+ * 预处理公式图像：对比度增强 + 去噪 + 锐化
+ * 不做二值化，AI 视觉模型需要灰度/彩色图像
+ */
+async function preprocessFormulaImage(imageBase64: string): Promise<string> {
+  try {
+    const img = await loadImageElement(imageBase64);
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d')!;
+    ctx.drawImage(img, 0, 0);
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    // 1. 对比度增强（直方图均衡化 - 灰度通道）
+    imageData = enhanceContrast(imageData);
+
+    // 2. 去噪（3x3 中值滤波）
+    imageData = denoise(imageData);
+
+    // 3. 锐化（卷积核）
+    imageData = sharpen(imageData);
+
+    ctx.putImageData(imageData, 0, 0);
+    return canvas.toDataURL('image/png');
+  } catch {
+    // 预处理失败时返回原图
+    return imageBase64;
+  }
+}
+
+function loadImageElement(base64: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = base64.startsWith('data:') ? base64 : `data:image/png;base64,${base64}`;
+  });
+}
+
+function enhanceContrast(imageData: ImageData): ImageData {
+  const data = imageData.data;
+  const histogram = new Array(256).fill(0);
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
+    histogram[gray]++;
+  }
+  const total = imageData.width * imageData.height;
+  const cdf = new Array(256);
+  cdf[0] = histogram[0];
+  for (let i = 1; i < 256; i++) cdf[i] = cdf[i - 1] + histogram[i];
+  const cdfMin = cdf.find(v => v > 0) || 0;
+  const scale = 255 / Math.max(1, total - cdfMin);
+
+  const result = new ImageData(new Uint8ClampedArray(data), imageData.width, imageData.height);
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
+    const eq = Math.round((cdf[gray] - cdfMin) * scale);
+    const ratio = gray > 0 ? eq / gray : 1;
+    result.data[i] = Math.min(255, Math.round(data[i] * ratio));
+    result.data[i + 1] = Math.min(255, Math.round(data[i + 1] * ratio));
+    result.data[i + 2] = Math.min(255, Math.round(data[i + 2] * ratio));
+    result.data[i + 3] = data[i + 3];
+  }
+  return result;
+}
+
+function denoise(imageData: ImageData): ImageData {
+  const { data, width, height } = imageData;
+  const result = new ImageData(new Uint8ClampedArray(data), width, height);
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      for (let c = 0; c < 3; c++) {
+        const values: number[] = [];
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            values.push(data[((y + dy) * width + (x + dx)) * 4 + c]);
+          }
+        }
+        values.sort((a, b) => a - b);
+        result.data[(y * width + x) * 4 + c] = values[4]; // median
+      }
+    }
+  }
+  return result;
+}
+
+function sharpen(imageData: ImageData): ImageData {
+  const { data, width, height } = imageData;
+  const kernel = [0, -1, 0, -1, 5, -1, 0, -1, 0];
+  const result = new ImageData(new Uint8ClampedArray(data), width, height);
+  for (let y = 1; y < height - 1; y++) {
+    for (let x = 1; x < width - 1; x++) {
+      for (let c = 0; c < 3; c++) {
+        let sum = 0;
+        let ki = 0;
+        for (let dy = -1; dy <= 1; dy++) {
+          for (let dx = -1; dx <= 1; dx++) {
+            sum += data[((y + dy) * width + (x + dx)) * 4 + c] * kernel[ki++];
+          }
+        }
+        result.data[(y * width + x) * 4 + c] = Math.max(0, Math.min(255, sum));
+      }
+    }
+  }
+  return result;
+}
 
 /**
  * 识别单个公式
@@ -42,9 +150,11 @@ export async function recognizeFormula(
   provider?: ProviderType
 ): Promise<OCRResult> {
   const selectedProvider = provider || getRecommendedProvider();
-  
+
   try {
-    const latex = await recognizeWithProvider(formula.imageData, selectedProvider);
+    // 预处理图像以提升识别质量
+    const processedImage = await preprocessFormulaImage(formula.imageData);
+    const latex = await recognizeWithProvider(processedImage, selectedProvider);
     
     return {
       id: formula.id,

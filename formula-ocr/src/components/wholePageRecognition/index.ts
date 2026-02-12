@@ -13,3 +13,7 @@ export type { NotificationType, Notification } from './NotificationSystem';
 export { OptimizedFormulaOverlay } from './OptimizedFormulaOverlay';
 export { VirtualScrollContainer } from './VirtualScrollContainer';
 export { OptimizedWholePageDetector } from './OptimizedWholePageDetector';
+
+// 简化版组件（新增 - 推荐使用）
+export { SimplifiedWholePageDetector } from './SimplifiedWholePageDetector';
+

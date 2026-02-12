@@ -48,7 +48,7 @@ export class ContentClassifier implements IContentClassifier {
       type,
       confidence: scores[type],
       scores,
-      reasoning: this.generateReasoning(type, features, scores),
+      reasoning: this.buildReasoning(type, features, scores),
     };
   }
 
@@ -369,15 +369,22 @@ export class ContentClassifier implements IContentClassifier {
   /**
    * 检测网格线
    */
-  private detectGridLines(region: ImageRegion): boolean {
+  detectGridLines(region: ImageRegion): boolean {
     // 简化实现 - 实际应该分析图像数据
     return false;
   }
 
   /**
-   * 生成分类推理
+   * 生成分类推理（接口方法）
    */
-  private generateReasoning(
+  generateReasoning(classification: ClassificationResult): string[] {
+    return classification.reasoning || [];
+  }
+
+  /**
+   * 生成分类推理（内部方法）
+   */
+  private buildReasoning(
     type: string,
     features: MathFeatures,
     scores: Record<string, number>

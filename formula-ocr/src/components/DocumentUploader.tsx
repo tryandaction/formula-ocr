@@ -30,6 +30,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
   const [parsedDocument, setParsedDocument] = useState<ParsedDocument | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number } | null>(null);
+  const [detectionProgress, setDetectionProgress] = useState<{ done: number; total: number } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 预加载 PDF.js
@@ -62,11 +63,24 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
       setState('parsing');
       
       if (validation.fileType === 'pdf') {
-        const doc = await parsePdfDocument(file, (prog, msg) => {
-          setProgress(prog);
-          setProgressMessage(msg);
-        });
+        let detectedPages = 0;
+        const doc = await parsePdfDocument(
+          file,
+          (prog, msg) => {
+            setProgress(prog);
+            setProgressMessage(msg);
+          },
+          undefined,
+          (formulas, _pageNumber) => {
+            detectedPages++;
+            setParsedDocument(prev =>
+              prev ? { ...prev, formulas: [...prev.formulas, ...formulas] } : prev
+            );
+            setDetectionProgress({ done: detectedPages, total: doc?.pageCount || 0 });
+          }
+        );
         setParsedDocument(doc);
+        setDetectionProgress({ done: 0, total: doc.pageCount });
         setState('preview');
       } else {
         setError(`${validation.fileType?.toUpperCase()} 格式解析功能开发中`);
@@ -138,6 +152,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
           document={parsedDocument}
           onClose={handleClose}
           onFormulasExtracted={handleFormulasExtract}
+          detectionProgress={detectionProgress}
         />
       </div>
     );

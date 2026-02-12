@@ -21,6 +21,8 @@ import {
   generateDocumentId,
   serializeRecognizedFormulas,
   deserializeRecognizedFormulas,
+  serializeDetectedFormulas,
+  restoreDetectedFormulas,
   type PDFViewerState,
 } from '../../utils/stateCacheService';
 
@@ -36,6 +38,7 @@ interface PDFFormulaViewerProps {
   document: ParsedDocument | null;
   onClose?: () => void;
   onFormulasExtracted?: (formulas: FormulaRegion[]) => void;
+  detectionProgress?: { done: number; total: number } | null;
 }
 
 // 缩放范围
@@ -67,6 +70,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
   document,
   onClose,
   onFormulasExtracted: _onFormulasExtracted,
+  detectionProgress: detectionProgressProp,
 }) => {
   // 响应式状态
   const windowSize = useWindowSize();
@@ -86,7 +90,8 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
   const [showMobilePanel, setShowMobilePanel] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
-  const [useEnhancedPanel, setUseEnhancedPanel] = useState(true); // Toggle for enhanced panel
+  const [useEnhancedPanel, setUseEnhancedPanel] = useState(true);
+  const detectionProgress = detectionProgressProp || null;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const documentIdRef = useRef<string | null>(null);
@@ -102,19 +107,25 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
     }
   }, [isMobile, isTablet]);
 
-  // 生成文档 ID
+  // 生成文档 ID 并恢复缓存
   useEffect(() => {
     if (document) {
-      // 使用文件名和页数生成简单的 ID
       documentIdRef.current = generateDocumentId(document.fileName, document.pageCount * 1000);
-      
-      // 尝试恢复缓存状态
+
       const cachedState = loadState(documentIdRef.current);
       if (cachedState) {
         setCurrentPage(cachedState.currentPage);
         setZoom(cachedState.zoom);
         setScrollPosition(cachedState.scrollPosition);
         setRecognizedFormulas(deserializeRecognizedFormulas(cachedState.recognizedFormulas));
+
+        // 恢复检测到的公式位置（从缓存位置 + pageImages 重建）
+        if (cachedState.detectedFormulas?.length && document.formulas.length === 0) {
+          const restored = restoreDetectedFormulas(cachedState.detectedFormulas, document.pageImages);
+          if (restored.length > 0) {
+            document.formulas = restored;
+          }
+        }
       }
     }
   }, [document]);
@@ -132,6 +143,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
         document.formulas,
         recognizedFormulas as Map<string, { latex: string; markdown?: string; status: string; error?: string }>
       ),
+      detectedFormulas: serializeDetectedFormulas(document.formulas),
       timestamp: Date.now(),
     };
 
@@ -497,6 +509,14 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-yellow-100 text-yellow-700 text-sm rounded-lg">
               <div className="w-4 h-4 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin"></div>
               识别中 ({processingCount})
+            </div>
+          )}
+
+          {/* 检测进度 */}
+          {detectionProgress && detectionProgress.done < detectionProgress.total && (
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 text-sm rounded-lg">
+              <div className="w-3.5 h-3.5 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+              检测中 {detectionProgress.done}/{detectionProgress.total} 页
             </div>
           )}
 

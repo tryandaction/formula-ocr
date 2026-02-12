@@ -3,6 +3,8 @@
  * 优化版本：提升渲染质量、改进公式检测算法、支持精确定位
  */
 
+import { calculateOtsuThreshold } from './imageUtils';
+
 export interface DocumentValidationResult {
   valid: boolean;
   error?: string;
@@ -193,62 +195,64 @@ async function getPdfJs(): Promise<typeof import('pdfjs-dist')> {
 
 /**
  * 解析 PDF 文档并提取公式区域
+ * 立即返回渲染结果（formulas: []），然后通过 requestIdleCallback 逐页异步检测公式
  */
 export async function parsePdfDocument(
   file: File,
   onProgress?: (progress: number, message: string) => void,
-  detectionConfig: DetectionConfig = DEFAULT_DETECTION_CONFIG
+  detectionConfig: DetectionConfig = DEFAULT_DETECTION_CONFIG,
+  onFormulasDetected?: (formulas: FormulaRegion[], pageNumber: number) => void
 ): Promise<ParsedDocument> {
   const pdfjs = await getPdfJs();
-  
+
   onProgress?.(0, '正在加载 PDF...');
-  
+
   const buffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: buffer }).promise;
   const pageCount = pdf.numPages;
-  
+
   const thumbnails: string[] = [];
   const pageImages: string[] = [];
   const pageDimensions: { width: number; height: number }[] = [];
   const formulas: FormulaRegion[] = [];
-  
+
   for (let i = 1; i <= pageCount; i++) {
     onProgress?.((i / pageCount) * 80, `正在渲染第 ${i}/${pageCount} 页...`);
-    
+
     const page = await pdf.getPage(i);
-    
+
     // 获取原始页面尺寸
     const originalViewport = page.getViewport({ scale: 1 });
     pageDimensions.push({
       width: originalViewport.width,
       height: originalViewport.height,
     });
-    
+
     // 高清渲染用于预览
     const viewport = page.getViewport({ scale: RENDER_SCALE });
-    
+
     // 创建高清 canvas
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d', { 
+    const context = canvas.getContext('2d', {
       alpha: false,
-      willReadFrequently: true 
+      willReadFrequently: true
     })!;
     canvas.width = viewport.width;
     canvas.height = viewport.height;
-    
+
     // 白色背景
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     await page.render({
       canvasContext: context,
       viewport: viewport,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any).promise;
-    
+
     // 生成高清页面图像（PNG格式保持清晰度）
     pageImages.push(canvas.toDataURL('image/png'));
-    
+
     // 生成缩略图
     const thumbScale = THUMBNAIL_WIDTH / originalViewport.width;
     const thumbnailCanvas = document.createElement('canvas');
@@ -258,16 +262,16 @@ export async function parsePdfDocument(
     thumbCtx.drawImage(canvas, 0, 0, thumbnailCanvas.width, thumbnailCanvas.height);
     thumbnails.push(thumbnailCanvas.toDataURL('image/jpeg', 0.85));
   }
-  
-  // 跳过自动公式检测 - 用户可以手动选择区域
-  // 这样可以避免加载时的卡顿问题
-  onProgress?.(98, '准备完成...');
-  
-  // 不再自动检测公式，formulas保持为空数组
-  // 用户可以通过界面手动选择区域进行识别
-  
+
+  onProgress?.(95, '准备完成...');
+
+  // 异步调度公式检测（不阻塞 UI）
+  if (onFormulasDetected) {
+    scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected);
+  }
+
   onProgress?.(100, '解析完成');
-  
+
   return {
     fileName: file.name,
     fileType: 'pdf',
@@ -277,6 +281,46 @@ export async function parsePdfDocument(
     pageImages,
     pageDimensions,
   };
+}
+
+/**
+ * 非阻塞逐页公式检测调度器
+ * 使用 requestIdleCallback 避免阻塞 UI
+ */
+function scheduleFormulaDetection(
+  pageImages: string[],
+  _pageDimensions: { width: number; height: number }[],
+  _config: DetectionConfig,
+  onFormulasDetected: (formulas: FormulaRegion[], pageNumber: number) => void
+): void {
+  const schedule = typeof requestIdleCallback === 'function'
+    ? (fn: () => void) => requestIdleCallback(fn, { timeout: 200 })
+    : (fn: () => void) => setTimeout(fn, 50);
+
+  let pageIndex = 0;
+
+  const processNext = () => {
+    if (pageIndex >= pageImages.length) return;
+    const currentPage = pageIndex;
+    pageIndex++;
+
+    (async () => {
+      try {
+        const { detectFormulasInPage } = await import('./advancedFormulaDetection/pdfIntegration');
+        const formulas = await detectFormulasInPage(pageImages[currentPage], currentPage + 1);
+        if (formulas.length > 0) {
+          onFormulasDetected(formulas, currentPage + 1);
+        }
+      } catch (err) {
+        console.warn(`[FormulaDetection] Page ${currentPage + 1} failed:`, err);
+      }
+      // 调度下一页
+      schedule(processNext);
+    })();
+  };
+
+  // 启动第一页
+  schedule(processNext);
 }
 
 /**
@@ -302,10 +346,10 @@ async function detectFormulasInPage(
   
   const formulas: FormulaRegion[] = [];
   
-  // 1. 二值化图像
+  // 1. 二值化图像（Otsu 自动阈值）
   const binaryImage = new Uint8Array(width * height);
-  const threshold = 180; // 二值化阈值
-  
+  const threshold = calculateOtsuThreshold(data, width, height);
+
   for (let i = 0; i < width * height; i++) {
     const idx = i * 4;
     const brightness = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
