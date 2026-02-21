@@ -233,12 +233,17 @@ export class BoundaryDetector implements IBoundaryDetector {
     processedImage: ProcessedImage
   ): { x: number; y: number; width: number; height: number } {
     const padding = 5; // 5像素边距
-    
+
+    const x = Math.max(0, bounds.x - padding);
+    const y = Math.max(0, bounds.y - padding);
+    const right = Math.min(processedImage.width, bounds.x + bounds.width + padding);
+    const bottom = Math.min(processedImage.height, bounds.y + bounds.height + padding);
+
     return {
-      x: Math.max(0, bounds.x - padding),
-      y: Math.max(0, bounds.y - padding),
-      width: Math.min(processedImage.width - bounds.x + padding, bounds.width + padding * 2),
-      height: Math.min(processedImage.height - bounds.y + padding, bounds.height + padding * 2),
+      x,
+      y,
+      width: right - x,
+      height: bottom - y,
     };
   }
 

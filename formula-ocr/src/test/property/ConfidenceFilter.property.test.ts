@@ -32,12 +32,12 @@ describe('Property Tests: Confidence Filter', () => {
         fc.array(
           fc.record({
             id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
+            confidence: fc.float({ min: 0, max: 1, noNaN: true }),
           }),
           { minLength: 0, maxLength: 50 }
         ),
         // Generate random threshold
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (formulas, threshold) => {
           // Apply filter
           const filtered = formulas.filter(f => f.confidence >= threshold);
@@ -71,11 +71,11 @@ describe('Property Tests: Confidence Filter', () => {
         fc.array(
           fc.record({
             id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
+            confidence: fc.float({ min: 0, max: 1, noNaN: true }),
           }),
           { minLength: 1, maxLength: 50 }
         ),
-        fc.float({ min: 0, max: Math.fround(0.9) }),
+        fc.float({ min: 0, max: Math.fround(0.9), noNaN: true }),
         (formulas, threshold1) => {
           const threshold2 = threshold1 + 0.1;
           
@@ -96,11 +96,11 @@ describe('Property Tests: Confidence Filter', () => {
         fc.array(
           fc.record({
             id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
+            confidence: fc.float({ min: 0, max: 1, noNaN: true }),
           }),
           { minLength: 0, maxLength: 50 }
         ),
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (formulas, threshold) => {
           const filtered = formulas.filter(f => f.confidence >= threshold);
           const totalCount = formulas.length;
@@ -126,7 +126,7 @@ describe('Property Tests: Confidence Filter', () => {
   it('Property 12.4: Confidence levels are correctly categorized', () => {
     fc.assert(
       fc.property(
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (confidence) => {
           // Categorize confidence level
           let level: 'high' | 'medium' | 'low';
@@ -159,7 +159,7 @@ describe('Property Tests: Confidence Filter', () => {
         fc.array(
           fc.record({
             id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
+            confidence: fc.float({ min: 0, max: 1, noNaN: true }),
           }),
           { minLength: 0, maxLength: 50 }
         ),
@@ -196,11 +196,11 @@ describe('Property Tests: Confidence Filter', () => {
         fc.array(
           fc.record({
             id: fc.string(),
-            confidence: fc.float({ min: 0, max: 1 }),
+            confidence: fc.float({ min: 0, max: 1, noNaN: true }),
           }),
           { minLength: 0, maxLength: 50 }
         ),
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (formulas, threshold) => {
           // Apply filter once
           const filtered1 = formulas.filter(f => f.confidence >= threshold);
@@ -219,7 +219,7 @@ describe('Property Tests: Confidence Filter', () => {
   it('Property 12.7: Empty input produces empty output', () => {
     fc.assert(
       fc.property(
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (threshold) => {
           const formulas: FormulaWithConfidence[] = [];
           const filtered = formulas.filter(f => f.confidence >= threshold);
@@ -235,7 +235,7 @@ describe('Property Tests: Confidence Filter', () => {
   it('Property 12.8: Percentage calculation is correct', () => {
     fc.assert(
       fc.property(
-        fc.float({ min: 0, max: 1 }),
+        fc.float({ min: 0, max: 1, noNaN: true }),
         (confidence) => {
           const percentage = Math.round(confidence * 100);
           

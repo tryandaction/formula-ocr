@@ -154,6 +154,10 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
       };
       
       img.onerror = () => reject(new Error('Failed to load image'));
+      if (!base64Data) {
+        reject(new Error('No image data provided'));
+        return;
+      }
       img.src = base64Data.startsWith('data:') ? base64Data : `data:image/png;base64,${base64Data}`;
     });
   }

@@ -28,31 +28,34 @@ describe('ConfidenceScorer Property Tests', () => {
     hasSubscripts: fc.boolean(),
     hasMatrixBrackets: fc.boolean(),
     hasRootSymbols: fc.boolean(),
-    aspectRatio: fc.double({ min: 0.1, max: 10 }),
-    density: fc.double({ min: 0, max: 1 }),
-    verticalComplexity: fc.double({ min: 0, max: 1 }),
-    horizontalSpacing: fc.double({ min: 0, max: 1 }),
-    edgeDensity: fc.double({ min: 0, max: 1 }),
-    strokeWidth: fc.double({ min: 1, max: 10 }),
-    uniformity: fc.double({ min: 0, max: 1 }),
-    surroundingTextDensity: fc.double({ min: 0, max: 1 }),
+    aspectRatio: fc.double({ min: 0.1, max: 10, noNaN: true }),
+    density: fc.double({ min: 0, max: 1, noNaN: true }),
+    verticalComplexity: fc.double({ min: 0, max: 1, noNaN: true }),
+    horizontalSpacing: fc.double({ min: 0, max: 1, noNaN: true }),
+    edgeDensity: fc.double({ min: 0, max: 1, noNaN: true }),
+    strokeWidth: fc.double({ min: 1, max: 10, noNaN: true }),
+    uniformity: fc.double({ min: 0, max: 1, noNaN: true }),
+    surroundingTextDensity: fc.double({ min: 0, max: 1, noNaN: true }),
     verticalAlignment: fc.constantFrom('top', 'middle', 'bottom', 'isolated'),
     horizontalAlignment: fc.constantFrom('left', 'center', 'right'),
   });
 
   const contentTypeArb = fc.constantFrom<ContentType>('formula', 'image', 'table', 'text');
 
-  const classificationArb = fc.record({
-    type: contentTypeArb,
-    confidence: fc.double({ min: 0, max: 1 }),
-  }).map(({ type, confidence }) => ({
+  const classificationArb = fc.tuple(
+    contentTypeArb,
+    fc.double({ min: 0, max: 1, noNaN: true }),
+    fc.double({ min: 0, max: 0.5, noNaN: true }),
+    fc.double({ min: 0, max: 0.5, noNaN: true }),
+    fc.double({ min: 0, max: 0.5, noNaN: true }),
+  ).map(([type, confidence, s1, s2, s3]) => ({
     type,
     confidence,
     scores: {
-      formula: type === 'formula' ? confidence : fc.sample(fc.double({ min: 0, max: 0.5 }), 1)[0],
-      image: type === 'image' ? confidence : fc.sample(fc.double({ min: 0, max: 0.5 }), 1)[0],
-      table: type === 'table' ? confidence : fc.sample(fc.double({ min: 0, max: 0.5 }), 1)[0],
-      text: type === 'text' ? confidence : fc.sample(fc.double({ min: 0, max: 0.5 }), 1)[0],
+      formula: type === 'formula' ? confidence : s1,
+      image: type === 'image' ? confidence : s2,
+      table: type === 'table' ? confidence : s3,
+      text: type === 'text' ? confidence : s1,
     },
     reasoning: ['Generated classification'],
   }));
@@ -60,9 +63,9 @@ describe('ConfidenceScorer Property Tests', () => {
   const detectionCandidateArb = fc.record({
     width: fc.integer({ min: 10, max: 200 }),
     height: fc.integer({ min: 10, max: 100 }),
-    tightness: fc.double({ min: 0, max: 1 }),
+    tightness: fc.double({ min: 0, max: 1, noNaN: true }),
     formulaType: fc.constantFrom<FormulaType>('display', 'inline'),
-    formulaConfidence: fc.double({ min: 0, max: 1 }),
+    formulaConfidence: fc.double({ min: 0, max: 1, noNaN: true }),
   }).map(({ width, height, tightness, formulaType, formulaConfidence }) => ({
     region: {
       x: 0,

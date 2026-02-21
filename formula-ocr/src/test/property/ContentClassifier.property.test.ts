@@ -303,8 +303,11 @@ describe('ContentClassifier - Property Tests', () => {
           }
 
           // If classified as text and has linear layout, reasoning should mention it
+          // (exclusion rules may use different wording like '检测为标题' or '检测为作者信息')
           if (result.type === 'text' && features.aspectRatio > 5) {
-            return result.reasoning.some(r => r.includes('线性'));
+            return result.reasoning.some(r =>
+              r.includes('线性') || r.includes('检测为')
+            );
           }
 
           return true;

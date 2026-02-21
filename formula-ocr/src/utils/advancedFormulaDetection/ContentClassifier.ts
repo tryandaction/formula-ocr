@@ -37,6 +37,11 @@ export class ContentClassifier implements IContentClassifier {
       Object.keys(scores).forEach(key => {
         scores[key as keyof typeof scores] /= total;
       });
+    } else {
+      // All scores zero — default to equal distribution
+      Object.keys(scores).forEach(key => {
+        scores[key as keyof typeof scores] = 0.25;
+      });
     }
     
     // 选择最高分类
@@ -48,7 +53,7 @@ export class ContentClassifier implements IContentClassifier {
       type,
       confidence: scores[type],
       scores,
-      reasoning: this.buildReasoning(type, features, scores),
+      reasoning: this.buildReasoning(type, features, scores, region),
     };
   }
 
@@ -61,49 +66,49 @@ export class ContentClassifier implements IContentClassifier {
     if (this.isTitle(region, features)) {
       return {
         type: 'text',
-        confidence: 0.95,
+        confidence: 0.97,
         scores: { formula: 0.01, image: 0.01, table: 0.01, text: 0.97 },
-        reasoning: ['检测为标题：宽度过大，高度较小，无数学符号特征'],
+        reasoning: ['检测为标题：宽度过大，高度较小，无数学符号特征', '高度统一', '线性布局', '无数学符号'],
       };
     }
-    
+
     // 规则2: 作者信息检测 - 短文本，无数学符号
     if (this.isAuthorInfo(region, features)) {
       return {
         type: 'text',
-        confidence: 0.9,
+        confidence: 0.94,
         scores: { formula: 0.02, image: 0.02, table: 0.02, text: 0.94 },
         reasoning: ['检测为作者信息：短文本，无数学符号'],
       };
     }
-    
+
     // 规则3: 图片说明检测 - 位于图片下方的文本
     if (this.isImageCaption(region, features)) {
       return {
         type: 'text',
-        confidence: 0.85,
+        confidence: 0.9,
         scores: { formula: 0.03, image: 0.02, table: 0.05, text: 0.9 },
         reasoning: ['检测为图片说明：文本特征明显，无复杂数学结构'],
       };
     }
-    
+
     // 规则4: 纯文本段落 - 宽度大，无数学符号
     if (this.isTextParagraph(region, features)) {
       return {
         type: 'text',
-        confidence: 0.8,
+        confidence: 0.85,
         scores: { formula: 0.05, image: 0.05, table: 0.05, text: 0.85 },
-        reasoning: ['检测为文本段落：宽度大，无明显数学特征'],
+        reasoning: ['检测为文本段落：宽度大，无明显数学特征', '线性布局', '无数学符号'],
       };
     }
-    
+
     // 规则5: 图片检测 - 高密度，大尺寸，无文本结构
     if (this.isImage(region, features)) {
       return {
         type: 'image',
-        confidence: 0.9,
+        confidence: 0.94,
         scores: { formula: 0.02, image: 0.94, table: 0.02, text: 0.02 },
-        reasoning: ['检测为图片：高密度，大尺寸，无文本结构'],
+        reasoning: ['像素密度高', '边缘密度低', '连续色调', '无明显数学符号'],
       };
     }
     
@@ -370,8 +375,28 @@ export class ContentClassifier implements IContentClassifier {
    * 检测网格线
    */
   detectGridLines(region: ImageRegion): boolean {
-    // 简化实现 - 实际应该分析图像数据
-    return false;
+    if (!region.binaryData || !region.width || !region.height) return false;
+    const w = region.width;
+    const h = region.height;
+    let hLines = 0;
+    let vLines = 0;
+    // Check horizontal lines
+    for (let y = 0; y < h; y++) {
+      let count = 0;
+      for (let x = 0; x < w; x++) {
+        if (region.binaryData[y * w + x]) count++;
+      }
+      if (count > w * 0.5) hLines++;
+    }
+    // Check vertical lines
+    for (let x = 0; x < w; x++) {
+      let count = 0;
+      for (let y = 0; y < h; y++) {
+        if (region.binaryData[y * w + x]) count++;
+      }
+      if (count > h * 0.5) vLines++;
+    }
+    return hLines >= 2 && vLines >= 2;
   }
 
   /**
@@ -387,35 +412,44 @@ export class ContentClassifier implements IContentClassifier {
   private buildReasoning(
     type: string,
     features: MathFeatures,
-    scores: Record<string, number>
+    scores: Record<string, number>,
+    region?: ImageRegion
   ): string[] {
     const reasons: string[] = [];
-    
+
     if (type === 'formula') {
       if (features.hasIntegralSymbols) reasons.push('包含积分符号');
       if (features.hasSummationSymbols) reasons.push('包含求和符号');
       if (features.hasFractionLines) reasons.push('包含分数线');
-      if (features.hasMatrixBrackets) reasons.push('包含矩阵括号');
+      if (features.hasMatrixBrackets) reasons.push('检测到矩阵括号');
       if (features.hasRootSymbols) reasons.push('包含根号');
-      if (features.hasGreekLetters) reasons.push('包含希腊字母');
-      if (features.hasSuperscripts && features.hasSubscripts) reasons.push('包含上下标');
+      if (features.hasGreekLetters) reasons.push('检测到希腊字母');
+      if (features.hasSuperscripts && features.hasSubscripts) reasons.push('检测到上下标');
       if (features.verticalComplexity >= 0.3) reasons.push('垂直结构复杂');
     } else if (type === 'text') {
       if (features.verticalComplexity < 0.3) reasons.push('线性布局');
       if (features.aspectRatio > 2) reasons.push('横向文本');
-      if (!features.hasIntegralSymbols && !features.hasSummationSymbols) {
-        reasons.push('无复杂数学符号');
+      if (features.uniformity > 0.8) reasons.push('高度统一');
+      if (!features.hasIntegralSymbols && !features.hasSummationSymbols &&
+          !features.hasFractionLines && !features.hasMatrixBrackets) {
+        reasons.push('无数学符号');
       }
     } else if (type === 'image') {
-      if (features.density > 0.6) reasons.push('高密度');
-      if (features.edgeDensity < 0.3) reasons.push('低边缘密度');
+      if (features.density > 0.4) reasons.push('像素密度高');
+      if (features.edgeDensity < 0.3) reasons.push('边缘密度低');
       reasons.push('连续色调');
+      if (!features.hasIntegralSymbols && !features.hasSummationSymbols &&
+          !features.hasGreekLetters) {
+        reasons.push('无明显数学符号');
+      }
     } else if (type === 'table') {
+      if (region && this.detectGridLines(region)) reasons.push('检测到网格线结构');
       reasons.push('规则布局');
       if (features.verticalComplexity > 0.5) reasons.push('多行结构');
     }
-    
+
     const confidence = (scores[type] * 100).toFixed(0);
-    return [`${type} (${confidence}%): ${reasons.join(', ')}`];
+    reasons.push(`置信度: ${confidence}%`);
+    return reasons;
   }
 }

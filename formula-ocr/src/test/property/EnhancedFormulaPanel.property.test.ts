@@ -90,19 +90,19 @@ describe('Property Tests: Enhanced Formula Panel', () => {
             // High confidence formulas
             fc.record({
               id: fc.string(),
-              confidence: fc.float({ min: 0.9, max: 1 }),
+              confidence: fc.double({ min: 0.9, max: 1, noNaN: true }),
               confidenceLevel: fc.constant('high' as const),
             }),
             // Medium confidence formulas
             fc.record({
               id: fc.string(),
-              confidence: fc.float({ min: 0.75, max: 0.9 }),
+              confidence: fc.double({ min: 0.75, max: 0.8999, noNaN: true }),
               confidenceLevel: fc.constant('medium' as const),
             }),
             // Low confidence formulas
             fc.record({
               id: fc.string(),
-              confidence: fc.float({ min: 0, max: 0.75 }),
+              confidence: fc.double({ min: 0, max: 0.7499, noNaN: true }),
               confidenceLevel: fc.constant('low' as const),
             })
           ),
@@ -277,8 +277,8 @@ describe('Property Tests: Enhanced Formula Panel', () => {
             id: fc.string(),
             pageNumber: fc.integer({ min: 1, max: 10 }),
             position: fc.record({
-              y: fc.float({ min: 0, max: 1000 }),
-              x: fc.float({ min: 0, max: 1000 }),
+              y: fc.float({ min: 0, max: 1000, noNaN: true }),
+              x: fc.float({ min: 0, max: 1000, noNaN: true }),
             }),
           }),
           { minLength: 2, maxLength: 20 }

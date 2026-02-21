@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { ImageUploader, type ImageItem } from './components/ImageUploader';
 import { FormulaResults } from './components/FormulaResults';
 import { ProviderSelector } from './components/ProviderSelector';
@@ -36,23 +36,6 @@ function App() {
   const [quota, setQuota] = useState<QuotaInfo | null>(null);
   const [uploadMode, setUploadMode] = useState<UploadMode>('image');
   const [formulaType, setFormulaType] = useState<FormulaType>('auto');
-
-  // 加载额度信息 - 添加缓存和防抖
-  useEffect(() => {
-    if (isBackendEnabled()) {
-      // 使用 requestIdleCallback 在空闲时加载，避免阻塞首屏
-      const loadQuota = () => {
-        checkQuota().then(setQuota).catch(console.error);
-      };
-      
-      if ('requestIdleCallback' in window) {
-        (window as Window & { requestIdleCallback: (cb: () => void) => number }).requestIdleCallback(loadQuota);
-      } else {
-        // 降级方案：延迟 100ms 加载
-        setTimeout(loadQuota, 100);
-      }
-    }
-  }, []);
 
   // 处理单张图片识别
   const processImage = useCallback(async (imageId: string) => {

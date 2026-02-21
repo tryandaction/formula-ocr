@@ -13,6 +13,8 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom'],
           // 将 PDF.js 单独打包（按需加载）
           'vendor-pdf': ['pdfjs-dist'],
+          // 将 KaTeX 单独打包（渲染 LaTeX）
+          'vendor-katex': ['katex'],
         },
       },
     },

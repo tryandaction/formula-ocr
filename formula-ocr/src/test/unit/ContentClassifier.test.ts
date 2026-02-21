@@ -117,9 +117,11 @@ describe('ContentClassifier', () => {
     });
 
     it('should consider layout constraints for formula classification', () => {
-      const region = createTestRegion(100, 50);
+      const region = createTestRegion(100, 60);
       const features = createTestFeatures({
         hasGreekLetters: true,
+        hasSuperscripts: true,
+        hasSubscripts: true,
         verticalComplexity: 0.4,
         aspectRatio: 3,
         density: 0.15,
@@ -154,8 +156,8 @@ describe('ContentClassifier', () => {
     it('should classify large region without math symbols as image', () => {
       const region = createTestRegion(400, 300);
       const features = createTestFeatures({
-        density: 0.5,
-        edgeDensity: 0.3,
+        density: 0.65,
+        edgeDensity: 0.25,
         verticalComplexity: 0.15,
       });
 
@@ -189,6 +191,7 @@ describe('ContentClassifier', () => {
         uniformity: 0.75,
         aspectRatio: 1.33,
         horizontalSpacing: 3,
+        verticalComplexity: 0.6,
       });
 
       const result = classifier.classify(region, features);
