@@ -202,11 +202,17 @@ export const FormulaCodeEditor: React.FC<FormulaCodeEditorProps> = ({
       <div className="flex-shrink-0 p-4 border-b border-gray-100">
         <div className="text-xs text-gray-500 mb-2 font-medium">原始公式</div>
         <div className="bg-gray-50 rounded-xl p-3 overflow-hidden border border-gray-100">
-          <img
-            src={formula.imageData}
-            alt="公式原图"
-            className="w-full h-auto max-h-24 object-contain"
-          />
+          {formula.imageData ? (
+            <img
+              src={formula.imageData}
+              alt="公式原图"
+              className="w-full h-auto max-h-24 object-contain"
+            />
+          ) : (
+            <div className="w-full h-16 flex items-center justify-center text-[10px] text-gray-400">
+              预览生成中
+            </div>
+          )}
         </div>
       </div>
 

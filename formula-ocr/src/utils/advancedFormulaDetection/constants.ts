@@ -8,10 +8,11 @@
 // ============================================================================
 
 export const DEFAULT_DETECTION_OPTIONS = {
-  minConfidence: 0.75, // 提高到0.75以减少误检
+  minConfidence: 0.6, // 进一步降低以覆盖小公式
   includeInline: true,
   includeDisplay: true,
   resolution: 300,
+  sourceDPI: 72,
   enablePreprocessing: true,
   useDeepOptimization: true, // 使用深度优化分类器
 } as const;
@@ -27,22 +28,24 @@ export const CONFIDENCE_THRESHOLDS = {
 
 export const DEFAULT_PREPROCESS_OPTIONS = {
   targetDPI: 300,
+  sourceDPI: 72,
   denoise: true,
   enhanceContrast: true,
   binarizationMethod: 'adaptive' as const,
 } as const;
 
 export const BINARIZATION_THRESHOLD = 180;
+export const MAX_ADAPTIVE_PIXELS = 2_000_000;
 
 // ============================================================================
 // Feature Detection Parameters
 // ============================================================================
 
-export const MIN_FORMULA_HEIGHT = 15;
+export const MIN_FORMULA_HEIGHT = 12;
 export const MAX_FORMULA_HEIGHT = 300;
-export const MIN_FORMULA_WIDTH = 20;
+export const MIN_FORMULA_WIDTH = 16;
 
-export const MIN_REGION_PIXELS = 10;
+export const MIN_REGION_PIXELS = 20;
 export const MIN_BLANK_HEIGHT = 10;
 
 // ============================================================================
@@ -220,3 +223,5 @@ export const CACHE_MAX_ENTRIES = 100;
 export const MAX_DETECTION_TIME = 3000; // 3 seconds per page
 export const WORKER_POOL_SIZE = 2;
 export const BATCH_SIZE = 5;
+export const MAX_DETECTION_PIXELS = 4_000_000;
+export const MIN_DETECTION_DPI = 96;

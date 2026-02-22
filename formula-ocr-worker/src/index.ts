@@ -188,6 +188,10 @@ async function handleRecognize(request: Request, env: Env, requestOrigin: string
     return errorResponse('Missing X-User-ID header', 400, env.CORS_ORIGIN, requestOrigin);
   }
 
+  if (!env.ZHIPU_API_KEY) {
+    return errorResponse('ZHIPU_API_KEY is not configured on the server', 503, env.CORS_ORIGIN, requestOrigin);
+  }
+
   // 检查额度
   const quota = await checkQuota(env.USERS, userId);
   if (!quota.canUse) {

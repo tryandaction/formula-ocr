@@ -4,7 +4,9 @@
  */
 
 import type { FormulaRegion } from './documentParser';
-import { recognizeWithProvider, getRecommendedProvider, type ProviderType } from './providers';
+import { recognizeWithProvider, getRecommendedProvider, getSelectedProvider, getAvailableProviders, type ProviderType } from './providers';
+import { checkBackendHealth, isBackendEnabled } from './api';
+import { calculateOtsuThreshold } from './imageUtils';
 
 // OCR 结果类型
 export interface OCRResult {
@@ -21,6 +23,7 @@ interface QueueItem {
   resolve: (result: OCRResult) => void;
   reject: (error: Error) => void;
   retryCount: number;
+  provider?: ProviderType;
 }
 
 // 配置
@@ -28,17 +31,155 @@ const MAX_RETRIES = 3;
 const RETRY_DELAY_BASE = 1000;
 const CONCURRENT_LIMIT = 4;
 const QUEUE_DELAY = 200;
+const BACKEND_HEALTH_TTL = 30_000;
+const BACKEND_UNAVAILABLE_ERROR = '后端服务不可用或超时，请检查网络后重试';
+const OCR_TIMEOUT_ERROR = '识别超时，请稍后重试';
+const DEFAULT_OCR_TIMEOUT = 45_000;
+const INVALID_LATEX_ERROR = '识别结果无效，请更换模型或提高图片清晰度';
+
+let backendHealthCache: { ok: boolean; timestamp: number } | null = null;
+
+const LOCAL_MIN_SIDE = 320;
+const LOCAL_MAX_SIDE = 1024;
+const LOCAL_PAD_RATIO = 0.12;
+const LOCAL_PAD_MIN = 16;
+const LOCAL_PAD_MAX = 64;
+
+const FALLBACK_PRIORITY: ProviderType[] = [
+  'zhipu',
+  'gemini',
+  'simpletex',
+  'siliconflow',
+  'qwen',
+  'local',
+  'anthropic',
+  'openai',
+];
+const NO_FALLBACK_ERROR = '后端不可用，请配置免费 API（Gemini/智谱/SimpleTex）或使用本地模型';
+
+const PROVIDER_TIMEOUTS: Partial<Record<ProviderType, number>> = {
+  local: 120_000,
+  backend: 60_000,
+  zhipu: 60_000,
+  gemini: 45_000,
+  simpletex: 30_000,
+  siliconflow: 45_000,
+  qwen: 45_000,
+  anthropic: 45_000,
+  openai: 45_000,
+};
+
+async function resolveFallbackProvider(exclude: ProviderType[] = []): Promise<ProviderType | null> {
+  const { providers } = await getAvailableProviders();
+  for (const type of FALLBACK_PRIORITY) {
+    if (exclude.includes(type)) continue;
+    const candidate = providers.find(p => p.type === type);
+    if (candidate?.isAvailable) {
+      return type;
+    }
+  }
+  return null;
+}
 
 // 队列状态
 let queue: QueueItem[] = [];
 let processing = 0;
 let isProcessing = false;
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getProviderTimeout(provider: ProviderType): number {
+  return PROVIDER_TIMEOUTS[provider] ?? DEFAULT_OCR_TIMEOUT;
+}
+
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+  const timeoutPromise = new Promise<T>((_, reject) => {
+    timeoutId = globalThis.setTimeout(() => {
+      reject(new Error(OCR_TIMEOUT_ERROR));
+    }, timeoutMs);
+  });
+  return Promise.race([promise, timeoutPromise]).finally(() => {
+    if (timeoutId !== null) {
+      clearTimeout(timeoutId);
+    }
+  });
+}
+
+function upscaleAndPadForLocal(canvas: HTMLCanvasElement): HTMLCanvasElement {
+  const width = canvas.width;
+  const height = canvas.height;
+  if (width <= 0 || height <= 0) return canvas;
+
+  const minSide = Math.min(width, height);
+  const maxSide = Math.max(width, height);
+  let scale = 1;
+
+  if (minSide < LOCAL_MIN_SIDE) {
+    scale = LOCAL_MIN_SIDE / Math.max(1, minSide);
+  }
+  if (maxSide * scale > LOCAL_MAX_SIDE) {
+    scale = LOCAL_MAX_SIDE / Math.max(1, maxSide);
+  }
+
+  const newWidth = Math.max(1, Math.round(width * scale));
+  const newHeight = Math.max(1, Math.round(height * scale));
+  const padBase = Math.min(newWidth, newHeight);
+  const padding = clamp(Math.round(padBase * LOCAL_PAD_RATIO), LOCAL_PAD_MIN, LOCAL_PAD_MAX);
+
+  const out = document.createElement('canvas');
+  out.width = newWidth + padding * 2;
+  out.height = newHeight + padding * 2;
+  const outCtx = out.getContext('2d')!;
+  outCtx.fillStyle = 'white';
+  outCtx.fillRect(0, 0, out.width, out.height);
+  const shouldSmooth = scale < 1;
+  outCtx.imageSmoothingEnabled = shouldSmooth;
+  if (shouldSmooth) {
+    outCtx.imageSmoothingQuality = 'high';
+  }
+  outCtx.drawImage(canvas, 0, 0, width, height, padding, padding, newWidth, newHeight);
+  return out;
+}
+
+function isLikelyLatex(text: string): boolean {
+  const trimmed = text.trim();
+  if (!trimmed) return false;
+  const lower = trimmed.toLowerCase();
+  const rejectPhrases = [
+    'image',
+    'blurry',
+    'cannot',
+    "can't",
+    'unable',
+    'please',
+    'sorry',
+    'too small',
+    '无法',
+    '不能',
+    '看不清',
+    '模糊',
+    '请提供',
+    '无法识别',
+  ];
+  if (rejectPhrases.some(p => lower.includes(p))) return false;
+
+  const hasMathToken = /[\\^_=+\-*/]|\\(frac|sqrt|sum|int|lim|cdot|alpha|beta|gamma|theta|pi)/.test(trimmed);
+  const hasDigit = /\d/.test(trimmed);
+  if (!hasMathToken && !hasDigit) {
+    if (/^[^\s]{1,3}$/.test(trimmed)) return true;
+    return false;
+  }
+  return true;
+}
+
 /**
  * 预处理公式图像：对比度增强 + 去噪 + 锐化
  * 不做二值化，AI 视觉模型需要灰度/彩色图像
  */
-async function preprocessFormulaImage(imageBase64: string): Promise<string> {
+async function preprocessFormulaImage(imageBase64: string, provider?: ProviderType): Promise<string> {
   try {
     const img = await loadImageElement(imageBase64);
     const canvas = document.createElement('canvas');
@@ -58,11 +199,32 @@ async function preprocessFormulaImage(imageBase64: string): Promise<string> {
     imageData = sharpen(imageData);
 
     ctx.putImageData(imageData, 0, 0);
+
+    if (provider === 'local') {
+      const enhanced = upscaleAndPadForLocal(canvas);
+      const enhancedCtx = enhanced.getContext('2d')!;
+      const enhancedData = enhancedCtx.getImageData(0, 0, enhanced.width, enhanced.height);
+      const binarized = binarize(enhancedData);
+      enhancedCtx.putImageData(binarized, 0, 0);
+      return enhanced.toDataURL('image/png');
+    }
+
     return canvas.toDataURL('image/png');
   } catch {
     // 预处理失败时返回原图
     return imageBase64;
   }
+}
+
+async function isBackendHealthy(): Promise<boolean> {
+  if (!isBackendEnabled()) return false;
+  const now = Date.now();
+  if (backendHealthCache && now - backendHealthCache.timestamp < BACKEND_HEALTH_TTL) {
+    return backendHealthCache.ok;
+  }
+  const ok = await checkBackendHealth().catch(() => false);
+  backendHealthCache = { ok, timestamp: now };
+  return ok;
 }
 
 function loadImageElement(base64: string): Promise<HTMLImageElement> {
@@ -142,6 +304,21 @@ function sharpen(imageData: ImageData): ImageData {
   return result;
 }
 
+function binarize(imageData: ImageData): ImageData {
+  const { data, width, height } = imageData;
+  const threshold = calculateOtsuThreshold(data, width, height);
+  const result = new ImageData(new Uint8ClampedArray(data), width, height);
+  for (let i = 0; i < data.length; i += 4) {
+    const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
+    const v = gray < threshold ? 0 : 255;
+    result.data[i] = v;
+    result.data[i + 1] = v;
+    result.data[i + 2] = v;
+    result.data[i + 3] = data[i + 3];
+  }
+  return result;
+}
+
 /**
  * 识别单个公式
  */
@@ -149,12 +326,57 @@ export async function recognizeFormula(
   formula: FormulaRegion,
   provider?: ProviderType
 ): Promise<OCRResult> {
-  const selectedProvider = provider || getRecommendedProvider();
+  const selectedProvider = provider || getSelectedProvider() || getRecommendedProvider();
+  let activeProvider = selectedProvider;
 
   try {
+    if (selectedProvider === 'backend') {
+      const healthy = await isBackendHealthy();
+      if (!healthy) {
+        const fallback = await resolveFallbackProvider(['backend']);
+        if (fallback) {
+          activeProvider = fallback;
+        } else {
+          return {
+            id: formula.id,
+            latex: '',
+            success: false,
+            error: BACKEND_UNAVAILABLE_ERROR,
+          };
+        }
+      }
+    }
+
     // 预处理图像以提升识别质量
-    const processedImage = await preprocessFormulaImage(formula.imageData);
-    const latex = await recognizeWithProvider(processedImage, selectedProvider);
+    const processedImage = await preprocessFormulaImage(formula.imageData, activeProvider);
+    const latex = await withTimeout(
+      recognizeWithProvider(processedImage, activeProvider),
+      getProviderTimeout(activeProvider)
+    );
+    if (!isLikelyLatex(latex)) {
+      const exclude: ProviderType[] = [activeProvider];
+      if (activeProvider === 'backend') {
+        exclude.push('backend');
+      }
+      const fallback = await resolveFallbackProvider(exclude);
+      if (fallback) {
+        const retryImage = await preprocessFormulaImage(formula.imageData, fallback);
+        const retryLatex = await withTimeout(
+          recognizeWithProvider(retryImage, fallback),
+          getProviderTimeout(fallback)
+        );
+        if (!isLikelyLatex(retryLatex)) {
+          throw new Error(INVALID_LATEX_ERROR);
+        }
+        return {
+          id: formula.id,
+          latex: retryLatex,
+          markdown: `$$${retryLatex}$$`,
+          success: true,
+        };
+      }
+      throw new Error(activeProvider === 'backend' ? NO_FALLBACK_ERROR : INVALID_LATEX_ERROR);
+    }
     
     return {
       id: formula.id,
@@ -189,8 +411,14 @@ async function recognizeWithRetry(
         return result;
       }
       lastError = new Error(result.error || '识别失败');
+      if (lastError.message.includes('超时')) {
+        break;
+      }
     } catch (error) {
       lastError = error instanceof Error ? error : new Error('未知错误');
+      if (lastError.message.includes('超时')) {
+        break;
+      }
     }
     
     // 指数退避
@@ -224,7 +452,7 @@ async function processQueue(): Promise<void> {
     // 异步处理，不阻塞队列
     (async () => {
       try {
-        const result = await recognizeWithRetry(item.formula, MAX_RETRIES - item.retryCount);
+        const result = await recognizeWithRetry(item.formula, MAX_RETRIES - item.retryCount, item.provider);
         item.resolve(result);
       } catch (error) {
         item.reject(error instanceof Error ? error : new Error('未知错误'));
@@ -242,13 +470,14 @@ async function processQueue(): Promise<void> {
 /**
  * 将公式加入识别队列
  */
-export function enqueueFormula(formula: FormulaRegion): Promise<OCRResult> {
+export function enqueueFormula(formula: FormulaRegion, provider?: ProviderType): Promise<OCRResult> {
   return new Promise((resolve, reject) => {
     queue.push({
       formula,
       resolve,
       reject,
       retryCount: 0,
+      provider,
     });
     processQueue();
   });
@@ -264,10 +493,34 @@ export async function recognizeFormulas(
   const results: OCRResult[] = [];
   const total = formulas.length;
   let completed = 0;
+
+  let provider = getSelectedProvider() || getRecommendedProvider();
+  if (provider === 'backend') {
+    const healthy = await isBackendHealthy();
+    if (!healthy) {
+      const fallback = await resolveFallbackProvider(['backend']);
+      if (fallback) {
+        provider = fallback;
+      } else {
+        const failed = formulas.map(formula => ({
+          id: formula.id,
+          latex: '',
+          success: false,
+          error: NO_FALLBACK_ERROR,
+        }));
+        failed.forEach(result => {
+          completed++;
+          results.push(result);
+          onProgress?.(completed, total, result);
+        });
+        return results;
+      }
+    }
+  }
   
   // 创建所有 Promise
   const promises = formulas.map(formula => 
-    enqueueFormula(formula).then(result => {
+    enqueueFormula(formula, provider).then(result => {
       completed++;
       results.push(result);
       onProgress?.(completed, total, result);

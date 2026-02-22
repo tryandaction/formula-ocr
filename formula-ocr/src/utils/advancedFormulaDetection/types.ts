@@ -14,6 +14,7 @@ export interface DetectionOptions {
   includeInline?: boolean;       // 是否包含行内公式 (默认 true)
   includeDisplay?: boolean;      // 是否包含独立公式 (默认 true)
   resolution?: number;           // 渲染分辨率 DPI (默认 300)
+  sourceDPI?: number;            // 输入图像 DPI (默认 72)，用于避免重复缩放
   enablePreprocessing?: boolean; // 是否启用预处理 (默认 true)
   useDeepOptimization?: boolean; // 使用深度优化分类器 (默认 true)
 }
@@ -31,6 +32,7 @@ export interface PageImage {
 
 export interface PreprocessOptions {
   targetDPI?: number;           // 目标分辨率 (默认 300)
+  sourceDPI?: number;           // 输入分辨率 (默认 72)
   denoise?: boolean;            // 是否去噪 (默认 true)
   enhanceContrast?: boolean;    // 是否增强对比度 (默认 true)
   binarizationMethod?: 'otsu' | 'adaptive' | 'simple'; // 二值化方法
@@ -42,6 +44,7 @@ export interface ProcessedImage {
   width: number;
   height: number;
   scaleFactor: number;          // 缩放因子
+  imageScale: number;           // 处理图像相对输入图像的缩放比例
 }
 
 export interface ImageRegion {

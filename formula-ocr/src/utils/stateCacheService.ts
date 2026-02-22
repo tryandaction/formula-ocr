@@ -8,6 +8,7 @@ import type { FormulaRegion } from './documentParser';
 // 缓存键前缀
 const CACHE_PREFIX = 'formula-ocr-pdf-state-';
 const CACHE_INDEX_KEY = 'formula-ocr-pdf-state-index';
+export const CACHE_VERSION = 2;
 
 // 最大缓存数量
 const MAX_CACHED_DOCUMENTS = 10;
@@ -45,6 +46,7 @@ export interface SerializedDetectedFormula {
  */
 export interface PDFViewerState {
   documentId: string;
+  cacheVersion: number;
   currentPage: number;
   zoom: number;
   scrollPosition: number;
@@ -200,6 +202,11 @@ export function loadState(documentId: string): PDFViewerState | null {
     if (!stateStr) return null;
     
     const state: PDFViewerState = JSON.parse(stateStr);
+
+    if (state.cacheVersion !== CACHE_VERSION) {
+      clearState(documentId);
+      return null;
+    }
     
     // 检查是否过期
     if (Date.now() - state.timestamp > CACHE_EXPIRY_MS) {

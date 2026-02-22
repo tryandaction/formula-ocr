@@ -1,0 +1,157 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: 📐
+        - generic [ref=e9]:
+          - heading "公式识别" [level=1] [ref=e10]
+          - paragraph [ref=e11]: Formula OCR - 图片转 LaTeX
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: 游客
+          - button "登录" [ref=e15]
+        - button "📜 历史" [ref=e16]:
+          - generic [ref=e17]: 📜
+          - generic [ref=e18]: 历史
+        - button "🔧 云端服务（推荐）" [ref=e19]:
+          - generic [ref=e20]: 🔧
+          - generic [ref=e21]: 云端服务（推荐）
+        - button "🔑 激活码" [ref=e22]:
+          - generic [ref=e23]: 🔑
+          - generic [ref=e24]: 激活码
+        - generic [ref=e25]:
+          - button "☕ 支持作者" [ref=e26]:
+            - generic [ref=e27]: ☕
+            - generic [ref=e28]: 支持作者
+          - button "🔑 激活码" [ref=e29]:
+            - generic [ref=e30]: 🔑
+            - generic [ref=e31]: 激活码
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - button "🖼️ 图片上传" [ref=e35]:
+          - generic [ref=e36]: 🖼️
+          - text: 图片上传
+        - button "📄 文档解析 Beta" [ref=e37]:
+          - generic [ref=e38]: 📄
+          - text: 文档解析
+          - generic [ref=e39]: Beta
+        - combobox "公式类型" [ref=e41]:
+          - option "🔮 自动" [selected]
+          - option "📐 数学"
+          - option "⚛️ 物理"
+          - option "🧪 化学"
+      - generic [ref=e230]:
+        - generic [ref=e231]:
+          - generic [ref=e232]:
+            - button "隐藏缩略图" [ref=e233]:
+              - img [ref=e234]
+            - generic [ref=e236]:
+              - generic [ref=e237]: 📄
+              - generic [ref=e238]:
+                - generic [ref=e239]: 题库.pdf
+                - generic [ref=e240]:
+                  - generic [ref=e241]: 2 页
+                  - generic [ref=e242]: ·
+                  - generic [ref=e243]: 1 公式
+            - generic [ref=e245]:
+              - button "上一页 (PageUp)" [disabled] [ref=e246]:
+                - img [ref=e247]
+              - generic [ref=e249]:
+                - button "1" [ref=e250]
+                - generic [ref=e251]: /
+                - generic [ref=e252]: "2"
+              - button "下一页 (PageDown)" [ref=e253]:
+                - img [ref=e254]
+          - generic [ref=e256]:
+            - button "✨ 识别全部 (1)" [ref=e257]:
+              - generic [ref=e258]: ✨
+              - text: 识别全部 (1)
+            - generic [ref=e259]:
+              - button "−" [ref=e260]
+              - button "100%" [ref=e261]
+              - button "+" [ref=e262]
+            - button "⛶" [ref=e263]
+            - button "✕" [ref=e264]
+        - generic [ref=e265]:
+          - generic [ref=e266]:
+            - generic [ref=e267]:
+              - generic [ref=e268]: 页面导航
+              - button "隐藏缩略图" [ref=e269]:
+                - img [ref=e270]
+            - generic [ref=e272]:
+              - generic [ref=e273] [cursor=pointer]:
+                - img "第 1 页" [ref=e274]
+                - generic [ref=e275]: "1"
+                - generic [ref=e276]: "1"
+              - generic [ref=e277] [cursor=pointer]:
+                - img "第 2 页" [ref=e278]
+                - generic [ref=e279]: "2"
+            - generic [ref=e280]:
+              - generic [ref=e281]: 共 2 页
+              - generic [ref=e282]: 1 个公式
+          - generic [ref=e285]:
+            - generic [ref=e287]:
+              - img "Page 1" [ref=e288]
+              - generic "公式 1-1 (点击识别)" [ref=e290] [cursor=pointer]:
+                - generic [ref=e291]: 1-1
+                - generic [ref=e293]: 🔍
+              - generic [ref=e294]: 1 / 2
+            - generic [ref=e296]:
+              - img "Page 2" [ref=e297]
+              - generic [ref=e299]: 2 / 2
+          - generic [ref=e300]:
+            - generic [ref=e301]:
+              - generic [ref=e302]:
+                - heading "📐 公式列表" [level=3] [ref=e303]:
+                  - generic [ref=e304]: 📐
+                  - text: 公式列表
+                - button "→" [ref=e305]
+              - generic [ref=e306]:
+                - button "当前页 (1)" [ref=e307]
+                - button "全部 (1)" [ref=e308]
+              - generic [ref=e309]:
+                - generic [ref=e310]: 第 1 页
+                - generic [ref=e311]: 共 1 个
+                - generic [ref=e312]: 1 独立
+              - generic [ref=e314]:
+                - generic [ref=e315]:
+                  - generic [ref=e316]:
+                    - generic [ref=e317]: 🎯
+                    - heading "置信度过滤" [level=4] [ref=e318]
+                  - generic [ref=e319]: 60%
+                - generic [ref=e320]:
+                  - slider [ref=e321] [cursor=pointer]: "0.6"
+                  - generic [ref=e322]:
+                    - generic [ref=e323]: 0%
+                    - generic [ref=e324]: 低
+                    - generic [ref=e325]: 中
+                    - generic [ref=e326]: 高
+                    - generic [ref=e327]: 100%
+                - generic [ref=e329]: 显示 1 / 1
+                - generic [ref=e330]:
+                  - button "全部" [ref=e331]
+                  - button "中等" [ref=e332]
+                  - button "高质量" [ref=e333]
+              - button "✨ 一键识别本页 (1)" [ref=e334]:
+                - generic [ref=e335]: ✨
+                - text: 一键识别本页 (1)
+            - generic [ref=e337] [cursor=pointer]:
+              - img "公式 1" [ref=e339]
+              - generic [ref=e340]:
+                - generic [ref=e341]:
+                  - generic [ref=e342]: "1"
+                  - generic [ref=e343]: 公式 1-1
+                - generic [ref=e344]: 待识别
+              - generic [ref=e345]:
+                - generic [ref=e346]: 独立
+                - generic [ref=e347]: 82%
+              - button "🔍 点击识别公式" [ref=e348]:
+                - generic [ref=e349]: 🔍
+                - text: 点击识别公式
+    - generic [ref=e50]:
+      - generic [ref=e51]: ✨
+      - heading "开始识别公式" [level=2] [ref=e52]
+      - paragraph [ref=e53]: 上传包含数学公式的图片，自动转换为 LaTeX 代码。 支持拖拽、粘贴或点击上传。
+  - contentinfo [ref=e54]:
+    - paragraph [ref=e56]: Formula OCR - 让公式识别更简单

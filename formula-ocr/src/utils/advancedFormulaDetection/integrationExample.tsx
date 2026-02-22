@@ -41,6 +41,7 @@ export async function multiPageDetectionExample(pageImages: string[]) {
   const results = await detectFormulasInPages(
     pageImages,
     DEFAULT_PDF_CONFIG,
+    undefined,
     (completed, total) => {
       console.log(`Progress: ${completed}/${total} pages`);
       // Update UI progress bar here
@@ -265,6 +266,7 @@ export function CompletePDFViewerIntegration() {
             enableCache: true,
             enableParallel: false,
           },
+          document.pageDimensions,
           (completed, total) => {
             setProgress({ current: completed, total });
           }

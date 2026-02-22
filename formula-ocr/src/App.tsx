@@ -10,10 +10,12 @@ import { UserStatusBadge, QuotaExhaustedPrompt } from './components/UserStatusBa
 import { HistoryPanel } from './components/HistoryPanel';
 import { DocumentUploader } from './components/DocumentUploader';
 import { FormulaTypeSelector, type FormulaType } from './components/FormulaTypeSelector';
-import { 
-  type ProviderType, 
-  recognizeWithProvider, 
+import {
+  type ProviderType,
+  recognizeWithProvider,
   getRecommendedProvider,
+  getSelectedProvider,
+  setSelectedProvider,
   PROVIDER_CONFIGS
 } from './utils/providers';
 import { getActivationStatus } from './utils/activation';
@@ -26,7 +28,9 @@ type UploadMode = 'image' | 'document';
 
 function App() {
   const [images, setImages] = useState<ImageItem[]>([]);
-  const [selectedProvider, setSelectedProvider] = useState<ProviderType>(getRecommendedProvider());
+  const [selectedProvider, setSelectedProviderState] = useState<ProviderType>(
+    getSelectedProvider() || getRecommendedProvider()
+  );
   const [showProviderSelector, setShowProviderSelector] = useState(false);
   const [showActivationModal, setShowActivationModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -318,7 +322,10 @@ function App() {
       {showProviderSelector && (
         <ProviderSelector
           selectedProvider={selectedProvider}
-          onProviderChange={setSelectedProvider}
+          onProviderChange={(provider) => {
+            setSelectedProviderState(provider);
+            setSelectedProvider(provider);
+          }}
           onClose={() => setShowProviderSelector(false)}
         />
       )}

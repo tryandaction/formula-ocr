@@ -50,18 +50,37 @@ if (typeof HTMLCanvasElement !== 'undefined') {
       clip: () => {},
     } as unknown as CanvasRenderingContext2D;
   };
+
+  HTMLCanvasElement.prototype.toDataURL = function() {
+    // 1x1 transparent PNG
+    return 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB' +
+      'CAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HwAGgwJ/l2f1JwAAAABJRU5ErkJggg==';
+  };
 }
 
-// Mock Image if needed
-if (typeof Image === 'undefined') {
-  global.Image = class {
-    onload: (() => void) | null = null;
-    onerror: (() => void) | null = null;
-    src = '';
-    width = 0;
-    height = 0;
-  } as unknown as typeof Image;
-}
+// Mock Image for predictable onload in tests
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(globalThis as any).Image = class {
+  onload: (() => void) | null = null;
+  onerror: (() => void) | null = null;
+  width = 100;
+  height = 100;
+  private _src = '';
+
+  get src() {
+    return this._src;
+  }
+
+  set src(value: string) {
+    this._src = value;
+    if (!value) {
+      this.onerror?.();
+      return;
+    }
+    // Simulate async image decode
+    setTimeout(() => this.onload?.(), 0);
+  }
+} as unknown as typeof Image;
 
 // Mock ImageData if needed
 if (typeof ImageData === 'undefined') {

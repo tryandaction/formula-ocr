@@ -32,6 +32,47 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
   const [fileInfo, setFileInfo] = useState<{ name: string; size: number } | null>(null);
   const [detectionProgress, setDetectionProgress] = useState<{ done: number; total: number } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const pendingFormulasRef = useRef<FormulaRegion[]>([]);
+  const detectedPagesRef = useRef(0);
+  const totalPagesRef = useRef(0);
+  const isActiveRef = useRef(true);
+
+  const mergeFormulasByPosition = useCallback((existing: FormulaRegion[], incoming: FormulaRegion[]) => {
+    if (incoming.length === 0) return existing;
+    const round = (value: number) => Math.round(value * 10) / 10;
+    const keyOf = (formula: FormulaRegion) => {
+      const pos = formula.originalPosition;
+      return [
+        formula.pageNumber,
+        round(pos.x),
+        round(pos.y),
+        round(pos.width),
+        round(pos.height),
+      ].join('|');
+    };
+    const map = new Map<string, FormulaRegion>();
+    for (const formula of existing) {
+      map.set(keyOf(formula), formula);
+    }
+    for (const formula of incoming) {
+      const key = keyOf(formula);
+      const current = map.get(key);
+      if (!current) {
+        map.set(key, formula);
+        continue;
+      }
+      const currentHasImage = !!current.imageData;
+      const incomingHasImage = !!formula.imageData;
+      const currentConfidence = current.confidence ?? -1;
+      const incomingConfidence = formula.confidence ?? -1;
+      if (!currentHasImage && incomingHasImage) {
+        map.set(key, formula);
+      } else if (incomingConfidence > currentConfidence + 0.01) {
+        map.set(key, formula);
+      }
+    }
+    return Array.from(map.values());
+  }, []);
 
   // 预加载 PDF.js
   useEffect(() => {
@@ -49,6 +90,11 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
     setState('validating');
     setError(null);
     setProgress(0);
+    setDetectionProgress(null);
+    pendingFormulasRef.current = [];
+    detectedPagesRef.current = 0;
+    totalPagesRef.current = 0;
+    isActiveRef.current = true;
 
     try {
       // 验证文档
@@ -58,12 +104,12 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
         setState('error');
         return;
       }
+      totalPagesRef.current = validation.pageCount || 0;
 
       // 解析文档
       setState('parsing');
       
       if (validation.fileType === 'pdf') {
-        let detectedPages = 0;
         const doc = await parsePdfDocument(
           file,
           (prog, msg) => {
@@ -72,15 +118,31 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
           },
           undefined,
           (formulas, _pageNumber) => {
-            detectedPages++;
-            setParsedDocument(prev =>
-              prev ? { ...prev, formulas: [...prev.formulas, ...formulas] } : prev
-            );
-            setDetectionProgress({ done: detectedPages, total: doc?.pageCount || 0 });
+            if (!isActiveRef.current) {
+              return false;
+            }
+            detectedPagesRef.current += 1;
+            setParsedDocument(prev => {
+              if (!prev) {
+                pendingFormulasRef.current = mergeFormulasByPosition(pendingFormulasRef.current, formulas);
+                return prev;
+              }
+              return { ...prev, formulas: mergeFormulasByPosition(prev.formulas, formulas) };
+            });
+            const total = totalPagesRef.current || 0;
+            setDetectionProgress({ done: detectedPagesRef.current, total });
+            return true;
           }
         );
-        setParsedDocument(doc);
-        setDetectionProgress({ done: 0, total: doc.pageCount });
+        const mergedFormulas = pendingFormulasRef.current.length > 0
+          ? mergeFormulasByPosition(doc.formulas, pendingFormulasRef.current)
+          : doc.formulas;
+        const mergedDoc = pendingFormulasRef.current.length > 0
+          ? { ...doc, formulas: mergedFormulas }
+          : doc;
+        pendingFormulasRef.current = [];
+        setParsedDocument(mergedDoc);
+        setDetectionProgress({ done: detectedPagesRef.current, total: doc.pageCount });
         setState('preview');
       } else {
         setError(`${validation.fileType?.toUpperCase()} 格式解析功能开发中`);
@@ -135,6 +197,11 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
     setError(null);
     setProgress(0);
     setFileInfo(null);
+    setDetectionProgress(null);
+    pendingFormulasRef.current = [];
+    detectedPagesRef.current = 0;
+    totalPagesRef.current = 0;
+    isActiveRef.current = false;
   }, []);
 
   const handleRetry = useCallback(() => {
@@ -142,6 +209,11 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
     setError(null);
     setProgress(0);
     setFileInfo(null);
+    setDetectionProgress(null);
+    pendingFormulasRef.current = [];
+    detectedPagesRef.current = 0;
+    totalPagesRef.current = 0;
+    isActiveRef.current = false;
   }, []);
 
   // 预览模式 - 全屏展示

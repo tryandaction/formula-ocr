@@ -1,0 +1,58 @@
+[
+    {
+        "file":  "AI_prompt.pdf",
+        "ready":  false,
+        "elapsed_ms":  277918,
+        "pages":  {
+
+                  },
+        "formulas":  {
+
+                     },
+        "type":  null,
+        "confidence":  null,
+        "snapshot":  "C:\\universe\\software development\\me\\Physics Formula OCR\\formula-ocr\\output\\playwright\\pdf-benchmark\\.playwright-cli\\page-2026-02-22T09-48-58-231Z.yml"
+    },
+    {
+        "file":  "dense-formulas.pdf",
+        "ready":  false,
+        "elapsed_ms":  236418,
+        "pages":  {
+
+                  },
+        "formulas":  {
+
+                     },
+        "type":  null,
+        "confidence":  null,
+        "snapshot":  "C:\\universe\\software development\\me\\Physics Formula OCR\\formula-ocr\\output\\playwright\\pdf-benchmark\\.playwright-cli\\page-2026-02-22T09-51-01-584Z.yml"
+    },
+    {
+        "file":  "学点不一样_官方内容库_-_思辨海洋.pdf",
+        "ready":  false,
+        "elapsed_ms":  189401,
+        "pages":  {
+
+                  },
+        "formulas":  {
+
+                     },
+        "type":  null,
+        "confidence":  null,
+        "snapshot":  "C:\\universe\\software development\\me\\Physics Formula OCR\\formula-ocr\\output\\playwright\\pdf-benchmark\\.playwright-cli\\page-2026-02-22T09-51-01-584Z.yml"
+    },
+    {
+        "file":  "题库.pdf",
+        "ready":  false,
+        "elapsed_ms":  180888,
+        "pages":  {
+
+                  },
+        "formulas":  {
+
+                     },
+        "type":  null,
+        "confidence":  null,
+        "snapshot":  "C:\\universe\\software development\\me\\Physics Formula OCR\\formula-ocr\\output\\playwright\\pdf-benchmark\\.playwright-cli\\page-2026-02-22T09-51-01-584Z.yml"
+    }
+]

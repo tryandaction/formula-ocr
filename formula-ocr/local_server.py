@@ -13,10 +13,12 @@ The server will start on http://localhost:8502
 """
 
 import base64
+import io
 import requests
 import json
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PIL import Image
 
 app = Flask(__name__)
 CORS(app)
@@ -34,6 +36,50 @@ VISION_MODELS = [
     "minicpm-v",         # MiniCPM-V 小型视觉模型
     "moondream",         # Moondream 轻量视觉模型
 ]
+
+LOCAL_MIN_SIDE = 320
+LOCAL_MAX_SIDE = 1024
+LOCAL_PAD_RATIO = 0.12
+LOCAL_PAD_MIN = 16
+LOCAL_PAD_MAX = 64
+
+def clamp(value, min_value, max_value):
+    return max(min_value, min(max_value, value))
+
+def preprocess_image_for_vision(image_base64):
+    """
+    Upscale and pad small formula crops to improve local vision model accuracy.
+    Uses Pillow resize + manual padding (white background).
+    """
+    try:
+        raw = base64.b64decode(image_base64)
+        with Image.open(io.BytesIO(raw)) as im:
+            im = im.convert("RGB")
+            width, height = im.size
+            min_side = min(width, height)
+            max_side = max(width, height)
+
+            scale = 1.0
+            if min_side < LOCAL_MIN_SIDE:
+                scale = LOCAL_MIN_SIDE / max(1, min_side)
+            if max_side * scale > LOCAL_MAX_SIDE:
+                scale = LOCAL_MAX_SIDE / max(1, max_side)
+
+            new_w = max(1, int(round(width * scale)))
+            new_h = max(1, int(round(height * scale)))
+            if scale != 1.0:
+                im = im.resize((new_w, new_h))
+
+            pad_base = min(new_w, new_h)
+            padding = clamp(int(round(pad_base * LOCAL_PAD_RATIO)), LOCAL_PAD_MIN, LOCAL_PAD_MAX)
+            padded = Image.new("RGB", (new_w + padding * 2, new_h + padding * 2), "white")
+            padded.paste(im, (padding, padding))
+
+            out = io.BytesIO()
+            padded.save(out, format="PNG")
+            return base64.b64encode(out.getvalue()).decode("utf-8")
+    except Exception:
+        return image_base64
 
 def get_available_model():
     """检查 Ollama 中可用的视觉模型"""
@@ -108,6 +154,7 @@ def recognize():
         
         # 准备 Ollama 请求
         image_base64 = data['image']
+        image_base64 = preprocess_image_for_vision(image_base64)
         
         prompt = """Look at this image of a mathematical formula or equation.
 Extract the formula and convert it to LaTeX code.
@@ -117,6 +164,8 @@ Rules:
 2. Do NOT include $$ or $ delimiters
 3. Do NOT include any explanation or text
 4. If there are multiple formulas, separate them with newlines
+5. If parts are unclear, use [unclear] for that part (do NOT output sentences)
+6. Never refuse or comment on image quality; always output the best-guess LaTeX
 
 Example output format:
 E = mc^2

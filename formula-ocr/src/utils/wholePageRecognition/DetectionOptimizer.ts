@@ -15,6 +15,12 @@ export class DetectionOptimizer {
   
   /** 最大公式尺寸（相对于页面） */
   private readonly MAX_FORMULA_RATIO: number = 0.5;
+  
+  /** 大区域像素阈值（超过则优先文本层检测，避免重计算） */
+  private readonly LARGE_REGION_PIXELS = 1_200_000;
+  
+  /** 文本层检测 padding */
+  private readonly TEXT_PADDING = 6;
 
   /**
    * 在指定区域检测公式
@@ -30,6 +36,16 @@ export class DetectionOptimizer {
     const opts = { ...DEFAULT_DETECTION_OPTIONS, ...options };
     
     try {
+      // 大区域优先用文本层快速检测，避免图像级重计算
+      const regionPixels = region.width * region.height;
+      const textDetections = this.detectFromTextLayer(region);
+      if (textDetections.length > 0 && regionPixels > this.LARGE_REGION_PIXELS) {
+        return textDetections;
+      }
+      if (textDetections.length === 0 && this.isLikelyBlank(region.imageData)) {
+        return [];
+      }
+
       // 集成高级公式检测器
       const { AdvancedFormulaDetector } = await import('../advancedFormulaDetection');
       const detector = new AdvancedFormulaDetector();
@@ -76,6 +92,10 @@ export class DetectionOptimizer {
         },
       }));
       
+      if (detections.length === 0 && textDetections.length > 0) {
+        return textDetections;
+      }
+
       return detections;
     } catch (error) {
       console.error('Detection failed:', error);
@@ -177,5 +197,111 @@ export class DetectionOptimizer {
     }
     
     return true;
+  }
+
+  private detectFromTextLayer(region: DetectionRegion): RawDetection[] {
+    const items = region.textData?.items ?? [];
+    if (items.length === 0) {
+      return [];
+    }
+
+    const detections: RawDetection[] = [];
+    for (const item of items) {
+      const text = item.str || '';
+      const style = region.textData.styles[item.fontName];
+      const hasMathFont = Boolean(style?.isMathFont);
+      const mathSymbolCount = this.countMathSymbols(text);
+      const greekLetterCount = this.countGreekLetters(text);
+      const isMathText = hasMathFont || mathSymbolCount > 0 || greekLetterCount > 0;
+
+      if (!isMathText) {
+        continue;
+      }
+
+      const baseWidth = Math.max(item.width, this.MIN_FORMULA_SIZE);
+      const baseHeight = Math.max(item.height, this.MIN_FORMULA_SIZE / 2);
+      const rawX = item.transform[4];
+      const rawY = item.transform[5] - baseHeight;
+      const x = Math.max(region.x, Math.floor(rawX - this.TEXT_PADDING));
+      const y = Math.max(region.y, Math.floor(rawY - this.TEXT_PADDING));
+      const width = Math.min(
+        region.x + region.width - x,
+        Math.ceil(baseWidth + this.TEXT_PADDING * 2)
+      );
+      const height = Math.min(
+        region.y + region.height - y,
+        Math.ceil(baseHeight + this.TEXT_PADDING * 2)
+      );
+
+      detections.push({
+        id: `text_${region.x}_${region.y}_${detections.length}`,
+        boundingBox: {
+          x,
+          y,
+          width,
+          height,
+          rotation: 0,
+        },
+        confidence: hasMathFont ? 0.85 : 0.7,
+        type: 'inline',
+        features: {
+          mathSymbolCount,
+          greekLetterCount,
+          operatorCount: mathSymbolCount,
+          usesMathFont: hasMathFont,
+          hasFractionStructure: /[\/]/.test(text),
+          hasScripts: /[_^]/.test(text),
+          hasRoots: /√/.test(text),
+          hasLargeOperators: /[∫∑]/.test(text),
+          hasBracketPairs: /[()\\[\\]{\}]/.test(text),
+        },
+      });
+    }
+
+    return detections;
+  }
+
+  private countMathSymbols(text: string): number {
+    const matches = text.match(/[=+\-*/^_]|\\[a-zA-Z]+|[∑∫∞≈≠≤≥√]/g);
+    return matches ? matches.length : 0;
+  }
+
+  private countGreekLetters(text: string): number {
+    const matches = text.match(/[α-ωΑ-Ω]/g);
+    return matches ? matches.length : 0;
+  }
+
+  private isLikelyBlank(imageData: ImageData): boolean {
+    const { data, width, height } = imageData;
+    if (width === 0 || height === 0) {
+      return true;
+    }
+    const total = width * height;
+    const targetSamples = 4000;
+    const step = Math.max(1, Math.floor(Math.sqrt(total / targetSamples)));
+
+    let min = 255;
+    let max = 0;
+    let sum = 0;
+    let count = 0;
+
+    for (let y = 0; y < height; y += step) {
+      for (let x = 0; x < width; x += step) {
+        const idx = (y * width + x) * 4;
+        const gray = Math.round(0.299 * data[idx] + 0.587 * data[idx + 1] + 0.114 * data[idx + 2]);
+        min = Math.min(min, gray);
+        max = Math.max(max, gray);
+        sum += gray;
+        count++;
+      }
+    }
+
+    if (count === 0) {
+      return true;
+    }
+
+    const avg = sum / count;
+    const range = max - min;
+    return range < 6 && (avg < 10 || avg > 245);
   }
 }

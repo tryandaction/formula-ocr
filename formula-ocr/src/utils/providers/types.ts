@@ -159,11 +159,23 @@ export const ENV_API_KEY_MAPPING: Record<ProviderType, string> = {
 };
 
 /**
+ * Get API key from env in dev mode (treat as user's own key)
+ */
+export function getDevEnvApiKey(type: ProviderType): string {
+  if (!import.meta.env?.DEV) return '';
+  const envKey = ENV_API_KEY_MAPPING[type];
+  if (!envKey) return '';
+  return (import.meta.env[envKey] as string) || '';
+}
+
+/**
  * Get built-in API key from environment variables
  * These are configured by the site owner, not exposed to users
  * For zhipu: only returns built-in key if user is activated (paid)
  */
 export function getBuiltInApiKey(type: ProviderType, checkActivation = true): string {
+  // In dev, do not treat env keys as built-in to avoid activation gating for local testing
+  if (import.meta.env?.DEV) return '';
   const envKey = ENV_API_KEY_MAPPING[type];
   if (!envKey) return '';
   

@@ -59,10 +59,9 @@ const SIZE_LIMITS: Record<DocumentType, number> = {
 // PDF 页数限制
 const PDF_PAGE_LIMIT = 100;
 
-// 渲染比例 - 高清渲染
-const RENDER_SCALE = 2.0;
 // 公式提取时的渲染比例 - 更高清晰度
 const FORMULA_RENDER_SCALE = 3.0;
+const MAX_RENDER_PIXELS = 4_500_000;
 const THUMBNAIL_WIDTH = 150;
 
 // Advanced detection configuration
@@ -75,7 +74,7 @@ export interface DetectionConfig {
 // Default detection config
 const DEFAULT_DETECTION_CONFIG: DetectionConfig = {
   useAdvancedDetection: true,
-  minConfidence: 0.75, // 提高到0.75以减少误检
+  minConfidence: 0.6, // 对齐前端默认阈值，覆盖小公式
   formulaTypeFilter: 'both',
 };
 
@@ -201,7 +200,7 @@ export async function parsePdfDocument(
   file: File,
   onProgress?: (progress: number, message: string) => void,
   detectionConfig: DetectionConfig = DEFAULT_DETECTION_CONFIG,
-  onFormulasDetected?: (formulas: FormulaRegion[], pageNumber: number) => void
+  onFormulasDetected?: (formulas: FormulaRegion[], pageNumber: number) => void | boolean
 ): Promise<ParsedDocument> {
   const pdfjs = await getPdfJs();
 
@@ -214,6 +213,7 @@ export async function parsePdfDocument(
   const thumbnails: string[] = [];
   const pageImages: string[] = [];
   const pageDimensions: { width: number; height: number }[] = [];
+  const pageMathHints: Array<boolean | null> = [];
   const formulas: FormulaRegion[] = [];
 
   for (let i = 1; i <= pageCount; i++) {
@@ -228,8 +228,9 @@ export async function parsePdfDocument(
       height: originalViewport.height,
     });
 
-    // 高清渲染用于预览
-    const viewport = page.getViewport({ scale: RENDER_SCALE });
+    // 高清渲染用于预览与公式提取
+    const renderScale = computeRenderScale(originalViewport.width, originalViewport.height);
+    const viewport = page.getViewport({ scale: renderScale });
 
     // 创建高清 canvas
     const canvas = document.createElement('canvas');
@@ -253,6 +254,27 @@ export async function parsePdfDocument(
     // 生成高清页面图像（PNG格式保持清晰度）
     pageImages.push(canvas.toDataURL('image/png'));
 
+    // 提取文本层用于数学符号快速判断（仅在有文本时生效）
+    try {
+      const textContent = await page.getTextContent();
+      const items = (textContent.items as Array<{ str?: string }>).filter(item => item?.str);
+      if (items.length === 0) {
+        pageMathHints.push(null);
+      } else {
+        const combined = items.map(item => item.str || '').join(' ');
+        const hasMathOnlySymbol = /[∑∫∞≈≠≤≥√]/.test(combined);
+        const hasEquationPattern = /[A-Za-z0-9]\s*=\s*[A-Za-z0-9]/.test(combined);
+        const hasSupPattern = /[A-Za-z0-9]\s*\^\s*\d/.test(combined);
+        const hasSubPattern = /[A-Za-z0-9]\s*_\s*\d/.test(combined) || /_\{[^}]+\}/.test(combined);
+        const hasLatexCommand = /\\(frac|sum|int|sqrt|alpha|beta|gamma|delta|theta|pi|sigma|mu|nu|rho|lambda|cdot|times|leq|geq|neq|approx)/.test(combined);
+        const hasMathText = hasMathOnlySymbol || hasEquationPattern || hasSupPattern || hasSubPattern || hasLatexCommand;
+        pageMathHints.push(hasMathText);
+      }
+    } catch (err) {
+      console.warn('[FormulaDetection] Text layer read failed:', err);
+      pageMathHints.push(null);
+    }
+
     // 生成缩略图
     const thumbScale = THUMBNAIL_WIDTH / originalViewport.width;
     const thumbnailCanvas = document.createElement('canvas');
@@ -267,7 +289,7 @@ export async function parsePdfDocument(
 
   // 异步调度公式检测（不阻塞 UI）
   if (onFormulasDetected) {
-    scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected);
+    scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected, pageMathHints);
   }
 
   onProgress?.(100, '解析完成');
@@ -289,30 +311,54 @@ export async function parsePdfDocument(
  */
 function scheduleFormulaDetection(
   pageImages: string[],
-  _pageDimensions: { width: number; height: number }[],
-  _config: DetectionConfig,
-  onFormulasDetected: (formulas: FormulaRegion[], pageNumber: number) => void
+  pageDimensions: { width: number; height: number }[],
+  config: DetectionConfig,
+  onFormulasDetected: (formulas: FormulaRegion[], pageNumber: number) => void | boolean,
+  pageMathHints?: Array<boolean | null>
 ): void {
   const schedule = typeof requestIdleCallback === 'function'
     ? (fn: () => void) => requestIdleCallback(fn, { timeout: 200 })
     : (fn: () => void) => setTimeout(fn, 50);
 
   let pageIndex = 0;
+  let cancelled = false;
 
   const processNext = () => {
-    if (pageIndex >= pageImages.length) return;
+    if (cancelled || pageIndex >= pageImages.length) return;
     const currentPage = pageIndex;
     pageIndex++;
 
     (async () => {
       try {
+        const mathHint = pageMathHints ? pageMathHints[currentPage] : null;
+        if (mathHint === false) {
+          const shouldContinue = onFormulasDetected([], currentPage + 1);
+          if (shouldContinue === false) {
+            cancelled = true;
+            return;
+          }
+          schedule(processNext);
+          return;
+        }
         const { detectFormulasInPage } = await import('./advancedFormulaDetection/pdfIntegration');
-        const formulas = await detectFormulasInPage(pageImages[currentPage], currentPage + 1);
-        if (formulas.length > 0) {
-          onFormulasDetected(formulas, currentPage + 1);
+        const formulas = await detectFormulasInPage(
+          pageImages[currentPage],
+          currentPage + 1,
+          config,
+          pageDimensions[currentPage]
+        );
+        const shouldContinue = onFormulasDetected(formulas, currentPage + 1);
+        if (shouldContinue === false) {
+          cancelled = true;
+          return;
         }
       } catch (err) {
         console.warn(`[FormulaDetection] Page ${currentPage + 1} failed:`, err);
+        const shouldContinue = onFormulasDetected([], currentPage + 1);
+        if (shouldContinue === false) {
+          cancelled = true;
+          return;
+        }
       }
       // 调度下一页
       schedule(processNext);
@@ -736,6 +782,14 @@ export function extractRegionAsFormula(
     };
     img.src = pageImage;
   });
+}
+
+function computeRenderScale(width: number, height: number): number {
+  const area = Math.max(1, width * height);
+  const maxScale = Math.sqrt(MAX_RENDER_PIXELS / area);
+  const safeMax = Number.isFinite(maxScale) ? maxScale : FORMULA_RENDER_SCALE;
+  const clamped = Math.min(FORMULA_RENDER_SCALE, safeMax);
+  return Math.max(1, clamped);
 }
 
 /**

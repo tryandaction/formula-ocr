@@ -1,0 +1,237 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 5 0 R /Resources << /Font << /F1 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 7 0 R /Resources << /Font << /F1 6 0 R >> >> >>
+endobj
+5 0 obj
+<< /Length 3444 >>
+stream
+0 0 0 RG
+0 0 0 rg
+BT /F1 14 Tf 40 802 Td (Dense Formula Page 1) Tj ET
+BT /F1 10 Tf 40 740 Td (a+b) Tj ET
+1 w 40 732 m 110 732 l S
+BT /F1 10 Tf 40 720 Td (c+d) Tj ET
+BT /F1 12 Tf 40 698 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 746 Td (x2) Tj ET
+BT /F1 10 Tf 220 740 Td (sin\(x\)) Tj ET
+1 w 220 732 m 290 732 l S
+BT /F1 10 Tf 220 720 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 698 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 746 Td (x2) Tj ET
+BT /F1 10 Tf 400 740 Td (f\(x\)) Tj ET
+1 w 400 732 m 470 732 l S
+BT /F1 10 Tf 400 720 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 698 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 746 Td (x2) Tj ET
+BT /F1 10 Tf 40 630 Td (m+n) Tj ET
+1 w 40 622 m 110 622 l S
+BT /F1 10 Tf 40 610 Td (p+q) Tj ET
+BT /F1 12 Tf 40 588 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 636 Td (x2) Tj ET
+BT /F1 10 Tf 220 630 Td (u+v) Tj ET
+1 w 220 622 m 290 622 l S
+BT /F1 10 Tf 220 610 Td (w+t) Tj ET
+BT /F1 12 Tf 220 588 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 636 Td (x2) Tj ET
+BT /F1 10 Tf 400 630 Td (p^2) Tj ET
+1 w 400 622 m 470 622 l S
+BT /F1 10 Tf 400 610 Td (q^2) Tj ET
+BT /F1 12 Tf 400 588 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 636 Td (x2) Tj ET
+BT /F1 10 Tf 40 520 Td (a+b) Tj ET
+1 w 40 512 m 110 512 l S
+BT /F1 10 Tf 40 500 Td (c+d) Tj ET
+BT /F1 12 Tf 40 478 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 526 Td (x2) Tj ET
+BT /F1 10 Tf 220 520 Td (sin\(x\)) Tj ET
+1 w 220 512 m 290 512 l S
+BT /F1 10 Tf 220 500 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 478 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 526 Td (x2) Tj ET
+BT /F1 10 Tf 400 520 Td (f\(x\)) Tj ET
+1 w 400 512 m 470 512 l S
+BT /F1 10 Tf 400 500 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 478 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 526 Td (x2) Tj ET
+BT /F1 10 Tf 40 410 Td (m+n) Tj ET
+1 w 40 402 m 110 402 l S
+BT /F1 10 Tf 40 390 Td (p+q) Tj ET
+BT /F1 12 Tf 40 368 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 416 Td (x2) Tj ET
+BT /F1 10 Tf 220 410 Td (u+v) Tj ET
+1 w 220 402 m 290 402 l S
+BT /F1 10 Tf 220 390 Td (w+t) Tj ET
+BT /F1 12 Tf 220 368 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 416 Td (x2) Tj ET
+BT /F1 10 Tf 400 410 Td (p^2) Tj ET
+1 w 400 402 m 470 402 l S
+BT /F1 10 Tf 400 390 Td (q^2) Tj ET
+BT /F1 12 Tf 400 368 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 416 Td (x2) Tj ET
+BT /F1 10 Tf 40 300 Td (a+b) Tj ET
+1 w 40 292 m 110 292 l S
+BT /F1 10 Tf 40 280 Td (c+d) Tj ET
+BT /F1 12 Tf 40 258 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 306 Td (x2) Tj ET
+BT /F1 10 Tf 220 300 Td (sin\(x\)) Tj ET
+1 w 220 292 m 290 292 l S
+BT /F1 10 Tf 220 280 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 258 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 306 Td (x2) Tj ET
+BT /F1 10 Tf 400 300 Td (f\(x\)) Tj ET
+1 w 400 292 m 470 292 l S
+BT /F1 10 Tf 400 280 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 258 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 306 Td (x2) Tj ET
+BT /F1 10 Tf 40 190 Td (m+n) Tj ET
+1 w 40 182 m 110 182 l S
+BT /F1 10 Tf 40 170 Td (p+q) Tj ET
+BT /F1 12 Tf 40 148 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 196 Td (x2) Tj ET
+BT /F1 10 Tf 220 190 Td (u+v) Tj ET
+1 w 220 182 m 290 182 l S
+BT /F1 10 Tf 220 170 Td (w+t) Tj ET
+BT /F1 12 Tf 220 148 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 196 Td (x2) Tj ET
+BT /F1 10 Tf 400 190 Td (p^2) Tj ET
+1 w 400 182 m 470 182 l S
+BT /F1 10 Tf 400 170 Td (q^2) Tj ET
+BT /F1 12 Tf 400 148 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 196 Td (x2) Tj ET
+BT /F1 12 Tf 40 170 Td (Display Block) Tj ET
+1.5 w 40 160 m 180 160 l S
+BT /F1 10 Tf 40 175 Td (n+1) Tj ET
+BT /F1 10 Tf 40 140 Td (n-1) Tj ET
+BT /F1 12 Tf 50 115 Td (x^2 + y^2 = z^2) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+7 0 obj
+<< /Length 3444 >>
+stream
+0 0 0 RG
+0 0 0 rg
+BT /F1 14 Tf 40 802 Td (Dense Formula Page 2) Tj ET
+BT /F1 10 Tf 40 740 Td (a+b) Tj ET
+1 w 40 732 m 110 732 l S
+BT /F1 10 Tf 40 720 Td (c+d) Tj ET
+BT /F1 12 Tf 40 698 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 746 Td (x2) Tj ET
+BT /F1 10 Tf 220 740 Td (sin\(x\)) Tj ET
+1 w 220 732 m 290 732 l S
+BT /F1 10 Tf 220 720 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 698 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 746 Td (x2) Tj ET
+BT /F1 10 Tf 400 740 Td (f\(x\)) Tj ET
+1 w 400 732 m 470 732 l S
+BT /F1 10 Tf 400 720 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 698 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 746 Td (x2) Tj ET
+BT /F1 10 Tf 40 630 Td (m+n) Tj ET
+1 w 40 622 m 110 622 l S
+BT /F1 10 Tf 40 610 Td (p+q) Tj ET
+BT /F1 12 Tf 40 588 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 636 Td (x2) Tj ET
+BT /F1 10 Tf 220 630 Td (u+v) Tj ET
+1 w 220 622 m 290 622 l S
+BT /F1 10 Tf 220 610 Td (w+t) Tj ET
+BT /F1 12 Tf 220 588 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 636 Td (x2) Tj ET
+BT /F1 10 Tf 400 630 Td (p^2) Tj ET
+1 w 400 622 m 470 622 l S
+BT /F1 10 Tf 400 610 Td (q^2) Tj ET
+BT /F1 12 Tf 400 588 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 636 Td (x2) Tj ET
+BT /F1 10 Tf 40 520 Td (a+b) Tj ET
+1 w 40 512 m 110 512 l S
+BT /F1 10 Tf 40 500 Td (c+d) Tj ET
+BT /F1 12 Tf 40 478 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 526 Td (x2) Tj ET
+BT /F1 10 Tf 220 520 Td (sin\(x\)) Tj ET
+1 w 220 512 m 290 512 l S
+BT /F1 10 Tf 220 500 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 478 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 526 Td (x2) Tj ET
+BT /F1 10 Tf 400 520 Td (f\(x\)) Tj ET
+1 w 400 512 m 470 512 l S
+BT /F1 10 Tf 400 500 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 478 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 526 Td (x2) Tj ET
+BT /F1 10 Tf 40 410 Td (m+n) Tj ET
+1 w 40 402 m 110 402 l S
+BT /F1 10 Tf 40 390 Td (p+q) Tj ET
+BT /F1 12 Tf 40 368 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 416 Td (x2) Tj ET
+BT /F1 10 Tf 220 410 Td (u+v) Tj ET
+1 w 220 402 m 290 402 l S
+BT /F1 10 Tf 220 390 Td (w+t) Tj ET
+BT /F1 12 Tf 220 368 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 416 Td (x2) Tj ET
+BT /F1 10 Tf 400 410 Td (p^2) Tj ET
+1 w 400 402 m 470 402 l S
+BT /F1 10 Tf 400 390 Td (q^2) Tj ET
+BT /F1 12 Tf 400 368 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 416 Td (x2) Tj ET
+BT /F1 10 Tf 40 300 Td (a+b) Tj ET
+1 w 40 292 m 110 292 l S
+BT /F1 10 Tf 40 280 Td (c+d) Tj ET
+BT /F1 12 Tf 40 258 Td (x^2 + y^2 = z^2) Tj ET
+BT /F1 8 Tf 130 306 Td (x2) Tj ET
+BT /F1 10 Tf 220 300 Td (sin\(x\)) Tj ET
+1 w 220 292 m 290 292 l S
+BT /F1 10 Tf 220 280 Td (cos\(x\)) Tj ET
+BT /F1 12 Tf 220 258 Td (E = mc^2) Tj ET
+BT /F1 8 Tf 310 306 Td (x2) Tj ET
+BT /F1 10 Tf 400 300 Td (f\(x\)) Tj ET
+1 w 400 292 m 470 292 l S
+BT /F1 10 Tf 400 280 Td (g\(x\)) Tj ET
+BT /F1 12 Tf 400 258 Td (x^3 + 2x + 1) Tj ET
+BT /F1 8 Tf 490 306 Td (x2) Tj ET
+BT /F1 10 Tf 40 190 Td (m+n) Tj ET
+1 w 40 182 m 110 182 l S
+BT /F1 10 Tf 40 170 Td (p+q) Tj ET
+BT /F1 12 Tf 40 148 Td (F = ma) Tj ET
+BT /F1 8 Tf 130 196 Td (x2) Tj ET
+BT /F1 10 Tf 220 190 Td (u+v) Tj ET
+1 w 220 182 m 290 182 l S
+BT /F1 10 Tf 220 170 Td (w+t) Tj ET
+BT /F1 12 Tf 220 148 Td (PV = nRT) Tj ET
+BT /F1 8 Tf 310 196 Td (x2) Tj ET
+BT /F1 10 Tf 400 190 Td (p^2) Tj ET
+1 w 400 182 m 470 182 l S
+BT /F1 10 Tf 400 170 Td (q^2) Tj ET
+BT /F1 12 Tf 400 148 Td (a^2 + b^2 = c^2) Tj ET
+BT /F1 8 Tf 490 196 Td (x2) Tj ET
+BT /F1 12 Tf 40 170 Td (Display Block) Tj ET
+1.5 w 40 160 m 180 160 l S
+BT /F1 10 Tf 40 175 Td (n+1) Tj ET
+BT /F1 10 Tf 40 140 Td (n-1) Tj ET
+BT /F1 12 Tf 50 115 Td (x^2 + y^2 = z^2) Tj ET
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000000373 00000 n 
+0000003869 00000 n 
+0000003939 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+7435
+%%EOF

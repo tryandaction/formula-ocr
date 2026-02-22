@@ -581,11 +581,15 @@ const FormulaCard: React.FC<FormulaCardProps> = ({
       {/* 公式预览图 */}
       <div className="flex-shrink-0">
         <div className="w-16 h-16 rounded-lg border border-gray-200 bg-white overflow-hidden flex items-center justify-center">
-          <img
-            src={formula.imageData}
-            alt={`公式 ${index + 1}`}
-            className="max-w-full max-h-full object-contain"
-          />
+          {formula.imageData ? (
+            <img
+              src={formula.imageData}
+              alt={`公式 ${index + 1}`}
+              className="max-w-full max-h-full object-contain"
+            />
+          ) : (
+            <span className="text-[10px] text-gray-400">预览生成中</span>
+          )}
         </div>
       </div>
 

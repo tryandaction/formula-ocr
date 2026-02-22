@@ -1,0 +1,42 @@
+[
+  {
+    "file": "AI_prompt.pdf",
+    "ready": true,
+    "elapsed_ms": 4712,
+    "pages": 11,
+    "formulas": 4,
+    "type": "独立",
+    "confidence": "83%",
+    "per_page_ms": 428.4
+  },
+  {
+    "file": "dense-formulas.pdf",
+    "ready": true,
+    "elapsed_ms": 2458,
+    "pages": 2,
+    "formulas": 36,
+    "type": "独立",
+    "confidence": "82%",
+    "per_page_ms": 1229.0
+  },
+  {
+    "file": "学点不一样_官方内容库_-_思辨海洋.pdf",
+    "ready": true,
+    "elapsed_ms": 4408,
+    "pages": 12,
+    "formulas": 1,
+    "type": null,
+    "confidence": null,
+    "per_page_ms": 367.3
+  },
+  {
+    "file": "题库.pdf",
+    "ready": true,
+    "elapsed_ms": 2536,
+    "pages": 2,
+    "formulas": 1,
+    "type": "独立",
+    "confidence": "82%",
+    "per_page_ms": 1268.0
+  }
+]

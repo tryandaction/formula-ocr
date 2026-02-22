@@ -1,0 +1,3 @@
+[   37597ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://formula-ocr-api.formula-ocr.workers.dev/api/recognize:0
+[   59668ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://formula-ocr-api.formula-ocr.workers.dev/api/recognize:0
+[   82737ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ https://formula-ocr-api.formula-ocr.workers.dev/api/recognize:0

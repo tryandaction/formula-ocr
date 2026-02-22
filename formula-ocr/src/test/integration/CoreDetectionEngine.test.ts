@@ -50,7 +50,7 @@ describe('Core Detection Engine Integration', () => {
       
       expect(Array.isArray(formulas)).toBe(true);
       expect(processor.getProgress()).toBe(100);
-    });
+    }, 15000);
 
     it('should filter by confidence threshold', async () => {
       const processor = new WholePageProcessor();

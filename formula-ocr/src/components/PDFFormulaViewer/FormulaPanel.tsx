@@ -294,11 +294,17 @@ export const FormulaPanel: React.FC<FormulaPanelProps> = ({
               >
                 {/* 公式缩略图 */}
                 <div className="mb-2 bg-gray-50 rounded-lg overflow-hidden border border-gray-100">
-                  <img
-                    src={formula.imageData}
-                    alt={`公式 ${globalIndex + 1}`}
-                    className="w-full h-auto max-h-28 object-contain p-2"
-                  />
+                  {formula.imageData ? (
+                    <img
+                      src={formula.imageData}
+                      alt={`公式 ${globalIndex + 1}`}
+                      className="w-full h-auto max-h-28 object-contain p-2"
+                    />
+                  ) : (
+                    <div className="w-full h-20 flex items-center justify-center text-[10px] text-gray-400">
+                      预览生成中
+                    </div>
+                  )}
                 </div>
 
                 {/* 公式信息 */}

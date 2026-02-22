@@ -1,0 +1,176 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: 📐
+        - generic [ref=e9]:
+          - heading "公式识别" [level=1] [ref=e10]
+          - paragraph [ref=e11]: Formula OCR - 图片转 LaTeX
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: 游客
+          - button "登录" [ref=e15]
+        - button "📜 历史" [ref=e16]:
+          - generic [ref=e17]: 📜
+          - generic [ref=e18]: 历史
+        - button "🔧 云端服务（推荐）" [ref=e19]:
+          - generic [ref=e20]: 🔧
+          - generic [ref=e21]: 云端服务（推荐）
+        - button "🔑 激活码" [ref=e22]:
+          - generic [ref=e23]: 🔑
+          - generic [ref=e24]: 激活码
+        - generic [ref=e25]:
+          - button "☕ 支持作者" [ref=e26]:
+            - generic [ref=e27]: ☕
+            - generic [ref=e28]: 支持作者
+          - button "🔑 激活码" [ref=e29]:
+            - generic [ref=e30]: 🔑
+            - generic [ref=e31]: 激活码
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - button "🖼️ 图片上传" [ref=e35]:
+          - generic [ref=e36]: 🖼️
+          - text: 图片上传
+        - button "📄 文档解析 Beta" [ref=e37]:
+          - generic [ref=e38]: 📄
+          - text: 文档解析
+          - generic [ref=e39]: Beta
+        - combobox "公式类型" [ref=e41]:
+          - option "🔮 自动" [selected]
+          - option "📐 数学"
+          - option "⚛️ 物理"
+          - option "🧪 化学"
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - button "隐藏缩略图" [ref=e61]:
+              - img [ref=e62]
+            - generic [ref=e64]:
+              - generic [ref=e65]: 📄
+              - generic [ref=e66]:
+                - generic [ref=e67]: 学点不一样_官方内容库_-_思辨海洋.pdf
+                - generic [ref=e68]:
+                  - generic [ref=e69]: 12 页
+                  - generic [ref=e70]: ·
+                  - generic [ref=e71]: 0 公式
+            - generic [ref=e73]:
+              - button "上一页 (PageUp)" [disabled] [ref=e74]:
+                - img [ref=e75]
+              - generic [ref=e77]:
+                - button "1" [ref=e78]
+                - generic [ref=e79]: /
+                - generic [ref=e80]: "12"
+              - button "下一页 (PageDown)" [ref=e81]:
+                - img [ref=e82]
+          - generic [ref=e84]:
+            - generic [ref=e85]: 检测中 1/12 页
+            - generic [ref=e87]:
+              - button "−" [ref=e88]
+              - button "100%" [ref=e89]
+              - button "+" [ref=e90]
+            - button "⛶" [ref=e91]
+            - button "✕" [ref=e92]
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - generic [ref=e96]: 页面导航
+              - button "隐藏缩略图" [ref=e97]:
+                - img [ref=e98]
+            - generic [ref=e100]:
+              - generic [ref=e101] [cursor=pointer]:
+                - img "第 1 页" [ref=e102]
+                - generic [ref=e103]: "1"
+              - generic [ref=e104] [cursor=pointer]:
+                - img "第 2 页" [ref=e105]
+                - generic [ref=e106]: "2"
+              - generic [ref=e107] [cursor=pointer]:
+                - img "第 3 页" [ref=e108]
+                - generic [ref=e109]: "3"
+              - generic [ref=e110] [cursor=pointer]:
+                - img "第 4 页" [ref=e111]
+                - generic [ref=e112]: "4"
+              - generic [ref=e113] [cursor=pointer]:
+                - img "第 5 页" [ref=e114]
+                - generic [ref=e115]: "5"
+              - generic [ref=e116] [cursor=pointer]:
+                - img "第 6 页" [ref=e117]
+                - generic [ref=e118]: "6"
+              - generic [ref=e119] [cursor=pointer]:
+                - img "第 7 页" [ref=e120]
+                - generic [ref=e121]: "7"
+              - generic [ref=e122] [cursor=pointer]:
+                - img "第 8 页" [ref=e123]
+                - generic [ref=e124]: "8"
+              - generic [ref=e125] [cursor=pointer]:
+                - img "第 9 页" [ref=e126]
+                - generic [ref=e127]: "9"
+              - generic [ref=e128] [cursor=pointer]:
+                - img "第 10 页" [ref=e129]
+                - generic [ref=e130]: "10"
+              - generic [ref=e131] [cursor=pointer]:
+                - img "第 11 页" [ref=e132]
+                - generic [ref=e133]: "11"
+              - generic [ref=e134] [cursor=pointer]:
+                - img "第 12 页" [ref=e135]
+                - generic [ref=e136]: "12"
+            - generic [ref=e137]:
+              - generic [ref=e138]: 共 12 页
+              - generic [ref=e139]: 0 个公式
+          - generic [ref=e142]:
+            - generic [ref=e144]:
+              - img "Page 1" [ref=e145]
+              - generic [ref=e147]: 1 / 12
+            - generic [ref=e149]:
+              - img "Page 2" [ref=e150]
+              - generic [ref=e152]: 2 / 12
+            - generic [ref=e154]:
+              - img "Page 3" [ref=e155]
+              - generic [ref=e157]: 3 / 12
+            - generic [ref=e159]:
+              - img "Page 4" [ref=e160]
+              - generic [ref=e162]: 4 / 12
+            - generic [ref=e164]:
+              - img "Page 5" [ref=e165]
+              - generic [ref=e167]: 5 / 12
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]:
+                - heading "📐 公式列表" [level=3] [ref=e171]:
+                  - generic [ref=e172]: 📐
+                  - text: 公式列表
+                - button "→" [ref=e173]
+              - generic [ref=e174]:
+                - button "当前页 (0)" [ref=e175]
+                - button "全部 (0)" [ref=e176]
+              - generic [ref=e177]:
+                - generic [ref=e178]: 第 1 页
+                - generic [ref=e179]: 共 0 个
+              - generic [ref=e181]:
+                - generic [ref=e182]:
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: 🎯
+                    - heading "置信度过滤" [level=4] [ref=e185]
+                  - generic [ref=e186]: 60%
+                - generic [ref=e187]:
+                  - slider [ref=e188] [cursor=pointer]: "0.6"
+                  - generic [ref=e189]:
+                    - generic [ref=e190]: 0%
+                    - generic [ref=e191]: 低
+                    - generic [ref=e192]: 中
+                    - generic [ref=e193]: 高
+                    - generic [ref=e194]: 100%
+                - generic [ref=e196]: 显示 0 / 0
+                - generic [ref=e197]:
+                  - button "全部" [ref=e198]
+                  - button "中等" [ref=e199]
+                  - button "高质量" [ref=e200]
+            - generic [ref=e202]:
+              - generic [ref=e203]: 📭
+              - paragraph [ref=e204]: 此页未检测到公式
+    - generic [ref=e50]:
+      - generic [ref=e51]: ✨
+      - heading "开始识别公式" [level=2] [ref=e52]
+      - paragraph [ref=e53]: 上传包含数学公式的图片，自动转换为 LaTeX 代码。 支持拖拽、粘贴或点击上传。
+  - contentinfo [ref=e54]:
+    - paragraph [ref=e56]: Formula OCR - 让公式识别更简单

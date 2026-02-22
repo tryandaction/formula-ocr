@@ -1,0 +1,14 @@
+{
+  "file": "题库.pdf",
+  "detect_ready": false,
+  "detect_ms": 53996.0,
+  "ocr_done": false,
+  "ocr_ms": 0.0,
+  "ocr_error": "BACKEND_UNAVAILABLE",
+  "backend_available": false,
+  "pages": "2",
+  "formulas": "1",
+  "type": "独立",
+  "confidence": "82%",
+  "snapshot": "C:\\universe\\software development\\me\\Physics Formula OCR\\formula-ocr\\output\\playwright\\pdf-benchmark\\.playwright-cli\\page-2026-02-22T00-24-17-421Z.yml"
+}

@@ -39,6 +39,7 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
   private boundaryDetector: BoundaryDetector;
   private confidenceScorer: ConfidenceScorer;
   private cacheManager: DetectionCacheManager;
+  private idCounter: number = 0;
 
   constructor() {
     this.preprocessor = new PagePreprocessor();
@@ -62,7 +63,7 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
     
     // 检查缓存
     const imageHash = DetectionCacheManager.computeImageHash(pageImage);
-    const cached = this.cacheManager.get(pageNumber, imageHash);
+    const cached = this.cacheManager.get(pageNumber, imageHash, opts);
     if (cached) {
       return this.filterByOptions(cached, opts);
     }
@@ -74,6 +75,7 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
       // 2. 预处理
       const processedImage = this.preprocessor.preprocess(imageData, {
         targetDPI: opts.resolution,
+        sourceDPI: opts.sourceDPI,
         denoise: opts.enablePreprocessing,
         enhanceContrast: opts.enablePreprocessing,
         binarizationMethod: 'adaptive',
@@ -98,11 +100,14 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
       }
       
       // 5. 缓存结果
-      this.cacheManager.set(pageNumber, detections, imageHash);
+      this.cacheManager.set(pageNumber, detections, imageHash, opts);
       
       // 6. 根据选项过滤
       return this.filterByOptions(detections, opts);
     } catch (error) {
+      if (error instanceof Error && error.message === 'DETECTION_TIMEOUT') {
+        throw error;
+      }
       console.error('Formula detection failed:', error);
       return [];
     }
@@ -173,6 +178,7 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
     const visited = new Uint8Array(width * height);
     type RawRegion = { minX: number; maxX: number; minY: number; maxY: number; pixels: number };
     const rawRegions: RawRegion[] = [];
+    let timedOut = false;
 
     const bfs = (sx: number, sy: number): RawRegion | null => {
       const queue: number[] = [sx, sy]; // flat pairs [x,y,x,y,...]
@@ -206,7 +212,10 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
 
     for (let y = 0; y < height; y++) {
       // 超时保护
-      if ((y & 63) === 0 && performance.now() - startTime > MAX_DETECTION_TIME) break;
+      if ((y & 63) === 0 && performance.now() - startTime > MAX_DETECTION_TIME) {
+        timedOut = true;
+        break;
+      }
       for (let x = 0; x < width; x++) {
         const idx = y * width + x;
         if (binaryData[idx] === 1 && !visited[idx]) {
@@ -214,6 +223,10 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
           if (region) rawRegions.push(region);
         }
       }
+    }
+
+    if (timedOut) {
+      throw new Error('DETECTION_TIMEOUT');
     }
 
     // --- 2. 合并相邻区域 ---
@@ -317,6 +330,20 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
     };
     
     const features = this.featureExtractor.extractFeatures(region, context);
+    const hasStructuralFeature = Boolean(
+      features.hasIntegralSymbols ||
+      features.hasSummationSymbols ||
+      features.hasFractionLines ||
+      features.hasMatrixBrackets ||
+      features.hasRootSymbols ||
+      features.hasSuperscripts ||
+      features.hasSubscripts
+    );
+
+    // 过滤小噪声区域：过小且无结构数学特征时直接跳过
+    if ((region.width < 24 || region.height < 14) && !hasStructuralFeature) {
+      return null;
+    }
     
     // 2. 分类内容类型
     const classification = this.contentClassifier.classify(region, features);
@@ -331,6 +358,15 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
     
     // 4. 精化边界
     const boundary = this.boundaryDetector.refineBoundary(region, processedImage);
+    const absoluteBoundary = {
+      ...boundary,
+      x: boundary.x + region.x,
+      y: boundary.y + region.y,
+      contour: boundary.contour.map(point => ({
+        x: point.x + region.x,
+        y: point.y + region.y,
+      })),
+    };
     
     // 5. 创建检测候选
     const candidate: DetectionCandidate = {
@@ -346,22 +382,38 @@ export class AdvancedFormulaDetector implements IAdvancedFormulaDetector {
       classification
     );
     
+    const imageScale = processedImage.imageScale || 1;
+    const scaleToInput = imageScale > 0 ? 1 / imageScale : 1;
+    const outputBoundary = imageScale === 1
+      ? absoluteBoundary
+      : {
+          x: absoluteBoundary.x * scaleToInput,
+          y: absoluteBoundary.y * scaleToInput,
+          width: absoluteBoundary.width * scaleToInput,
+          height: absoluteBoundary.height * scaleToInput,
+          contour: absoluteBoundary.contour.map(point => ({
+            x: point.x * scaleToInput,
+            y: point.y * scaleToInput,
+          })),
+          tightness: absoluteBoundary.tightness,
+        };
+
     // 7. 构建结果
     const result: EnhancedFormulaRegion = {
-      id: `formula_${pageNumber}_${Date.now()}`,
+      id: `formula_${pageNumber}_${this.idCounter++}_${Date.now()}`,
       imageData: '', // Will be filled by caller if needed
       pageNumber,
       position: {
-        x: boundary.x,
-        y: boundary.y,
-        width: boundary.width,
-        height: boundary.height,
+        x: outputBoundary.x,
+        y: outputBoundary.y,
+        width: outputBoundary.width,
+        height: outputBoundary.height,
       },
       originalPosition: {
-        x: boundary.x,
-        y: boundary.y,
-        width: boundary.width,
-        height: boundary.height,
+        x: outputBoundary.x,
+        y: outputBoundary.y,
+        width: outputBoundary.width,
+        height: outputBoundary.height,
       },
       contentType: classification.type,
       formulaType: formulaType.type,

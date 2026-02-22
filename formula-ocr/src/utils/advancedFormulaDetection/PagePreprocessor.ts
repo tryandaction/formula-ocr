@@ -5,7 +5,7 @@
 
 import type { IPagePreprocessor } from './interfaces';
 import type { PreprocessOptions, ProcessedImage } from './types';
-import { DEFAULT_PREPROCESS_OPTIONS, BINARIZATION_THRESHOLD } from './constants';
+import { DEFAULT_PREPROCESS_OPTIONS, BINARIZATION_THRESHOLD, MAX_ADAPTIVE_PIXELS } from './constants';
 
 export class PagePreprocessor implements IPagePreprocessor {
   /**
@@ -18,26 +18,40 @@ export class PagePreprocessor implements IPagePreprocessor {
     const opts = { ...DEFAULT_PREPROCESS_OPTIONS, ...options };
     
     let processedData = imageData;
-    let scaleFactor = 1;
+    const sourceDPI = Math.max(1, opts.sourceDPI || 72);
+    const targetDPI = Math.max(1, opts.targetDPI || sourceDPI);
+    let scaleFactor = sourceDPI / 72;
+    let imageScale = 1;
     
-    // 1. 提升分辨率
-    if (opts.targetDPI && opts.targetDPI > 72) {
-      scaleFactor = opts.targetDPI / 72;
-      processedData = this.upscaleImage(processedData, opts.targetDPI);
+    // 1. 调整分辨率（支持上/下采样），避免重复缩放
+    const dpiScale = targetDPI / sourceDPI;
+    if (Math.abs(dpiScale - 1) > 0.01) {
+      processedData = this.resizeImage(processedData, dpiScale);
+      imageScale = dpiScale;
+      scaleFactor = targetDPI / 72;
+    } else {
+      scaleFactor = sourceDPI / 72;
     }
     
-    // 2. 去噪
-    if (opts.denoise) {
+    const pixelCount = processedData.width * processedData.height;
+    const isLargeImage = pixelCount > MAX_ADAPTIVE_PIXELS;
+
+    // 2. 去噪（大图跳过，避免过慢）
+    if (opts.denoise && !isLargeImage) {
       processedData = this.denoiseImage(processedData);
     }
     
-    // 3. 增强对比度
-    if (opts.enhanceContrast) {
+    // 3. 增强对比度（大图跳过，避免过慢）
+    if (opts.enhanceContrast && !isLargeImage) {
       processedData = this.enhanceContrast(processedData);
     }
     
-    // 4. 二值化
-    const binaryData = this.binarize(processedData, opts.binarizationMethod);
+    // 4. 二值化（大图自动降级，避免自适应阈值过慢）
+    let binarizationMethod = opts.binarizationMethod;
+    if (binarizationMethod === 'adaptive' && pixelCount > MAX_ADAPTIVE_PIXELS) {
+      binarizationMethod = 'otsu';
+    }
+    const binaryData = this.binarize(processedData, binarizationMethod);
     
     return {
       imageData: processedData,
@@ -45,17 +59,17 @@ export class PagePreprocessor implements IPagePreprocessor {
       width: processedData.width,
       height: processedData.height,
       scaleFactor,
+      imageScale,
     };
   }
 
   /**
-   * 提升图像分辨率
+   * 调整图像分辨率
    * 使用双线性插值进行高质量缩放
    */
-  upscaleImage(imageData: ImageData, targetDPI: number): ImageData {
-    const scaleFactor = targetDPI / 72; // 假设原始 DPI 为 72
-    const newWidth = Math.round(imageData.width * scaleFactor);
-    const newHeight = Math.round(imageData.height * scaleFactor);
+  resizeImage(imageData: ImageData, scaleFactor: number): ImageData {
+    const newWidth = Math.max(1, Math.round(imageData.width * scaleFactor));
+    const newHeight = Math.max(1, Math.round(imageData.height * scaleFactor));
     
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
@@ -77,6 +91,15 @@ export class PagePreprocessor implements IPagePreprocessor {
     ctx.drawImage(tempCanvas, 0, 0, newWidth, newHeight);
     
     return ctx.getImageData(0, 0, newWidth, newHeight);
+  }
+
+  /**
+   * 提升图像分辨率（兼容旧测试/调用）
+   * @deprecated 使用 resizeImage(imageData, scaleFactor)
+   */
+  upscaleImage(imageData: ImageData, targetDPI: number): ImageData {
+    const scaleFactor = targetDPI / 72; // 默认输入 DPI 为 72
+    return this.resizeImage(imageData, scaleFactor);
   }
 
   /**

@@ -1,7 +1,7 @@
 // Provider registry and unified recognition interface
 
 import type { ProviderType, ProviderInterface } from './types';
-import { PROVIDER_CONFIGS, API_KEY_STORAGE_KEYS, getBuiltInApiKey, hasBuiltInApiKey, hasZhipuBuiltInKeyConfigured } from './types';
+import { PROVIDER_CONFIGS, API_KEY_STORAGE_KEYS, getBuiltInApiKey, getDevEnvApiKey, hasBuiltInApiKey, hasZhipuBuiltInKeyConfigured } from './types';
 import { anthropicProvider } from './anthropic';
 import { openaiProvider } from './openai';
 import { geminiProvider } from './gemini';
@@ -16,6 +16,27 @@ import { isBackendEnabled } from '../api';
 export * from './types';
 export { checkLocalServer, LOCAL_SETUP_INSTRUCTIONS };
 export { hasZhipuBuiltInKeyConfigured };
+
+const SELECTED_PROVIDER_KEY = 'formula_ocr_selected_provider';
+
+/**
+ * Get user's selected provider (from localStorage)
+ */
+export function getSelectedProvider(): ProviderType | null {
+  if (typeof localStorage === 'undefined') return null;
+  const stored = localStorage.getItem(SELECTED_PROVIDER_KEY);
+  if (!stored) return null;
+  if (!(stored in PROVIDER_CONFIGS)) return null;
+  return stored as ProviderType;
+}
+
+/**
+ * Persist user's selected provider
+ */
+export function setSelectedProvider(type: ProviderType): void {
+  if (typeof localStorage === 'undefined') return;
+  localStorage.setItem(SELECTED_PROVIDER_KEY, type);
+}
 
 // Provider registry
 const providers: Record<ProviderType, ProviderInterface> = {
@@ -51,6 +72,9 @@ export function getStoredApiKey(type: ProviderType): string {
     const userKey = localStorage.getItem(key);
     if (userKey) return userKey;
   }
+  // In dev mode, allow env key to act as user's own key (for local testing)
+  const devKey = getDevEnvApiKey(type);
+  if (devKey) return devKey;
   // Fall back to built-in key from environment
   return getBuiltInApiKey(type);
 }
@@ -61,7 +85,10 @@ export function getStoredApiKey(type: ProviderType): string {
 export function getUserApiKey(type: ProviderType): string {
   const key = API_KEY_STORAGE_KEYS[type];
   if (!key) return '';
-  return localStorage.getItem(key) || '';
+  const stored = localStorage.getItem(key) || '';
+  if (stored) return stored;
+  // In dev mode, surface env key as user's own key to avoid paid-activation gating
+  return getDevEnvApiKey(type);
 }
 
 /**

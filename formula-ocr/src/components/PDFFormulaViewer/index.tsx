@@ -23,6 +23,7 @@ import {
   deserializeRecognizedFormulas,
   serializeDetectedFormulas,
   restoreDetectedFormulas,
+  CACHE_VERSION,
   type PDFViewerState,
 } from '../../utils/stateCacheService';
 
@@ -91,6 +92,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
   const [showEditor, setShowEditor] = useState(false);
   const [copyMessage, setCopyMessage] = useState<string | null>(null);
   const [useEnhancedPanel, setUseEnhancedPanel] = useState(true);
+  const [backendWarning, setBackendWarning] = useState<string | null>(null);
   const detectionProgress = detectionProgressProp || null;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -136,6 +138,7 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
 
     const state: PDFViewerState = {
       documentId: documentIdRef.current,
+      cacheVersion: CACHE_VERSION,
       currentPage,
       zoom,
       scrollPosition,
@@ -205,6 +208,10 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
     try {
       const result = await recognizeFormula(formula);
       
+      if (result.error && (result.error.includes('后端服务不可用') || result.error.includes('请配置免费 API'))) {
+        setBackendWarning(result.error);
+      }
+
       setRecognizedFormulas(prev => {
         const next = new Map(prev);
         next.set(formula.id, {
@@ -217,13 +224,17 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
         return next;
       });
     } catch (error) {
+      const message = error instanceof Error ? error.message : '识别失败';
+      if (message.includes('后端服务不可用') || message.includes('请配置免费 API')) {
+        setBackendWarning(message);
+      }
       setRecognizedFormulas(prev => {
         const next = new Map(prev);
         next.set(formula.id, {
           id: formula.id,
           latex: '',
           status: 'error',
-          error: error instanceof Error ? error.message : '识别失败',
+          error: message,
         });
         return next;
       });
@@ -275,6 +286,9 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
 
     // 批量识别
     await recognizeFormulas(pendingFormulas, (_completed, _total, result) => {
+      if (result.error && (result.error.includes('后端服务不可用') || result.error.includes('请配置免费 API'))) {
+        setBackendWarning(result.error);
+      }
       setRecognizedFormulas(prev => {
         const next = new Map(prev);
         next.set(result.id, {
@@ -315,6 +329,9 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
 
     // 批量识别
     await recognizeFormulas(pendingFormulas, (_completed, _total, result) => {
+      if (result.error && (result.error.includes('后端服务不可用') || result.error.includes('请配置免费 API'))) {
+        setBackendWarning(result.error);
+      }
       setRecognizedFormulas(prev => {
         const next = new Map(prev);
         next.set(result.id, {
@@ -492,6 +509,13 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* 后端不可用提示 */}
+          {backendWarning && (
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-yellow-50 text-yellow-700 text-sm rounded-lg">
+              <span>⚠️</span>
+              {backendWarning}
+            </div>
+          )}
           {/* 一键识别所有按钮 */}
           {totalFormulas > recognizedCount && processingCount === 0 && (
             <button
@@ -763,11 +787,17 @@ export const PDFFormulaViewer: React.FC<PDFFormulaViewerProps> = ({
                       >
                         {/* 公式缩略图 */}
                         <div className="mb-3 bg-gray-50 rounded-xl overflow-hidden border border-gray-100">
-                          <img
-                            src={formula.imageData}
-                            alt={`公式 ${index + 1}`}
-                            className="w-full h-auto max-h-24 object-contain p-2"
-                          />
+                          {formula.imageData ? (
+                            <img
+                              src={formula.imageData}
+                              alt={`公式 ${index + 1}`}
+                              className="w-full h-auto max-h-24 object-contain p-2"
+                            />
+                          ) : (
+                            <div className="w-full h-20 flex items-center justify-center text-[10px] text-gray-400">
+                              预览生成中
+                            </div>
+                          )}
                         </div>
                         
                         {/* 公式信息 */}

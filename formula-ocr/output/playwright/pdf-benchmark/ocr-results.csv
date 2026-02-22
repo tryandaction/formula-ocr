@@ -1,0 +1,2 @@
+"file","detect_ready","detect_ms","ocr_done","ocr_ms","ocr_error","backend_available","pages","formulas","type","confidence","snapshot"
+"题库.pdf","False","53996","False","0","BACKEND_UNAVAILABLE","False","2","1","独立","82%","C:\universe\software development\me\Physics Formula OCR\formula-ocr\output\playwright\pdf-benchmark\.playwright-cli\page-2026-02-22T00-24-17-421Z.yml"

@@ -129,10 +129,7 @@ export class ContentClassifier implements IContentClassifier {
     if (region.height > 50) return false;
     
     // 标题不应该有复杂的数学符号
-    const hasMathSymbols = features.hasIntegralSymbols || 
-                          features.hasSummationSymbols || 
-                          features.hasFractionLines ||
-                          features.hasMatrixBrackets;
+    const hasMathSymbols = this.hasAnyMathFeature(features);
     
     if (hasMathSymbols) return false;
     
@@ -154,11 +151,7 @@ export class ContentClassifier implements IContentClassifier {
     if (region.height > 40) return false;
     
     // 不应该有数学符号
-    const hasMathSymbols = features.hasIntegralSymbols || 
-                          features.hasSummationSymbols || 
-                          features.hasFractionLines ||
-                          features.hasMatrixBrackets ||
-                          features.hasRootSymbols;
+    const hasMathSymbols = this.hasAnyMathFeature(features);
     
     if (hasMathSymbols) return false;
     
@@ -184,7 +177,8 @@ export class ContentClassifier implements IContentClassifier {
     // 不应该有复杂数学结构
     const hasComplexMath = features.hasFractionLines || 
                           features.hasMatrixBrackets ||
-                          (features.hasSuperscripts && features.hasSubscripts);
+                          (features.hasSuperscripts && features.hasSubscripts) ||
+                          features.hasRootSymbols;
     
     if (hasComplexMath) return false;
     
@@ -208,10 +202,7 @@ export class ContentClassifier implements IContentClassifier {
     if (aspectRatio < 2) return false;
     
     // 不应该有强数学特征
-    const hasStrongMathFeatures = features.hasIntegralSymbols || 
-                                  features.hasSummationSymbols || 
-                                  features.hasFractionLines ||
-                                  features.hasMatrixBrackets;
+    const hasStrongMathFeatures = this.hasAnyMathFeature(features);
     
     if (hasStrongMathFeatures) return false;
     
@@ -250,6 +241,10 @@ export class ContentClassifier implements IContentClassifier {
    */
   private calculateFormulaScore(features: MathFeatures): number {
     let score = 0;
+    const structuralMediumCount =
+      (features.hasSuperscripts ? 1 : 0) +
+      (features.hasSubscripts ? 1 : 0) +
+      (features.hasRootSymbols ? 1 : 0);
     
     // 必须有至少一个强数学特征
     const hasStrongFeature = features.hasIntegralSymbols || 
@@ -260,17 +255,14 @@ export class ContentClassifier implements IContentClassifier {
     
     if (!hasStrongFeature) {
       // 如果没有强特征，需要多个中等特征
-      let mediumCount = 0;
-      if (features.hasGreekLetters) mediumCount++;
-      if (features.hasSuperscripts) mediumCount++;
-      if (features.hasSubscripts) mediumCount++;
+      // 希腊字母特征噪声大，只作为弱特征
+      const hasWeakGreek = features.hasGreekLetters;
       
-      // 至少需要2个中等特征才可能是公式
-      if (mediumCount < 2) {
-        return 0.1; // 很低的分数
+      if (structuralMediumCount === 0) {
+        return hasWeakGreek ? 0.08 : 0.05; // 仅弱特征时保持低分
       }
       
-      score = mediumCount * 0.15;
+      score = 0.25 + structuralMediumCount * 0.2 + (hasWeakGreek ? 0.05 : 0);
     } else {
       // 有强特征，基础分数高
       score = 0.5;
@@ -291,6 +283,9 @@ export class ContentClassifier implements IContentClassifier {
     // 上下标同时存在 (典型的数学公式)
     if (features.hasSuperscripts && features.hasSubscripts) {
       score += 0.1;
+    }
+    if (features.hasSuperscripts || features.hasSubscripts) {
+      score += 0.05;
     }
     
     return Math.min(1, score);
@@ -368,7 +363,37 @@ export class ContentClassifier implements IContentClassifier {
       score += 0.3;
     }
     
-    return Math.min(1, score);
+    // 出现数学特征时降低文本得分，避免小公式被当作文本
+    if (this.hasStructuralMathFeature(features)) {
+      score *= 0.6;
+    }
+    
+    return Math.min(1, Math.max(0, score));
+  }
+
+  private hasAnyMathFeature(features: MathFeatures): boolean {
+    return Boolean(
+      features.hasIntegralSymbols ||
+      features.hasSummationSymbols ||
+      features.hasFractionLines ||
+      features.hasMatrixBrackets ||
+      features.hasRootSymbols ||
+      features.hasGreekLetters ||
+      features.hasSuperscripts ||
+      features.hasSubscripts
+    );
+  }
+
+  private hasStructuralMathFeature(features: MathFeatures): boolean {
+    return Boolean(
+      features.hasIntegralSymbols ||
+      features.hasSummationSymbols ||
+      features.hasFractionLines ||
+      features.hasMatrixBrackets ||
+      features.hasRootSymbols ||
+      features.hasSuperscripts ||
+      features.hasSubscripts
+    );
   }
 
   /**

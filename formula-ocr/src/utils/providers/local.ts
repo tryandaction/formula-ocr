@@ -17,7 +17,7 @@ export async function checkLocalServer(): Promise<LocalServerStatus> {
   try {
     const response = await fetch(`${LOCAL_SERVER_URL}/health`, {
       method: 'GET',
-      signal: AbortSignal.timeout(1500) // 1.5秒超时，加快加载速度
+      signal: AbortSignal.timeout(4000) // 4秒超时，兼容本地模型/ollama较慢的响应
     });
     
     if (response.ok) {

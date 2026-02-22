@@ -4,7 +4,7 @@
  */
 
 import type { IDetectionCacheManager } from './interfaces';
-import type { EnhancedFormulaRegion, DetectionCache } from './types';
+import type { EnhancedFormulaRegion, DetectionCache, DetectionOptions } from './types';
 import { CACHE_KEY_PREFIX, CACHE_MAX_AGE, CACHE_MAX_ENTRIES } from './constants';
 
 export class DetectionCacheManager implements IDetectionCacheManager {
@@ -16,16 +16,17 @@ export class DetectionCacheManager implements IDetectionCacheManager {
   set(
     pageNumber: number,
     results: EnhancedFormulaRegion[],
-    imageHash: string
+    imageHash: string,
+    detectionOptions: DetectionOptions
   ): void {
-    const key = this.getCacheKey(pageNumber);
+    const key = this.getCacheKey(pageNumber, detectionOptions);
     
     const cacheEntry: DetectionCache = {
       pageNumber,
       detectionResults: results,
       timestamp: Date.now(),
       imageHash,
-      detectionOptions: {}, // Will be set by caller if needed
+      detectionOptions,
     };
     
     this.cache.set(key, cacheEntry);
@@ -42,9 +43,10 @@ export class DetectionCacheManager implements IDetectionCacheManager {
    */
   get(
     pageNumber: number,
-    imageHash: string
+    imageHash: string,
+    detectionOptions: DetectionOptions
   ): EnhancedFormulaRegion[] | null {
-    const key = this.getCacheKey(pageNumber);
+    const key = this.getCacheKey(pageNumber, detectionOptions);
     const cacheEntry = this.cache.get(key);
     
     if (!cacheEntry) {
@@ -71,8 +73,12 @@ export class DetectionCacheManager implements IDetectionCacheManager {
    */
   clear(pageNumber?: number): void {
     if (pageNumber !== undefined) {
-      const key = this.getCacheKey(pageNumber);
-      this.cache.delete(key);
+      const prefix = `${CACHE_KEY_PREFIX}${pageNumber}_`;
+      for (const key of this.cache.keys()) {
+        if (key.startsWith(prefix)) {
+          this.cache.delete(key);
+        }
+      }
     } else {
       this.clearAll();
     }
@@ -95,8 +101,29 @@ export class DetectionCacheManager implements IDetectionCacheManager {
   /**
    * 生成缓存键
    */
-  private getCacheKey(pageNumber: number): string {
-    return `${CACHE_KEY_PREFIX}${pageNumber}`;
+  private getCacheKey(pageNumber: number, detectionOptions: DetectionOptions): string {
+    const optionsKey = this.getOptionsKey(detectionOptions);
+    return `${CACHE_KEY_PREFIX}${pageNumber}_${optionsKey}`;
+  }
+
+  private getOptionsKey(detectionOptions: DetectionOptions): string {
+    const minConfidence = detectionOptions.minConfidence ?? 0;
+    const includeInline = detectionOptions.includeInline ? 1 : 0;
+    const includeDisplay = detectionOptions.includeDisplay ? 1 : 0;
+    const resolution = Math.round(detectionOptions.resolution ?? 0);
+    const sourceDPI = Math.round(detectionOptions.sourceDPI ?? 0);
+    const enablePreprocessing = detectionOptions.enablePreprocessing ? 1 : 0;
+    const useDeepOptimization = detectionOptions.useDeepOptimization ? 1 : 0;
+
+    return [
+      `mc:${minConfidence}`,
+      `in:${includeInline}`,
+      `ds:${includeDisplay}`,
+      `res:${resolution}`,
+      `src:${sourceDPI}`,
+      `pre:${enablePreprocessing}`,
+      `deep:${useDeepOptimization}`,
+    ].join('|');
   }
 
   /**
