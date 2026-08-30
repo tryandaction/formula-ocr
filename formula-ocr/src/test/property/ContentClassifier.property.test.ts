@@ -195,6 +195,7 @@ describe('ContentClassifier - Property Tests', () => {
       hasFractionLines: false,
       hasSuperscripts: false,
       hasSubscripts: false,
+      hasMatrixBrackets: false,
     }));
 
     const linearRegionArbitrary = fc.record({

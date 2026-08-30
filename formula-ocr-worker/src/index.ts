@@ -17,6 +17,7 @@ import { validateActivationCode, activateUser, generateActivationCode } from './
 import { proxyZhipuAPI } from './zhipu';
 import { getPlans } from './payment';
 import { sendVerificationCode, verifyEmailCode, recoverByEmail, isValidEmail } from './auth';
+import { validateRecognitionBody, type WorkerRecognitionBody } from './contract';
 
 export interface Env {
   USERS: KVNamespace;
@@ -199,18 +200,36 @@ async function handleRecognize(request: Request, env: Env, requestOrigin: string
   }
 
   // 获取图片数据
-  const body = await request.json() as { image: string };
-  if (!body.image) {
-    return errorResponse('Missing image data', 400, env.CORS_ORIGIN, requestOrigin);
+  let body: WorkerRecognitionBody;
+  try {
+    body = await request.json() as WorkerRecognitionBody;
+  } catch {
+    return errorResponse('Invalid JSON', 400, env.CORS_ORIGIN, requestOrigin);
+  }
+  const validation = validateRecognitionBody(body);
+  if (!validation.valid) {
+    return jsonResponse({ success: false, error: validation.message, errorClass: validation.errorClass }, env.CORS_ORIGIN, 400, requestOrigin);
   }
 
+  const requestId = body.requestId || crypto.randomUUID();
+  const mime = body.mime || 'image/png';
+  const formulaType = body.formulaType || 'auto';
+  const mode = body.mode || 'single';
+
   // 调用智谱API
-  const result = await proxyZhipuAPI(body.image, env.ZHIPU_API_KEY);
+  const result = await proxyZhipuAPI(body.image!, env.ZHIPU_API_KEY, {
+    requestId,
+    mime,
+    formulaType,
+    mode,
+  });
 
   // 记录使用
-  await recordUsage(env.USERS, userId);
+  if (result.success) {
+    await recordUsage(env.USERS, userId);
+  }
 
-  return jsonResponse(result, env.CORS_ORIGIN, 200, requestOrigin);
+  return jsonResponse({ ...result, requestId, provider: 'zhipu' }, env.CORS_ORIGIN, 200, requestOrigin);
 }
 
 // 管理员：生成激活码

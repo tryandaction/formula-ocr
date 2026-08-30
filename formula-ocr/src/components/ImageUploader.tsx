@@ -10,6 +10,12 @@ export interface ImageItem {
   fileName?: string;
   fileSize?: number;
   source?: string; // 来源文档名称，用于分组
+  pageNumber?: number;
+  position?: { x: number; y: number; width: number; height: number };
+  ocrStatus?: 'pending' | 'success' | 'failed' | 'needs_review';
+  provider?: string;
+  processingTime?: number;
+  errorClass?: string;
 }
 
 interface ImageUploaderProps {

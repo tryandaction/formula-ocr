@@ -1,27 +1,13 @@
 // Anthropic Claude Vision API provider
 
-import type { ProviderInterface, ProviderType } from './types';
+import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
 import { extractLatex, getMediaTypeFromBase64 } from '../apiClient';
-
-const FORMULA_PROMPT = `这是一张包含学术公式的图片（可能是数学、物理、化学或工程公式）。请识别其中的所有公式，并转换为LaTeX代码。
-
-要求：
-1. 只输出LaTeX代码，不要其他解释
-2. 使用标准LaTeX语法（\\frac, \\int, \\sum, \\partial 等）
-3. 化学公式请使用 \\ce{} 或标准下标格式
-4. 如果有多个公式，用换行分隔
-5. 如果识别不清，标注[unclear]
-
-输出格式：
-\`\`\`latex
-公式1
-公式2
-\`\`\``;
+import { buildFormulaPrompt } from './contract';
 
 export const anthropicProvider: ProviderInterface = {
   type: 'anthropic' as ProviderType,
 
-  async recognize(imageBase64: string, apiKey?: string): Promise<string> {
+  async recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string> {
     if (!apiKey) {
       throw new Error('Anthropic API key is required');
     }
@@ -57,7 +43,7 @@ export const anthropicProvider: ProviderInterface = {
             },
             {
               type: 'text',
-              text: FORMULA_PROMPT
+              text: buildFormulaPrompt(context)
             }
           ]
         }]

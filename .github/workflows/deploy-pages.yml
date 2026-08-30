@@ -1,0 +1,45 @@
+name: Deploy Formula OCR Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'formula-ocr/**'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formula-ocr
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: formula-ocr/package-lock.json
+      - run: npm ci
+      - run: npm run test:run
+      - run: npm run build
+        env:
+          VITE_BASE_PATH: /formula-ocr/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: formula-ocr/dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

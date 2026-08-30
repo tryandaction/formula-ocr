@@ -195,6 +195,8 @@ export interface DetectionOptions {
 export interface FormulaFeatures {
   /** 数学符号数量 */
   mathSymbolCount: number;
+  /** 运算符数量 */
+  operatorCount: number;
   /** 是否使用数学字体 */
   usesMathFont: boolean;
   /** 希腊字母数量 */
@@ -216,6 +218,8 @@ export interface FormulaFeatures {
  * 在优化和精炼之前的检测结果
  */
 export interface RawDetection {
+  /** 唯一标识符 */
+  id?: string;
   /** 初步边界框 */
   boundingBox: BoundingBox;
   /** 初步置信度 */

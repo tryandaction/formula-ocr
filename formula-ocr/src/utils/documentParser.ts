@@ -4,6 +4,7 @@
  */
 
 import { calculateOtsuThreshold } from './imageUtils';
+import { classifyPdfPage, extractTextLayerFormulaCandidates, type PdfPageKind, type TextFormulaCandidate } from './pdfPipeline';
 
 export interface DocumentValidationResult {
   valid: boolean;
@@ -35,6 +36,9 @@ export interface FormulaRegion {
   // Enhanced detection fields (optional)
   formulaType?: 'display' | 'inline';
   confidenceLevel?: 'high' | 'medium' | 'low';
+  detectionStatus?: 'detected' | 'not_detected' | 'failed' | 'manual';
+  ocrStatus?: 'pending' | 'success' | 'failed' | 'needs_review';
+  sourceMethod?: 'visual-detection' | 'manual';
 }
 
 export interface ParsedDocument {
@@ -45,6 +49,8 @@ export interface ParsedDocument {
   thumbnails: string[]; // 页面缩略图 base64
   pageImages: string[]; // 高清页面图像（用于预览）
   pageDimensions: { width: number; height: number }[]; // 每页原始尺寸
+  pageKinds: PdfPageKind[];
+  textLayerFormulas: Array<{ pageNumber: number; candidates: TextFormulaCandidate[] }>;
 }
 
 export type DocumentType = 'pdf' | 'docx' | 'markdown';
@@ -69,6 +75,7 @@ export interface DetectionConfig {
   useAdvancedDetection?: boolean;
   minConfidence?: number;
   formulaTypeFilter?: 'display' | 'inline' | 'both';
+  signal?: AbortSignal;
 }
 
 // Default detection config
@@ -214,6 +221,8 @@ export async function parsePdfDocument(
   const pageImages: string[] = [];
   const pageDimensions: { width: number; height: number }[] = [];
   const pageMathHints: Array<boolean | null> = [];
+  const pageKinds: PdfPageKind[] = [];
+  const textLayerFormulas: Array<{ pageNumber: number; candidates: TextFormulaCandidate[] }> = [];
   const formulas: FormulaRegion[] = [];
 
   for (let i = 1; i <= pageCount; i++) {
@@ -260,6 +269,8 @@ export async function parsePdfDocument(
       const items = (textContent.items as Array<{ str?: string }>).filter(item => item?.str);
       if (items.length === 0) {
         pageMathHints.push(null);
+        pageKinds.push('scan');
+        textLayerFormulas.push({ pageNumber: i, candidates: [] });
       } else {
         const combined = items.map(item => item.str || '').join(' ');
         const hasMathOnlySymbol = /[∑∫∞≈≠≤≥√]/.test(combined);
@@ -269,10 +280,15 @@ export async function parsePdfDocument(
         const hasLatexCommand = /\\(frac|sum|int|sqrt|alpha|beta|gamma|delta|theta|pi|sigma|mu|nu|rho|lambda|cdot|times|leq|geq|neq|approx)/.test(combined);
         const hasMathText = hasMathOnlySymbol || hasEquationPattern || hasSupPattern || hasSubPattern || hasLatexCommand;
         pageMathHints.push(hasMathText);
+        const pageKind = classifyPdfPage({ text: combined, hasTextLayer: true });
+        pageKinds.push(pageKind);
+        textLayerFormulas.push({ pageNumber: i, candidates: extractTextLayerFormulaCandidates(combined) });
       }
     } catch (err) {
       console.warn('[FormulaDetection] Text layer read failed:', err);
       pageMathHints.push(null);
+      pageKinds.push('scan');
+      textLayerFormulas.push({ pageNumber: i, candidates: [] });
     }
 
     // 生成缩略图
@@ -302,6 +318,8 @@ export async function parsePdfDocument(
     thumbnails,
     pageImages,
     pageDimensions,
+    pageKinds,
+    textLayerFormulas,
   };
 }
 
@@ -324,7 +342,7 @@ function scheduleFormulaDetection(
   let cancelled = false;
 
   const processNext = () => {
-    if (cancelled || pageIndex >= pageImages.length) return;
+    if (cancelled || config.signal?.aborted || pageIndex >= pageImages.length) return;
     const currentPage = pageIndex;
     pageIndex++;
 
@@ -805,12 +823,13 @@ export function formatFileSize(bytes: number): string {
  * 获取支持的文件类型描述
  */
 export function getSupportedFormats(): string {
-  return 'PDF (最大50MB, 100页), DOCX (最大20MB), Markdown (最大5MB)';
+  return 'PDF (最大50MB, 100页), Markdown (最大5MB)；DOCX 暂不支持';
 }
 
 /**
  * 检查是否为支持的文档类型
  */
 export function isSupportedDocument(file: File): boolean {
-  return getDocumentType(file) !== null;
+  const type = getDocumentType(file);
+  return type === 'pdf' || type === 'markdown';
 }

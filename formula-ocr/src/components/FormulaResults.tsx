@@ -85,6 +85,15 @@ export const FormulaResults: React.FC<FormulaResultsProps> = ({
     return result;
   }, [filteredImages, groupMode]);
 
+  const getStatusLabel = (image: ImageItem): string => {
+    if (image.status === 'processing') return '识别中';
+    if (image.status === 'error' || image.ocrStatus === 'failed') return `识别失败${image.error ? `：${image.error}` : ''}`;
+    if (image.ocrStatus === 'needs_review') return '结果需复核';
+    if (image.ocrStatus === 'pending' || image.status === 'pending') return '检测成功，待识别';
+    if (!image.latex) return '未检测到公式';
+    return '识别成功';
+  };
+
   // 拖拽处理
   const handleDragStart = useCallback((e: React.DragEvent, id: string) => {
     setDraggedId(id);
@@ -393,6 +402,7 @@ export const FormulaResults: React.FC<FormulaResultsProps> = ({
                     onDragLeave={handleDragLeave}
                     onDrop={(e) => handleDrop(e, img.id)}
                     onDragEnd={handleDragEnd}
+                    statusLabel={getStatusLabel(img)}
                   />
                 ))}
               </div>
@@ -459,6 +469,7 @@ interface FormulaResultCardProps {
   onDragLeave?: () => void;
   onDrop?: (e: React.DragEvent) => void;
   onDragEnd?: () => void;
+  statusLabel: string;
 }
 
 const FormulaResultCard: React.FC<FormulaResultCardProps> = ({
@@ -482,19 +493,13 @@ const FormulaResultCard: React.FC<FormulaResultCardProps> = ({
   onDragOver,
   onDragLeave,
   onDrop,
-  onDragEnd
+  onDragEnd,
+  statusLabel
 }) => {
   const renderRef = useRef<HTMLDivElement>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(image.latex || '');
   const [originalLatex] = useState(image.latex || '');
-
-  // 同步编辑值
-  useEffect(() => {
-    if (!isEditing) {
-      setEditValue(image.latex || '');
-    }
-  }, [image.latex, isEditing]);
 
   // Render LaTeX
   useEffect(() => {
@@ -597,6 +602,13 @@ const FormulaResultCard: React.FC<FormulaResultCardProps> = ({
 
         {/* Preview */}
         <div className="flex-1 min-w-0">
+          <div className="text-xs text-gray-500 truncate" data-testid="formula-status">{statusLabel}</div>
+          <div className="text-xs text-gray-400 truncate">
+            {image.source || image.fileName || '未分类'}
+            {image.pageNumber ? ` · 第${image.pageNumber}页` : ''}
+            {image.provider ? ` · ${image.provider}` : ''}
+            {typeof image.processingTime === 'number' ? ` · ${image.processingTime}ms` : ''}
+          </div>
           <div 
             ref={renderRef}
             className="overflow-x-auto overflow-y-visible py-1 text-sm"
@@ -618,8 +630,11 @@ const FormulaResultCard: React.FC<FormulaResultCardProps> = ({
           </button>
           <button
             onClick={() => {
+              if (!isEditing) {
+                setEditValue(image.latex || '');
+                onExpand();
+              }
               setIsEditing(!isEditing);
-              if (!isEditing) onExpand();
             }}
             className={`p-2 rounded-lg transition-all ${
               isEditing ? 'bg-blue-100 text-blue-600' : 'hover:bg-gray-100 text-gray-500'

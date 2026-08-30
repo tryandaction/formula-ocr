@@ -1,27 +1,13 @@
 // OpenAI GPT-4 Vision API provider
 
-import type { ProviderInterface, ProviderType } from './types';
+import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
 import { extractLatex } from '../apiClient';
-
-const FORMULA_PROMPT = `Analyze this image containing academic formulas (math, physics, chemistry, or engineering). Extract all formulas and convert them to LaTeX code.
-
-Requirements:
-1. Output only LaTeX code, no explanations
-2. Use standard LaTeX syntax (\\frac, \\int, \\sum, \\partial, etc.)
-3. For chemistry formulas, use \\ce{} or standard subscript format
-4. Separate multiple formulas with newlines
-5. Mark unclear parts with [unclear]
-
-Output format:
-\`\`\`latex
-formula1
-formula2
-\`\`\``;
+import { buildFormulaPrompt } from './contract';
 
 export const openaiProvider: ProviderInterface = {
   type: 'openai' as ProviderType,
 
-  async recognize(imageBase64: string, apiKey?: string): Promise<string> {
+  async recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string> {
     if (!apiKey) {
       throw new Error('OpenAI API key is required');
     }
@@ -47,7 +33,7 @@ export const openaiProvider: ProviderInterface = {
             },
             {
               type: 'text',
-              text: FORMULA_PROMPT
+              text: buildFormulaPrompt(context)
             }
           ]
         }]

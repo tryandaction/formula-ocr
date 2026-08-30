@@ -122,6 +122,13 @@ export interface RecognitionResult {
   success: boolean;
   latex?: string;
   error?: string;
+  formulaCount?: number;
+  confidence?: number;
+  uncertainties?: string[];
+  provider?: string;
+  processingTime?: number;
+  requestId?: string;
+  errorClass?: string;
 }
 
 /**
@@ -151,10 +158,13 @@ export async function activateCode(code: string): Promise<ActivationResult> {
 /**
  * 公式识别（通过后端代理）
  */
-export async function recognizeFormula(imageBase64: string): Promise<RecognitionResult> {
+export async function recognizeFormula(request: RecognitionRequest | string): Promise<RecognitionResult> {
+  const body = typeof request === 'string'
+    ? { image: request }
+    : request;
   return apiRequest<RecognitionResult>('/api/recognize', {
     method: 'POST',
-    body: JSON.stringify({ image: imageBase64 }),
+    body: JSON.stringify(body),
   });
 }
 
@@ -242,3 +252,4 @@ export async function setSimulateMode(mode: SimulateMode): Promise<{ success: bo
 // 2. 用户扫码支付后联系客服获取激活码
 // 3. 用户使用 activateCode() 函数激活会员
 // 激活码接口已在上方定义：activateCode(code: string)
+import type { RecognitionRequest } from './ocrContract';

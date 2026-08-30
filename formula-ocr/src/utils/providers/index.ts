@@ -12,6 +12,12 @@ import { zhipuProvider } from './zhipu';
 import { localProvider, checkLocalServer, LOCAL_SETUP_INSTRUCTIONS } from './local';
 import { backendProvider } from './backend';
 import { isBackendEnabled } from '../api';
+import {
+  buildRecognitionRequest,
+  parseRecognitionText,
+  validateRecognitionResult,
+  type RecognitionRequest,
+} from '../ocrContract';
 
 export * from './types';
 export { checkLocalServer, LOCAL_SETUP_INSTRUCTIONS };
@@ -171,14 +177,40 @@ export async function getAvailableProviders(): Promise<{
  * Recognize formula using specified provider
  */
 export async function recognizeWithProvider(
-  imageBase64: string,
-  providerType: ProviderType,
+  imageOrRequest: string | RecognitionRequest,
+  providerType?: ProviderType,
   apiKey?: string
 ): Promise<string> {
-  const provider = getProvider(providerType);
-  const key = apiKey || getStoredApiKey(providerType);
-  
-  return provider.recognize(imageBase64, key);
+  const request = typeof imageOrRequest === 'string'
+    ? buildRecognitionRequest({
+        image: imageOrRequest,
+        mime: imageOrRequest.match(/^data:([^;]+);/)?.[1] || 'image/png',
+        formulaType: 'auto',
+        mode: 'single',
+        source: { kind: 'image' },
+      })
+    : imageOrRequest;
+  const type = providerType || 'backend';
+  const provider = getProvider(type);
+  const key = apiKey || getStoredApiKey(type);
+  const context = {
+    requestId: request.requestId,
+    mime: request.mime,
+    formulaType: request.formulaType,
+    mode: request.mode,
+    source: request.source,
+  };
+  const raw = await provider.recognize(request.image, key, context);
+  const parsed = parseRecognitionText(raw);
+  const validated = validateRecognitionResult({
+    latex: parsed.latex,
+    success: parsed.success,
+    uncertainties: parsed.uncertainties,
+  });
+  if (!validated.success) {
+    throw new Error(validated.errorClass || 'invalid_output');
+  }
+  return validated.latex;
 }
 
 /**

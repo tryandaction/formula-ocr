@@ -67,6 +67,9 @@ function convertToFormulaRegion(
     type: enhanced.formulaType === 'display' ? 'display' : 'inline',
     formulaType: enhanced.formulaType,
     confidenceLevel: enhanced.confidence.level,
+    detectionStatus: 'detected',
+    ocrStatus: 'pending',
+    sourceMethod: 'visual-detection',
   };
 }
 

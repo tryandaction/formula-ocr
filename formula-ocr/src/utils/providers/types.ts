@@ -23,16 +23,36 @@ export interface ProviderConfig {
   setupUrl?: string;
 }
 
+export interface RecognitionRequestContext {
+  requestId: string;
+  mime: string;
+  formulaType: 'auto' | 'math' | 'physics' | 'chemistry';
+  mode: 'single' | 'multiple';
+  source?: {
+    kind: 'image' | 'pdf' | 'docx' | 'markdown';
+    fileName?: string;
+    pageNumber?: number;
+    regionId?: string;
+  };
+  signal?: AbortSignal;
+}
+
 export interface RecognitionResult {
   latex: string;
   provider: ProviderType;
+  success: boolean;
+  formulaCount: number;
   confidence?: number;
-  processingTime?: number;
+  uncertainties: string[];
+  processingTime: number;
+  status: 'success' | 'uncertain' | 'invalid' | 'error';
+  error?: string;
+  errorClass?: string;
 }
 
 export interface ProviderInterface {
   type: ProviderType;
-  recognize(imageBase64: string, apiKey?: string): Promise<string>;
+  recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string>;
   validateApiKey?(apiKey: string): Promise<boolean>;
 }
 

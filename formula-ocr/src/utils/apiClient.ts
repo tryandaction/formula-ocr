@@ -1,5 +1,6 @@
 // API client utilities
 // Multi-provider system is in ./providers/
+import { parseRecognitionText } from './ocrContract';
 
 /**
  * Extracts LaTeX code from API response
@@ -7,38 +8,9 @@
  * @returns Extracted LaTeX code or original text if no code block found
  */
 export function extractLatex(response: string): string {
-  let latex = response;
-  
-  // Try to match ```latex code block
-  const latexMatch = response.match(/```latex\n?([\s\S]*?)\n?```/);
-  if (latexMatch) {
-    latex = latexMatch[1].trim();
-  } else {
-    // Try to match generic ``` code block
-    const codeMatch = response.match(/```\n?([\s\S]*?)\n?```/);
-    if (codeMatch) {
-      latex = codeMatch[1].trim();
-    } else {
-      // Try to match $$ display math
-      const displayMatch = response.match(/\$\$([\s\S]*?)\$\$/);
-      if (displayMatch) {
-        latex = displayMatch[1].trim();
-      } else {
-        // Try to match $ inline math
-        const inlineMatch = response.match(/\$([\s\S]*?)\$/);
-        if (inlineMatch) {
-          latex = inlineMatch[1].trim();
-        } else {
-          latex = response.trim();
-        }
-      }
-    }
-  }
-  
-  // Clean up and normalize LaTeX
-  latex = normalizeLatex(latex);
-  
-  return latex;
+  const parsed = parseRecognitionText(response);
+  if (!parsed.success) return '';
+  return normalizeLatex(parsed.latex);
 }
 
 /**
@@ -151,6 +123,18 @@ export function getMediaTypeFromBase64(base64: string): 'image/jpeg' | 'image/pn
   if (base64.includes('data:image/webp')) return 'image/webp';
   if (base64.includes('data:image/gif')) return 'image/gif';
   return 'image/jpeg';
+}
+
+export type ProviderErrorClass = 'network' | 'quota' | 'timeout' | 'cancelled' | 'invalid_output' | 'provider';
+
+export function classifyProviderError(error: unknown): ProviderErrorClass {
+  const message = error instanceof Error ? `${error.name} ${error.message}` : String(error);
+  if (/AbortError|cancel/i.test(message)) return /cancel/i.test(message) ? 'cancelled' : 'timeout';
+  if (/timeout|超时/i.test(message)) return 'timeout';
+  if (/quota|429|额度/i.test(message)) return 'quota';
+  if (/invalid_output|latex|响应格式|Invalid API response/i.test(message)) return 'invalid_output';
+  if (/network|fetch|网络|连接/i.test(message)) return 'network';
+  return 'provider';
 }
 
 // Legacy function - use providers/index.ts recognizeWithProvider instead

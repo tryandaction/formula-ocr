@@ -97,14 +97,17 @@ export class BoundaryDetector implements IBoundaryDetector {
     let maxX = startX;
     let maxY = startY;
     
+    const pushIfUnvisited = (x: number, y: number) => {
+      if (x < 0 || x >= width || y < 0 || y >= height) return;
+      const idx = y * width + x;
+      if (visited[idx] === 1 || binaryData[idx] === 0) return;
+      visited[idx] = 1;
+      stack.push({ x, y });
+    };
+    visited[startY * width + startX] = 1;
+
     while (stack.length > 0) {
       const { x, y } = stack.pop()!;
-      const idx = y * width + x;
-      
-      if (x < 0 || x >= width || y < 0 || y >= height) continue;
-      if (visited[idx] === 1 || binaryData[idx] === 0) continue;
-      
-      visited[idx] = 1;
       pixels.push({ x, y });
       
       minX = Math.min(minX, x);
@@ -113,14 +116,14 @@ export class BoundaryDetector implements IBoundaryDetector {
       maxY = Math.max(maxY, y);
       
       // 8-连通
-      stack.push({ x: x + 1, y });
-      stack.push({ x: x - 1, y });
-      stack.push({ x, y: y + 1 });
-      stack.push({ x, y: y - 1 });
-      stack.push({ x: x + 1, y: y + 1 });
-      stack.push({ x: x - 1, y: y - 1 });
-      stack.push({ x: x + 1, y: y - 1 });
-      stack.push({ x: x - 1, y: y + 1 });
+      pushIfUnvisited(x + 1, y);
+      pushIfUnvisited(x - 1, y);
+      pushIfUnvisited(x, y + 1);
+      pushIfUnvisited(x, y - 1);
+      pushIfUnvisited(x + 1, y + 1);
+      pushIfUnvisited(x - 1, y - 1);
+      pushIfUnvisited(x + 1, y - 1);
+      pushIfUnvisited(x - 1, y + 1);
     }
     
     return { minX, minY, maxX, maxY, pixels };

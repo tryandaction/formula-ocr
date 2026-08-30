@@ -7,6 +7,8 @@ import type { FormulaRegion } from './documentParser';
 import { recognizeWithProvider, getRecommendedProvider, getSelectedProvider, getAvailableProviders, type ProviderType } from './providers';
 import { checkBackendHealth, isBackendEnabled } from './api';
 import { calculateOtsuThreshold } from './imageUtils';
+import { classifyProviderError } from './apiClient';
+import { shouldRetry } from './runtimeState';
 
 // OCR 结果类型
 export interface OCRResult {
@@ -15,6 +17,10 @@ export interface OCRResult {
   markdown?: string;
   success: boolean;
   error?: string;
+  errorClass?: string;
+  provider?: ProviderType;
+  processingTime?: number;
+  status?: 'succeeded' | 'needs_review' | 'failed' | 'cancelled';
 }
 
 // OCR 队列项
@@ -181,6 +187,9 @@ function isLikelyLatex(text: string): boolean {
  */
 async function preprocessFormulaImage(imageBase64: string, provider?: ProviderType): Promise<string> {
   try {
+    // Cloud providers receive original pixels by default. Derived variants must
+    // be explicitly benchmark-approved before they can affect recognition.
+    if (provider !== 'local') return imageBase64;
     const img = await loadImageElement(imageBase64);
     const canvas = document.createElement('canvas');
     canvas.width = img.width;
@@ -189,6 +198,8 @@ async function preprocessFormulaImage(imageBase64: string, provider?: ProviderTy
     ctx.drawImage(img, 0, 0);
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
+    // Local Pix2Tex currently requires its existing binary variant.
+    // Keep this branch isolated so it can be compared against the original.
     // 1. 对比度增强（直方图均衡化 - 灰度通道）
     imageData = enhanceContrast(imageData);
 
@@ -326,6 +337,7 @@ export async function recognizeFormula(
   formula: FormulaRegion,
   provider?: ProviderType
 ): Promise<OCRResult> {
+  const startedAt = Date.now();
   const selectedProvider = provider || getSelectedProvider() || getRecommendedProvider();
   let activeProvider = selectedProvider;
 
@@ -342,6 +354,10 @@ export async function recognizeFormula(
             latex: '',
             success: false,
             error: BACKEND_UNAVAILABLE_ERROR,
+            errorClass: 'network',
+            provider: selectedProvider,
+            processingTime: Date.now() - startedAt,
+            status: 'failed',
           };
         }
       }
@@ -373,6 +389,10 @@ export async function recognizeFormula(
           latex: retryLatex,
           markdown: `$$${retryLatex}$$`,
           success: true,
+          provider: fallback,
+          processingTime: Date.now() - startedAt,
+          status: 'needs_review',
+          errorClass: 'uncertain_result',
         };
       }
       throw new Error(activeProvider === 'backend' ? NO_FALLBACK_ERROR : INVALID_LATEX_ERROR);
@@ -383,13 +403,21 @@ export async function recognizeFormula(
       latex,
       markdown: `$$${latex}$$`,
       success: true,
+      provider: activeProvider,
+      processingTime: Date.now() - startedAt,
+      status: 'succeeded',
     };
   } catch (error) {
+    const errorClass = classifyProviderError(error);
     return {
       id: formula.id,
       latex: '',
       success: false,
       error: error instanceof Error ? error.message : '识别失败',
+      errorClass,
+      provider: activeProvider,
+      processingTime: Date.now() - startedAt,
+      status: errorClass === 'cancelled' ? 'cancelled' : 'failed',
     };
   }
 }
@@ -399,7 +427,7 @@ export async function recognizeFormula(
  */
 async function recognizeWithRetry(
   formula: FormulaRegion,
-  maxRetries: number = MAX_RETRIES,
+  maxRetries: number = 2,
   provider?: ProviderType
 ): Promise<OCRResult> {
   let lastError: Error | null = null;
@@ -411,12 +439,12 @@ async function recognizeWithRetry(
         return result;
       }
       lastError = new Error(result.error || '识别失败');
-      if (lastError.message.includes('超时')) {
+      if (!shouldRetry(result.errorClass || classifyProviderError(lastError), attempt, maxRetries)) {
         break;
       }
     } catch (error) {
       lastError = error instanceof Error ? error : new Error('未知错误');
-      if (lastError.message.includes('超时')) {
+      if (!shouldRetry(classifyProviderError(lastError), attempt, maxRetries)) {
         break;
       }
     }
@@ -433,6 +461,8 @@ async function recognizeWithRetry(
     latex: '',
     success: false,
     error: lastError?.message || '识别失败，已达最大重试次数',
+    errorClass: lastError ? classifyProviderError(lastError) : 'provider',
+    status: 'failed',
   };
 }
 
@@ -490,7 +520,7 @@ export async function recognizeFormulas(
   formulas: FormulaRegion[],
   onProgress?: (completed: number, total: number, result: OCRResult) => void
 ): Promise<OCRResult[]> {
-  const results: OCRResult[] = [];
+  const indexedResults: Array<{ index: number; value: OCRResult }> = [];
   const total = formulas.length;
   let completed = 0;
 
@@ -510,10 +540,10 @@ export async function recognizeFormulas(
         }));
         failed.forEach(result => {
           completed++;
-          results.push(result);
+          indexedResults.push({ index: formulas.findIndex(formula => formula.id === result.id), value: result });
           onProgress?.(completed, total, result);
         });
-        return results;
+        return indexedResults.sort((a, b) => a.index - b.index).map(item => item.value);
       }
     }
   }
@@ -522,7 +552,7 @@ export async function recognizeFormulas(
   const promises = formulas.map(formula => 
     enqueueFormula(formula, provider).then(result => {
       completed++;
-      results.push(result);
+      indexedResults.push({ index: formulas.findIndex(formula => formula.id === result.id), value: result });
       onProgress?.(completed, total, result);
       return result;
     })
@@ -531,7 +561,7 @@ export async function recognizeFormulas(
   // 等待所有完成
   await Promise.all(promises);
   
-  return results;
+  return indexedResults.sort((a, b) => a.index - b.index).map(item => item.value);
 }
 
 /**

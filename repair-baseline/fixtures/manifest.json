@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 2,
+  "groundTruthPolicy": "human-verified-only",
+  "samples": [
+    {"id":"dense-display-fraction","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"math","groundTruthLatex":"\\frac{a+b}{c+d}","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-pythagorean","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"math","groundTruthLatex":"x^2 + y^2 = z^2","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-trigonometry","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"math","groundTruthLatex":"\\frac{\\sin(x)}{\\cos(x)}","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-physics-energy","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"physics","groundTruthLatex":"E = mc^2","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-physics-ideal-gas","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"physics","groundTruthLatex":"PV = nRT","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-physics-newton","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"physics","groundTruthLatex":"F = ma","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-power","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"math","groundTruthLatex":"x^3 + 2x + 1","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"dense-multi-line","sourceType":"pdf","inputFile":"formula-ocr/output/playwright/pdf-benchmark/dense-formulas.pdf","formulaType":"math","groundTruthLatex":"\\frac{m+n}{p+q}","allowCloudUpload":false,"status":"human-verified-from-generator"},
+    {"id":"unclear-placeholder","sourceType":"image","inputFile":"formula-ocr/output/playwright/pdf-benchmark/formula1.base64.txt","formulaType":"auto","groundTruthLatex":null,"allowCloudUpload":false,"status":"failure-sample-needs-review"}
+  ]
+}

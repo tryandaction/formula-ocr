@@ -21,6 +21,17 @@ export interface RecognitionResult {
   success: boolean;
   latex?: string;
   error?: string;
+  formulaCount?: number;
+  uncertainties?: string[];
+  processingTime?: number;
+  errorClass?: string;
+}
+
+export interface RecognitionContext {
+  requestId: string;
+  mime: string;
+  formulaType: 'auto' | 'math' | 'physics' | 'chemistry';
+  mode: 'single' | 'multiple';
 }
 
 // 从响应中提取 LaTeX
@@ -52,8 +63,10 @@ function extractLatex(content: string): string {
 // 调用智谱 API
 export async function proxyZhipuAPI(
   imageBase64: string,
-  apiKey: string
+  apiKey: string,
+  context?: RecognitionContext
 ): Promise<RecognitionResult> {
+  const startedAt = Date.now();
   try {
     const response = await fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions', {
       method: 'POST',
@@ -85,7 +98,7 @@ export async function proxyZhipuAPI(
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({})) as { error?: { message?: string } };
       const errorMessage = errorData.error?.message || `API error: ${response.status}`;
-      return { success: false, error: errorMessage };
+      return { success: false, error: errorMessage, errorClass: response.status === 429 ? 'quota' : 'provider', processingTime: Date.now() - startedAt };
     }
 
     const data = await response.json() as {
@@ -93,16 +106,24 @@ export async function proxyZhipuAPI(
     };
 
     if (!data.choices?.[0]?.message?.content) {
-      return { success: false, error: 'Invalid API response' };
+      return { success: false, error: 'Invalid API response', errorClass: 'provider', processingTime: Date.now() - startedAt };
     }
 
     const latex = extractLatex(data.choices[0].message.content);
-    return { success: true, latex };
+    return {
+      success: true,
+      latex,
+      formulaCount: latex ? latex.split(/\n+/).filter(Boolean).length : 0,
+      uncertainties: latex.includes('[unclear]') ? ['[unclear]'] : [],
+      processingTime: Date.now() - startedAt,
+    };
 
   } catch (error) {
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error',
+      errorClass: 'network',
+      processingTime: Date.now() - startedAt,
     };
   }
 }

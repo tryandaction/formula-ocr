@@ -22,6 +22,8 @@ import { getActivationStatus } from './utils/activation';
 import { isBackendEnabled, checkQuota, setSimulateMode, type QuotaInfo, type SimulateMode } from './utils/api';
 import { addHistory, type HistoryItem } from './utils/historyService';
 import type { FormulaRegion } from './utils/documentParser';
+import { buildRecognitionRequest } from './utils/ocrContract';
+import type { DocumentFormulaSource } from './utils/documentFormats';
 import './index.css';
 
 type UploadMode = 'image' | 'document';
@@ -48,16 +50,29 @@ function App() {
 
     // 更新状态为处理中
     setImages(prev => prev.map(img => 
-      img.id === imageId ? { ...img, status: 'processing' as const } : img
+      img.id === imageId ? { ...img, status: 'processing' as const, ocrStatus: 'pending' as const } : img
     ));
 
+    const startedAt = Date.now();
     try {
-      // TODO: 将公式类型提示传递给 AI 提高准确率
-      // const typeHint = getFormulaTypePrompt(formulaType);
-      const latex = await recognizeWithProvider(image.base64, selectedProvider);
+      const request = buildRecognitionRequest({
+        image: image.base64,
+        mime: image.base64.match(/^data:([^;]+);/)?.[1] || 'image/png',
+        formulaType,
+        mode: 'single',
+        source: { kind: 'image', fileName: image.fileName },
+      });
+      const latex = await recognizeWithProvider(request, selectedProvider);
       
       setImages(prev => prev.map(img => 
-        img.id === imageId ? { ...img, status: 'done' as const, latex } : img
+        img.id === imageId ? {
+          ...img,
+          status: 'done' as const,
+          latex,
+          ocrStatus: 'success' as const,
+          provider: selectedProvider,
+          processingTime: Date.now() - startedAt,
+        } : img
       ));
 
       // 保存到历史记录
@@ -78,10 +93,17 @@ function App() {
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : '识别失败';
       setImages(prev => prev.map(img => 
-        img.id === imageId ? { ...img, status: 'error' as const, error: errorMessage } : img
+        img.id === imageId ? {
+          ...img,
+          status: 'error' as const,
+          ocrStatus: 'failed' as const,
+          error: errorMessage,
+          provider: selectedProvider,
+          processingTime: Date.now() - startedAt,
+        } : img
       ));
     }
-  }, [images, selectedProvider]);
+  }, [images, selectedProvider, formulaType]);
 
   // 处理 LaTeX 编辑
   const handleLatexChange = useCallback((imageId: string, newLatex: string) => {
@@ -125,13 +147,31 @@ function App() {
       base64: formula.imageData,
       status: 'pending' as const,
       fileName: `公式 ${formula.pageNumber}-${index + 1}`,
+      source: `PDF 第${formula.pageNumber}页`,
+      pageNumber: formula.pageNumber,
+      position: formula.originalPosition,
+      ocrStatus: 'pending',
     }));
     setImages(prev => [...prev, ...newImages]);
     setUploadMode('image'); // 切换回图片模式查看结果
   }, []);
 
+  const handleMarkdownFormulasExtracted = useCallback((formulas: DocumentFormulaSource[]) => {
+    const placeholder = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB';
+    const newImages: ImageItem[] = formulas.map((formula, index) => ({
+      id: `md_${Date.now()}_${index}`,
+      base64: placeholder,
+      status: 'done' as const,
+      latex: formula.latex,
+      fileName: `${formula.fileName}:第${formula.location.line || 1}行`,
+      source: formula.fileName,
+    }));
+    setImages(prev => [...prev, ...newImages]);
+    setUploadMode('image');
+  }, []);
+
   // 获取已完成的图片
-  const completedImages = images.filter(img => img.status === 'done' && img.latex);
+  const completedImages = images.filter(img => img.status !== 'pending' || img.latex);
 
   // 获取激活状态
   const activationStatus = getActivationStatus();
@@ -278,6 +318,7 @@ function App() {
           ) : (
             <DocumentUploader
               onFormulasExtracted={handleFormulasExtracted}
+              onMarkdownFormulasExtracted={handleMarkdownFormulasExtracted}
               disabled={false}
             />
           )}
@@ -346,7 +387,8 @@ function App() {
       <PaymentModal
         isOpen={showPaymentModal}
         onClose={() => setShowPaymentModal(false)}
-        onPaymentSuccess={(_paidDays) => {
+        onPaymentSuccess={(paidDays) => {
+          void paidDays;
           // 刷新额度（本地状态已在 PaymentModal 中更新）
           if (isBackendEnabled()) {
             checkQuota().then(setQuota).catch(console.error);

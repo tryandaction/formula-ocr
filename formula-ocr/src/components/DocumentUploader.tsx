@@ -10,10 +10,12 @@ import {
   type FormulaRegion,
   type DocumentValidationResult,
 } from '../utils/documentParser';
+import { parseMarkdownSource, type DocumentFormulaSource } from '../utils/documentFormats';
 import { PDFFormulaViewer } from './PDFFormulaViewer';
 
 interface DocumentUploaderProps {
   onFormulasExtracted?: (formulas: FormulaRegion[]) => void;
+  onMarkdownFormulasExtracted?: (formulas: DocumentFormulaSource[]) => void;
   disabled?: boolean;
 }
 
@@ -21,6 +23,7 @@ type UploadState = 'idle' | 'validating' | 'parsing' | 'preview' | 'error';
 
 export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
   onFormulasExtracted,
+  onMarkdownFormulasExtracted,
   disabled = false,
 }) => {
   const [state, setState] = useState<UploadState>('idle');
@@ -81,7 +84,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
 
   const handleFile = useCallback(async (file: File) => {
     if (!isSupportedDocument(file)) {
-      setError('不支持的文件格式。支持: PDF, DOCX, Markdown');
+      setError('不支持的文件格式。本轮支持 PDF 和 Markdown；DOCX 暂不支持');
       setState('error');
       return;
     }
@@ -117,7 +120,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
             setProgressMessage(msg);
           },
           undefined,
-          (formulas, _pageNumber) => {
+          (formulas) => {
             if (!isActiveRef.current) {
               return false;
             }
@@ -144,8 +147,24 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
         setParsedDocument(mergedDoc);
         setDetectionProgress({ done: detectedPagesRef.current, total: doc.pageCount });
         setState('preview');
+      } else if (validation.fileType === 'markdown') {
+        const parsed = parseMarkdownSource(await file.text(), file.name);
+        if (parsed.status === 'parse_error') {
+          setError(parsed.error || 'Markdown 公式语法无效');
+          setState('error');
+          return;
+        }
+        if (parsed.status === 'no_formulas') {
+          setError('Markdown 中未检测到公式');
+          setState('error');
+          return;
+        }
+        onMarkdownFormulasExtracted?.(parsed.formulas);
+        setState('idle');
+        setFileInfo(null);
+        setProgress(100);
       } else {
-        setError(`${validation.fileType?.toUpperCase()} 格式解析功能开发中`);
+        setError('DOCX 暂不支持解析。请转换为 PDF 或 Markdown 后再试');
         setState('error');
       }
     } catch (err) {
@@ -153,7 +172,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
       setError(err instanceof Error ? err.message : '文档处理失败');
       setState('error');
     }
-  }, []);
+  }, [mergeFormulasByPosition, onMarkdownFormulasExtracted]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -251,7 +270,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
         <input
           ref={fileInputRef}
           type="file"
-          accept=".pdf,.docx,.md,.markdown"
+          accept=".pdf,.md,.markdown"
           onChange={handleFileSelect}
           disabled={disabled}
           className="hidden"

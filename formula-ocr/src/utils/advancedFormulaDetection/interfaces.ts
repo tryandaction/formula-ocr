@@ -267,18 +267,21 @@ export interface IDetectionCacheManager {
   set(
     pageNumber: number,
     results: EnhancedFormulaRegion[],
-    imageHash: string
+    imageHash: string,
+    detectionOptions: DetectionOptions
   ): void;
 
   /**
    * 获取缓存
    * @param pageNumber - 页码
    * @param imageHash - 图像哈希
+   * @param detectionOptions - 检测选项
    * @returns 缓存的检测结果，如果不存在或失效则返回 null
    */
   get(
     pageNumber: number,
-    imageHash: string
+    imageHash: string,
+    detectionOptions: DetectionOptions
   ): EnhancedFormulaRegion[] | null;
 
   /**

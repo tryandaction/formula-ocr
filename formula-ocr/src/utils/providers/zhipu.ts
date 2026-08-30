@@ -1,23 +1,9 @@
 // 智谱 AI (GLM-4V) API provider
 // 国产视觉大模型，有免费额度
 
-import type { ProviderInterface, ProviderType } from './types';
+import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
 import { extractLatex } from '../apiClient';
-
-const FORMULA_PROMPT = `分析这张包含学术公式的图片（数学、物理、化学或工程公式均可），提取所有公式并转换为 LaTeX 代码。
-
-要求：
-1. 只输出 LaTeX 代码，不要解释
-2. 使用标准 LaTeX 语法（\\frac, \\int, \\sum, \\partial 等）
-3. 化学公式请使用 \\ce{} 或标准下标格式
-4. 多个公式用换行分隔
-5. 不清楚的部分标记为 [unclear]
-
-输出格式：
-\`\`\`latex
-公式1
-公式2
-\`\`\``;
+import { buildFormulaPrompt } from './contract';
 
 // 请求超时时间（毫秒）
 const API_TIMEOUT = 60000; // 60秒，AI模型需要较长时间
@@ -25,7 +11,7 @@ const API_TIMEOUT = 60000; // 60秒，AI模型需要较长时间
 export const zhipuProvider: ProviderInterface = {
   type: 'zhipu' as ProviderType,
 
-  async recognize(imageBase64: string, apiKey?: string): Promise<string> {
+  async recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string> {
     if (!apiKey) {
       throw new Error('智谱 AI API Key 是必需的');
     }
@@ -54,7 +40,7 @@ export const zhipuProvider: ProviderInterface = {
               },
               {
                 type: 'text',
-                text: FORMULA_PROMPT
+                text: buildFormulaPrompt(context)
               }
             ]
           }]
