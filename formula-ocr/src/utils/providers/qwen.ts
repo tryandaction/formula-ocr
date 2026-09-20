@@ -2,7 +2,7 @@
 // 阿里云视觉大模型，价格便宜
 
 import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
-import { extractLatex } from '../apiClient';
+
 import { buildFormulaPrompt } from './contract';
 
 export const qwenProvider: ProviderInterface = {
@@ -19,6 +19,7 @@ export const qwenProvider: ProviderInterface = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`
       },
+      signal: context?.signal,
       body: JSON.stringify({
         model: 'qwen-vl-max',  // 通义千问视觉模型
         max_tokens: 1024,
@@ -52,7 +53,7 @@ export const qwenProvider: ProviderInterface = {
       throw new Error('API 响应格式无效');
     }
 
-    return extractLatex(data.choices[0].message.content);
+    return data.choices[0].message.content;
   },
 
   async validateApiKey(apiKey: string): Promise<boolean> {

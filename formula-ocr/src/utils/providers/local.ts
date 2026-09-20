@@ -1,7 +1,7 @@
 // Local model provider using Pix2Tex via local server
 // This requires running a local Python server with pix2tex installed
 
-import type { ProviderInterface, ProviderType } from './types';
+import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
 
 const LOCAL_SERVER_URL = 'http://localhost:8502';
 
@@ -13,11 +13,11 @@ export interface LocalServerStatus {
 /**
  * Check if local pix2tex server is running
  */
-export async function checkLocalServer(): Promise<LocalServerStatus> {
+export async function checkLocalServer(signal?: AbortSignal): Promise<LocalServerStatus> {
   try {
     const response = await fetch(`${LOCAL_SERVER_URL}/health`, {
       method: 'GET',
-      signal: AbortSignal.timeout(4000) // 4秒超时，兼容本地模型/ollama较慢的响应
+      signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(4000)]) : AbortSignal.timeout(4000)
     });
     
     if (response.ok) {
@@ -35,9 +35,10 @@ export async function checkLocalServer(): Promise<LocalServerStatus> {
 export const localProvider: ProviderInterface = {
   type: 'local' as ProviderType,
 
-  async recognize(imageBase64: string): Promise<string> {
+  async recognize(imageBase64: string, _key?: string, context?: RecognitionRequestContext): Promise<string> {
     // Check server availability first
-    const status = await checkLocalServer();
+    const status = await checkLocalServer(context?.signal);
+    context?.signal?.throwIfAborted();
     if (!status.available) {
       throw new Error(status.message);
     }
@@ -56,7 +57,7 @@ export const localProvider: ProviderInterface = {
       body: JSON.stringify({
         image: base64Data
       }),
-      signal: AbortSignal.timeout(120000) // 2分钟超时，视觉模型需要较长时间
+      signal: context?.signal ?? AbortSignal.timeout(120000)
     });
 
     if (!response.ok) {

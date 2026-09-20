@@ -1,7 +1,7 @@
 // Google Gemini API provider (generous free tier!)
 
 import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
-import { extractLatex } from '../apiClient';
+
 import { buildFormulaPrompt } from './contract';
 
 export const geminiProvider: ProviderInterface = {
@@ -26,7 +26,8 @@ export const geminiProvider: ProviderInterface = {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
+        signal: context?.signal,
+      body: JSON.stringify({
           contents: [{
             parts: [
               {
@@ -65,7 +66,7 @@ export const geminiProvider: ProviderInterface = {
       .map((p: { text: string }) => p.text)
       .join('');
 
-    return extractLatex(text);
+    return text;
   },
 
   async validateApiKey(apiKey: string): Promise<boolean> {

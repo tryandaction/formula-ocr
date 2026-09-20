@@ -1,11 +1,11 @@
 // SimpleTex API provider - specialized for formula recognition
 
-import type { ProviderInterface, ProviderType } from './types';
+import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
 
 export const simpletexProvider: ProviderInterface = {
   type: 'simpletex' as ProviderType,
 
-  async recognize(imageBase64: string, apiKey?: string): Promise<string> {
+  async recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string> {
     if (!apiKey) {
       throw new Error('SimpleTex API token is required');
     }
@@ -40,7 +40,8 @@ export const simpletexProvider: ProviderInterface = {
       headers: {
         'token': apiKey
       },
-      body: formData
+      body: formData,
+      signal: context?.signal,
     });
 
     if (!response.ok) {

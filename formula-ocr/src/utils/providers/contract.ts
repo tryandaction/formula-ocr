@@ -2,7 +2,6 @@ import type { RecognitionRequestContext } from './types';
 import type { ProviderInterface } from './types';
 import {
   parseRecognitionText,
-  validateRecognitionResult,
   type RecognitionRequest,
   type StructuredRecognitionResult,
   type RecognitionErrorClass,
@@ -13,15 +12,13 @@ export function buildFormulaPrompt(context?: RecognitionRequestContext): string 
   const typeHint = context?.formulaType && context.formulaType !== 'auto'
     ? `\n公式类型提示：${context.formulaType}。只在图像证据支持时采用该提示。`
     : '';
-  const modeHint = context?.mode === 'multiple'
-    ? '\n这是多公式图像，请每个公式单独一行输出。'
-    : '\n这是单公式图像，只输出一个公式。';
+  const modeHint = context?.mode === 'multiple' ? '按阅读顺序提取所有公式，各占 formulas 的一项。' : '仅提取所选区域中的一个公式。';
   return `识别图片中的${context?.source?.kind || 'image'}公式并输出结构化 JSON。${typeHint}${modeHint}
 
 只允许以下 JSON 结构，不要 Markdown 或解释：
-{"latex":"...","uncertainties":[],"candidates":[]}
+{"formulas":[{"latex":"...","uncertainties":[]}],"uncertainties":[]}
 
-latex 必须是纯 LaTeX；无法确认的字符保留为 [unclear] 并写入 uncertainties。看不到公式时 latex 为空字符串。`;
+latex 必须是纯 LaTeX；无法确认的字符保留为 [unclear] 并写入 uncertainties。只转录可见内容，不推导或补全。看不到公式时 formulas 为空数组。JSON 中反斜杠必须正确转义。`;
 }
 
 export interface ProviderFixture {
@@ -48,6 +45,7 @@ export function getProviderFixture(provider: string): ProviderFixture {
 
 export function mapProviderError(error: unknown): RecognitionErrorClass | 'auth' | 'rate_limit' | 'provider_response' | 'uncertain_result' {
   const message = error instanceof Error ? `${error.name} ${error.message}` : String(error);
+  if (/TimeoutError|timeout|超时/i.test(message)) return 'timeout';
   if (/AbortError|cancel/i.test(message)) return 'cancelled';
   if (/timeout|超时/i.test(message)) return 'timeout';
   if (/429|rate.?limit/i.test(message)) return 'rate_limit';
@@ -66,6 +64,9 @@ export function createProviderAdapter(provider: ProviderInterface, apiKey?: stri
   return {
     async recognize(request, signal) {
       const startedAt = Date.now();
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(new DOMException('识别超时', 'TimeoutError')), provider.type === 'local' ? 120000 : 60000);
+      const combined = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal;
       try {
         if (signal?.aborted) {
           return {
@@ -80,41 +81,21 @@ export function createProviderAdapter(provider: ProviderInterface, apiKey?: stri
           formulaType: request.formulaType,
           mode: request.mode,
           source: request.source,
-          signal,
+          signal: combined,
         });
+        combined.throwIfAborted();
         const parsed = parseRecognitionText(raw);
-        const checked = validateRecognitionResult({
-          latex: parsed.latex,
-          success: parsed.success,
-          uncertainties: parsed.uncertainties,
-        });
-        if (!checked.success) {
-          return {
-            success: false, status: 'invalid', latex: parsed.latex, formulaCount: 0,
-            uncertainties: parsed.uncertainties, provider: provider.type,
-            processingTime: Date.now() - startedAt,
-            errorClass: checked.errorClass,
-            error: checked.error,
-          };
-        }
-        return {
-          success: true,
-          status: checked.status,
-          latex: checked.latex,
-          formulaCount: checked.formulaCount,
-          uncertainties: checked.uncertainties,
-          provider: provider.type,
-          processingTime: Date.now() - startedAt,
-          ...(checked.status === 'uncertain' ? { errorClass: 'uncertain_result' as const } : {}),
-        };
+        return { ...parsed, provider: provider.type, processingTime: Date.now() - startedAt };
       } catch (error) {
-        const errorClass = mapProviderError(error);
+        const errorClass = combined.aborted ? mapProviderError(combined.reason) : mapProviderError(error);
         return {
           success: false, status: 'error', latex: '', formulaCount: 0,
           uncertainties: [], provider: provider.type,
           processingTime: Date.now() - startedAt,
           errorClass, error: error instanceof Error ? error.message : 'Provider 请求失败',
         };
+      } finally {
+        clearTimeout(timer);
       }
     },
   };

@@ -13,7 +13,7 @@ describe('provider contract fixtures', () => {
   it('builds a single canonical prompt with type and mode hints', () => {
     const prompt = buildFormulaPrompt(PROVIDER_FIXTURE_CONTEXT);
     expect(prompt).toContain('physics');
-    expect(prompt).toContain('单公式');
-    expect(prompt).toContain('{"latex"');
+    expect(prompt).toContain('一个公式');
+    expect(prompt).toContain('{"formulas"');
   });
 });

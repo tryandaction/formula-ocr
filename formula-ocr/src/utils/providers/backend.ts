@@ -21,13 +21,13 @@ export const backendProvider: ProviderInterface = {
       formulaType: context.formulaType,
       mode: context.mode,
       source: context.source || { kind: 'image' },
-    } : imageBase64);
+    } : imageBase64, context?.signal);
     
     if (!result.success) {
       throw new Error(result.error || '识别失败');
     }
 
-    return result.latex || '';
+    return JSON.stringify(result);
   },
 
   async validateApiKey(): Promise<boolean> {

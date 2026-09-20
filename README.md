@@ -1,100 +1,44 @@
 # Formula OCR
 
-📐 将图片中的数学公式转换为 LaTeX 代码的 Web 应用。
+Formula OCR 是一个 React + TypeScript 公式提取工作台，用于从图片、PDF、DOCX 和 Markdown 中获得可编辑 LaTeX，并批量导出 Markdown、TeX 或 JSON。
 
-## 在线体验
+## 主要能力
 
-🌐 **网站**: https://formula-ocr.pages.dev
-
-## 功能特性
-
-- 🖼️ 图片上传（拖拽、粘贴、点击）
-- 📄 **PDF 公式查看器 v2.0** - 连续阅读、整页公式检测、直接 OCR、侧边栏管理
-- 🎯 **整页公式识别系统** - 精准定位、批量处理、独立操作（v1.0新增）
-- 🔄 自动识别数学、物理、化学公式
-- 📋 多格式输出（LaTeX、Markdown、MathML、Unicode）
-- 📜 历史记录与收藏
-- 💎 付费会员系统
-- 📱 响应式布局（桌面/平板/移动端）
-
-## 最新更新
-
-### v1.0.0 (2026-01-22) - 整页公式识别系统
-
-**核心功能**：
-- ✅ **整页批量识别** - 一次性识别整个页面的所有公式，无需切片
-- ✅ **可追溯边界定位** - 输出检测区域和原始页面坐标
-- ✅ **分层状态** - 区分检测、OCR、网络、额度和结果复核状态
-- ✅ **可重复评估** - 通过人工 ground truth 基准分别评估检测和 OCR
-- ✅ **独立操作** - 每个公式可单独复制/编辑LaTeX或Markdown
-- ✅ **多格式导出** - 支持LaTeX、Markdown、JSON批量导出
-- ✅ **React UI集成** - 完整的交互式UI组件
-
-**技术亮点**：
-- 智能区域划分和并行处理
-- 多维度置信度评分系统
-- 边缘检测和像素密度分析
-- 自动缓存和性能优化
-- 完整的错误处理机制
-
-详细使用指南：[WHOLE_PAGE_RECOGNITION_GUIDE.md](./formula-ocr/WHOLE_PAGE_RECOGNITION_GUIDE.md)
-
-### v2.0 - PDF 公式查看器
-
-- ✨ 全新 PDF 公式查看器，支持连续滚动阅读
-- 🔍 整页公式自动检测与高亮
-- 📋 侧边公式面板，支持批量识别
-- 🔗 PDF 与侧边栏双向联动
-- 💾 状态缓存，切换界面不丢失进度
-- ⚡ 虚拟滚动优化，流畅处理大文档
+- 统一的文件任务和公式结果视图，不再在图片与文档页面之间搬运结果。
+- PDF 文本层、视觉候选检测和手动框选三条路径分开显示。
+- DOCX 常见 OMML 结构和内嵌图片解析；未知 OLE 对象提示用户复核或转换。
+- Provider 使用统一请求/响应契约，支持公式类型、单/多公式模式、取消、超时和明确错误分类。
+- 模型输出通过结构化 JSON 和 KaTeX 校验；自然语言、危险命令和无效 LaTeX 不进入成功状态。
+- 编辑后的结果标记为人工修改，异步重试不会覆盖。
 
 ## 项目结构
 
-```
-├── formula-ocr/          # 前端 (React + Vite)
-├── formula-ocr-worker/   # 后端 (Cloudflare Worker)
-└── DEVELOPER.md          # 开发者文档
+```text
+formula-ocr/          React 前端与浏览器文件解析
+formula-ocr-worker/   Cloudflare Worker 代理与额度服务
+repair-baseline/      可重复基线和阶段证据
 ```
 
-## 快速开始
-
-### 前端
+## 开发
 
 ```bash
 cd formula-ocr
-npm install
-npm run dev
+npm ci
+npm run lint
+npm run test:run
+npm run build
 ```
-
-### 后端
 
 ```bash
 cd formula-ocr-worker
-npm install
-npm run dev
+npm ci
+npx tsc --noEmit
 ```
 
-## 部署
+GitHub Pages 工作流位于 `.github/workflows/deploy-pages.yml`。仓库 Pages Source 需使用 GitHub Actions。
 
-- 前端: Cloudflare Pages
-- 后端: Cloudflare Workers
+## 现有限制
 
-详细部署说明请参考 [DEPLOYMENT.md](./DEPLOYMENT.md)
-
-## 文档
-
-- [开发者文档](./DEVELOPER.md) - 开发环境配置和API文档
-- [部署指南](./DEPLOYMENT.md) - 生产环境部署流程
-- [整页识别使用指南](./formula-ocr/WHOLE_PAGE_RECOGNITION_GUIDE.md) - 整页公式识别系统详细说明
-
-## 技术栈
-
-| 层级 | 技术 |
-|------|------|
-| 前端 | React 19, TypeScript, Vite, Tailwind CSS |
-| 后端 | Cloudflare Workers, KV Storage |
-| AI | 智谱 GLM-4V-Flash |
-
-## 许可证
-
-MIT
+- OCR 和检测准确率尚无足够人工标注样本支持公开百分比。
+- DOCX 的旧式 OLE/Equation Editor 对象无法在浏览器中可靠转换，会显示明确警告。
+- 视觉 OCR 依赖所选外部服务或本地模型；没有可用 Provider 时，源码公式仍可解析和导出。

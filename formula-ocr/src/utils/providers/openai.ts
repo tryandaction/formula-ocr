@@ -1,7 +1,7 @@
 // OpenAI GPT-4 Vision API provider
 
 import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
-import { extractLatex } from '../apiClient';
+
 import { buildFormulaPrompt } from './contract';
 
 export const openaiProvider: ProviderInterface = {
@@ -18,6 +18,7 @@ export const openaiProvider: ProviderInterface = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`
       },
+      signal: context?.signal,
       body: JSON.stringify({
         model: 'gpt-4o',
         max_tokens: 1024,
@@ -52,7 +53,7 @@ export const openaiProvider: ProviderInterface = {
       throw new Error('Invalid API response format');
     }
 
-    return extractLatex(data.choices[0].message.content);
+    return data.choices[0].message.content;
   },
 
   async validateApiKey(apiKey: string): Promise<boolean> {

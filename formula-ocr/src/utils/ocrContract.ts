@@ -1,8 +1,10 @@
+import katex from 'katex';
+import 'katex/contrib/mhchem';
 import type { ProviderType } from './providers/types';
 
 export type FormulaType = 'auto' | 'math' | 'physics' | 'chemistry';
 export type RecognitionMode = 'single' | 'multiple';
-export type RecognitionStatus = 'success' | 'uncertain' | 'invalid' | 'error';
+export type RecognitionStatus = 'success' | 'uncertain' | 'invalid' | 'error' | 'no_formula';
 export type RecognitionErrorClass =
   | 'invalid_input'
   | 'invalid_output'
@@ -45,6 +47,7 @@ export interface StructuredRecognitionResult {
   status: RecognitionStatus;
   latex: string;
   formulaCount: number;
+  formulas?: RecognitionCandidate[];
   confidence?: number;
   uncertainties: string[];
   candidates?: RecognitionCandidate[];
@@ -90,90 +93,67 @@ export function buildRecognitionRequest(input: RecognitionRequestInput): Recogni
   };
 }
 
-function unwrapResponse(text: string): { latex: string; uncertainties: string[]; candidates?: RecognitionCandidate[] } {
-  const trimmed = text.trim();
-  if (!trimmed) return { latex: '', uncertainties: [] };
 
-  try {
-    const parsed = JSON.parse(trimmed) as {
-      latex?: unknown;
-      uncertainties?: unknown;
-      candidates?: unknown;
-    };
-    if (typeof parsed.latex === 'string') {
-      return {
-        latex: parsed.latex.trim(),
-        uncertainties: Array.isArray(parsed.uncertainties)
-          ? parsed.uncertainties.filter((value): value is string => typeof value === 'string')
-          : [],
-        candidates: Array.isArray(parsed.candidates)
-          ? parsed.candidates.filter((candidate): candidate is RecognitionCandidate =>
-              !!candidate && typeof candidate === 'object' && typeof (candidate as RecognitionCandidate).latex === 'string')
-          : undefined,
-      };
-    }
-  } catch {
-    // Providers may return fenced text; parse it below.
-  }
-
-  const fenced = trimmed.match(/```(?:latex|tex)?\s*([\s\S]*?)\s*```/i);
-  const body = fenced?.[1]?.trim() ?? trimmed;
-  const mathMatches = [...body.matchAll(/\$\$([\s\S]*?)\$\$|(?<!\$)\$([^$\n]+)\$(?!\$)/g)];
-  if (mathMatches.length > 0) {
-    return {
-      latex: mathMatches.map(match => (match[1] ?? match[2]).trim()).join('\n'),
-      uncertainties: body.includes('[unclear]') ? ['[unclear]'] : [],
-    };
-  }
-  return { latex: fenced ? body : trimmed, uncertainties: body.includes('[unclear]') ? ['[unclear]'] : [] };
+function invalid(error = '模型输出无效，请调整选区或换服务重试', errorClass: RecognitionErrorClass = 'invalid_output'): StructuredRecognitionResult {
+  return { success: false, status: 'invalid', latex: '', formulaCount: 0, formulas: [], uncertainties: [], errorClass, error };
 }
+const strings = (value: unknown): string[] => Array.isArray(value) ? value.filter((s): s is string => typeof s === 'string') : [];
 
-function looksLikeProse(value: string): boolean {
-  return /\b(?:the|this|formula|image|cannot|can't|unable|sorry|please|clear|read)\b|无法|不能|抱歉|请提供|看不清|识别失败/i.test(value);
-}
-
-function hasBalancedDelimiters(value: string): boolean {
-  const pairs: Array<[string, string]> = [['{', '}'], ['[', ']'], ['(', ')']];
-  return pairs.every(([open, close]) => {
-    let depth = 0;
-    for (const char of value) {
-      if (char === open) depth++;
-      if (char === close) depth--;
-      if (depth < 0) return false;
-    }
-    return depth === 0;
-  });
-}
-
-export function parseRecognitionText(text: string): Pick<StructuredRecognitionResult, 'status' | 'latex' | 'formulaCount' | 'uncertainties' | 'candidates' | 'success'> {
-  const parsed = unwrapResponse(text);
-  const validation = validateRecognitionResult({ latex: parsed.latex, success: true, uncertainties: parsed.uncertainties });
-  return {
-    status: validation.status,
-    success: validation.success,
-    latex: parsed.latex,
-    formulaCount: parsed.latex ? parsed.latex.split(/\n+/).filter(Boolean).length : 0,
-    uncertainties: parsed.uncertainties,
-    candidates: parsed.candidates,
-  };
-}
-
-export function validateRecognitionResult(input: {
-  latex?: string;
-  success: boolean;
-  uncertainties?: string[];
-}): Pick<StructuredRecognitionResult, 'success' | 'status' | 'errorClass' | 'error' | 'latex' | 'formulaCount' | 'uncertainties'> {
+export function validateRecognitionResult(input: { latex?: string; success: boolean; uncertainties?: string[] }): StructuredRecognitionResult {
   const latex = input.latex?.trim() ?? '';
-  const uncertainties = input.uncertainties ?? [];
-  if (!input.success || !latex) {
-    return { success: false, status: 'invalid', latex, formulaCount: 0, uncertainties, errorClass: 'invalid_output', error: '识别结果为空' };
+  if (!input.success || !latex) return invalid('识别结果为空');
+  if (/\\(?:input|include|write|openout|read|catcode|def|gdef|href|url|html\w*)\b/i.test(latex)) return invalid('识别结果包含禁止命令', 'unsafe_output');
+  const visible = latex.replace(/\\(?:text|mathrm|operatorname|begin|end)\{[^{}]*\}/g, '').replace(/\\[a-zA-Z]+/g, '').replaceAll('[unclear]', '');
+  if (/\x60|\$/.test(latex) || /[a-zA-Z]{4,}|[\u4e00-\u9fff]{2,}/.test(visible)) return invalid();
+  const uncertainties = [...new Set([...(input.uncertainties ?? []), ...(latex.includes('[unclear]') ? ['[unclear]'] : [])])];
+  try {
+    katex.renderToString(latex.replaceAll('[unclear]', '\\square'), { throwOnError: true, trust: false, strict: 'ignore', maxExpand: 1000 });
+  } catch { return invalid('LaTeX 语法或渲染验证失败'); }
+  return { success: true, status: uncertainties.length ? 'uncertain' : 'success', latex, formulaCount: 1, formulas: [{ latex }], uncertainties };
+}
+
+export function parseRecognitionText(text: string): StructuredRecognitionResult {
+  if (typeof text !== 'string' || text.length > 200_000) return invalid();
+  let body = text.trim();
+  const fence = body.match(/^\x60{3}(?:json|latex|tex)?\s*\n?([\s\S]*?)\n?\x60{3}$/i);
+  if (fence) body = fence[1].trim();
+  let entries: Array<{ latex: string; uncertainties?: string[] }> = [];
+  let uncertainties: string[] = [];
+  let candidates: RecognitionCandidate[] | undefined;
+  let confidence: number | undefined;
+  if ((body.startsWith('{') || body.startsWith('[') || /^(null|true|false)$/.test(body)) && !body.startsWith('[unclear]')) {
+    let parsed: unknown;
+    try { parsed = JSON.parse(body); } catch { return invalid('结构化结果不是完整 JSON'); }
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return invalid();
+    const object = parsed as Record<string, unknown>;
+    if (object.success === false) return invalid('Provider 返回识别失败', 'provider_response');
+    uncertainties = strings(object.uncertainties);
+    if (typeof object.confidence === 'number' && object.confidence >= 0 && object.confidence <= 1) confidence = object.confidence;
+    if (Array.isArray(object.candidates)) {
+      candidates = object.candidates.filter((c): c is RecognitionCandidate => !!c && typeof c === 'object' && typeof c.latex === 'string');
+      if (candidates.length) uncertainties.push('存在候选结果，请人工复核');
+    }
+    if (Array.isArray(object.formulas)) {
+      for (const entry of object.formulas) {
+        if (!entry || typeof entry !== 'object' || typeof entry.latex !== 'string' || !entry.latex.trim()) return invalid();
+        entries.push({ latex: entry.latex, uncertainties: strings(entry.uncertainties) });
+      }
+    } else if (typeof object.latex === 'string') {
+      if (object.latex.trim()) entries = [{ latex: object.latex }];
+    } else return invalid('结构化结果缺少 formulas 或 latex');
+    if (!entries.length) return { success: false, status: 'no_formula', latex: '', formulaCount: 0, formulas: [], uncertainties };
+  } else {
+    const wrapper = /\$\$([\s\S]*?)\$\$|(?<!\$)\$([^$\n]+)\$(?!\$)|\\\[([\s\S]*?)\\\]|\\\(([\s\S]*?)\\\)/g;
+    const matches = [...body.matchAll(wrapper)];
+    entries = matches.length ? matches.map(m => ({ latex: (m[1] ?? m[2] ?? m[3] ?? m[4]).trim() })) : [{ latex: body }];
+    if (matches.length && body.replace(wrapper, '').trim()) uncertainties.push('响应包含公式之外的说明，请复核');
   }
-  if (/\\(?:input|include|write18|openout)\b/i.test(latex)) {
-    return { success: false, status: 'invalid', latex, formulaCount: 0, uncertainties, errorClass: 'unsafe_output', error: '识别结果包含禁止命令' };
+  const formulas: RecognitionCandidate[] = [];
+  for (const entry of entries) {
+    const checked = validateRecognitionResult({ latex: entry.latex, success: true, uncertainties: entry.uncertainties });
+    if (!checked.success) return checked;
+    formulas.push({ latex: checked.latex });
+    uncertainties.push(...checked.uncertainties);
   }
-  if (looksLikeProse(latex) || !hasBalancedDelimiters(latex) || /```|\$\$/.test(latex)) {
-    return { success: false, status: 'invalid', latex, formulaCount: 0, uncertainties, errorClass: 'invalid_output', error: '识别结果不是有效的纯 LaTeX' };
-  }
-  const status: RecognitionStatus = uncertainties.length > 0 || latex.includes('[unclear]') ? 'uncertain' : 'success';
-  return { success: true, status, latex, formulaCount: latex.split(/\n+/).filter(Boolean).length, uncertainties };
+  return { success: true, status: uncertainties.length ? 'uncertain' : 'success', latex: formulas.map(f => f.latex).join('\n\n'), formulas, formulaCount: formulas.length, uncertainties: [...new Set(uncertainties)], candidates, confidence };
 }

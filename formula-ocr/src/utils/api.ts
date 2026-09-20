@@ -32,7 +32,7 @@ async function fetchWithTimeout(
   try {
     const response = await fetch(url, {
       ...options,
-      signal: controller.signal,
+      signal: options.signal ? AbortSignal.any([options.signal, controller.signal]) : controller.signal,
     });
     return response;
   } finally {
@@ -62,11 +62,12 @@ async function apiRequest<T>(
     const data = await response.json();
     
     if (!response.ok) {
-      throw new Error(data.error || `API error: ${response.status}`);
+      throw new Error(`${response.status}: ${data.errorClass || data.error || 'API error'}`);
     }
     
     return data as T;
   } catch (error) {
+    if (options.signal?.aborted) throw options.signal.reason;
     if (error instanceof Error && error.name === 'AbortError') {
       throw new Error('请求超时，请检查网络连接后重试');
     }
@@ -158,11 +159,12 @@ export async function activateCode(code: string): Promise<ActivationResult> {
 /**
  * 公式识别（通过后端代理）
  */
-export async function recognizeFormula(request: RecognitionRequest | string): Promise<RecognitionResult> {
+export async function recognizeFormula(request: RecognitionRequest | string, signal?: AbortSignal): Promise<RecognitionResult> {
   const body = typeof request === 'string'
     ? { image: request }
     : request;
   return apiRequest<RecognitionResult>('/api/recognize', {
+    signal,
     method: 'POST',
     body: JSON.stringify(body),
   });

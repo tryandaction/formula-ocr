@@ -1,25 +1,27 @@
 # Release Notes
 
-## 2026-08-30 修复迭代
+## 2026-09-20 工作台迭代
 
-### 已完成
+### 用户流程
 
-- 建立可脱敏的诊断事件和可版本化基准清单。
-- 为单图 OCR 增加统一请求/响应契约、保守 LaTeX 清洗和错误分类。
-- 公式类型选择会进入识别请求；默认云端路径不再强制增强原图。
-- PDF 保留文本层候选、页面类型、检测/OCR 独立状态和坐标映射。
-- Markdown 源码公式解析已实现；DOCX 明确标记为暂不支持。
-- 修复批量结果乱序、Worker 失败扣额度和部分队列重试语义。
-- 结果卡片显示来源、页码、Provider、耗时和失败状态。
+- 用统一工作台替换分离的图片/文档流程。
+- 支持多文件任务状态、并发控制、取消、失败重试和批量选择导出。
+- PDF 完成后状态稳定，保留文本层公式、视觉候选和手动框选补漏。
+- DOCX 支持常见 OMML 与内嵌公式图片；不支持对象给出段落级警告。
+- Markdown 保留源码公式并正确跳过代码内容。
+- 结果直接编辑与预览；人工修改不会被自动重试覆盖。
 
-### 验证结果
+### OCR 契约
 
-- `npm run test:run`：224/224 通过。
-- `npx tsc -b --pretty false`：通过。
-- `npx tsc --noEmit`（Worker）：通过。
-- `npx vite build --outDir ../repair-baseline/dist-check`：通过。
-- 全仓 `npm run lint`：67 errors、8 warnings；本轮涉及模块为 0 errors、0 warnings。
+- 多公式通过 `formulas[]` 返回；不再按响应换行错误拆分多行环境。
+- 保留 uncertainties、candidates、confidence、Provider 和处理耗时。
+- KaTeX 负责 LaTeX 语法验证；自然语言和危险命令被拒绝。
+- 取消信号传入实际 HTTP 请求；超时、取消、认证、限流和 Provider 错误分开处理。
+- Worker 代理与浏览器直连使用同一种结构化响应语义，只有验证成功才记录额度。
 
-### 未测量/未支持
+### 工程质量
 
-真实 OCR 准确率、检测 precision/recall/IoU、页级召回、峰值内存和 Provider 延迟均未测量；现有样本不足以发布百分比。DOCX 暂不支持。默认构建仍受既有 `dist/alipay.png` Windows `EPERM` 阻断。
+- 增加结果解析、Provider 取消、DOCX、Markdown、队列、PDF 生命周期和工作台组件回归测试。
+- PDF.js Worker 改为本地构建资产，不依赖运行时 CDN。
+- 活动代码与测试 lint 通过；旧不可达 UI 明确隔离为 legacy。
+- 依赖升级后 `npm audit` 为 0 vulnerabilities。

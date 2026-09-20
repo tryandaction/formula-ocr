@@ -1,7 +1,7 @@
 // Anthropic Claude Vision API provider
 
 import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
-import { extractLatex, getMediaTypeFromBase64 } from '../apiClient';
+import { getMediaTypeFromBase64 } from '../apiClient';
 import { buildFormulaPrompt } from './contract';
 
 export const anthropicProvider: ProviderInterface = {
@@ -27,6 +27,7 @@ export const anthropicProvider: ProviderInterface = {
         'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true'
       },
+      signal: context?.signal,
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1024,
@@ -62,7 +63,7 @@ export const anthropicProvider: ProviderInterface = {
       throw new Error('Invalid API response format');
     }
 
-    return extractLatex(data.content[0].text);
+    return data.content[0].text;
   },
 
   async validateApiKey(apiKey: string): Promise<boolean> {

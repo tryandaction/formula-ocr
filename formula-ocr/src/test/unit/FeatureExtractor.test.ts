@@ -195,7 +195,7 @@ describe('FeatureExtractor', () => {
     });
 
     it('should not detect short regions', () => {
-      const region = createTestRegion(20, 20, (x, y) => {
+      const region = createTestRegion(20, 20, (x, _y) => {
         return x === 10; // Vertical line
       });
       

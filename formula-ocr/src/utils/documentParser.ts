@@ -5,6 +5,7 @@
 
 import { calculateOtsuThreshold } from './imageUtils';
 import { classifyPdfPage, extractTextLayerFormulaCandidates, type PdfPageKind, type TextFormulaCandidate } from './pdfPipeline';
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
 export interface DocumentValidationResult {
   valid: boolean;
@@ -76,6 +77,7 @@ export interface DetectionConfig {
   minConfidence?: number;
   formulaTypeFilter?: 'display' | 'inline' | 'both';
   signal?: AbortSignal;
+  awaitDetection?: boolean;
 }
 
 // Default detection config
@@ -153,7 +155,7 @@ export async function validateDocument(file: File): Promise<DocumentValidationRe
         };
       }
       return { valid: true, fileType, fileSize, pageCount };
-    } catch (error) {
+    } catch {
       return {
         valid: false,
         error: 'PDF 文件损坏或无法读取',
@@ -185,7 +187,7 @@ let pdfjsModule: typeof import('pdfjs-dist') | null = null;
 export async function preloadPdfJs(): Promise<void> {
   if (!pdfjsModule) {
     pdfjsModule = await import('pdfjs-dist');
-    pdfjsModule.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsModule.version}/build/pdf.worker.min.mjs`;
+    pdfjsModule.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
   }
 }
 
@@ -272,7 +274,9 @@ export async function parsePdfDocument(
         pageKinds.push('scan');
         textLayerFormulas.push({ pageNumber: i, candidates: [] });
       } else {
-        const combined = items.map(item => item.str || '').join(' ');
+        // Keep PDF text items separated. Joining a page into one line can turn
+        // an ordinary paragraph containing '=' into one giant formula.
+        const combined = items.map(item => item.str || '').join('\n');
         const hasMathOnlySymbol = /[∑∫∞≈≠≤≥√]/.test(combined);
         const hasEquationPattern = /[A-Za-z0-9]\s*=\s*[A-Za-z0-9]/.test(combined);
         const hasSupPattern = /[A-Za-z0-9]\s*\^\s*\d/.test(combined);
@@ -305,7 +309,8 @@ export async function parsePdfDocument(
 
   // 异步调度公式检测（不阻塞 UI）
   if (onFormulasDetected) {
-    scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected, pageMathHints);
+    const detection = scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected, pageMathHints);
+    if (detectionConfig.awaitDetection) await detection;
   }
 
   onProgress?.(100, '解析完成');
@@ -327,64 +332,26 @@ export async function parsePdfDocument(
  * 非阻塞逐页公式检测调度器
  * 使用 requestIdleCallback 避免阻塞 UI
  */
-function scheduleFormulaDetection(
+async function scheduleFormulaDetection(
   pageImages: string[],
   pageDimensions: { width: number; height: number }[],
   config: DetectionConfig,
   onFormulasDetected: (formulas: FormulaRegion[], pageNumber: number) => void | boolean,
   pageMathHints?: Array<boolean | null>
-): void {
-  const schedule = typeof requestIdleCallback === 'function'
-    ? (fn: () => void) => requestIdleCallback(fn, { timeout: 200 })
-    : (fn: () => void) => setTimeout(fn, 50);
-
-  let pageIndex = 0;
-  let cancelled = false;
-
-  const processNext = () => {
-    if (cancelled || config.signal?.aborted || pageIndex >= pageImages.length) return;
-    const currentPage = pageIndex;
-    pageIndex++;
-
-    (async () => {
-      try {
-        const mathHint = pageMathHints ? pageMathHints[currentPage] : null;
-        if (mathHint === false) {
-          const shouldContinue = onFormulasDetected([], currentPage + 1);
-          if (shouldContinue === false) {
-            cancelled = true;
-            return;
-          }
-          schedule(processNext);
-          return;
-        }
-        const { detectFormulasInPage } = await import('./advancedFormulaDetection/pdfIntegration');
-        const formulas = await detectFormulasInPage(
-          pageImages[currentPage],
-          currentPage + 1,
-          config,
-          pageDimensions[currentPage]
-        );
-        const shouldContinue = onFormulasDetected(formulas, currentPage + 1);
-        if (shouldContinue === false) {
-          cancelled = true;
-          return;
-        }
-      } catch (err) {
-        console.warn(`[FormulaDetection] Page ${currentPage + 1} failed:`, err);
-        const shouldContinue = onFormulasDetected([], currentPage + 1);
-        if (shouldContinue === false) {
-          cancelled = true;
-          return;
-        }
-      }
-      // 调度下一页
-      schedule(processNext);
-    })();
-  };
-
-  // 启动第一页
-  schedule(processNext);
+): Promise<void> {
+  const { detectFormulasInPage } = await import('./advancedFormulaDetection/pdfIntegration');
+  for (let currentPage = 0; currentPage < pageImages.length; currentPage++) {
+    config.signal?.throwIfAborted();
+    let formulas: FormulaRegion[] = [];
+    try {
+      if (pageMathHints?.[currentPage] !== false) formulas = await detectFormulasInPage(pageImages[currentPage], currentPage + 1, config, pageDimensions[currentPage]);
+    } catch (err) {
+      console.warn(`[FormulaDetection] Page ${currentPage + 1} failed:`, err);
+    }
+    config.signal?.throwIfAborted();
+    if (onFormulasDetected(formulas, currentPage + 1) === false) return;
+    await new Promise<void>(resolve => setTimeout(resolve, 0));
+  }
 }
 
 /**
@@ -396,12 +363,13 @@ function scheduleFormulaDetection(
  * 3. 区分公式与普通文本
  * 4. 紧贴公式边缘的边框
  */
-async function detectFormulasInPage(
+export async function detectFormulasInCanvas(
   canvas: HTMLCanvasElement,
   pageNumber: number,
   scale: number,
   _pageDimension: { width: number; height: number }
 ): Promise<FormulaRegion[]> {
+  void _pageDimension;
   const ctx = canvas.getContext('2d')!;
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
@@ -494,7 +462,7 @@ async function detectFormulasInPage(
   for (let i = 0; i < regions.length; i++) {
     if (regionUsed[i]) continue;
     
-    let merged = { ...regions[i] };
+    const merged = { ...regions[i] };
     regionUsed[i] = true;
     
     // 尝试合并相邻区域

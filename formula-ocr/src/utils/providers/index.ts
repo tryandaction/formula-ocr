@@ -12,10 +12,9 @@ import { zhipuProvider } from './zhipu';
 import { localProvider, checkLocalServer, LOCAL_SETUP_INSTRUCTIONS } from './local';
 import { backendProvider } from './backend';
 import { isBackendEnabled } from '../api';
+import { createProviderAdapter } from './contract';
 import {
   buildRecognitionRequest,
-  parseRecognitionText,
-  validateRecognitionResult,
   type RecognitionRequest,
 } from '../ocrContract';
 
@@ -193,24 +192,16 @@ export async function recognizeWithProvider(
   const type = providerType || 'backend';
   const provider = getProvider(type);
   const key = apiKey || getStoredApiKey(type);
-  const context = {
-    requestId: request.requestId,
-    mime: request.mime,
-    formulaType: request.formulaType,
-    mode: request.mode,
-    source: request.source,
-  };
-  const raw = await provider.recognize(request.image, key, context);
-  const parsed = parseRecognitionText(raw);
-  const validated = validateRecognitionResult({
-    latex: parsed.latex,
-    success: parsed.success,
-    uncertainties: parsed.uncertainties,
-  });
+  const validated = await createProviderAdapter(provider, key).recognize(request);
   if (!validated.success) {
     throw new Error(validated.errorClass || 'invalid_output');
   }
   return validated.latex;
+}
+
+/** Structured entry point used by the upload workbench. Never switches providers. */
+export function recognizeStructured(request: RecognitionRequest, provider: ProviderType, signal?: AbortSignal) {
+  return createProviderAdapter(getProvider(provider), getStoredApiKey(provider)).recognize(request, signal);
 }
 
 /**

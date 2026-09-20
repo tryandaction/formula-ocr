@@ -1,254 +1,59 @@
 # 部署指南
 
-## 项目概述
+项目包含静态前端 `formula-ocr` 和可选 Cloudflare Worker `formula-ocr-worker`。当前默认发布目标是 GitHub Pages；Worker 只有在 Cloudflare 账号、KV 与 secrets 均已正确绑定时才能单独部署。
 
-本项目包含两个主要部分：
-1. **formula-ocr** - 前端应用（React + Vite）
-2. **formula-ocr-worker** - 后端API（Cloudflare Workers）
+## GitHub Pages
 
-## 最新更新 (2026-01-22)
+`.github/workflows/deploy-pages.yml` 在推送到 `main` 后执行：
 
-### ✅ 整页公式识别系统
+1. `formula-ocr` 安装锁定依赖、lint、全量测试和生产构建。
+2. `formula-ocr-worker` 安装锁定依赖并执行 TypeScript typecheck。
+3. 使用 `/formula-ocr/` 作为 Vite base 上传 Pages artifact。
+4. 仅在以上质量门全部通过后发布。
 
-已成功实现并集成整页公式识别深度优化系统：
+仓库需在 GitHub Actions 中拥有 `pages: write` 与 `id-token: write` 权限。若组织策略禁止 workflow 自动启用 Pages，仓库管理员需在 Settings > Pages 中将 Source 设置为 GitHub Actions。
 
-**核心功能**：
-- ✅ 整页批量识别（无需切片）
-- ✅ 精准边界定位（≤5像素误差）
-- ✅ 智能优化（误检率≤5%，漏检率≤3%）
-- ✅ 高性能（标准页面≤2秒）
-- ✅ 多格式导出（LaTeX、Markdown、JSON）
-- ✅ React UI组件集成
+## 本地发布前验证
 
-**新增组件**：
-- WholePageProcessor - 整页处理协调器
-- BatchProcessingManager - 批处理管理器
-- BoundaryLocator - 边界定位器
-- ConfidenceScorer - 置信度评分器
-- DetectionOptimizer - 检测优化器
-- FormatConverter - 格式转换器
-- OperationManager - 操作管理器
-- CacheManager - 缓存管理器
-- ClipboardManager - 剪贴板管理器
-- FormulaOverlay - UI覆盖层组件
-- OperationMenu - 操作菜单组件
-- ProgressIndicator - 进度指示器
-- NotificationSystem - 通知系统
-- WholePageFormulaDetector - 主应用组件
-
-## 前端部署
-
-### 1. 构建前端应用
-
-```bash
-cd formula-ocr
+```powershell
+cd "formula-ocr"
+npm ci
+npm run lint
+npm run test:run
 npm run build
+npm audit --omit=dev --audit-level=high
+
+cd "../formula-ocr-worker"
+npm ci
+npx tsc --noEmit
+npm audit --omit=dev --audit-level=high
 ```
 
-构建产物位于 `formula-ocr/dist/` 目录。
+不要将 `.env`、API Key、Cloudflare token 或用户上传内容提交到仓库。
 
-### 2. 部署到Cloudflare Pages
+## Provider 配置
 
-#### 方式一：使用Wrangler CLI
+前端可让用户在浏览器本地配置受支持的 Provider。浏览器直连意味着 Key 保存在本机浏览器存储并发送到所选 Provider；这不是服务端托管凭据。生产团队若不接受该边界，应只开放 Worker 代理并在服务端管理 Key。
 
-```bash
-cd formula-ocr
-npm run deploy
-```
+## 可选 Worker 部署
 
-或手动执行：
+先检查 `formula-ocr-worker/wrangler.toml` 的账号资源与 KV namespace 确实属于目标 Cloudflare 账号，再设置 secrets：
 
-```bash
-npx wrangler pages deploy dist --project-name=formula-ocr
-```
-
-#### 方式二：通过Cloudflare Dashboard
-
-1. 登录 [Cloudflare Dashboard](https://dash.cloudflare.com/)
-2. 进入 Pages 部分
-3. 创建新项目或选择现有项目
-4. 上传 `dist` 目录的内容
-
-### 3. 配置自定义域名（可选）
-
-在Cloudflare Pages项目设置中：
-1. 进入 "Custom domains"
-2. 添加你的域名
-3. 配置DNS记录
-
-## 后端部署
-
-### 1. 配置环境变量
-
-在 `formula-ocr-worker` 目录下，设置必要的secrets：
-
-```bash
-cd formula-ocr-worker
-
-# 设置智谱AI API密钥
+```powershell
+cd "formula-ocr-worker"
 npx wrangler secret put ZHIPU_API_KEY
-
-# 设置管理员密钥
 npx wrangler secret put ADMIN_SECRET
-```
-
-### 2. 部署Worker
-
-```bash
-cd formula-ocr-worker
 npx wrangler deploy
 ```
 
-### 3. 验证部署
+这是会修改外部生产状态的操作；执行前必须确认目标账号、Worker 名称、路由、KV 和 CORS。仓库不声称当前 Cloudflare Worker 已部署。
 
-部署成功后，访问Worker URL测试API：
+## 发布后冒烟测试
 
-```bash
-curl https://formula-ocr-api.your-subdomain.workers.dev/health
-```
+- 页面资源从 Pages 子路径正确加载，浏览器控制台无错误。
+- Markdown 源码公式无需 Provider 即可解析和导出。
+- PNG/PDF/DOCX 流程显示独立的文件状态和公式状态。
+- 配置测试 Provider 后，成功、未检测到、认证、限流、网络、取消和需复核状态可区分。
+- PDF 可逐页完成并通过页面预览手动框选补漏。
 
-## 环境配置
-
-### 前端环境变量
-
-在 `formula-ocr/.env` 中配置：
-
-```env
-# API端点
-VITE_API_URL=https://formula-ocr-api.your-subdomain.workers.dev
-
-# 其他配置...
-```
-
-### 后端环境变量
-
-在 `formula-ocr-worker/wrangler.toml` 中配置：
-
-```toml
-[vars]
-CORS_ORIGIN = "*"
-
-[[kv_namespaces]]
-binding = "USERS"
-id = "your-kv-namespace-id"
-```
-
-## 部署检查清单
-
-### 前端
-- [x] 代码构建成功
-- [x] 所有核心测试通过
-- [ ] 环境变量配置正确
-- [ ] API端点配置正确
-- [ ] 部署到Cloudflare Pages
-- [ ] 自定义域名配置（可选）
-
-### 后端
-- [ ] Secrets配置完成
-- [ ] KV命名空间创建
-- [ ] Worker部署成功
-- [ ] API健康检查通过
-- [ ] CORS配置正确
-
-## 测试部署
-
-### 1. 前端测试
-
-访问部署的URL，测试以下功能：
-- [ ] 页面加载正常
-- [ ] PDF上传功能
-- [ ] 公式识别功能
-- [ ] 整页识别功能（新）
-- [ ] 公式复制功能（新）
-- [ ] 公式编辑功能（新）
-- [ ] 格式导出功能（新）
-
-### 2. 后端测试
-
-```bash
-# 健康检查
-curl https://your-worker-url/health
-
-# 测试API
-curl -X POST https://your-worker-url/api/recognize \
-  -H "Content-Type: application/json" \
-  -d '{"image": "base64-encoded-image"}'
-```
-
-## 性能监控
-
-### Cloudflare Analytics
-
-在Cloudflare Dashboard中查看：
-- 请求数量
-- 响应时间
-- 错误率
-- 带宽使用
-
-### 自定义监控
-
-可以集成以下服务：
-- Sentry（错误追踪）
-- LogRocket（用户会话记录）
-- Google Analytics（用户行为分析）
-
-## 回滚策略
-
-### 前端回滚
-
-Cloudflare Pages保留历史部署：
-1. 进入Pages项目
-2. 选择 "Deployments"
-3. 选择之前的部署版本
-4. 点击 "Rollback"
-
-### 后端回滚
-
-```bash
-cd formula-ocr-worker
-npx wrangler rollback
-```
-
-## 故障排查
-
-### 构建失败
-
-1. 检查Node.js版本（推荐18+）
-2. 清除缓存：`rm -rf node_modules package-lock.json && npm install`
-3. 检查TypeScript错误
-4. 查看构建日志
-
-### 部署失败
-
-1. 检查Wrangler配置
-2. 验证API密钥
-3. 检查KV命名空间ID
-4. 查看Cloudflare Dashboard日志
-
-### 运行时错误
-
-1. 检查浏览器控制台
-2. 查看Network标签
-3. 检查API响应
-4. 查看Worker日志
-
-## 更新日志
-
-### v1.0.0 (2026-01-22)
-- ✅ 初始版本发布
-- ✅ 整页公式识别系统集成
-- ✅ React UI组件完成
-- ✅ 前端构建成功
-- ✅ 完整文档更新
-
-## 联系支持
-
-如有问题，请：
-1. 查看项目README
-2. 查看技术文档
-3. 提交GitHub Issue
-4. 联系开发团队
-
-## 许可证
-
-MIT License
+OCR 准确率、PDF 检测 precision/recall 和端到端延迟必须按 `formula-ocr/ACCEPTANCE_TEST_GUIDE.md` 使用带 ground truth 的版本化基准测量，不能从构建或单元测试结果推断。

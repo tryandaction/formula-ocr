@@ -1,43 +1,44 @@
 # Phase 8 最终回归记录
 
-日期：2026-08-30
+日期：2026-09-20
 
-## 质量门结果
+## 当前实现范围
+
+- 图片、PDF、DOCX、Markdown 已进入统一工作台。
+- OCR 请求/响应包含 MIME、公式类型、单/多公式模式、request id、候选、置信度、不确定项、Provider、耗时和错误分类。
+- PDF 逐页检测可等待、取消，并保留页面手动框选补漏。
+- DOCX 支持常见 OMML 与内嵌 PNG/JPEG/WebP；OLE 与未支持 OMML 明确警告。
+- Markdown 直接保留源码公式并跳过代码块、行内代码和转义分隔符。
+- 文件处理队列与 OCR 队列独立限流，取消信号进入真实网络请求。
+
+## 基准与指标边界
+
+- `fixtures/manifest.json` 有 8 条人工核对的合成 PDF LaTeX ground truth 和 1 条待复核失败样本。
+- 样本少于 30 条，`evaluate.mjs` 按设计只输出“样本不足”，不输出 OCR 百分比。
+- 尚无 PDF 检测框 ground truth，因此 detection precision、recall、IoU 和页级漏检率均为“未测量”。
+- 未使用授权生产 Key 运行多 Provider 基准，因此云端 OCR 准确率及 P50/P95 为“未测量”。
+
+## 浏览器证据
+
+- 桌面 1280x800：Markdown 上传、结果编辑、选择和 Markdown 导出完成，无横向溢出。
+- 移动端 390x844：控制栏与结果操作换行正常，无横向溢出。
+- 两页版本化 PDF fixture：逐页渲染、文本层候选、视觉候选和手动框选入口完成。
+- 检查时浏览器控制台为 0 error、0 warning。
+
+## 质量门
 
 | 命令 | 结果 |
 |---|---|
-| `formula-ocr: npm run test:run` | 通过：26 个测试文件，224/224 测试通过 |
-| `formula-ocr: npx tsc -b --pretty false` | 通过 |
-| `formula-ocr: npm run lint` | 失败：67 errors、8 warnings，主要为历史 PDF viewer、示例和旧组件；本轮涉及模块单独 lint 为 0/0 |
-| `formula-ocr: npm run build` | 失败：Vite 清理既有 `dist/alipay.png` 时 Windows `EPERM unlink` |
-| `formula-ocr: npx vite build --outDir ../repair-baseline/dist-check` | 通过；未触碰既有 `dist` |
+| `formula-ocr: npm run lint` | 通过，0 error、0 warning |
+| `formula-ocr: npm run test:run` | 通过，32 个测试文件、247/247 测试通过 |
+| `formula-ocr: npm run build` | 通过，74 个模块完成生产构建；PDF Worker 为本地构建资产 |
+| `formula-ocr: npm audit --omit=dev --audit-level=high` | 通过，0 vulnerabilities |
 | `formula-ocr-worker: npx tsc --noEmit` | 通过 |
-| `git diff --check` | 通过，无空白错误 |
+| `formula-ocr-worker: npm audit --omit=dev --audit-level=high` | 通过，0 vulnerabilities |
+| `git diff --check` | 通过 |
 
-## 指标边界
+## 已知限制
 
-- OCR exact match、规范化 match、检测 precision/recall/IoU、页级召回、峰值内存和 Provider P50/P95：未测量。
-- `repair-baseline/evaluate.mjs` 在当前 9 条 manifest（0 条已配对 OCR 结果）上输出“样本不足”。
-- 现有 PDF benchmark 仅有检测数、耗时、页面状态和 backend unavailable 记录，未含人工框或 ground truth，不能当作准确率。
-
-## 功能状态
-
-- 图片：统一 MIME/请求契约；云端默认原图，结果保留 Provider/耗时/错误状态。
-- PDF：文本层/扫描分类、文本候选和视觉检测分层；坐标可往返；OCR 失败不伪装成功。
-- Markdown：源码公式直接解析，代码块跳过，不重复视觉 OCR；未闭合分隔符报错。
-- DOCX：明确暂不支持，上传不会显示“支持”后再静默失败。
-
-## 残余风险与发布前置条件
-
-- 需释放/定位占用 `formula-ocr/dist/alipay.png` 的 Windows 进程后再运行默认构建；本轮未删除文件。
-- 需清理剩余 67 个 lint errors、8 个 warnings，尤其是 PDF viewer 的 props 修改和随机渲染。
-- 需补充至少 30 个经人工核对的图片/PDF/DOCX/Markdown 基准结果，再报告任何百分比。
-- 需在干净浏览器完成文件 chooser、取消、重试、导出和移动端 E2E；当前环境 chooser 超时，未宣称通过。
-- 未执行 git commit/push/reset/checkout。
-
-## 部署尝试（2026-08-30）
-
-- `wrangler whoami`：当前 OAuth 账号为 `Tryandaction@gmail.com's Account`（`2b234c5cf6eee4c634410cd05c5c2d21`）。
-- Worker 部署被阻止：配置中的 KV namespace `23a0822d80fc47f594e650acaceedef4` 不属于当前账号（Cloudflare `10041`）。
-- Pages 部署被阻止：当前账号不存在 `formula-ocr` 项目（Cloudflare `8000007`）；项目列表也未包含该项目。
-- 未创建新 Pages 项目、KV namespace 或 Worker，以避免误部署/误绑定生产数据。
+- DOCX 旧式 OLE 公式不转换。
+- PDF 启发式检测尚未达到可声明准确率的证据门槛，必须保留人工补漏。
+- 真实 Provider 行为受模型版本、配额、网络和用户凭据影响；自动化测试使用契约级 mock，不代表模型准确率。

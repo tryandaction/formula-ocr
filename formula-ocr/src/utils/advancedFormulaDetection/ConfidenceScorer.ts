@@ -42,7 +42,6 @@ export class ConfidenceScorer implements IConfidenceScorer {
     }
     
     let score = 0;
-    let totalFeatures = 0;
     
     // 强特征
     const strongFeatures = [
@@ -53,7 +52,6 @@ export class ConfidenceScorer implements IConfidenceScorer {
     ];
     
     for (const hasFeature of strongFeatures) {
-      totalFeatures++;
       if (hasFeature) {
         score += 0.25; // 每个强特征贡献 25%
       }
@@ -68,7 +66,6 @@ export class ConfidenceScorer implements IConfidenceScorer {
     ];
     
     for (const hasFeature of mediumFeatures) {
-      totalFeatures++;
       if (hasFeature) {
         score += 0.125; // 每个中等特征贡献 12.5%
       }

@@ -3,7 +3,7 @@
  * 测试环境设置
  */
 
-import { expect, afterEach } from 'vitest';
+import { afterEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 
 // Cleanup after each test
@@ -59,7 +59,6 @@ if (typeof HTMLCanvasElement !== 'undefined') {
 }
 
 // Mock Image for predictable onload in tests
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).Image = class {
   onload: (() => void) | null = null;
   onerror: (() => void) | null = null;

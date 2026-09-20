@@ -25,43 +25,34 @@ function isEscaped(text: string, index: number): boolean {
 
 export function parseMarkdownSource(source: string, fileName = 'document.md'): DocumentParseResult {
   const formulas: DocumentFormulaSource[] = [];
+  // Mask code while preserving offsets and line numbers.
+  const mask = (s: string) => s.replace(/[^\n]/g, ' ');
+  let text = source.replace(/^[ \t]*(```+|~~~+)[^\n]*\n[\s\S]*?^[ \t]*\1[ \t]*$/gm, mask);
+  text = text.replace(/(`+)[^\n]*?\1/g, mask);
   let index = 0;
-  let line = 1;
-  let inFence = false;
-  while (index < source.length) {
-    if (source.startsWith('```', index)) {
-      inFence = !inFence;
-      index += 3;
+  let error: string | undefined;
+  while (index < text.length) {
+    const delimiters: Array<[string, string]> = [['$$', '$$'], ['\\[', '\\]'], ['\\(', '\\)'], ['$', '$']];
+    const pair = delimiters.find(([open]) => text.startsWith(open, index) && !isEscaped(text, index));
+    if (!pair) { index++; continue; }
+    const [open, close] = pair;
+    let end = index + open.length;
+    while (end < text.length && !(text.startsWith(close, end) && !isEscaped(text, end))) end++;
+    const line = source.slice(0, index).split('\n').length;
+    if (end >= text.length || (open === '$' && text.slice(index, end).includes('\n'))) {
+      error = '未闭合公式分隔符（第 ' + line + ' 行）';
+      index += open.length;
       continue;
     }
-    if (source[index] === '\n') line++;
-    if (!inFence && source[index] === '$' && !isEscaped(source, index)) {
-      const display = source.startsWith('$$', index);
-      const delimiter = display ? '$$' : '$';
-      const end = source.indexOf(delimiter, index + delimiter.length);
-      if (end < 0) {
-        return { status: 'parse_error', formulas: [], errorClass: 'invalid_syntax', error: `未闭合公式分隔符 (line ${line})` };
-      }
-      const latex = source.slice(index + delimiter.length, end).trim();
-      if (latex) {
-        formulas.push({
-          id: `md_${formulas.length + 1}`,
-          fileName,
-          format: 'markdown',
-          sourceType: 'markdown-source',
-          location: { line },
-          raw: source.slice(index, end + delimiter.length),
-          latex,
-          editable: true,
-          status: 'success',
-        });
-      }
-      index = end + delimiter.length;
-      continue;
-    }
-    index++;
+    const latex = source.slice(index + open.length, end).trim();
+    if (latex) formulas.push({
+      id: 'md_' + (formulas.length + 1), fileName, format: 'markdown',
+      sourceType: 'markdown-source', location: { line },
+      raw: source.slice(index, end + close.length), latex, editable: true, status: 'success',
+    });
+    index = end + close.length;
   }
-  return formulas.length > 0 ? { status: 'success', formulas } : { status: 'no_formulas', formulas };
+  return { status: error ? 'parse_error' : formulas.length ? 'success' : 'no_formulas', formulas, ...(error ? { error, errorClass: 'invalid_syntax' as const } : {}) };
 }
 
 export function parseDocxSource(fileName: string): DocumentParseResult {

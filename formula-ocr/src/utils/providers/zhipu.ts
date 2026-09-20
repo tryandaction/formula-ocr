@@ -2,7 +2,7 @@
 // 国产视觉大模型，有免费额度
 
 import type { ProviderInterface, ProviderType, RecognitionRequestContext } from './types';
-import { extractLatex } from '../apiClient';
+
 import { buildFormulaPrompt } from './contract';
 
 // 请求超时时间（毫秒）
@@ -45,7 +45,7 @@ export const zhipuProvider: ProviderInterface = {
             ]
           }]
         }),
-        signal: controller.signal,
+        signal: context?.signal ? AbortSignal.any([context.signal, controller.signal]) : controller.signal,
       });
 
       if (!response.ok) {
@@ -60,8 +60,9 @@ export const zhipuProvider: ProviderInterface = {
         throw new Error('API 响应格式无效');
       }
 
-      return extractLatex(data.choices[0].message.content);
+      return data.choices[0].message.content;
     } catch (error) {
+      if (context?.signal?.aborted) throw context.signal.reason;
       if (error instanceof Error && error.name === 'AbortError') {
         throw new Error('识别超时，请稍后重试或尝试更小的图片');
       }
