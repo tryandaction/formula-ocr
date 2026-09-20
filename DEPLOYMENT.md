@@ -11,7 +11,7 @@
 3. 使用 `/formula-ocr/` 作为 Vite base 上传 Pages artifact。
 4. 仅在以上质量门全部通过后发布。
 
-仓库需在 GitHub Actions 中拥有 `pages: write` 与 `id-token: write` 权限。若组织策略禁止 workflow 自动启用 Pages，仓库管理员需在 Settings > Pages 中将 Source 设置为 GitHub Actions。
+仓库需在 GitHub Actions 中拥有 `pages: write` 与 `id-token: write` 权限。workflow 使用专用 `formula-ocr-pages` Environment；若仓库管理员为该 Environment 增加了审批或分支保护，必须允许 `main` 后才能自动发布。若组织策略禁止 workflow 自动启用 Pages，管理员还需在 Settings > Pages 中将 Source 设置为 GitHub Actions。
 
 ## 本地发布前验证
 
