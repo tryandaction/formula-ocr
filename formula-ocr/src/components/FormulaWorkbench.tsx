@@ -9,6 +9,7 @@ import { readDocx } from '../utils/documentImport';
 import { parsePdfDocument, type FormulaRegion } from '../utils/documentParser';
 import { buildRecognitionRequest } from '../utils/ocrContract';
 import { recognizeStructured, type ProviderType, PROVIDER_CONFIGS } from '../utils/providers';
+import { userErrorMessage } from '../utils/runtimeState';
 import { sourceBadge, type FormulaItem, type SourceKind, type SourceTask } from '../types/workspace';
 
 const id = (prefix: string) => `${prefix}-${crypto.randomUUID()}`;
@@ -160,7 +161,7 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
         if (index < 0 || current[index].userEdited) return current;
         const next = [...current];
         const formulas = result.formulas?.length ? result.formulas : result.latex ? [{ latex: result.latex }] : [];
-        next[index] = { ...next[index], latex: formulas[0]?.latex || '', originalLatex: formulas[0]?.latex, status: result.status === 'no_formula' ? 'no_formula' : result.success ? result.status === 'uncertain' ? 'needs_review' : 'success' : 'failed', provider, confidence: result.confidence, uncertainties: result.uncertainties, processingTime: result.processingTime, errorClass: result.errorClass, error: result.error };
+        next[index] = { ...next[index], latex: formulas[0]?.latex || '', originalLatex: formulas[0]?.latex, status: result.status === 'no_formula' ? 'no_formula' : result.success ? result.status === 'uncertain' ? 'needs_review' : 'success' : 'failed', provider, confidence: result.confidence, uncertainties: result.uncertainties, processingTime: result.processingTime, errorClass: result.errorClass, error: result.success ? result.error : userErrorMessage(result.errorClass, result.error) };
         if (formulas.length > 1) next.splice(index + 1, 0, ...formulas.slice(1).map((formula, offset): FormulaItem => ({ ...next[index], id: `${itemId}-${offset + 2}`, latex: formula.latex, originalLatex: formula.latex })));
         return next;
       }));

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createQueuedTask, transitionTask, shouldRetry, buildRecognitionCacheKey, orderRuntimeResults } from '../../utils/runtimeState';
+import { createQueuedTask, transitionTask, shouldRetry, buildRecognitionCacheKey, orderRuntimeResults, userErrorMessage } from '../../utils/runtimeState';
 
 describe('OCR runtime state', () => {
   it('allows only explicit state transitions and preserves request identity', () => {
@@ -32,5 +32,13 @@ describe('OCR runtime state', () => {
       { index: 1, value: 'second' },
       { index: 0, value: 'first' },
     ])).toEqual(['first', 'second']);
+  });
+
+  it('maps stable error classes to actionable user messages', () => {
+    expect(userErrorMessage('model_unavailable')).toContain('启动本地服务');
+    expect(userErrorMessage('queue_full')).toContain('等待');
+    expect(userErrorMessage('quota')).toContain('额度');
+    expect(userErrorMessage('network')).toContain('网络');
+    expect(userErrorMessage('invalid_output')).toContain('重新框选');
   });
 });

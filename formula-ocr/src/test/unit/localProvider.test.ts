@@ -12,6 +12,17 @@ const context = {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('local OCR provider', () => {
+  it('returns an actionable message when the companion service is offline', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new TypeError('Failed to fetch')));
+
+    await expect(checkLocalServer()).resolves.toMatchObject({
+      reachable: false,
+      available: false,
+      errorClass: 'network',
+      message: expect.stringContaining('本地服务未启动'),
+    });
+  });
+
   it('reports service reachability separately from formula capability', async () => {
     const fetchMock = vi.fn()
       .mockResolvedValueOnce(new Response(JSON.stringify({ status: 'ok' }), { status: 200 }))

@@ -28,8 +28,8 @@ export async function checkLocalServer(signal?: AbortSignal): Promise<LocalServe
       return { reachable: true, available: false, message: '本地服务已连接，但公式模型不可用', errorClass: 'model_unavailable', capabilities };
     }
     return { reachable: true, available: true, message: '本地公式模型可用', capabilities };
-  } catch (error) {
-    return { reachable: false, available: false, message: error instanceof Error ? error.message : '本地服务未启动', errorClass: 'network' };
+  } catch {
+    return { reachable: false, available: false, message: '本地服务未启动，请先运行 formula-ocr-engine', errorClass: 'network' };
   }
 }
 
