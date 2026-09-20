@@ -18,6 +18,13 @@ cd "../formula-ocr-worker"
 npm ci
 npx tsc --noEmit
 npm audit --omit=dev --audit-level=high
+
+cd "../formula-ocr-engine"
+./scripts/doctor.ps1 -Json
+uv run pytest -q
+uv run ruff check .
+uv run mypy "src/formula_ocr_engine"
+uv run pip-audit
 ```
 
 停止条件：任一命令非零退出、测试挂起、构建依赖外部 CDN，或审计存在 high/critical 漏洞时不得发布。
@@ -54,7 +61,9 @@ npm audit --omit=dev --audit-level=high
 
 样本不足、ground truth 未完成或 Provider Key 不可用时输出“未测量”，不得推断百分比。
 
-仓库当前基准 `repair-baseline/fixtures/real-pdf-v1` 有 33 条 Provider 配对结果，可输出 v1 指标。新增模型、prompt、预处理或解析规则必须保留旧结果并以独立结果文件复测，禁止根据模型输出回改 ground truth。
+公开自动化使用 `repair-baseline/fixtures/synthetic-formula-v1` 的 33 个项目生成样本。真实论文 benchmark 位于私有本地目录，当前版本化结果/人工复核保留在 `repair-baseline/local-engine`。新增模型、prompt、预处理或解析规则必须写独立结果文件，禁止根据模型输出回改 ground truth。
+
+当前门槛状态：PP-FormulaNet-S、MFD 1.5 和本地 PDF-to-Markdown 均未通过各自发布门槛。验收时必须保持其“实验/禁用”状态，不能因为契约测试通过而改成推荐。
 
 ## 5. 状态验收
 

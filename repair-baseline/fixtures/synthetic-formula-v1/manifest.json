@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "name": "synthetic-formulas-v1",
+  "generatedAt": "2026-09-21",
+  "renderer": "KaTeX 0.16.27 / Chromium screenshot",
+  "license": "Project-generated fixtures; ground-truth strings authored for evaluation",
+  "samples": [
+    {
+      "id": "bravyi-p6-01",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-01.png",
+      "formulaType": "matrix",
+      "groundTruthLatex": "S_2=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}\\quad\\text{and}\\quad S_3=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}",
+      "sha256": "900559D2840EFCE7699221A96767E2E4865CEEA339B6309C5E803C72972B6EAA",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-02",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-02.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "x=S_\\ell\\otimes I_m\\quad\\text{and}\\quad y=I_\\ell\\otimes S_m",
+      "sha256": "A8D23B374951752C831F9F53DC68EBF3B0CE88D0CD1FA82976F9B430AE29365A",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-03",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-03.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "A=A_1+A_2+A_3\\quad\\text{and}\\quad B=B_1+B_2+B_3",
+      "sha256": "91DEB1DFD6F9F4ACBAA50EB704F18F676DD0EAEB72168B288270FB652090AB7A",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-04",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-04.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H^X=[A\\mid B]\\quad\\text{and}\\quad H^Z=[B^T\\mid A^T]",
+      "sha256": "58253CEF2D7EC68016AA563BD787C2C08CC1E9F67CF6AA52510547C7142EE98A",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-05",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-05.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "n=2\\ell m,\\quad k=2\\times\\dim(\\ker(A)\\cap\\ker(B)),\\quad d=\\min\\{|v|:v\\in\\ker(H^X)\\setminus\\operatorname{rs}(H^Z)\\}",
+      "sha256": "17C8A4728F7B61CE89E700F3E38B6615784987594E5BD5D75E70FF7C063DED87",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-06",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-06.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H_A^X=[A_2+A_3\\mid B_3]\\quad\\text{and}\\quad H_A^Z=[B_3^T\\mid A_2^T+A_3^T]",
+      "sha256": "0BC7B485566D8D1918A78137D7B4A0D08BFC220D3CC8F7A26C4AA96272438226",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "bravyi-p6-07",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/bravyi-p6-07.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H_B^X=[A_1\\mid B_1+B_2]\\quad\\text{and}\\quad H_B^Z=[B_1^T+B_2^T\\mid A_1^T]",
+      "sha256": "E2F902C60D3F34D266A66547610858433575B6A77DC2041755F5EC058E2A4E70",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p3-01",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p3-01.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H(t)=\\sum_{j=1}^{n}\\frac{\\Omega_j(t)}{2}|1\\rangle_j\\langle r|+\\mathrm{h.c.}+\\sum_{j<k}B_{jk}|rr\\rangle_{jk}\\langle rr|",
+      "sha256": "3BBA027C861A646A3AC9E1293BEADFA665D11AAE74A1E835CF38BA932E0E1148",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p4-02",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p4-02.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H=\\sum_q H_q,\\quad H_q=P_qHP_q",
+      "sha256": "31BFE4A6F4F72ECBAA7544DA414EF16B41920C82A1C89D8D3F47070C720D9EF6",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p4-03",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p4-03.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "U(T)|q\\rangle=e^{i\\xi_q}|q\\rangle",
+      "sha256": "8F2E17538882C2A047C207EBE3A1A750685949FEFCCB36927F5DA37F175CE230",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p4-04",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p4-04.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\int_{\\mathcal C}d\\psi\\,|\\langle\\psi|U_0^\\dagger U(T)|\\psi\\rangle|^2",
+      "sha256": "620E87F85184BF90DECFF63DCCFCE7E549E1976C1D0E2490053B479EF2EFB671",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p4-05",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p4-05.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{2^n(2^n+1)}\\left(\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\\rangle\\right|^2+\\sum_q|\\langle q|U(T)|q\\rangle|^2\\right)",
+      "sha256": "FF7A8CDAA29B970E7359A5CE8007C7D5143863F5D881DB7B3DB21FD24570996D",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p5-06",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p5-06.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "F_{\\mathrm{bell}}=4^{-n}\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\\rangle\\right|^2",
+      "sha256": "114635DADD33E12B50AA3F2ECBD45182B7F70066EF50FDF3911F68F3EAD602EA",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p6-07",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p6-07.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{20}\\left(|1+2a_{01}+a_{11}|^2+1+2|a_{01}|^2+|a_{11}|^2\\right)",
+      "sha256": "1915014725BC7C03A761B37719B1913A72049768B80E0A5C229E8D0C0F22AC26",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p6-08",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p6-08.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{72}\\left(|1+3a_{001}+3a_{011}+a_{111}|^2+1+3|a_{001}|^2+3|a_{011}|^2+|a_{111}|^2\\right)",
+      "sha256": "9F20DE5161089AF1F963F696AE9D08525735EC2C68D1293D814D6E4DFAD9AD4B",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p6-09",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p6-09.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{11}=\\frac{\\Omega}{2}\\left(|11\\rangle\\langle1r|+|11\\rangle\\langle r1|+|1r\\rangle\\langle rr|+|r1\\rangle\\langle rr|\\right)+\\mathrm{h.c.}+B|rr\\rangle\\langle rr|=\\frac{\\sqrt2\\Omega}{2}\\left(|11\\rangle\\langle W|+|W\\rangle\\langle11|\\right)+\\mathrm{h.c.}+B|rr\\rangle\\langle rr|",
+      "sha256": "DCD8748C34097FFA831DD99C494E831114AA4F8346B07391DAAEA4AEB877BA0B",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p6-10",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p6-10.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{011}=|0\\rangle\\langle0|\\otimes H_{11}",
+      "sha256": "2CF72FA1C7BCC6F363CA67C2E89F40D1AA9D73BC4F570F1AE3523DF97136B9CA",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "jandura-p6-11",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/jandura-p6-11.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{111}^{\\mathrm{sym}}=\\frac{\\sqrt3\\Omega}{2}|111\\rangle\\langle W_1|+\\Omega|W_1\\rangle\\langle W_2|+\\frac{\\sqrt3\\Omega}{2}|W_2\\rangle\\langle111|+\\mathrm{h.c.}+B|W_2\\rangle\\langle W_2|+3B|rrr\\rangle\\langle rrr|",
+      "sha256": "D5C27B0555EB1F0589C9513A525DD201D22F23BFDAA8D9CE39B090E6EA01A891",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p10-18",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p10-18.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "V_{\\mathrm{dd}}=\\frac{1}{R^3}\\left(\\langle\\mathbf d\\rangle^2-3\\langle\\mathbf d\\rangle\\cdot\\hat{\\mathbf R}\\hat{\\mathbf R}\\cdot\\langle\\mathbf d\\rangle\\right)",
+      "sha256": "08A35146F2E0B2178B21C65494D1D862C3BD76F061A611B1C09279DB225C998E",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p11-19",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p11-19.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "|g\\rangle,\\ |\\gamma k\\rangle,\\quad\\text{and}\\quad |\\varphi kl\\rangle",
+      "sha256": "4645984FF5514375FFBAF6C6EF85EB7BF461200F7207984B910C8FFADDFB086D",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p11-20",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p11-20.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Omega_N=\\sqrt{\\sum_{\\gamma k}|\\Omega_{\\gamma k}|^2}=\\sqrt N\\Omega",
+      "sha256": "5FE4BE34AA9104E999C623847A5922A12CB1195FFFDC220A6C7B4BC665D650BC",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p11-21",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p11-21.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "|\\psi\\rangle=c_g|g\\rangle+c_s|s\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi kl}|\\varphi kl\\rangle",
+      "sha256": "02D3318B64D2D2B7528C1F98B9CD9FA8898D3D1B1A6941A95F4E2E6982AAB5C4",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-22a",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-22a.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_g=\\frac{\\Omega_N^*}{2}c_s",
+      "sha256": "58115DB1D536E06EBCC42B75FC6FDA6A0011DBA87B7B0E86413EBF0C222FC07E",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-22b",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-22b.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_s=\\frac{\\Omega_N}{2}c_g+\\frac{\\Omega_N^*}{N}\\sum_{\\varphi,k<l}\\kappa_{\\varphi kl}^*c_{\\varphi kl}",
+      "sha256": "D54FAB1D5368EFE9E6BD7771D605E2E0E4F87E272A633EC297FC8075712956C8",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-22c",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-22c.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_{\\varphi kl}=\\Delta_{\\varphi kl}c_{\\varphi kl}+\\frac{\\Omega_N}{N}\\kappa_{\\varphi kl}c_s",
+      "sha256": "A85E8C75A7FA5CE09BCEB327CFA47F42F18FFB2A382E472495A765A4A620C154",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-23",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-23.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "P_2=\\sum_{\\varphi,k<l}|c_{\\varphi kl}|^2=\\frac{|\\Omega_N|^2}{N^2}\\sum_{\\varphi,k<l}\\left|\\frac{\\kappa_{\\varphi kl}}{\\Delta_{\\varphi kl}}\\right|^2",
+      "sha256": "2DF6EC028DEBE799632D212487733B754FB932613795D8E5328C69772754653A",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-24",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-24.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "\\frac{1}{\\mathrm B^2}=\\frac{2}{N(N-1)}\\sum_{\\varphi,k<l}\\frac{|\\kappa_{\\varphi kl}|^2}{\\Delta_{\\varphi kl}^2}",
+      "sha256": "DC0192C1295659DF5C10DAA8DE9D3F43BCC1B27CFB6E5BB6D43937EAB9A92928",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-25",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-25.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "P_2=\\frac{N-1}{N}\\frac{|\\Omega_N|^2}{2\\mathrm B^2}",
+      "sha256": "D40A01086AA7D0743A1284E0FB4F5068D1F3B4E3DC065C119B80D2604806B0E1",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-26",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-26.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\left(1+\\frac{\\Omega^2}{\\omega_{10}^2}+\\frac{\\Omega^2}{7\\mathrm B^2}\\right)+\\frac{\\Omega^2}{8\\mathrm B^2}\\left(1+\\frac{6\\mathrm B^2}{\\omega_{10}^2}\\right)",
+      "sha256": "7A756B41AD351A296B0F1CD957F223D3576BD78F3614A94A0B45B5B3BA4C37AA",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-27",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-27.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Omega_{\\mathrm{opt}}=(7\\pi)^{1/3}\\frac{\\mathrm B^{2/3}}{\\tau^{1/3}}",
+      "sha256": "3C9DE601C892F851762B330EF6CE7728D1AC311C0FA25FC93A881BDA4D2C20DF",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p12-28",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p12-28.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "E_{\\min}=\\frac{3(7\\pi)^{2/3}}{8}\\frac{1}{(\\mathrm B\\tau)^{2/3}}",
+      "sha256": "56932A4A41D391DC999D51634909BFA0129416CDBC23095102A1D2A71A211BD6",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p13-29",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p13-29.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Delta_{\\mathrm{dd}}\\simeq\\sum_\\varphi\\frac{|\\kappa_\\varphi|^2\\Omega^2}{|\\kappa_\\varphi|^2\\Omega^2+\\Delta_\\varphi^2}\\Delta_\\varphi",
+      "sha256": "330899C2BE2ACA55BA6D6842626C19C9936DDDCCD3F6F43C6FC7779230FAF95E",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    },
+    {
+      "id": "saffman-p13-30",
+      "sourceType": "synthetic-katex-render",
+      "inputFile": "crops/saffman-p13-30.png",
+      "formulaType": "physics",
+      "groundTruthLatex": "E\\simeq\\frac{\\pi}{\\tau}\\left(\\frac{1}{\\Delta_{\\mathrm{dd}}}+\\frac{1}{\\Omega}\\right)+\\left(\\frac{2\\Delta_{\\mathrm{dd}}^2}{\\Omega^2}+\\frac{\\Omega^2}{\\omega_{10}^2}\\right)",
+      "sha256": "67B6A7B5B0DCEF055AB717B449B5FB47FA6F9BDE592270BDA819E47ADD88AC93",
+      "allowCloudUpload": true,
+      "status": "human-ground-truth-rendered"
+    }
+  ]
+}

@@ -153,7 +153,7 @@ def test_real_paddle_model_smoke_is_opt_in() -> None:
         Path(__file__).parents[3]
         / "repair-baseline"
         / "fixtures"
-        / "real-pdf-v1"
+        / "synthetic-formula-v1"
         / "crops"
         / "jandura-p4-03.png"
     )

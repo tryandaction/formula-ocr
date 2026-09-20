@@ -44,4 +44,6 @@ API Key 保存在浏览器 localStorage。部署时不要把 `.env`、私有图�
 
 自动化测试验证请求契约、严格结果解析、取消、队列、Markdown、DOCX/OMML、PDF 生命周期和主要 UI 交互。测试通过只说明软件行为符合当前契约。
 
-`repair-baseline/fixtures/real-pdf-v1` 包含第一版真实标注集：3 篇物理论文、10 页、33 个公式。当前实测栅格检测 precision 6.74%、recall 18.18%；`glm-4v-flash` 人工数学可接受率 9.09%。该样本很小，不能外推为通用准确率，但足以证明旧视觉模型和启发式检测尚未达到专业发布标准。专用 `glm-ocr` 因当前测试账户无余额/资源包未完成评估。
+公开仓库提供 33 个 KaTeX 合成公式 fixture；真实论文裁剪仅保留在私有本地评估目录。当前真实 33 公式结果：PP-FormulaNet-S product-valid 15/33、人工可接受 10/33、exact/normalized 0/33；MFD display precision/recall 25.00%/27.27%。两者均未达到自动推荐门槛。当前可复现 `glm-4v-flash` 人工复核配对为 2/33（6.06%）。这些小样本不能外推为通用准确率。
+
+本地实验服务的安装、能力和许可见 `../formula-ocr-engine/README.md`。完整 Pix2Text PDF-to-Markdown 当前禁用，PDF 继续使用浏览器文本层、页面候选和手动框选路径。

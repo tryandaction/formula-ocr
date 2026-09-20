@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../formula-ocr/node_modules/katex/dist/katex.min.css">
+  <style>
+    html, body { margin: 0; background: #fff; color: #111; }
+    body { display: inline-flex; min-width: 320px; min-height: 96px; padding: 28px 34px; box-sizing: border-box; align-items: center; justify-content: center; }
+    #formula { display: inline-block; max-width: 1500px; font-size: 24px; line-height: 1.45; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <main id="formula" aria-label="Synthetic formula"></main>
+  <script src="../../../formula-ocr/node_modules/katex/dist/katex.min.js"></script>
+  <script>
+    const latex = decodeURIComponent(location.hash.slice(1));
+    try {
+      katex.render(latex, document.getElementById('formula'), {
+        displayMode: true,
+        throwOnError: true,
+        strict: 'ignore',
+        trust: false,
+      });
+      document.documentElement.dataset.ready = 'true';
+    } catch (error) {
+      document.documentElement.dataset.error = String(error);
+    }
+  </script>
+</body>
+</html>

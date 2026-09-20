@@ -16,6 +16,7 @@ Formula OCR 是一个 React + TypeScript 公式提取工作台，用于从图片
 ```text
 formula-ocr/          React 前端与浏览器文件解析
 formula-ocr-worker/   Cloudflare Worker 代理与额度服务
+formula-ocr-engine/   Python 3.11 本地公式 OCR/检测伴随服务（实验）
 repair-baseline/      可重复基线和阶段证据
 ```
 
@@ -35,10 +36,22 @@ npm ci
 npx tsc --noEmit
 ```
 
+本地实验引擎：
+
+```powershell
+cd "formula-ocr-engine"
+./scripts/setup.ps1
+./scripts/doctor.ps1
+./scripts/start.ps1
+```
+
 GitHub Pages 工作流位于 `.github/workflows/deploy-pages.yml`。仓库 Pages Source 需使用 GitHub Actions。
 
 ## 现有限制
 
-- `repair-baseline/fixtures/real-pdf-v1` 已提供 3 篇物理论文、10 页、33 个公式的首版人工标注。该小样本上的栅格检测 precision/recall 为 6.74%/18.18%，`glm-4v-flash` 人工数学可接受率为 9.09%；不能外推为通用准确率。
+- 公开仓库使用 33 个 KaTeX 合成公式 fixture；真实论文裁剪仅用于本地私有评估。2026-09-20 的 33 个真实公式上，PP-FormulaNet-S product-valid 15/33、人工数学可接受 10/33、exact/strict normalized 均为 0/33、CPU P95 5340ms，未达到推荐门槛。
+- MFD 1.5 的 display 检测 precision/recall 为 25.00%/27.27%（IoU 0.5），未达到自动检测门槛，产品仍保留文本层与手动框选路径。
+- 当前可复现的 `glm-4v-flash` 结果/人工复核配对为 2/33（6.06%）；历史报告的 3/33 来自不同结果配对，不能混用。
+- 本地 PDF-to-Markdown 模型仍禁用：Pix2Text 1.1.7 的可运行依赖存在审计问题，安全 Transformers 版本与其 Optimum 依赖不兼容。
 - DOCX 的旧式 OLE/Equation Editor 对象无法在浏览器中可靠转换，会显示明确警告。
 - 视觉 OCR 依赖所选外部服务或本地模型；没有可用 Provider 时，源码公式仍可解析和导出。
