@@ -9,6 +9,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Literal, Protocol
 
+from formula_ocr_engine.contracts import ErrorClass
+from formula_ocr_engine.errors import EngineError
+
 JobStatus = Literal["queued", "running", "completed", "failed", "cancelled"]
 
 
@@ -43,7 +46,10 @@ class DocumentJobManager:
         engine_factory: Callable[[], DocumentEngine],
         *,
         temp_root: Path | None = None,
+        capacity: int = 8,
     ) -> None:
+        if capacity < 1:
+            raise ValueError("capacity must be positive")
         self._engine_factory = engine_factory
         self._temp_root = temp_root
         self._executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="formula-doc")
@@ -51,11 +57,16 @@ class DocumentJobManager:
         self._cancellations: dict[str, threading.Event] = {}
         self._done: dict[str, threading.Event] = {}
         self._condition = threading.Condition()
+        self._capacity = capacity
 
     def submit(self, data: bytes, file_name: str, request_id: str) -> str:
         job_id = f"doc-{uuid.uuid4()}"
         cancel = threading.Event()
         job = DocumentJob(jobId=job_id, requestId=request_id, fileName=file_name)
+        with self._condition:
+            active = sum(job.status in {"queued", "running"} for job in self._jobs.values())
+            if active >= self._capacity:
+                raise EngineError(ErrorClass.QUEUE_FULL, "local document queue is full")
         with tempfile.NamedTemporaryFile(
             suffix=".pdf",
             dir=self._temp_root,

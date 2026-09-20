@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from
 import type { FormulaType } from './FormulaTypeSelector';
 import { FormulaPreview } from './FormulaPreview';
 import { PdfRegionSelector } from './PdfRegionSelector';
-import { TaskQueue } from '../utils/taskQueue';
+import { queueFailureMessage, TaskQueue } from '../utils/taskQueue';
 import { convertToBase64 } from '../utils/fileHandler';
 import { parseMarkdownSource } from '../utils/documentFormats';
 import { readDocx } from '../utils/documentImport';
@@ -133,6 +133,8 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
       void sourceQueue.add(source.id, signal => processSource(file, source, signal)).then(result => {
         if (result.status === 'cancelled') updateSource(source.id, { status: 'cancelled', message: '已取消' });
         if (result.status === 'error') updateSource(source.id, { status: 'failed', message: result.error instanceof Error ? result.error.message : '文件处理失败' });
+        const queueMessage = queueFailureMessage(result);
+        if (queueMessage) updateSource(source.id, { status: 'failed', message: queueMessage });
       });
     }
   }, [processSource, sourceQueue, updateSource]);
@@ -166,6 +168,8 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
     }).then(outcome => {
       if (outcome.status === 'cancelled') setItems(current => current.map(item => item.id === itemId ? { ...item, status: 'cancelled' } : item));
       if (outcome.status === 'error') setItems(current => current.map(item => item.id === itemId ? { ...item, status: 'failed', error: outcome.error instanceof Error ? outcome.error.message : '识别失败' } : item));
+      const queueMessage = queueFailureMessage(outcome);
+      if (queueMessage) setItems(current => current.map(item => item.id === itemId ? { ...item, status: 'failed', errorClass: outcome.status, error: queueMessage } : item));
     });
   }, [formulaType, items, mode, ocrQueue, provider]);
 

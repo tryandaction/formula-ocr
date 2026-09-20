@@ -237,7 +237,14 @@ def create_app(
                 status_code=400,
                 content={"requestId": requestId, "errorClass": "unsupported_format", "error": "PDF magic bytes are invalid"},
             )
-        job_id = document_jobs.submit(data, file.filename or "document.pdf", requestId)
+        try:
+            job_id = document_jobs.submit(data, file.filename or "document.pdf", requestId)
+        except EngineError as error:
+            status_code = 429 if error.error_class == ErrorClass.QUEUE_FULL else 400
+            return JSONResponse(
+                status_code=status_code,
+                content={"requestId": requestId, "errorClass": error.error_class.value, "error": error.message},
+            )
         return JSONResponse(status_code=202, content={"requestId": requestId, "jobId": job_id, "status": "queued"})
 
     @app.get("/v1/jobs/{job_id}")

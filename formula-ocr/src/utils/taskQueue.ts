@@ -2,7 +2,14 @@ export type QueueResult<T> =
   | { status: 'done'; value: T }
   | { status: 'error'; error: unknown }
   | { status: 'cancelled' }
-  | { status: 'duplicate' };
+  | { status: 'duplicate' }
+  | { status: 'queue_full' };
+
+export function queueFailureMessage(result: QueueResult<unknown>): string | undefined {
+  if (result.status === 'queue_full') return '任务过多，请等待当前任务完成后重试';
+  if (result.status === 'duplicate') return '该任务已在队列中';
+  return undefined;
+}
 
 interface Job<T> {
   id: string;
@@ -17,16 +24,20 @@ export class TaskQueue {
   private readonly active = new Map<string, AbortController>();
 
   private readonly concurrency: number;
+  private readonly capacity: number;
 
-  constructor(concurrency = 3) {
+  constructor(concurrency = 3, capacity = 32) {
     if (!Number.isInteger(concurrency) || concurrency < 1) throw new Error('concurrency must be positive');
+    if (!Number.isInteger(capacity) || capacity < concurrency) throw new Error('capacity must be at least concurrency');
     this.concurrency = concurrency;
+    this.capacity = capacity;
   }
 
   add<T>(id: string, run: (signal: AbortSignal) => Promise<T>): Promise<QueueResult<T>> {
     if (this.active.has(id) || this.queued.some(job => job.id === id)) {
       return Promise.resolve({ status: 'duplicate' });
     }
+    if (this.size >= this.capacity) return Promise.resolve({ status: 'queue_full' });
     return new Promise(resolve => {
       this.queued.push({ id, run, controller: new AbortController(), resolve } as Job<unknown>);
       this.pump();
