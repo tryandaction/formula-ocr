@@ -25,3 +25,9 @@
 - PDF.js Worker 改为本地构建资产，不依赖运行时 CDN。
 - 活动代码与测试 lint 通过；旧不可达 UI 明确隔离为 legacy。
 - 依赖升级后 `npm audit` 为 0 vulnerabilities。
+
+### 发布状态
+
+- 修复提交已推送到 `main`。
+- Pages workflow 的代码质量门已配置，但本次运行因 GitHub 账号 billing issue 被锁定而未启动；解锁账号后可从 Actions 重新运行 `Deploy Formula OCR Pages`。
+- 未将历史 Pages URL 或旧成功运行误报为本次版本部署成功。

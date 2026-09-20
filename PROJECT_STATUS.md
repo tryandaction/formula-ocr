@@ -23,6 +23,8 @@
 
 精确测试数和命令以最新 CI/本地质量门输出为准。
 
+本次提交已推送至 `origin/main`（`b787829`）。GitHub Pages workflow 已触发，但 GitHub 账号当前因 billing issue 被锁定，job 未启动；因此当前 Pages 地址仍可能是历史部署，不能视为本次版本已发布。
+
 ## 未完成的证据
 
 - 没有足够人工 ground truth，不能发布 OCR exact match 或 PDF precision/recall。
