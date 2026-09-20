@@ -4,7 +4,8 @@
  */
 
 import { calculateOtsuThreshold } from './imageUtils';
-import { classifyPdfPage, extractTextLayerFormulaCandidates, type PdfPageKind, type TextFormulaCandidate } from './pdfPipeline';
+import { classifyPdfPage, extractTextLayerFormulaCandidates, reconstructPdfTextLines, shouldUseVisualDetection, type PdfPageKind, type TextFormulaCandidate } from './pdfPipeline';
+import { runStreamingPagePipeline } from './pdfDetectionLifecycle';
 import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 
 export interface DocumentValidationResult {
@@ -48,7 +49,7 @@ export interface ParsedDocument {
   pageCount: number;
   formulas: FormulaRegion[];
   thumbnails: string[]; // 页面缩略图 base64
-  pageImages: string[]; // 高清页面图像（用于预览）
+  pageImages: string[]; // 有界尺寸页面预览（用于人工框选）
   pageDimensions: { width: number; height: number }[]; // 每页原始尺寸
   pageKinds: PdfPageKind[];
   textLayerFormulas: Array<{ pageNumber: number; candidates: TextFormulaCandidate[] }>;
@@ -69,6 +70,7 @@ const PDF_PAGE_LIMIT = 100;
 // 公式提取时的渲染比例 - 更高清晰度
 const FORMULA_RENDER_SCALE = 3.0;
 const MAX_RENDER_PIXELS = 4_500_000;
+const PREVIEW_MAX_WIDTH = 1200;
 const THUMBNAIL_WIDTH = 150;
 
 // Advanced detection configuration
@@ -203,7 +205,7 @@ async function getPdfJs(): Promise<typeof import('pdfjs-dist')> {
 
 /**
  * 解析 PDF 文档并提取公式区域
- * 立即返回渲染结果（formulas: []），然后通过 requestIdleCallback 逐页异步检测公式
+ * 逐页渲染、提取并释放高清资源，只保留有界尺寸的人工复核预览。
  */
 export async function parsePdfDocument(
   file: File,
@@ -219,99 +221,86 @@ export async function parsePdfDocument(
   const pdf = await pdfjs.getDocument({ data: buffer }).promise;
   const pageCount = pdf.numPages;
 
-  const thumbnails: string[] = [];
-  const pageImages: string[] = [];
-  const pageDimensions: { width: number; height: number }[] = [];
-  const pageMathHints: Array<boolean | null> = [];
-  const pageKinds: PdfPageKind[] = [];
-  const textLayerFormulas: Array<{ pageNumber: number; candidates: TextFormulaCandidate[] }> = [];
   const formulas: FormulaRegion[] = [];
-
-  for (let i = 1; i <= pageCount; i++) {
-    onProgress?.((i / pageCount) * 80, `正在渲染第 ${i}/${pageCount} 页...`);
-
-    const page = await pdf.getPage(i);
-
-    // 获取原始页面尺寸
-    const originalViewport = page.getViewport({ scale: 1 });
-    pageDimensions.push({
-      width: originalViewport.width,
-      height: originalViewport.height,
-    });
-
-    // 高清渲染用于预览与公式提取
-    const renderScale = computeRenderScale(originalViewport.width, originalViewport.height);
-    const viewport = page.getViewport({ scale: renderScale });
-
-    // 创建高清 canvas
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d', {
-      alpha: false,
-      willReadFrequently: true
-    })!;
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-
-    // 白色背景
-    context.fillStyle = '#ffffff';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    await page.render({
-      canvasContext: context,
-      viewport: viewport,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any).promise;
-
-    // 生成高清页面图像（PNG格式保持清晰度）
-    pageImages.push(canvas.toDataURL('image/png'));
-
-    // 提取文本层用于数学符号快速判断（仅在有文本时生效）
-    try {
-      const textContent = await page.getTextContent();
-      const items = (textContent.items as Array<{ str?: string }>).filter(item => item?.str);
-      if (items.length === 0) {
-        pageMathHints.push(null);
-        pageKinds.push('scan');
-        textLayerFormulas.push({ pageNumber: i, candidates: [] });
-      } else {
-        // Keep PDF text items separated. Joining a page into one line can turn
-        // an ordinary paragraph containing '=' into one giant formula.
-        const combined = items.map(item => item.str || '').join('\n');
-        const hasMathOnlySymbol = /[∑∫∞≈≠≤≥√]/.test(combined);
-        const hasEquationPattern = /[A-Za-z0-9]\s*=\s*[A-Za-z0-9]/.test(combined);
-        const hasSupPattern = /[A-Za-z0-9]\s*\^\s*\d/.test(combined);
-        const hasSubPattern = /[A-Za-z0-9]\s*_\s*\d/.test(combined) || /_\{[^}]+\}/.test(combined);
-        const hasLatexCommand = /\\(frac|sum|int|sqrt|alpha|beta|gamma|delta|theta|pi|sigma|mu|nu|rho|lambda|cdot|times|leq|geq|neq|approx)/.test(combined);
-        const hasMathText = hasMathOnlySymbol || hasEquationPattern || hasSupPattern || hasSubPattern || hasLatexCommand;
-        pageMathHints.push(hasMathText);
-        const pageKind = classifyPdfPage({ text: combined, hasTextLayer: true });
-        pageKinds.push(pageKind);
-        textLayerFormulas.push({ pageNumber: i, candidates: extractTextLayerFormulaCandidates(combined) });
+  const detector = onFormulasDetected
+    ? (await import('./advancedFormulaDetection/pdfIntegration')).detectFormulasInPage
+    : null;
+  let detectionActive = true;
+  const pages = await runStreamingPagePipeline({
+    pageCount,
+    signal: detectionConfig.signal,
+    loadPage: async (pageNumber) => {
+      onProgress?.(((pageNumber - 1) / pageCount) * 98, `正在解析第 ${pageNumber}/${pageCount} 页...`);
+      const page = await pdf.getPage(pageNumber);
+      const originalViewport = page.getViewport({ scale: 1 });
+      const renderScale = computeRenderScale(originalViewport.width, originalViewport.height);
+      const viewport = page.getViewport({ scale: renderScale });
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d', { alpha: false, willReadFrequently: true })!;
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: context, viewport } as Parameters<typeof page.render>[0]).promise;
+      return { page, canvas, originalViewport };
+    },
+    processPage: async ({ page, canvas, originalViewport }, pageNumber) => {
+      let pageKind: PdfPageKind = 'scan';
+      let candidates: TextFormulaCandidate[] = [];
+      try {
+        const textContent = await page.getTextContent();
+        const items = (textContent.items as Array<{ str?: string; transform?: number[]; width?: number }>).filter(item => item?.str);
+        if (items.length > 0) {
+          const combined = reconstructPdfTextLines(items.map(item => ({
+            str: item.str || '',
+            x: item.transform?.[4] ?? 0,
+            y: item.transform?.[5] ?? 0,
+            width: item.width ?? 0,
+          }))).join('\n');
+          pageKind = classifyPdfPage({ text: combined, hasTextLayer: true });
+          candidates = extractTextLayerFormulaCandidates(combined);
+        }
+      } catch (error) {
+        console.warn(`[FormulaDetection] Page ${pageNumber} text layer failed:`, error);
       }
-    } catch (err) {
-      console.warn('[FormulaDetection] Text layer read failed:', err);
-      pageMathHints.push(null);
-      pageKinds.push('scan');
-      textLayerFormulas.push({ pageNumber: i, candidates: [] });
-    }
 
-    // 生成缩略图
-    const thumbScale = THUMBNAIL_WIDTH / originalViewport.width;
-    const thumbnailCanvas = document.createElement('canvas');
-    const thumbCtx = thumbnailCanvas.getContext('2d')!;
-    thumbnailCanvas.width = THUMBNAIL_WIDTH;
-    thumbnailCanvas.height = originalViewport.height * thumbScale;
-    thumbCtx.drawImage(canvas, 0, 0, thumbnailCanvas.width, thumbnailCanvas.height);
-    thumbnails.push(thumbnailCanvas.toDataURL('image/jpeg', 0.85));
-  }
+      if (detector && onFormulasDetected && detectionActive && shouldUseVisualDetection(pageKind)) {
+        let detected: FormulaRegion[] = [];
+        try {
+          detected = await detector(
+            canvas.toDataURL('image/png'),
+            pageNumber,
+            detectionConfig,
+            { width: originalViewport.width, height: originalViewport.height },
+          );
+        } catch (error) {
+          console.warn(`[FormulaDetection] Page ${pageNumber} failed:`, error);
+        }
+        detectionConfig.signal?.throwIfAborted();
+        if (onFormulasDetected(detected, pageNumber) === false) detectionActive = false;
+      }
 
-  onProgress?.(95, '准备完成...');
+      onProgress?.((pageNumber / pageCount) * 98, `已完成第 ${pageNumber}/${pageCount} 页`);
+      return {
+        preview: createScaledCanvasDataUrl(canvas, PREVIEW_MAX_WIDTH, 'image/jpeg', 0.82),
+        thumbnail: createScaledCanvasDataUrl(canvas, THUMBNAIL_WIDTH, 'image/jpeg', 0.8),
+        dimensions: { width: originalViewport.width, height: originalViewport.height },
+        pageKind,
+        textLayer: { pageNumber, candidates },
+      };
+    },
+    releasePage: ({ page, canvas }) => {
+      page.cleanup();
+      canvas.width = 1;
+      canvas.height = 1;
+    },
+  });
 
-  // 异步调度公式检测（不阻塞 UI）
-  if (onFormulasDetected) {
-    const detection = scheduleFormulaDetection(pageImages, pageDimensions, detectionConfig, onFormulasDetected, pageMathHints);
-    if (detectionConfig.awaitDetection) await detection;
-  }
+  const thumbnails = pages.map(page => page.thumbnail);
+  const pageImages = pages.map(page => page.preview);
+  const pageDimensions = pages.map(page => page.dimensions);
+  const pageKinds = pages.map(page => page.pageKind);
+  const textLayerFormulas = pages.map(page => page.textLayer);
 
   onProgress?.(100, '解析完成');
 
@@ -326,32 +315,6 @@ export async function parsePdfDocument(
     pageKinds,
     textLayerFormulas,
   };
-}
-
-/**
- * 非阻塞逐页公式检测调度器
- * 使用 requestIdleCallback 避免阻塞 UI
- */
-async function scheduleFormulaDetection(
-  pageImages: string[],
-  pageDimensions: { width: number; height: number }[],
-  config: DetectionConfig,
-  onFormulasDetected: (formulas: FormulaRegion[], pageNumber: number) => void | boolean,
-  pageMathHints?: Array<boolean | null>
-): Promise<void> {
-  const { detectFormulasInPage } = await import('./advancedFormulaDetection/pdfIntegration');
-  for (let currentPage = 0; currentPage < pageImages.length; currentPage++) {
-    config.signal?.throwIfAborted();
-    let formulas: FormulaRegion[] = [];
-    try {
-      if (pageMathHints?.[currentPage] !== false) formulas = await detectFormulasInPage(pageImages[currentPage], currentPage + 1, config, pageDimensions[currentPage]);
-    } catch (err) {
-      console.warn(`[FormulaDetection] Page ${currentPage + 1} failed:`, err);
-    }
-    config.signal?.throwIfAborted();
-    if (onFormulasDetected(formulas, currentPage + 1) === false) return;
-    await new Promise<void>(resolve => setTimeout(resolve, 0));
-  }
 }
 
 /**
@@ -776,6 +739,26 @@ function computeRenderScale(width: number, height: number): number {
   const safeMax = Number.isFinite(maxScale) ? maxScale : FORMULA_RENDER_SCALE;
   const clamped = Math.min(FORMULA_RENDER_SCALE, safeMax);
   return Math.max(1, clamped);
+}
+
+function createScaledCanvasDataUrl(
+  source: HTMLCanvasElement,
+  maxWidth: number,
+  mime: 'image/jpeg' | 'image/png',
+  quality?: number,
+): string {
+  const scale = Math.min(1, maxWidth / Math.max(1, source.width));
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.max(1, Math.round(source.width * scale));
+  canvas.height = Math.max(1, Math.round(source.height * scale));
+  const context = canvas.getContext('2d')!;
+  context.fillStyle = '#ffffff';
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.drawImage(source, 0, 0, canvas.width, canvas.height);
+  const result = canvas.toDataURL(mime, quality);
+  canvas.width = 1;
+  canvas.height = 1;
+  return result;
 }
 
 /**

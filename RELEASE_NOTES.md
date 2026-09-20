@@ -25,9 +25,21 @@
 - PDF.js Worker 改为本地构建资产，不依赖运行时 CDN。
 - 活动代码与测试 lint 通过；旧不可达 UI 明确隔离为 legacy。
 - 依赖升级后 `npm audit` 为 0 vulnerabilities。
+- PDF 改为逐页渲染、检测和释放高清资源，仅保留有界 JPEG 预览。
+- 文本层按坐标重建双栏公式行，过滤正文/数字表格误检，并规范化常见 Unicode 数学符号。
+- 结果列表默认渲染 20 条，页面图像和公式裁剪使用懒加载。
+- Wrangler 更新至 `4.135.0`，Workers types 更新至 `5.20260920.1`；Worker 完整依赖审计为 0 vulnerabilities。
+
+### 真实文献 QA
+
+- 扫描 71 份、0.289GB PDF 元数据，覆盖 85 页长文档、双栏论文、补充材料和损坏输入。
+- 85 页/22.53MB 论文完成解析且处理中可交互；观测 JS 堆约 49-62MB，结果 DOM 首屏限制为 20 条。
+- 三文件并发时，损坏 PDF 独立失败，两个正常 PDF 继续完成。
+- 长文档取消后未出现迟到结果。
+- 本地生产 Lighthouse：98/100/100/100；32 个测试文件、258/258 测试通过。
 
 ### 发布状态
 
 - 修复提交已推送到 `main`。
-- Pages workflow 的代码质量门已配置，但本次运行因 GitHub 账号 billing issue 被锁定而未启动；解锁账号后可从 Actions 重新运行 `Deploy Formula OCR Pages`。
+- Pages workflow 的代码质量门已配置；GitHub Actions 当前因账号 billing issue 不启动，但代码仍按要求推送到 `main`。
 - 未将历史 Pages URL 或旧成功运行误报为本次版本部署成功。

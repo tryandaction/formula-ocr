@@ -32,6 +32,8 @@ npm audit --omit=dev --audit-level=high
 4. 修改一条 LaTeX，确认标为“待复核”，批量重试不会覆盖人工修改。
 5. 导出 Markdown、TeX、JSON，核对只包含已选择且有 LaTeX 的结果。
 6. PDF 自动检测遗漏时，从页面预览拖框补录并单独识别。
+7. 使用至少一份 50-100 页 PDF，确认处理中 UI 可响应、取消后无迟到结果、结果 DOM 首批不超过 20 条。
+8. 并发上传一个损坏 PDF 和两个正常 PDF，确认失败按文件隔离。
 
 ## 3. 格式 fixture
 

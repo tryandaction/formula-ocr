@@ -1,6 +1,7 @@
 import type { ProviderType } from '../utils/providers';
 
 export type SourceKind = 'image' | 'pdf' | 'docx' | 'markdown';
+export const sourceBadge = (kind: SourceKind): string => ({ image: 'IMG', pdf: 'PDF', docx: 'OMML', markdown: 'MD' })[kind];
 export type FormulaStatus = 'queued' | 'recognizing' | 'success' | 'needs_review' | 'no_formula' | 'failed' | 'cancelled';
 
 export interface FormulaItem {

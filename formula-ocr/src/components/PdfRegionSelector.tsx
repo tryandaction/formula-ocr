@@ -40,7 +40,7 @@ export function PdfRegionSelector({ image, pageNumber, onExtract }: {
     width: Math.abs(end.x - start.x), height: Math.abs(end.y - start.y),
   } : null;
   return <div className="pdf-region" onPointerDown={e => { e.currentTarget.setPointerCapture(e.pointerId); const p = point(e); setStart(p); setEnd(p); }} onPointerMove={e => start && setEnd(point(e))} onPointerUp={finish}>
-    <img ref={ref} src={image} alt={`PDF 第 ${pageNumber} 页`} draggable={false} />
+    <img ref={ref} src={image} alt={`PDF 第 ${pageNumber} 页`} draggable={false} loading="lazy" decoding="async" />
     {selection && <span className="pdf-selection" style={selection} />}
   </div>;
 }

@@ -7,6 +7,7 @@ import { AdvancedFormulaDetector } from './AdvancedFormulaDetector';
 import { MAX_DETECTION_PIXELS, MIN_DETECTION_DPI } from './constants';
 import type { EnhancedFormulaRegion, DetectionOptions } from './types';
 import type { FormulaRegion } from '../documentParser';
+import { passesConfidenceThreshold } from '../pdfDetectionLifecycle';
 
 /**
  * Configuration for PDF formula detection
@@ -36,6 +37,31 @@ export const DEFAULT_PDF_CONFIG: PDFDetectionConfig = {
 };
 
 const sharedDetector = new AdvancedFormulaDetector();
+
+function convertFallbackResults(
+  formulas: Array<{ id: string; imageData: string; bounds: { x: number; y: number; width: number; height: number }; confidence: number }>,
+  pageNumber: number,
+  renderScale: number,
+  maxRegionArea: number,
+  minConfidence: number,
+): FormulaRegion[] {
+  return formulas
+    .filter(formula => formula.bounds.width * formula.bounds.height <= maxRegionArea)
+    .filter(formula => passesConfidenceThreshold(formula.confidence, minConfidence))
+    .map(formula => ({
+      id: formula.id,
+      pageNumber,
+      imageData: formula.imageData,
+      position: { ...formula.bounds },
+      originalPosition: {
+        x: formula.bounds.x / renderScale,
+        y: formula.bounds.y / renderScale,
+        width: formula.bounds.width / renderScale,
+        height: formula.bounds.height / renderScale,
+      },
+      confidence: formula.confidence,
+    }));
+}
 
 /**
  * Convert EnhancedFormulaRegion to FormulaRegion for backward compatibility
@@ -93,26 +119,7 @@ export async function detectFormulasInPage(
     // Fallback to basic detection
     const { detectMultipleFormulas } = await import('../formulaDetection');
     const result = await detectMultipleFormulas(pageImageData);
-    return result.formulas
-      .filter(f => f.bounds.width * f.bounds.height <= maxRegionArea)
-      .map(f => ({
-        id: f.id,
-        pageNumber,
-        imageData: f.imageData,
-        position: {
-          x: f.bounds.x,
-          y: f.bounds.y,
-          width: f.bounds.width,
-          height: f.bounds.height,
-        },
-        originalPosition: {
-          x: f.bounds.x / renderScale,
-          y: f.bounds.y / renderScale,
-          width: f.bounds.width / renderScale,
-          height: f.bounds.height / renderScale,
-        },
-        confidence: f.confidence,
-      }));
+    return convertFallbackResults(result.formulas, pageNumber, renderScale, maxRegionArea, mergedConfig.minConfidence);
   }
 
   try {
@@ -153,26 +160,7 @@ export async function detectFormulasInPage(
     if (enhancedRegions.length === 0) {
       const { detectMultipleFormulas } = await import('../formulaDetection');
       const result = await detectMultipleFormulas(pageImageData);
-      return result.formulas
-        .filter(f => f.bounds.width * f.bounds.height <= maxRegionArea)
-        .map(f => ({
-          id: f.id,
-          pageNumber,
-          imageData: f.imageData,
-          position: {
-            x: f.bounds.x,
-            y: f.bounds.y,
-            width: f.bounds.width,
-            height: f.bounds.height,
-          },
-          originalPosition: {
-            x: f.bounds.x / renderScale,
-            y: f.bounds.y / renderScale,
-            width: f.bounds.width / renderScale,
-            height: f.bounds.height / renderScale,
-          },
-          confidence: f.confidence,
-        }));
+      return convertFallbackResults(result.formulas, pageNumber, renderScale, maxRegionArea, mergedConfig.minConfidence);
     }
 
     const formulas: FormulaRegion[] = [];
@@ -219,33 +207,16 @@ export async function detectFormulasInPage(
       formulas.push(convertToFormulaRegion(region, pageNumber, imageData, renderScale));
     }
     
-    return formulas.filter(f => f.position.width * f.position.height <= maxRegionArea);
+    return formulas
+      .filter(formula => formula.position.width * formula.position.height <= maxRegionArea)
+      .filter(formula => passesConfidenceThreshold(formula.confidence ?? 0, mergedConfig.minConfidence));
   } catch (error) {
     console.error('Advanced detection failed, falling back to basic:', error);
     
     // Fallback to basic detection
     const { detectMultipleFormulas } = await import('../formulaDetection');
     const result = await detectMultipleFormulas(pageImageData);
-    return result.formulas
-      .filter(f => f.bounds.width * f.bounds.height <= maxRegionArea)
-      .map(f => ({
-        id: f.id,
-        pageNumber,
-        imageData: f.imageData,
-        position: {
-          x: f.bounds.x,
-          y: f.bounds.y,
-          width: f.bounds.width,
-          height: f.bounds.height,
-        },
-        originalPosition: {
-          x: f.bounds.x / renderScale,
-          y: f.bounds.y / renderScale,
-          width: f.bounds.width / renderScale,
-          height: f.bounds.height / renderScale,
-        },
-        confidence: f.confidence,
-      }));
+    return convertFallbackResults(result.formulas, pageNumber, renderScale, maxRegionArea, mergedConfig.minConfidence);
   }
 }
 

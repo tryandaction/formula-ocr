@@ -9,9 +9,10 @@ import { readDocx } from '../utils/documentImport';
 import { parsePdfDocument, type FormulaRegion } from '../utils/documentParser';
 import { buildRecognitionRequest } from '../utils/ocrContract';
 import { recognizeStructured, type ProviderType, PROVIDER_CONFIGS } from '../utils/providers';
-import type { FormulaItem, SourceKind, SourceTask } from '../types/workspace';
+import { sourceBadge, type FormulaItem, type SourceKind, type SourceTask } from '../types/workspace';
 
 const id = (prefix: string) => `${prefix}-${crypto.randomUUID()}`;
+const RESULT_PAGE_SIZE = 20;
 const kindOf = (file: File): SourceKind | null => {
   const ext = file.name.toLowerCase().split('.').pop();
   if (file.type.startsWith('image/') || ['png', 'jpg', 'jpeg', 'webp'].includes(ext || '')) return 'image';
@@ -42,6 +43,7 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
   const [mode, setMode] = useState<'single' | 'multiple'>('single');
   const [dragging, setDragging] = useState(false);
   const [filter, setFilter] = useState<'all' | 'review' | 'failed'>('all');
+  const [visibleLimit, setVisibleLimit] = useState(RESULT_PAGE_SIZE);
   const [isPending, startTransition] = useTransition();
   const [sourceQueue] = useState(() => new TaskQueue(2));
   const [ocrQueue] = useState(() => new TaskQueue(3));
@@ -59,9 +61,13 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
   const updateSource = useCallback((sourceId: string, patch: Partial<SourceTask>) => {
     if (mountedRef.current) setSources(current => current.map(source => source.id === sourceId ? { ...source, ...patch } : source));
   }, []);
-  const addFormula = useCallback((item: FormulaItem) => {
-    if (mountedRef.current) setItems(current => current.some(existing => existing.id === item.id) ? current : [...current, item]);
+  const addFormulas = useCallback((incoming: FormulaItem[]) => {
+    if (mountedRef.current) setItems(current => {
+      const existingIds = new Set(current.map(item => item.id));
+      return [...current, ...incoming.filter(item => !existingIds.has(item.id))];
+    });
   }, []);
+  const addFormula = useCallback((item: FormulaItem) => addFormulas([item]), [addFormulas]);
   const fromRegion = useCallback((source: SourceTask, formula: FormulaRegion): FormulaItem => ({
     id: formula.id || id('formula'), sourceId: source.id, sourceName: source.name, sourceKind: source.kind,
     image: formula.imageData, mime: 'image/png', pageNumber: formula.pageNumber, position: formula.originalPosition,
@@ -80,15 +86,17 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
     if (source.kind === 'markdown') {
       const parsed = parseMarkdownSource(await readText(file), file.name);
       signal.throwIfAborted();
-      parsed.formulas.forEach(formula => addFormula({ id: id('source'), sourceId: source.id, sourceName: file.name, sourceKind: 'markdown', latex: formula.latex, originalLatex: formula.latex, status: formula.status === 'needs_review' ? 'needs_review' : 'success', uncertainties: [], selected: true }));
+      addFormulas(parsed.formulas.map(formula => ({ id: id('source'), sourceId: source.id, sourceName: file.name, sourceKind: 'markdown', latex: formula.latex, originalLatex: formula.latex, status: formula.status === 'needs_review' ? 'needs_review' : 'success', uncertainties: [], selected: true })));
       updateSource(source.id, { status: parsed.status === 'parse_error' ? 'failed' : 'ready', progress: 100, message: parsed.error || (parsed.formulas.length ? '已保留源码公式' : '文件中没有公式'), formulaCount: parsed.formulas.length });
       return;
     }
     if (source.kind === 'docx') {
       const parsed = await readDocx(new Uint8Array(await file.arrayBuffer()), file.name);
       signal.throwIfAborted();
-      parsed.formulas.forEach(formula => addFormula({ id: id('omml'), sourceId: source.id, sourceName: file.name, sourceKind: 'docx', latex: formula.latex, originalLatex: formula.latex, status: 'needs_review', pageNumber: formula.location.paragraph, uncertainties: ['OMML 转换结果需要核对'], selected: true }));
-      parsed.images.forEach(image => addFormula({ id: id('docx-image'), sourceId: source.id, sourceName: file.name, sourceKind: 'docx', image: image.image, mime: image.image.slice(5, image.image.indexOf(';')), pageNumber: image.paragraph, latex: '', status: 'queued', uncertainties: [], selected: true }));
+      addFormulas([
+        ...parsed.formulas.map((formula): FormulaItem => ({ id: id('omml'), sourceId: source.id, sourceName: file.name, sourceKind: 'docx', latex: formula.latex, originalLatex: formula.latex, status: 'needs_review', pageNumber: formula.location.paragraph, uncertainties: ['OMML 转换结果需要核对'], selected: true })),
+        ...parsed.images.map((image): FormulaItem => ({ id: id('docx-image'), sourceId: source.id, sourceName: file.name, sourceKind: 'docx', image: image.image, mime: image.image.slice(5, image.image.indexOf(';')), pageNumber: image.paragraph, latex: '', status: 'queued', uncertainties: [], selected: true })),
+      ]);
       updateSource(source.id, { status: 'ready', progress: 100, message: parsed.formulas.length || parsed.images.length ? 'DOCX 解析完成' : '未发现可处理公式', formulaCount: parsed.formulas.length + parsed.images.length, warnings: parsed.warnings });
       return;
     }
@@ -97,18 +105,17 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
     const document = await parsePdfDocument(file, (progress, message) => updateSource(source.id, { progress: Math.round(progress * .7), message }), { signal, awaitDetection: true }, formulas => {
       if (signal.aborted) return false;
       detected += formulas.length;
-      formulas.forEach(formula => addFormula(fromRegion(source, formula)));
+      addFormulas(formulas.map(formula => fromRegion(source, formula)));
       updateSource(source.id, { status: 'detecting', formulaCount: detected, message: `已检测 ${detected} 个候选公式` });
       return true;
     });
     signal.throwIfAborted();
     let sourceCount = 0;
-    document.textLayerFormulas.forEach(page => page.candidates.forEach(candidate => {
-      sourceCount++;
-      addFormula({ id: id('pdf-text'), sourceId: source.id, sourceName: file.name, sourceKind: 'pdf', pageNumber: page.pageNumber, latex: candidate.latex, originalLatex: candidate.latex, status: candidate.requiresVisualReview ? 'needs_review' : 'success', uncertainties: candidate.requiresVisualReview ? ['PDF 文本层候选需要核对'] : [], selected: true });
-    }));
+    const textItems = document.textLayerFormulas.flatMap(page => page.candidates.map((candidate): FormulaItem => ({ id: id('pdf-text'), sourceId: source.id, sourceName: file.name, sourceKind: 'pdf', pageNumber: page.pageNumber, latex: candidate.latex, originalLatex: candidate.latex, status: candidate.requiresVisualReview ? 'needs_review' : 'success', uncertainties: candidate.requiresVisualReview ? ['PDF 文本层候选需要核对'] : [], selected: true })));
+    sourceCount = textItems.length;
+    addFormulas(textItems);
     updateSource(source.id, { status: 'ready', progress: 100, message: `PDF 已就绪，可在页面预览中拖框补漏`, formulaCount: detected + sourceCount, pageImages: document.pageImages });
-  }, [addFormula, fromRegion, updateSource]);
+  }, [addFormula, addFormulas, fromRegion, updateSource]);
 
   const addFiles = useCallback((incoming: FileList | File[]) => {
     const files = Array.from(incoming);
@@ -166,6 +173,7 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
   const cancel = (itemId: string) => { ocrQueue.cancel(itemId); setItems(current => current.map(item => item.id === itemId ? { ...item, status: 'cancelled' } : item)); };
   const edit = (itemId: string, latex: string) => setItems(current => current.map(item => item.id === itemId ? { ...item, latex, status: 'needs_review', userEdited: true, uncertainties: ['人工修改'] } : item));
   const visible = useMemo(() => items.filter(item => filter === 'all' || filter === 'review' && item.status === 'needs_review' || filter === 'failed' && ['failed', 'no_formula'].includes(item.status)), [filter, items]);
+  const displayed = visible.slice(0, visibleLimit);
   const selected = items.filter(item => item.selected && item.latex);
   const exportResults = (format: 'markdown' | 'latex' | 'json') => {
     if (!selected.length) return;
@@ -196,16 +204,16 @@ export function FormulaWorkbench({ provider, formulaType, onFormulaTypeChange, o
 
     {sources.flatMap(source => source.pageImages?.map((image, index) => ({ source, image, page: index + 1 })) || []).length > 0 && <details className="pdf-review"><summary>PDF 页面补漏 · 拖动框选遗漏公式</summary><div className="pdf-pages">{sources.flatMap(source => source.pageImages?.map((image, index) => <PdfRegionSelector key={`${source.id}-${index}`} image={image} pageNumber={index + 1} onExtract={formula => addFormula(fromRegion(source, formula))} />) || [])}</div></details>}
 
-    <section className="result-head"><div><h2>公式结果</h2><p>{counters.total} 条 · {counters.success} 成功 · {counters.review} 待复核 · {counters.failed} 失败 · 已选 {selected.length}</p></div><div className="result-actions"><select value={filter} onChange={e => setFilter(e.target.value as typeof filter)}><option value="all">全部结果</option><option value="review">待复核</option><option value="failed">失败</option></select><button onClick={() => setItems(current => current.map(item => ({ ...item, selected: true })))}>全选</button><button onClick={() => setItems(current => current.map(item => ({ ...item, selected: false })))}>取消选择</button><button disabled={!selected.length} onClick={() => exportResults('markdown')}>导出 MD</button><button disabled={!selected.length} onClick={() => exportResults('latex')}>导出 TeX</button><button disabled={!selected.length} onClick={() => exportResults('json')}>导出 JSON</button></div></section>
+    <section className="result-head"><div><h2>公式结果</h2><p>{counters.total} 条 · {counters.success} 成功 · {counters.review} 待复核 · {counters.failed} 失败 · 已选 {selected.length}</p></div><div className="result-actions"><select aria-label="结果筛选" value={filter} onChange={e => { setFilter(e.target.value as typeof filter); setVisibleLimit(RESULT_PAGE_SIZE); }}><option value="all">全部结果</option><option value="review">待复核</option><option value="failed">失败</option></select><button onClick={() => setItems(current => current.map(item => ({ ...item, selected: true })))}>全选</button><button onClick={() => setItems(current => current.map(item => ({ ...item, selected: false })))}>取消选择</button><button disabled={!selected.length} onClick={() => exportResults('markdown')}>导出 MD</button><button disabled={!selected.length} onClick={() => exportResults('latex')}>导出 TeX</button><button disabled={!selected.length} onClick={() => exportResults('json')}>导出 JSON</button></div></section>
     {isPending && <div className="updating">正在整理识别结果…</div>}
-    <section className="result-list">{visible.length === 0 ? <div className="empty-result">上传文件后，解析出的公式会显示在这里。</div> : visible.map(item => <article key={item.id} className={`result-row ${item.status}`}>
+    <section className="result-list">{visible.length === 0 ? <div className="empty-result">上传文件后，解析出的公式会显示在这里。</div> : displayed.map(item => <article key={item.id} className={`result-row ${item.status}`}>
       <input type="checkbox" aria-label="选择公式" checked={item.selected} onChange={e => setItems(current => current.map(x => x.id === item.id ? { ...x, selected: e.target.checked } : x))} />
-      <div className="source-preview">{item.image ? <img src={item.image} alt="公式原图" /> : <span>{item.sourceKind === 'markdown' ? 'MD' : 'OMML'}</span>}</div>
+      <div className="source-preview">{item.image ? <img src={item.image} alt="公式原图" loading="lazy" decoding="async" /> : <span>{sourceBadge(item.sourceKind)}</span>}</div>
       <div className="formula-main"><div className="formula-meta"><span className={`status-dot ${item.status}`}>{statusText[item.status]}</span><span>{item.sourceName}{item.pageNumber ? ` · 第 ${item.pageNumber} 页/段` : ''}</span>{item.provider && <span>{item.provider} · {item.processingTime ?? 0}ms</span>}{typeof item.confidence === 'number' && <span>检测置信度 {Math.round(item.confidence * (item.confidence <= 1 ? 100 : 1))}%</span>}</div>
         {item.latex ? <><FormulaPreview latex={item.latex} compact /><textarea aria-label="LaTeX 编辑器" value={item.latex} onChange={e => edit(item.id, e.target.value)} /></> : <p className="failure-copy">{item.error || (item.status === 'no_formula' ? '该区域未识别到公式，可重新框选后重试。' : '等待识别')}</p>}
         {item.uncertainties.length > 0 && <div className="uncertainties">{item.uncertainties.map(value => <span key={value}>{value}</span>)}</div>}
       </div>
       <div className="row-actions">{item.status === 'recognizing' ? <button onClick={() => cancel(item.id)}>取消</button> : item.image && !item.userEdited && <button onClick={() => recognize(item.id)}>{['failed', 'cancelled', 'no_formula'].includes(item.status) ? '重试' : '识别'}</button>}<button onClick={() => navigator.clipboard.writeText(item.latex)} disabled={!item.latex}>复制</button><button title="删除" onClick={() => setItems(current => current.filter(x => x.id !== item.id))}>×</button></div>
-    </article>)}</section>
+    </article>)}{visible.length > displayed.length && <button className="show-more" onClick={() => setVisibleLimit(visible.length)}>显示其余 {visible.length - displayed.length} 条</button>}</section>
   </div>;
 }
