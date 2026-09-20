@@ -4,7 +4,7 @@ from collections.abc import Mapping
 from typing import Protocol
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -29,6 +29,7 @@ from formula_ocr_engine.errors import EngineError
 from formula_ocr_engine.image_input import ImageLimits
 from formula_ocr_engine.model_manager import ModelManager
 from formula_ocr_engine.services.detection import DetectionService
+from formula_ocr_engine.services.jobs import DocumentJobManager
 from formula_ocr_engine.services.recognition import RecognitionService
 
 
@@ -78,6 +79,7 @@ def create_app(
     settings: Settings | None = None,
     *,
     model_manager: ModelStatusProvider | None = None,
+    document_jobs: DocumentJobManager | None = None,
 ) -> FastAPI:
     active_settings = settings or Settings.from_environment()
     active_models = model_manager or ModelManager(
@@ -208,6 +210,55 @@ def create_app(
                     "error": error.message,
                 },
             )
+
+    @app.post("/v1/jobs/documents")
+    async def submit_document(
+        requestId: str = Form(...),
+        file: UploadFile = File(...),  # noqa: B008 - FastAPI declaration
+    ) -> JSONResponse:
+        if document_jobs is None:
+            return JSONResponse(
+                status_code=503,
+                content={"requestId": requestId, "errorClass": "model_unavailable", "error": "Local document engine is unavailable"},
+            )
+        if file.content_type != "application/pdf":
+            return JSONResponse(
+                status_code=400,
+                content={"requestId": requestId, "errorClass": "unsupported_format", "error": "Only PDF uploads are accepted"},
+            )
+        data = await file.read(active_settings.pdf_bytes + 1)
+        if len(data) > active_settings.pdf_bytes:
+            return JSONResponse(
+                status_code=413,
+                content={"requestId": requestId, "errorClass": "file_too_large", "error": "PDF exceeds the byte limit"},
+            )
+        if not data.startswith(b"%PDF-"):
+            return JSONResponse(
+                status_code=400,
+                content={"requestId": requestId, "errorClass": "unsupported_format", "error": "PDF magic bytes are invalid"},
+            )
+        job_id = document_jobs.submit(data, file.filename or "document.pdf", requestId)
+        return JSONResponse(status_code=202, content={"requestId": requestId, "jobId": job_id, "status": "queued"})
+
+    @app.get("/v1/jobs/{job_id}")
+    def get_document_job(job_id: str) -> JSONResponse:
+        if document_jobs is None:
+            return JSONResponse(status_code=503, content={"errorClass": "model_unavailable", "error": "Local document engine is unavailable"})
+        try:
+            job = document_jobs.get(job_id)
+        except KeyError:
+            return JSONResponse(status_code=404, content={"errorClass": "invalid_input", "error": "Document job was not found"})
+        return JSONResponse(status_code=200, content=vars(job))
+
+    @app.delete("/v1/jobs/{job_id}")
+    def cancel_document_job(job_id: str) -> JSONResponse:
+        if document_jobs is None:
+            return JSONResponse(status_code=503, content={"errorClass": "model_unavailable", "error": "Local document engine is unavailable"})
+        try:
+            job = document_jobs.cancel(job_id)
+        except KeyError:
+            return JSONResponse(status_code=404, content={"errorClass": "invalid_input", "error": "Document job was not found"})
+        return JSONResponse(status_code=200, content=vars(job))
 
     return app
 
