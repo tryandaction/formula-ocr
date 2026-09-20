@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseMarkdownSource, parseDocxSource } from '../../utils/documentFormats';
+import { getSupportedFormats, isSupportedDocument } from '../../utils/documentParser';
 
 describe('document formula sources', () => {
   it('extracts Markdown inline and display formulas but skips fenced code', () => {
@@ -20,5 +21,10 @@ describe('document formula sources', () => {
     const result = parseDocxSource('lesson.docx');
     expect(result).toMatchObject({ status: 'unsupported', errorClass: 'parser_unsupported' });
     expect(result.formulas).toHaveLength(0);
+  });
+
+  it('advertises and accepts DOCX because the workbench has an OOXML parser', () => {
+    expect(getSupportedFormats()).toContain('DOCX');
+    expect(isSupportedDocument(new File([new Uint8Array([1])], 'lesson.docx', { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }))).toBe(true);
   });
 });

@@ -1,32 +1,32 @@
-# Phase 5 交付记录
+# Phase 5 DOCX and Markdown Evidence
 
-## 支持矩阵
+Date: 2026-09-20
 
-| 格式 | 当前状态 | 真实路径 | 失败样例 |
-|---|---|---|---|
-| PDF | 支持 | PDF.js 渲染、文本层分类、候选区域检测 | 现有 benchmark 中 backend unavailable/检测超时 |
-| Markdown | 支持源码公式 | `$...$`/`$$...$$` 解析，代码块跳过，源码优先 | `src/test/fixtures/documents/unclosed-formula.md` |
-| DOCX | 暂不支持 | 上传门禁拒绝，不进入 OCR | `src/test/fixtures/documents/unsupported.docx` |
+## Supported Paths
 
-## 修改文件
+- Markdown is parsed from source delimiters (`$...$`, `$$...$$`, `\\(...\\)`, `\\[...\\]`) while fenced/inline code and escaped dollars are masked. Existing LaTeX is preserved and is not sent through visual OCR.
+- DOCX is parsed in-browser from OOXML using `fflate` and `DOMParser`. Common OMML fractions, superscripts, subscripts, roots, matrices, and embedded PNG/JPEG/WebP formula images are returned with paragraph/source metadata.
+- Embedded formula images remain eligible for the selected image Provider; OMML is returned as editable LaTeX with `needs_review` status because conversion is conservative.
+- Legacy OLE/Equation Editor objects are not silently converted; they produce paragraph-level warnings asking the user to convert to PDF or an image.
 
-- `formula-ocr/src/utils/documentFormats.ts`
-- `formula-ocr/src/components/DocumentUploader.tsx`
-- `formula-ocr/src/App.tsx`
-- `formula-ocr/src/utils/documentParser.ts`
-- `formula-ocr/src/test/unit/documentFormats.test.ts`
-- `formula-ocr/src/test/fixtures/documents/*`
-- `formula-ocr/README.md`
+## Fixtures and Tests
 
-## 验证
+- `src/test/fixtures/documents/formulas.md` covers inline/display formulas, code fences, escaped dollars, and source preservation.
+- `src/test/fixtures/documents/unclosed-formula.md` covers an unclosed delimiter.
+- `documentImportRegression.test.ts` builds an actual OOXML ZIP fixture with OMML fraction/superscript and tests a corrupt archive.
+- `documentFormats.test.ts` verifies Markdown parsing and the public support matrix now includes DOCX.
+- `FormulaWorkbench.tsx` already routes DOCX bytes through `readDocx`; the legacy `DocumentUploader` now uses the same parser instead of showing “DOCX 暂不支持”.
 
-- `npx vitest run src/test/unit/documentFormats.test.ts src/test/unit/pdfPipeline.test.ts`：8/8 通过。
-- `npx tsc -b --pretty false`：通过。
+## Verification
 
-Markdown 源码公式直接作为已解析结果进入结果列表，不调用视觉 Provider；DOCX UI 文案改为“暂不支持”。
+| Command | Result |
+|---|---|
+| DOCX/Markdown targeted tests | 2 files, 8/8 passed |
+| Source formulas | preserved as editable source; no OCR request |
+| Corrupt DOCX | explicit parser error from `readDocx` |
 
-## 未解决问题与风险
+## Remaining Limits
 
-- DOCX 尚无 OOXML/OMML 解析；README 不再宣称支持。
-- Markdown 行号以解析时的源码行记录，跨平台换行已覆盖；复杂嵌套 Markdown 语法仍需后续 fixture。
-- 端到端浏览器上传测试尚未运行，留待 Phase 7。
+- OLE/legacy Equation Editor objects remain unsupported and are reported as warnings.
+- DOCX embedded image results need the normal OCR Provider and can be `queued`/`needs_review`; no model accuracy is inferred from source parsing.
+- This phase does not claim PDF visual OCR or DOCX image OCR accuracy.

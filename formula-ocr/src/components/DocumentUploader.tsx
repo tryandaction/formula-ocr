@@ -11,6 +11,7 @@ import {
   type DocumentValidationResult,
 } from '../utils/documentParser';
 import { parseMarkdownSource, type DocumentFormulaSource } from '../utils/documentFormats';
+import { readDocx } from '../utils/documentImport';
 import { PDFFormulaViewer } from './PDFFormulaViewer';
 
 interface DocumentUploaderProps {
@@ -84,7 +85,7 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
 
   const handleFile = useCallback(async (file: File) => {
     if (!isSupportedDocument(file)) {
-      setError('不支持的文件格式。本轮支持 PDF 和 Markdown；DOCX 暂不支持');
+      setError('不支持的文件格式。本轮支持 PDF、DOCX 和 Markdown');
       setState('error');
       return;
     }
@@ -164,8 +165,27 @@ export const DocumentUploader: React.FC<DocumentUploaderProps> = ({
         setFileInfo(null);
         setProgress(100);
       } else {
-        setError('DOCX 暂不支持解析。请转换为 PDF 或 Markdown 后再试');
-        setState('error');
+        const parsed = await readDocx(new Uint8Array(await file.arrayBuffer()), file.name);
+        const formulas = [...parsed.formulas, ...parsed.images.map((image, index) => ({
+          id: `docx-image-${index}`,
+          fileName: file.name,
+          format: 'docx' as const,
+          sourceType: 'embedded-image' as const,
+          location: { paragraph: image.paragraph },
+          raw: image.name,
+          latex: '',
+          editable: false,
+          status: 'needs_review' as const,
+        }))];
+        if (!formulas.length) {
+          setError('DOCX 中未发现可处理公式');
+          setState('error');
+          return;
+        }
+        onMarkdownFormulasExtracted?.(formulas);
+        setState('idle');
+        setFileInfo(null);
+        setProgress(100);
       }
     } catch (err) {
       console.error('Document processing error:', err);

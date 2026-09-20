@@ -774,7 +774,7 @@ export function formatFileSize(bytes: number): string {
  * 获取支持的文件类型描述
  */
 export function getSupportedFormats(): string {
-  return 'PDF (最大50MB, 100页), Markdown (最大5MB)；DOCX 暂不支持';
+  return 'PDF (最大50MB, 100页), DOCX (最大20MB, OMML/内嵌图片), Markdown (最大5MB)';
 }
 
 /**
@@ -782,5 +782,5 @@ export function getSupportedFormats(): string {
  */
 export function isSupportedDocument(file: File): boolean {
   const type = getDocumentType(file);
-  return type === 'pdf' || type === 'markdown';
+  return type === 'pdf' || type === 'docx' || type === 'markdown';
 }
