@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 1,
+  "name": "real-pdf-formulas-v1",
+  "renderDpi": 120,
+  "groundTruthPolicy": "human-transcribed-before-provider-run",
+  "coordinateSpace": "rendered-page-pixels-top-left",
+  "detectionProductCommit": "e84bbbc682a57faf1aa9ab7530c47574084152dd",
+  "ocrRequestVariant": "glm-4v-flash/json_object/strict-transcription-v1",
+  "sources": [
+    {
+      "key": "bravyi",
+      "relativePath": "Error_Correction_Codes/Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "bytes": 2799060,
+      "sha256": "0EAC61B2F22CE7B617F0AA432FB8D461AD91BE9FB41A071367F0F8DABB04179D",
+      "pages": [6, 7]
+    },
+    {
+      "key": "jandura",
+      "relativePath": "Rydberg_Gates_Control/Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "bytes": 1988269,
+      "sha256": "B24C142472CB392D4638E26F181527DCD48F90C4CAFD3A98E9E14DBB54A60DC7",
+      "pages": [3, 4, 5, 6]
+    },
+    {
+      "key": "saffman",
+      "relativePath": "Reviews_Classics/Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "bytes": 2333169,
+      "sha256": "DFCA83F5BD0180E5B09780E863E5CD8B4A0B90A6AC19F5F8744FA4F9AD24FD2C",
+      "pages": [10, 11, 12, 13]
+    }
+  ],
+  "evaluatedPages": [
+    "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "tmp/pdfs/accuracy-pages/saffman-p13.png"
+  ],
+  "samples": [
+    {
+      "id": "bravyi-p6-01",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-01.png",
+      "bbox": {
+        "x": 140,
+        "y": 205,
+        "width": 350,
+        "height": 90
+      },
+      "formulaType": "matrix",
+      "groundTruthLatex": "S_2=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}\\quad\\text{and}\\quad S_3=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}"
+    },
+    {
+      "id": "bravyi-p6-02",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-02.png",
+      "bbox": {
+        "x": 160,
+        "y": 300,
+        "width": 300,
+        "height": 65
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "x=S_\\ell\\otimes I_m\\quad\\text{and}\\quad y=I_\\ell\\otimes S_m"
+    },
+    {
+      "id": "bravyi-p6-03",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-03.png",
+      "bbox": {
+        "x": 125,
+        "y": 385,
+        "width": 370,
+        "height": 60
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "A=A_1+A_2+A_3\\quad\\text{and}\\quad B=B_1+B_2+B_3"
+    },
+    {
+      "id": "bravyi-p6-04",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-04.png",
+      "bbox": {
+        "x": 140,
+        "y": 610,
+        "width": 350,
+        "height": 38
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H^X=[A\\mid B]\\quad\\text{and}\\quad H^Z=[B^T\\mid A^T]"
+    },
+    {
+      "id": "bravyi-p6-05",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-05.png",
+      "bbox": {
+        "x": 105,
+        "y": 990,
+        "width": 390,
+        "height": 55
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "n=2\\ell m,\\quad k=2\\times\\dim(\\ker(A)\\cap\\ker(B)),\\quad d=\\min\\{|v|:v\\in\\ker(H^X)\\setminus\\operatorname{rs}(H^Z)\\}"
+    },
+    {
+      "id": "bravyi-p6-06",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-06.png",
+      "bbox": {
+        "x": 635,
+        "y": 910,
+        "width": 300,
+        "height": 35
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H_A^X=[A_2+A_3\\mid B_3]\\quad\\text{and}\\quad H_A^Z=[B_3^T\\mid A_2^T+A_3^T]"
+    },
+    {
+      "id": "bravyi-p6-07",
+      "source": "Bravyi 等 - 2024 - High-threshold and low-overhead fault-tolerant quantum memory.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+      "cropFile": "crops/bravyi-p6-07.png",
+      "bbox": {
+        "x": 635,
+        "y": 950,
+        "width": 300,
+        "height": 35
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H_B^X=[A_1\\mid B_1+B_2]\\quad\\text{and}\\quad H_B^Z=[B_1^T+B_2^T\\mid A_1^T]"
+    },
+    {
+      "id": "jandura-p3-01",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 3,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+      "cropFile": "crops/jandura-p3-01.png",
+      "bbox": {
+        "x": 555,
+        "y": 520,
+        "width": 390,
+        "height": 115
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H(t)=\\sum_{j=1}^{n}\\frac{\\Omega_j(t)}{2}|1\\rangle_j\\langle r|+\\mathrm{h.c.}+\\sum_{j<k}B_{jk}|rr\\rangle_{jk}\\langle rr|"
+    },
+    {
+      "id": "jandura-p4-02",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 4,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+      "cropFile": "crops/jandura-p4-02.png",
+      "bbox": {
+        "x": 145,
+        "y": 750,
+        "width": 350,
+        "height": 40
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H=\\sum_q H_q,\\quad H_q=P_qHP_q"
+    },
+    {
+      "id": "jandura-p4-03",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 4,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+      "cropFile": "crops/jandura-p4-03.png",
+      "bbox": {
+        "x": 170,
+        "y": 1230,
+        "width": 325,
+        "height": 55
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "U(T)|q\\rangle=e^{i\\xi_q}|q\\rangle"
+    },
+    {
+      "id": "jandura-p4-04",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 4,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+      "cropFile": "crops/jandura-p4-04.png",
+      "bbox": {
+        "x": 565,
+        "y": 900,
+        "width": 380,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\int_{\\mathcal C}d\\psi\\,|\\langle\\psi|U_0^\\dagger U(T)|\\psi\\rangle|^2"
+    },
+    {
+      "id": "jandura-p4-05",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 4,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+      "cropFile": "crops/jandura-p4-05.png",
+      "bbox": {
+        "x": 535,
+        "y": 1110,
+        "width": 420,
+        "height": 105
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{2^n(2^n+1)}\\left(\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\\rangle\\right|^2+\\sum_q|\\langle q|U(T)|q\\rangle|^2\\right)"
+    },
+    {
+      "id": "jandura-p5-06",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 5,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+      "cropFile": "crops/jandura-p5-06.png",
+      "bbox": {
+        "x": 120,
+        "y": 570,
+        "width": 380,
+        "height": 75
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "F_{\\mathrm{bell}}=4^{-n}\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\\rangle\\right|^2"
+    },
+    {
+      "id": "jandura-p6-07",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+      "cropFile": "crops/jandura-p6-07.png",
+      "bbox": {
+        "x": 135,
+        "y": 580,
+        "width": 365,
+        "height": 115
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{20}\\left(|1+2a_{01}+a_{11}|^2+1+2|a_{01}|^2+|a_{11}|^2\\right)"
+    },
+    {
+      "id": "jandura-p6-08",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+      "cropFile": "crops/jandura-p6-08.png",
+      "bbox": {
+        "x": 105,
+        "y": 805,
+        "width": 395,
+        "height": 90
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "F=\\frac{1}{72}\\left(|1+3a_{001}+3a_{011}+a_{111}|^2+1+3|a_{001}|^2+3|a_{011}|^2+|a_{111}|^2\\right)"
+    },
+    {
+      "id": "jandura-p6-09",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+      "cropFile": "crops/jandura-p6-09.png",
+      "bbox": {
+        "x": 95,
+        "y": 980,
+        "width": 410,
+        "height": 170
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{11}=\\frac{\\Omega}{2}\\left(|11\\rangle\\langle1r|+|11\\rangle\\langle r1|+|1r\\rangle\\langle rr|+|r1\\rangle\\langle rr|\\right)+\\mathrm{h.c.}+B|rr\\rangle\\langle rr|=\\frac{\\sqrt2\\Omega}{2}\\left(|11\\rangle\\langle W|+|W\\rangle\\langle11|\\right)+\\mathrm{h.c.}+B|rr\\rangle\\langle rr|"
+    },
+    {
+      "id": "jandura-p6-10",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+      "cropFile": "crops/jandura-p6-10.png",
+      "bbox": {
+        "x": 185,
+        "y": 1235,
+        "width": 315,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{011}=|0\\rangle\\langle0|\\otimes H_{11}"
+    },
+    {
+      "id": "jandura-p6-11",
+      "source": "Jandura and Pupillo - 2022 - Time-Optimal Two- and Three-Qubit Gates for Rydberg Atoms.pdf",
+      "page": 6,
+      "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+      "cropFile": "crops/jandura-p6-11.png",
+      "bbox": {
+        "x": 525,
+        "y": 260,
+        "width": 430,
+        "height": 150
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "H_{111}^{\\mathrm{sym}}=\\frac{\\sqrt3\\Omega}{2}|111\\rangle\\langle W_1|+\\Omega|W_1\\rangle\\langle W_2|+\\frac{\\sqrt3\\Omega}{2}|W_2\\rangle\\langle111|+\\mathrm{h.c.}+B|W_2\\rangle\\langle W_2|+3B|rrr\\rangle\\langle rrr|"
+    },
+    {
+      "id": "saffman-p10-18",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 10,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+      "cropFile": "crops/saffman-p10-18.png",
+      "bbox": {
+        "x": 85,
+        "y": 995,
+        "width": 410,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "V_{\\mathrm{dd}}=\\frac{1}{R^3}\\left(\\langle\\mathbf d\\rangle^2-3\\langle\\mathbf d\\rangle\\cdot\\hat{\\mathbf R}\\hat{\\mathbf R}\\cdot\\langle\\mathbf d\\rangle\\right)"
+    },
+    {
+      "id": "saffman-p11-19",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 11,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+      "cropFile": "crops/saffman-p11-19.png",
+      "bbox": {
+        "x": 505,
+        "y": 635,
+        "width": 430,
+        "height": 35
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "|g\\rangle,\\ |\\gamma k\\rangle,\\quad\\text{and}\\quad |\\varphi kl\\rangle"
+    },
+    {
+      "id": "saffman-p11-20",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 11,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+      "cropFile": "crops/saffman-p11-20.png",
+      "bbox": {
+        "x": 510,
+        "y": 865,
+        "width": 425,
+        "height": 52
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Omega_N=\\sqrt{\\sum_{\\gamma k}|\\Omega_{\\gamma k}|^2}=\\sqrt N\\Omega"
+    },
+    {
+      "id": "saffman-p11-21",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 11,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+      "cropFile": "crops/saffman-p11-21.png",
+      "bbox": {
+        "x": 505,
+        "y": 1090,
+        "width": 435,
+        "height": 48
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "|\\psi\\rangle=c_g|g\\rangle+c_s|s\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi kl}|\\varphi kl\\rangle"
+    },
+    {
+      "id": "saffman-p12-22a",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-22a.png",
+      "bbox": {
+        "x": 95,
+        "y": 80,
+        "width": 405,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_g=\\frac{\\Omega_N^*}{2}c_s"
+    },
+    {
+      "id": "saffman-p12-22b",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-22b.png",
+      "bbox": {
+        "x": 90,
+        "y": 145,
+        "width": 415,
+        "height": 65
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_s=\\frac{\\Omega_N}{2}c_g+\\frac{\\Omega_N^*}{N}\\sum_{\\varphi,k<l}\\kappa_{\\varphi kl}^*c_{\\varphi kl}"
+    },
+    {
+      "id": "saffman-p12-22c",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-22c.png",
+      "bbox": {
+        "x": 90,
+        "y": 225,
+        "width": 415,
+        "height": 42
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "i\\dot c_{\\varphi kl}=\\Delta_{\\varphi kl}c_{\\varphi kl}+\\frac{\\Omega_N}{N}\\kappa_{\\varphi kl}c_s"
+    },
+    {
+      "id": "saffman-p12-23",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-23.png",
+      "bbox": {
+        "x": 90,
+        "y": 545,
+        "width": 420,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "P_2=\\sum_{\\varphi,k<l}|c_{\\varphi kl}|^2=\\frac{|\\Omega_N|^2}{N^2}\\sum_{\\varphi,k<l}\\left|\\frac{\\kappa_{\\varphi kl}}{\\Delta_{\\varphi kl}}\\right|^2"
+    },
+    {
+      "id": "saffman-p12-24",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-24.png",
+      "bbox": {
+        "x": 90,
+        "y": 735,
+        "width": 420,
+        "height": 48
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "\\frac{1}{\\mathrm B^2}=\\frac{2}{N(N-1)}\\sum_{\\varphi,k<l}\\frac{|\\kappa_{\\varphi kl}|^2}{\\Delta_{\\varphi kl}^2}"
+    },
+    {
+      "id": "saffman-p12-25",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-25.png",
+      "bbox": {
+        "x": 90,
+        "y": 825,
+        "width": 420,
+        "height": 45
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "P_2=\\frac{N-1}{N}\\frac{|\\Omega_N|^2}{2\\mathrm B^2}"
+    },
+    {
+      "id": "saffman-p12-26",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-26.png",
+      "bbox": {
+        "x": 515,
+        "y": 575,
+        "width": 415,
+        "height": 55
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\left(1+\\frac{\\Omega^2}{\\omega_{10}^2}+\\frac{\\Omega^2}{7\\mathrm B^2}\\right)+\\frac{\\Omega^2}{8\\mathrm B^2}\\left(1+\\frac{6\\mathrm B^2}{\\omega_{10}^2}\\right)"
+    },
+    {
+      "id": "saffman-p12-27",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-27.png",
+      "bbox": {
+        "x": 525,
+        "y": 870,
+        "width": 400,
+        "height": 55
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Omega_{\\mathrm{opt}}=(7\\pi)^{1/3}\\frac{\\mathrm B^{2/3}}{\\tau^{1/3}}"
+    },
+    {
+      "id": "saffman-p12-28",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 12,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+      "cropFile": "crops/saffman-p12-28.png",
+      "bbox": {
+        "x": 525,
+        "y": 995,
+        "width": 400,
+        "height": 35
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "E_{\\min}=\\frac{3(7\\pi)^{2/3}}{8}\\frac{1}{(\\mathrm B\\tau)^{2/3}}"
+    },
+    {
+      "id": "saffman-p13-29",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 13,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+      "cropFile": "crops/saffman-p13-29.png",
+      "bbox": {
+        "x": 520,
+        "y": 755,
+        "width": 420,
+        "height": 55
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "\\Delta_{\\mathrm{dd}}\\simeq\\sum_\\varphi\\frac{|\\kappa_\\varphi|^2\\Omega^2}{|\\kappa_\\varphi|^2\\Omega^2+\\Delta_\\varphi^2}\\Delta_\\varphi"
+    },
+    {
+      "id": "saffman-p13-30",
+      "source": "Saffman 等 - 2010 - Quantum information with Rydberg atoms.pdf",
+      "page": 13,
+      "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+      "cropFile": "crops/saffman-p13-30.png",
+      "bbox": {
+        "x": 520,
+        "y": 1145,
+        "width": 420,
+        "height": 60
+      },
+      "formulaType": "physics",
+      "groundTruthLatex": "E\\simeq\\frac{\\pi}{\\tau}\\left(\\frac{1}{\\Delta_{\\mathrm{dd}}}+\\frac{1}{\\Omega}\\right)+\\left(\\frac{2\\Delta_{\\mathrm{dd}}^2}{\\Omega^2}+\\frac{\\Omega^2}{\\omega_{10}^2}\\right)"
+    }
+  ]
+}

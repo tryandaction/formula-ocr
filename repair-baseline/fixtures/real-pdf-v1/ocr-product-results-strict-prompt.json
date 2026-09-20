@@ -1,0 +1,591 @@
+[
+  {
+    "id": "bravyi-p6-01",
+    "success": true,
+    "latex": "\\mathbf{S_2=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}} and \\mathbf{S_3=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}}",
+    "formulas": [
+      {
+        "latex": "\\mathbf{S_2=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}} and \\mathbf{S_3=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1609,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\mathbf{S_2=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}} and \\mathbf{S_3=\\begin{bmatrix}0&1&0\\\\0&0&1\\\\1&0&0\\end{bmatrix}}"
+  },
+  {
+    "id": "bravyi-p6-02",
+    "success": true,
+    "latex": "x=S_{f}\\otimes I_{m}\\quad and \\quad y=I_{f}\\otimes S_{m}.",
+    "formulas": [
+      {
+        "latex": "x=S_{f}\\otimes I_{m}\\quad and \\quad y=I_{f}\\otimes S_{m}.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 910,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "x=S_{f}\\otimes I_{m}\\quad and \\quad y=I_{f}\\otimes S_{m}."
+  },
+  {
+    "id": "bravyi-p6-03",
+    "success": true,
+    "latex": "A=A_{1}+A_{2}+A_{3}\\quad and\\quad B=B_{1}+B_{2}+B_{3}",
+    "formulas": [
+      {
+        "latex": "A=A_{1}+A_{2}+A_{3}\\quad and\\quad B=B_{1}+B_{2}+B_{3}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1175,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "A=A_{1}+A_{2}+A_{3}\\quad and\\quad B=B_{1}+B_{2}+B_{3}"
+  },
+  {
+    "id": "bravyi-p6-04",
+    "success": true,
+    "latex": "H^x=[A|B]\text{ and }H^z=[B'|A']",
+    "formulas": [
+      {
+        "latex": "H^x=[A|B]\text{ and }H^z=[B'|A']",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1209,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "H^x=[A|B]\text{ and }H^z=[B'|A']"
+  },
+  {
+    "id": "bravyi-p6-05",
+    "success": true,
+    "latex": "n = 2l m, k = 2 \\times dim(ker(A) \\cap ker(B)) and d = min_{|v|: v \\in ker(H^*) \\backslash rs(H^Z)}",
+    "formulas": [
+      {
+        "latex": "n = 2l m, k = 2 \\times dim(ker(A) \\cap ker(B)) and d = min_{|v|: v \\in ker(H^*) \\backslash rs(H^Z)}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1310,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "n = 2l m, k = 2 \\times dim(ker(A) \\cap ker(B)) and d = min_{|v|: v \\in ker(H^*) \\backslash rs(H^Z)}"
+  },
+  {
+    "id": "bravyi-p6-06",
+    "success": true,
+    "latex": "H_A^i=[A_i+ A_i B_j]^3\n\nH_B^j=[B_j^\\dagger A_i^\\dagger + A_j^\\dagger]^2",
+    "formulas": [
+      {
+        "latex": "H_A^i=[A_i+ A_i B_j]^3",
+        "uncertainties": []
+      },
+      {
+        "latex": "H_B^j=[B_j^\\dagger A_i^\\dagger + A_j^\\dagger]^2",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1103,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "H_A^i=[A_i+ A_i B_j]^3\n\nH_B^j=[B_j^\\dagger A_i^\\dagger + A_j^\\dagger]^2"
+  },
+  {
+    "id": "bravyi-p6-07",
+    "success": true,
+    "latex": "\\hat{H}_B^\\prime = [A_i |B_i| + B_2] \\quad \\text{and}\\quad \\hat{H}_F^\\prime = [B_1 \\bar{r} + B_2 \\sqrt{|r|}]",
+    "formulas": [
+      {
+        "latex": "\\hat{H}_B^\\prime = [A_i |B_i| + B_2] \\quad \\text{and}\\quad \\hat{H}_F^\\prime = [B_1 \\bar{r} + B_2 \\sqrt{|r|}]",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1709,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\hat{H}_B^\\prime = [A_i |B_i| + B_2] \\quad \\text{and}\\quad \\hat{H}_F^\\prime = [B_1 \\bar{r} + B_2 \\sqrt{|r|}]"
+  },
+  {
+    "id": "jandura-p3-01",
+    "success": true,
+    "latex": "H(t)=\\sum_{i=j}\\frac{\\Omega_j(t)}{2}|1\rangle_j\\langle r|+\\text{h.c.}+\\sum_{j<k}B_{jk}\\lvert rr\rangle_j\\lvert rr\rangle_k",
+    "formulas": [
+      {
+        "latex": "H(t)=\\sum_{i=j}\\frac{\\Omega_j(t)}{2}|1\rangle_j\\langle r|+\\text{h.c.}+\\sum_{j<k}B_{jk}\\lvert rr\rangle_j\\lvert rr\rangle_k",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1395,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "jandura-p4-02",
+    "success": true,
+    "latex": "H = \\sum H_q\n\nH_q = p_q H P_q",
+    "formulas": [
+      {
+        "latex": "H = \\sum H_q",
+        "uncertainties": []
+      },
+      {
+        "latex": "H_q = p_q H P_q",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1528,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "H = \\sum H_q\n\nH_q = p_q H P_q"
+  },
+  {
+    "id": "jandura-p4-03",
+    "success": true,
+    "latex": "U(T)|q\rangle = e^{i\\xi q}|q\rangle",
+    "formulas": [
+      {
+        "latex": "U(T)|q\rangle = e^{i\\xi q}|q\rangle",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 834,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "jandura-p4-04",
+    "success": true,
+    "latex": "F = \\int \\mathrm{d}\\psi \\left| \\langle \\psi | U_0^\\dagger U(T) | \\psi \\rangle \\right|^2",
+    "formulas": [
+      {
+        "latex": "F = \\int \\mathrm{d}\\psi \\left| \\langle \\psi | U_0^\\dagger U(T) | \\psi \\rangle \\right|^2",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1016,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "F = \\int \\mathrm{d}\\psi \\left| \\langle \\psi | U_0^\\dagger U(T) | \\psi \\rangle \\right|^2"
+  },
+  {
+    "id": "jandura-p4-05",
+    "success": true,
+    "latex": "\\frac{1}{2^n(2^n+1)}\\left( \\sum_q e^{-i\\xi_q} \\langle q|U(T)|q\\rangle \\right. \\left. + \\sum_q |\\langle q|U(T)|q\\rangle|^2 \\right).",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{2^n(2^n+1)}\\left( \\sum_q e^{-i\\xi_q} \\langle q|U(T)|q\\rangle \\right. \\left. + \\sum_q |\\langle q|U(T)|q\\rangle|^2 \\right).",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1535,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\frac{1}{2^n(2^n+1)}\\left( \\sum_q e^{-i\\xi_q} \\langle q|U(T)|q\\rangle \\right. \\left. + \\sum_q |\\langle q|U(T)|q\\rangle|^2 \\right)."
+  },
+  {
+    "id": "jandura-p5-06",
+    "success": true,
+    "latex": "F_{\text{bell}}=4^{-n}\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\rangle\right|^2",
+    "formulas": [
+      {
+        "latex": "F_{\text{bell}}=4^{-n}\\left|\\sum_q e^{-i\\xi_q}\\langle q|U(T)|q\rangle\right|^2",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1199,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "jandura-p6-07",
+    "success": true,
+    "latex": "\\frac{1}{20}\\left(\\vert 1 + 2a_{01} + a_{11}\\vert^2 \\right. \\left.+ 1 + 2\\vert a_{01}\\vert^2 + \\vert a_{11}\\vert^2\\right)^2",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{20}\\left(\\vert 1 + 2a_{01} + a_{11}\\vert^2 \\right. \\left.+ 1 + 2\\vert a_{01}\\vert^2 + \\vert a_{11}\\vert^2\\right)^2",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1438,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\frac{1}{20}\\left(\\vert 1 + 2a_{01} + a_{11}\\vert^2 \\right. \\left.+ 1 + 2\\vert a_{01}\\vert^2 + \\vert a_{11}\\vert^2\\right)^2"
+  },
+  {
+    "id": "jandura-p6-08",
+    "success": true,
+    "latex": "F = \\frac{1}{72}(\\vert 1 + 3a_{001} + 3a_{011} + a_{111}\\vert^2 + 1 + 3\\vert a_{001}\\vert^2 + 3\\vert a_{011}\\vert^2 + \\vert a_{111}\\vert^2)",
+    "formulas": [
+      {
+        "latex": "F = \\frac{1}{72}(\\vert 1 + 3a_{001} + 3a_{011} + a_{111}\\vert^2 + 1 + 3\\vert a_{001}\\vert^2 + 3\\vert a_{011}\\vert^2 + \\vert a_{111}\\vert^2)",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1727,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "F = \\frac{1}{72}(\\vert 1 + 3a_{001} + 3a_{011} + a_{111}\\vert^2 + 1 + 3\\vert a_{001}\\vert^2 + 3\\vert a_{011}\\vert^2 + \\vert a_{111}\\vert^2)"
+  },
+  {
+    "id": "jandura-p6-09",
+    "success": true,
+    "latex": "H_{11}=\\frac{\\Omega}{2}\\left(|11\rangle\\langle1r|+|11\rangle\\langle r1|+|1r\rangle\\langle rr|\\+|r1\rangle\\langle rr|\right)+h.c.+B|rr\rangle\\langle rr|",
+    "formulas": [
+      {
+        "latex": "H_{11}=\\frac{\\Omega}{2}\\left(|11\rangle\\langle1r|+|11\rangle\\langle r1|+|1r\rangle\\langle rr|\\+|r1\rangle\\langle rr|\right)+h.c.+B|rr\rangle\\langle rr|",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1940,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "jandura-p6-10",
+    "success": true,
+    "latex": "H_{011}=|0\rangle\\langle 0|\\otimes H_{11}.",
+    "formulas": [
+      {
+        "latex": "H_{011}=|0\rangle\\langle 0|\\otimes H_{11}.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 776,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "jandura-p6-11",
+    "success": true,
+    "latex": "H_{111}^{sym}=\\frac{\\sqrt{3}\\Omega}{2}|111\rangle\\langle W_1|+\\Omega|W_1\rangle\\langle W_2|\n+\\frac{\\sqrt{3}\\Omega}{2}|W_2\rangle\\langle 111|+h.c.\n+B|W_2\rangle\\langle W_2|+3B|rrr\rangle\\langle rr|",
+    "formulas": [
+      {
+        "latex": "H_{111}^{sym}=\\frac{\\sqrt{3}\\Omega}{2}|111\rangle\\langle W_1|+\\Omega|W_1\rangle\\langle W_2|\n+\\frac{\\sqrt{3}\\Omega}{2}|W_2\rangle\\langle 111|+h.c.\n+B|W_2\rangle\\langle W_2|+3B|rrr\rangle\\langle rr|",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2834,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "saffman-p10-18",
+    "success": true,
+    "latex": "V_{dd}\\frac{1}{R^3}((\\mathbf{d})^2-3(\\mathbf{d}\\cdot\\hat{\\mathbf{R}}\\mathbf{R}\\cdot\\mathbf{d}))",
+    "formulas": [
+      {
+        "latex": "V_{dd}\\frac{1}{R^3}((\\mathbf{d})^2-3(\\mathbf{d}\\cdot\\hat{\\mathbf{R}}\\mathbf{R}\\cdot\\mathbf{d}))",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1227,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "V_{dd}\\frac{1}{R^3}((\\mathbf{d})^2-3(\\mathbf{d}\\cdot\\hat{\\mathbf{R}}\\mathbf{R}\\cdot\\mathbf{d}))"
+  },
+  {
+    "id": "saffman-p11-19",
+    "success": true,
+    "latex": "|g\rangle, |k\rangle, and |e\rlap{k}\rangle,",
+    "formulas": [
+      {
+        "latex": "|g\rangle, |k\rangle, and |e\rlap{k}\rangle,",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 634,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "saffman-p11-20",
+    "success": true,
+    "latex": "\\Omega_N = \\sqrt{\\sum_{\\gamma,k} |\\Omega_k|^{2}} = \\sqrt{N}\\Omega_0",
+    "formulas": [
+      {
+        "latex": "\\Omega_N = \\sqrt{\\sum_{\\gamma,k} |\\Omega_k|^{2}} = \\sqrt{N}\\Omega_0",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1215,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\Omega_N = \\sqrt{\\sum_{\\gamma,k} |\\Omega_k|^{2}} = \\sqrt{N}\\Omega_0"
+  },
+  {
+    "id": "saffman-p11-21",
+    "success": true,
+    "latex": "\\left| \\psi \\right> = c_s \\left| g \\right> + c_s \\left| s \\right> + \\sum_{\\varphi,k<l} c_{\\varphi k l} \\left| \\varphi k l \\right>",
+    "formulas": [
+      {
+        "latex": "\\left| \\psi \\right> = c_s \\left| g \\right> + c_s \\left| s \\right> + \\sum_{\\varphi,k<l} c_{\\varphi k l} \\left| \\varphi k l \\right>",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1359,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\left| \\psi \\right> = c_s \\left| g \\right> + c_s \\left| s \\right> + \\sum_{\\varphi,k<l} c_{\\varphi k l} \\left| \\varphi k l \\right>"
+  },
+  {
+    "id": "saffman-p12-22a",
+    "success": true,
+    "latex": "i\\dot{C}_8=\\frac{\\Omega_N^*}{2}c_s,",
+    "formulas": [
+      {
+        "latex": "i\\dot{C}_8=\\frac{\\Omega_N^*}{2}c_s,",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 648,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "i\\dot{C}_8=\\frac{\\Omega_N^*}{2}c_s,"
+  },
+  {
+    "id": "saffman-p12-22b",
+    "success": true,
+    "latex": "i \\zeta_s = \\frac{\\Omega_N}{2} c_g + \\frac{\\Omega_N}{N} \\sum_{\\kappa, \\xi < l} \\kappa^*_{\\xi k l} \\xi_k l",
+    "formulas": [
+      {
+        "latex": "i \\zeta_s = \\frac{\\Omega_N}{2} c_g + \\frac{\\Omega_N}{N} \\sum_{\\kappa, \\xi < l} \\kappa^*_{\\xi k l} \\xi_k l",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1833,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "i \\zeta_s = \\frac{\\Omega_N}{2} c_g + \\frac{\\Omega_N}{N} \\sum_{\\kappa, \\xi < l} \\kappa^*_{\\xi k l} \\xi_k l"
+  },
+  {
+    "id": "saffman-p12-22c",
+    "success": true,
+    "latex": "i\\dot{C}_{\\xi k l}=\\Delta_{\\xi k}i C_{\\xi k l}+\\frac{-\\sum^{N}}{N}\\kappa_{\\xi k l}C_s.",
+    "formulas": [
+      {
+        "latex": "i\\dot{C}_{\\xi k l}=\\Delta_{\\xi k}i C_{\\xi k l}+\\frac{-\\sum^{N}}{N}\\kappa_{\\xi k l}C_s.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1347,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "i\\dot{C}_{\\xi k l}=\\Delta_{\\xi k}i C_{\\xi k l}+\\frac{-\\sum^{N}}{N}\\kappa_{\\xi k l}C_s."
+  },
+  {
+    "id": "saffman-p12-23",
+    "success": true,
+    "latex": "P_2 = \\sum_{\\varphi,k<l} |c_{\\varphi k}|^2 = \\frac{\\prod_i N_l}{N^2} \\sum_{\\varphi,k<l} \\frac{|\\varphi_k l|}{\\Delta_{\\varphi k l}}",
+    "formulas": [
+      {
+        "latex": "P_2 = \\sum_{\\varphi,k<l} |c_{\\varphi k}|^2 = \\frac{\\prod_i N_l}{N^2} \\sum_{\\varphi,k<l} \\frac{|\\varphi_k l|}{\\Delta_{\\varphi k l}}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1571,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "P_2 = \\sum_{\\varphi,k<l} |c_{\\varphi k}|^2 = \\frac{\\prod_i N_l}{N^2} \\sum_{\\varphi,k<l} \\frac{|\\varphi_k l|}{\\Delta_{\\varphi k l}}"
+  },
+  {
+    "id": "saffman-p12-24",
+    "success": true,
+    "latex": "\\frac{1}{B^2}=\\frac{2}{N(N-1)}\\sum_{\\epsilon_k<k<l}\\frac{|K_{\\epsilon_k\\epsilon_l}|^2}{\\Delta^{2}_{\\epsilon_kl}}.",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{B^2}=\\frac{2}{N(N-1)}\\sum_{\\epsilon_k<k<l}\\frac{|K_{\\epsilon_k\\epsilon_l}|^2}{\\Delta^{2}_{\\epsilon_kl}}.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1708,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\frac{1}{B^2}=\\frac{2}{N(N-1)}\\sum_{\\epsilon_k<k<l}\\frac{|K_{\\epsilon_k\\epsilon_l}|^2}{\\Delta^{2}_{\\epsilon_kl}}."
+  },
+  {
+    "id": "saffman-p12-25",
+    "success": true,
+    "latex": "P_2 = \\frac{\\frac{N-1}{N}\\left|\\Omega_N^2\right|^2}{2B^2}",
+    "formulas": [
+      {
+        "latex": "P_2 = \\frac{\\frac{N-1}{N}\\left|\\Omega_N^2\right|^2}{2B^2}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1321,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "saffman-p12-26",
+    "success": true,
+    "latex": "E = \\frac{7\\pi}{4\\Omega}\\tau\\left(1 + \\frac{\\Omega^2}{\\omega_{10}^2} + \\frac{\\Omega^2}{7B^2}\\right)\\frac{\\Omega^2}{8B^2}\\left(1 + 6\\frac{B^2}{\\omega_{10}^2}\\right).",
+    "formulas": [
+      {
+        "latex": "E = \\frac{7\\pi}{4\\Omega}\\tau\\left(1 + \\frac{\\Omega^2}{\\omega_{10}^2} + \\frac{\\Omega^2}{7B^2}\\right)\\frac{\\Omega^2}{8B^2}\\left(1 + 6\\frac{B^2}{\\omega_{10}^2}\\right).",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2711,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "E = \\frac{7\\pi}{4\\Omega}\\tau\\left(1 + \\frac{\\Omega^2}{\\omega_{10}^2} + \\frac{\\Omega^2}{7B^2}\\right)\\frac{\\Omega^2}{8B^2}\\left(1 + 6\\frac{B^2}{\\omega_{10}^2}\\right)."
+  },
+  {
+    "id": "saffman-p12-27",
+    "success": true,
+    "latex": "\\Omega_{\text{opt}}=(7\\pi)^{1/3}\\frac{B^{2/3}}{r^{1/3}}",
+    "formulas": [
+      {
+        "latex": "\\Omega_{\text{opt}}=(7\\pi)^{1/3}\\frac{B^{2/3}}{r^{1/3}}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1125,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\Omega_{\text{opt}}=(7\\pi)^{1/3}\\frac{B^{2/3}}{r^{1/3}}"
+  },
+  {
+    "id": "saffman-p12-28",
+    "success": true,
+    "latex": "E_{\\min }=\\frac{8}{8}\\left(Br\right)^{2/3}",
+    "formulas": [
+      {
+        "latex": "E_{\\min }=\\frac{8}{8}\\left(Br\right)^{2/3}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 752,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  },
+  {
+    "id": "saffman-p13-29",
+    "success": true,
+    "latex": "\\Delta_{dd}\\simeq \\sum_{\\varphi}\\frac{K_c^2\\Omega_c^{-1}}{K_c^2\\Omega^2+\\Delta_\\varphi^2}\\Delta_\\varphi",
+    "formulas": [
+      {
+        "latex": "\\Delta_{dd}\\simeq \\sum_{\\varphi}\\frac{K_c^2\\Omega_c^{-1}}{K_c^2\\Omega^2+\\Delta_\\varphi^2}\\Delta_\\varphi",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1067,
+    "httpStatus": 200,
+    "productSuccess": true,
+    "productStatus": "success",
+    "productLatex": "\\Delta_{dd}\\simeq \\sum_{\\varphi}\\frac{K_c^2\\Omega_c^{-1}}{K_c^2\\Omega^2+\\Delta_\\varphi^2}\\Delta_\\varphi"
+  },
+  {
+    "id": "saffman-p13-30",
+    "success": true,
+    "latex": "E = \\frac{\\pi}{7}\\left(\\frac{1}{\\Delta_{d}} + \\frac{1}{\\Omega}\right) + \\left(\\frac{z\\Delta_{dd}}{\\Omega^2} + \\frac{\\Sigma r}{\\omega_0^2}\right)",
+    "formulas": [
+      {
+        "latex": "E = \\frac{\\pi}{7}\\left(\\frac{1}{\\Delta_{d}} + \\frac{1}{\\Omega}\right) + \\left(\\frac{z\\Delta_{dd}}{\\Omega^2} + \\frac{\\Sigma r}{\\omega_0^2}\right)",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1788,
+    "httpStatus": 200,
+    "productSuccess": false,
+    "productStatus": "invalid",
+    "productLatex": "",
+    "productErrorClass": "invalid_output",
+    "productError": "模型输出无效，请调整选区或换服务重试"
+  }
+]

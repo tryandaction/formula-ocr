@@ -15,6 +15,8 @@ export function buildFormulaPrompt(context?: RecognitionRequestContext): string 
   const modeHint = context?.mode === 'multiple' ? '按阅读顺序提取所有公式，各占 formulas 的一项。' : '仅提取所选区域中的一个公式。';
   return `识别图片中的${context?.source?.kind || 'image'}公式并输出结构化 JSON。${typeHint}${modeHint}
 
+完整转录裁剪内公式本体的每个可见符号，必须保留等号左侧、上下标、求和/积分上下限和全部公式行。忽略右侧圆括号公式编号。latex 中禁止 \`$\`、\`$$\`、\`\\begin{equation}\`、\`\\begin{aligned}\`、解释文字和公式外正文。
+
 只允许以下 JSON 结构，不要 Markdown 或解释：
 {"formulas":[{"latex":"...","uncertainties":[]}],"uncertainties":[]}
 

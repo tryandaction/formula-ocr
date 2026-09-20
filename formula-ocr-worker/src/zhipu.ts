@@ -3,6 +3,7 @@
  */
 const prompt = (context?: RecognitionContext) => `Transcribe only the formulas visible in this image.
 Formula hint: ${context?.formulaType || 'auto'}. Mode: ${context?.mode || 'single'}.
+Keep every visible symbol, including the left-hand side, scripts, limits, and all formula rows. Omit a parenthesized equation number at the right edge. Do not use $, $$, equation/aligned wrappers, explanations, or surrounding prose in latex.
 Return JSON only: {"formulas":[{"latex":"...","uncertainties":[]}],"uncertainties":[]}.
 Do not explain, infer, or complete missing content. Use an empty formulas array when no formula is visible.`;
 
@@ -53,6 +54,7 @@ export async function proxyZhipuAPI(imageBase64: string, apiKey: string, context
         model: 'glm-4v-flash',
         max_tokens: 2048,
         temperature: 0,
+        response_format: { type: 'json_object' },
         messages: [{ role: 'user', content: [
           { type: 'image_url', image_url: { url: imageBase64 } },
           { type: 'text', text: prompt(context) },

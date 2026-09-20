@@ -99,6 +99,29 @@ function invalid(error = '模型输出无效，请调整选区或换服务重试
 }
 const strings = (value: unknown): string[] => Array.isArray(value) ? value.filter((s): s is string => typeof s === 'string') : [];
 
+function restoreControlCommand(value: string, control: string, prefix: string, suffixes: string[]): string {
+  let result = '';
+  for (let index = 0; index < value.length; index++) {
+    const suffix = value[index] === control ? suffixes.find(candidate => value.startsWith(candidate, index + 1)) : undefined;
+    if (suffix) {
+      result += `\\${prefix}`;
+    } else {
+      result += value[index];
+    }
+  }
+  return result;
+}
+
+function repairJsonControlEscapes(value: string): string {
+  return [
+    ['\b', 'b', ['egin', 'eta', 'ig', 'mathbf']],
+    ['\f', 'f', ['rac']],
+    ['\n', 'n', ['eq', 'u']],
+    ['\r', 'r', ['angle', 'ight', 'ho']],
+    ['\t', 't', ['ext', 'imes', 'heta', 'au']],
+  ].reduce((result, [control, prefix, suffixes]) => restoreControlCommand(result, control as string, prefix as string, suffixes as string[]), value);
+}
+
 export function validateRecognitionResult(input: { latex?: string; success: boolean; uncertainties?: string[] }): StructuredRecognitionResult {
   const latex = input.latex?.trim() ?? '';
   if (!input.success || !latex) return invalid('识别结果为空');
@@ -136,10 +159,10 @@ export function parseRecognitionText(text: string): StructuredRecognitionResult 
     if (Array.isArray(object.formulas)) {
       for (const entry of object.formulas) {
         if (!entry || typeof entry !== 'object' || typeof entry.latex !== 'string' || !entry.latex.trim()) return invalid();
-        entries.push({ latex: entry.latex, uncertainties: strings(entry.uncertainties) });
+        entries.push({ latex: repairJsonControlEscapes(entry.latex), uncertainties: strings(entry.uncertainties) });
       }
     } else if (typeof object.latex === 'string') {
-      if (object.latex.trim()) entries = [{ latex: object.latex }];
+      if (object.latex.trim()) entries = [{ latex: repairJsonControlEscapes(object.latex) }];
     } else return invalid('结构化结果缺少 formulas 或 latex');
     if (!entries.length) return { success: false, status: 'no_formula', latex: '', formulaCount: 0, formulas: [], uncertainties };
   } else {

@@ -15,6 +15,10 @@ small baseline can be reproduced.
   checked LaTeX ground truth and one unresolved failure sample.
 - `evaluate.mjs`: reports OCR exact/normalized match only after at least 30
   scored samples; until then it prints `样本不足`.
+- `fixtures/real-pdf-v1/`: 33 formula crops from three real physics papers,
+  human LaTeX and box ground truth, raw Provider results, human review, and a
+  reproducible evaluator. See its README for the measured v1 results.
 
-The current manifest has no ground-truth detection boxes. It must not be used
-to claim PDF detection precision, recall, IoU, or production accuracy.
+The original synthetic manifest has no ground-truth detection boxes. Detection
+metrics must use `real-pdf-v1`; its small scope still does not establish general
+production accuracy.

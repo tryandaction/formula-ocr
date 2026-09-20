@@ -39,6 +39,6 @@ GitHub Pages 工作流位于 `.github/workflows/deploy-pages.yml`。仓库 Pages
 
 ## 现有限制
 
-- OCR 和检测准确率尚无足够人工标注样本支持公开百分比。
+- `repair-baseline/fixtures/real-pdf-v1` 已提供 3 篇物理论文、10 页、33 个公式的首版人工标注。该小样本上的栅格检测 precision/recall 为 6.74%/18.18%，`glm-4v-flash` 人工数学可接受率为 9.09%；不能外推为通用准确率。
 - DOCX 的旧式 OLE/Equation Editor 对象无法在浏览器中可靠转换，会显示明确警告。
 - 视觉 OCR 依赖所选外部服务或本地模型；没有可用 Provider 时，源码公式仍可解析和导出。

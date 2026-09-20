@@ -1,0 +1,981 @@
+[
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 67,
+      "y": 78,
+      "width": 89,
+      "height": 22
+    },
+    "confidence": 0.8158901515151514,
+    "id": "formula_1_formula_1_0_1789905925426"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 66,
+      "y": 45,
+      "width": 82,
+      "height": 25
+    },
+    "confidence": 0.8158901515151514,
+    "id": "formula_2_formula_2_1_1789905928143"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 94,
+      "y": 99,
+      "width": 390,
+      "height": 272
+    },
+    "confidence": 0.88,
+    "id": "formula_3_formula_3_2_1789905930994"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 94,
+      "y": 447,
+      "width": 391,
+      "height": 180
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_3_formula_3_3_1789905931010"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 584,
+      "y": 519,
+      "width": 243,
+      "height": 105
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_3_formula_3_4_1789905931015"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 876,
+      "y": 532,
+      "width": 25,
+      "height": 24
+    },
+    "confidence": 0.8059448587127158,
+    "id": "formula_3_formula_3_5_1789905931015"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 94,
+      "y": 1066,
+      "width": 390,
+      "height": 207
+    },
+    "confidence": 0.856470588235294,
+    "id": "formula_3_formula_3_6_1789905931035"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 95,
+      "y": 1298,
+      "width": 539,
+      "height": 22
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_3_formula_3_7_1789905931038"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 96,
+      "width": 809,
+      "height": 272
+    },
+    "confidence": 0.6912903225806452,
+    "id": "formula_4_formula_4_8_1789905933802"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 382,
+      "width": 809,
+      "height": 282
+    },
+    "confidence": 0.8395744680851064,
+    "id": "formula_4_formula_4_9_1789905933852"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 96,
+      "y": 697,
+      "width": 381,
+      "height": 48
+    },
+    "confidence": 0.6571186440677966,
+    "id": "formula_4_formula_4_10_1789905933856"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 512,
+      "y": 698,
+      "width": 392,
+      "height": 205
+    },
+    "confidence": 0.7473913043478261,
+    "id": "formula_4_formula_4_11_1789905933872"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 172,
+      "y": 762,
+      "width": 92,
+      "height": 43
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_4_formula_4_12_1789905933873"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 298,
+      "y": 765,
+      "width": 105,
+      "height": 24
+    },
+    "confidence": 0.7298221343873518,
+    "id": "formula_4_formula_4_13_1789905933874"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 821,
+      "width": 391,
+      "height": 132
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_4_formula_4_14_1789905933884"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 595,
+      "y": 916,
+      "width": 225,
+      "height": 44
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_4_formula_4_15_1789905933886"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 876,
+      "y": 925,
+      "width": 25,
+      "height": 24
+    },
+    "confidence": 0.8120673076923076,
+    "id": "formula_4_formula_4_16_1789905933886"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 513,
+      "y": 972,
+      "width": 389,
+      "height": 116
+    },
+    "confidence": 0.897391304347826,
+    "id": "formula_4_formula_4_17_1789905933896"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 1018,
+      "width": 390,
+      "height": 211
+    },
+    "confidence": 0.88,
+    "id": "formula_4_formula_4_18_1789905933913"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 541,
+      "y": 1101,
+      "width": 310,
+      "height": 110
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_4_formula_4_19_1789905933917"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 876,
+      "y": 1120,
+      "width": 25,
+      "height": 24
+    },
+    "confidence": 0.8120673076923076,
+    "id": "formula_4_formula_4_20_1789905933918"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 213,
+      "y": 1244,
+      "width": 144,
+      "height": 26
+    },
+    "confidence": 0.7868074324324325,
+    "id": "formula_4_formula_4_21_1789905933918"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 513,
+      "y": 1225,
+      "width": 389,
+      "height": 46
+    },
+    "confidence": 0.6571186440677966,
+    "id": "formula_4_formula_4_22_1789905933922"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 95,
+      "y": 1298,
+      "width": 539,
+      "height": 22
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_4_formula_4_23_1789905933924"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 549,
+      "y": 96,
+      "width": 353,
+      "height": 141
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_5_formula_5_24_1789905938237"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 523,
+      "y": 262,
+      "width": 379,
+      "height": 229
+    },
+    "confidence": 0.7085714285714285,
+    "id": "formula_5_formula_5_25_1789905938252"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 525,
+      "y": 519,
+      "width": 377,
+      "height": 248
+    },
+    "confidence": 0.7085714285714285,
+    "id": "formula_5_formula_5_26_1789905938273"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 157,
+      "y": 567,
+      "width": 265,
+      "height": 60
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_5_formula_5_27_1789905938275"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 645,
+      "width": 390,
+      "height": 158
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_5_formula_5_28_1789905938286"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 868,
+      "width": 391,
+      "height": 268
+    },
+    "confidence": 0.856470588235294,
+    "id": "formula_5_formula_5_29_1789905938305"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 106,
+      "y": 1157,
+      "width": 378,
+      "height": 113
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_5_formula_5_30_1789905938312"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 95,
+      "y": 1298,
+      "width": 539,
+      "height": 22
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_5_formula_5_31_1789905938314"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 95,
+      "y": 99,
+      "width": 161,
+      "height": 19
+    },
+    "confidence": 0.8120673076923076,
+    "id": "formula_6_formula_6_32_1789905941200"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 512,
+      "y": 99,
+      "width": 390,
+      "height": 159
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_6_formula_6_33_1789905941212"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 542,
+      "y": 278,
+      "width": 359,
+      "height": 121
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_6_formula_6_34_1789905941218"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 513,
+      "y": 421,
+      "width": 391,
+      "height": 227
+    },
+    "confidence": 0.88,
+    "id": "formula_6_formula_6_35_1789905941238"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 168,
+      "y": 615,
+      "width": 241,
+      "height": 81
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_6_formula_6_36_1789905941241"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 457,
+      "y": 626,
+      "width": 26,
+      "height": 24
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_6_formula_6_37_1789905941241"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 95,
+      "y": 710,
+      "width": 390,
+      "height": 91
+    },
+    "confidence": 0.8409375,
+    "id": "formula_6_formula_6_38_1789905941248"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 513,
+      "y": 722,
+      "width": 389,
+      "height": 64
+    },
+    "confidence": 0.6571186440677966,
+    "id": "formula_6_formula_6_39_1789905941251"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 121,
+      "y": 813,
+      "width": 362,
+      "height": 81
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_6_formula_6_40_1789905941255"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 513,
+      "y": 825,
+      "width": 199,
+      "height": 22
+    },
+    "confidence": 0.8136013986013986,
+    "id": "formula_6_formula_6_41_1789905941256"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 95,
+      "y": 907,
+      "width": 389,
+      "height": 64
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_6_formula_6_42_1789905941261"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 120,
+      "y": 982,
+      "width": 363,
+      "height": 157
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_6_formula_6_43_1789905941269"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 94,
+      "y": 1156,
+      "width": 389,
+      "height": 115
+    },
+    "confidence": 0.8409375,
+    "id": "formula_6_formula_6_44_1789905941280"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 95,
+      "y": 1298,
+      "width": 539,
+      "height": 22
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_6_formula_6_45_1789905941283"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 297,
+      "y": 38,
+      "width": 425,
+      "height": 18
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_7_formula_7_46_1789905943984"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 88,
+      "y": 80,
+      "width": 399,
+      "height": 273
+    },
+    "confidence": 0.8228571428571428,
+    "id": "formula_7_formula_7_47_1789905943999"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 83,
+      "y": 367,
+      "width": 414,
+      "height": 75
+    },
+    "confidence": 0.8176146788990825,
+    "id": "formula_7_formula_7_48_1789905944005"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 84,
+      "y": 1274,
+      "width": 289,
+      "height": 17
+    },
+    "confidence": 0.824375,
+    "id": "formula_7_formula_7_49_1789905944006"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 297,
+      "y": 38,
+      "width": 425,
+      "height": 18
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_8_formula_8_50_1789905946431"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 522,
+      "y": 80,
+      "width": 161,
+      "height": 17
+    },
+    "confidence": 0.8425757575757575,
+    "id": "formula_8_formula_8_51_1789905946431"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 88,
+      "y": 118,
+      "width": 404,
+      "height": 227
+    },
+    "confidence": 0.7085714285714285,
+    "id": "formula_8_formula_8_52_1789905946443"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 83,
+      "y": 361,
+      "width": 414,
+      "height": 93
+    },
+    "confidence": 0.8176146788990825,
+    "id": "formula_8_formula_8_53_1789905946454"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 523,
+      "y": 465,
+      "width": 157,
+      "height": 17
+    },
+    "confidence": 0.8325757575757575,
+    "id": "formula_8_formula_8_54_1789905946455"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 522,
+      "y": 501,
+      "width": 414,
+      "height": 137
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_8_formula_8_55_1789905946466"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 522,
+      "y": 683,
+      "width": 415,
+      "height": 180
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_8_formula_8_56_1789905946490"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 552,
+      "y": 877,
+      "width": 179,
+      "height": 41
+    },
+    "confidence": 0.6687417218543047,
+    "id": "formula_8_formula_8_57_1789905946492"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 903,
+      "y": 880,
+      "width": 32,
+      "height": 21
+    },
+    "confidence": 0.824375,
+    "id": "formula_8_formula_8_58_1789905946492"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 84,
+      "y": 1274,
+      "width": 289,
+      "height": 17
+    },
+    "confidence": 0.824375,
+    "id": "formula_8_formula_8_59_1789905946494"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 297,
+      "y": 38,
+      "width": 425,
+      "height": 18
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_9_formula_9_60_1789905949250"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 113,
+      "y": 83,
+      "width": 80,
+      "height": 45
+    },
+    "confidence": 0.7473913043478261,
+    "id": "formula_9_formula_9_61_1789905949251"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 113,
+      "y": 146,
+      "width": 210,
+      "height": 49
+    },
+    "confidence": 0.6687417218543047,
+    "id": "formula_9_formula_9_62_1789905949254"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 113,
+      "y": 215,
+      "width": 190,
+      "height": 41
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_9_formula_9_63_1789905949255"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 83,
+      "y": 267,
+      "width": 414,
+      "height": 178
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_9_formula_9_64_1789905949269"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 522,
+      "y": 633,
+      "width": 414,
+      "height": 231
+    },
+    "confidence": 0.856470588235294,
+    "id": "formula_9_formula_9_65_1789905949299"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 83,
+      "y": 881,
+      "width": 414,
+      "height": 217
+    },
+    "confidence": 0.856470588235294,
+    "id": "formula_9_formula_9_66_1789905949321"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 552,
+      "y": 873,
+      "width": 128,
+      "height": 46
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_9_formula_9_67_1789905949322"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 903,
+      "y": 887,
+      "width": 32,
+      "height": 21
+    },
+    "confidence": 0.824375,
+    "id": "formula_9_formula_9_68_1789905949322"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 522,
+      "y": 930,
+      "width": 409,
+      "height": 38
+    },
+    "confidence": 0.8666666666666666,
+    "id": "formula_9_formula_9_69_1789905949325"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 553,
+      "y": 977,
+      "width": 159,
+      "height": 48
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_9_formula_9_70_1789905949326"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 903,
+      "y": 992,
+      "width": 32,
+      "height": 21
+    },
+    "confidence": 0.824375,
+    "id": "formula_9_formula_9_71_1789905949326"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 522,
+      "y": 1031,
+      "width": 414,
+      "height": 142
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_9_formula_9_72_1789905949344"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 83,
+      "y": 1132,
+      "width": 183,
+      "height": 20
+    },
+    "confidence": 0.824375,
+    "id": "formula_9_formula_9_73_1789905949345"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 83,
+      "y": 1166,
+      "width": 414,
+      "height": 80
+    },
+    "confidence": 0.8176146788990825,
+    "id": "formula_9_formula_9_74_1789905949352"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 523,
+      "y": 1204,
+      "width": 413,
+      "height": 42
+    },
+    "confidence": 0.85,
+    "id": "formula_9_formula_9_75_1789905949356"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 84,
+      "y": 1274,
+      "width": 289,
+      "height": 17
+    },
+    "confidence": 0.824375,
+    "id": "formula_9_formula_9_76_1789905949357"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 297,
+      "y": 38,
+      "width": 425,
+      "height": 18
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_10_formula_10_77_1789905951986"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 88,
+      "y": 80,
+      "width": 404,
+      "height": 261
+    },
+    "confidence": 0.7085714285714285,
+    "id": "formula_10_formula_10_78_1789905952004"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 522,
+      "y": 79,
+      "width": 415,
+      "height": 192
+    },
+    "confidence": 0.8698734177215189,
+    "id": "formula_10_formula_10_79_1789905952019"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 523,
+      "y": 315,
+      "width": 192,
+      "height": 20
+    },
+    "confidence": 0.8259090909090909,
+    "id": "formula_10_formula_10_80_1789905952019"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 83,
+      "y": 356,
+      "width": 414,
+      "height": 74
+    },
+    "confidence": 0.8176146788990825,
+    "id": "formula_10_formula_10_81_1789905952026"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 524,
+      "y": 347,
+      "width": 129,
+      "height": 20
+    },
+    "confidence": 0.8135237698081734,
+    "id": "formula_10_formula_10_82_1789905952026"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 553,
+      "y": 750,
+      "width": 180,
+      "height": 53
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_10_formula_10_83_1789905952027"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 903,
+      "y": 766,
+      "width": 32,
+      "height": 21
+    },
+    "confidence": 0.824375,
+    "id": "formula_10_formula_10_84_1789905952027"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 522,
+      "y": 822,
+      "width": 414,
+      "height": 295
+    },
+    "confidence": 0.856470588235294,
+    "id": "formula_10_formula_10_85_1789905952052"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 553,
+      "y": 1135,
+      "width": 244,
+      "height": 51
+    },
+    "confidence": 0.7223076923076922,
+    "id": "formula_10_formula_10_86_1789905952055"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 522,
+      "y": 1205,
+      "width": 414,
+      "height": 41
+    },
+    "confidence": 0.83,
+    "id": "formula_10_formula_10_87_1789905952058"
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 84,
+      "y": 1274,
+      "width": 289,
+      "height": 17
+    },
+    "confidence": 0.824375,
+    "id": "formula_10_formula_10_88_1789905952059"
+  }
+]

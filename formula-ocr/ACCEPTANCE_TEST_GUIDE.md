@@ -54,6 +54,8 @@ npm audit --omit=dev --audit-level=high
 
 样本不足、ground truth 未完成或 Provider Key 不可用时输出“未测量”，不得推断百分比。
 
+仓库当前基准 `repair-baseline/fixtures/real-pdf-v1` 有 33 条 Provider 配对结果，可输出 v1 指标。新增模型、prompt、预处理或解析规则必须保留旧结果并以独立结果文件复测，禁止根据模型输出回改 ground truth。
+
 ## 5. 状态验收
 
 结果必须明确区分：`未检测到`、`识别失败`、`网络/认证/额度/限流/Provider 错误`、`已取消`、`待复核`、`成功`。UI 文案、导出 JSON 和内部状态应一致。

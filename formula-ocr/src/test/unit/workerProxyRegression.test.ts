@@ -5,9 +5,12 @@ afterEach(() => vi.unstubAllGlobals());
 
 describe('Worker provider proxy', () => {
   it('preserves structured formulas and uncertainties', async () => {
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ choices: [{ message: { content: '```json\n{"formulas":[{"latex":"x^2","uncertainties":["exponent"]},{"latex":"y=1","uncertainties":[]}],"uncertainties":[]}\n```' } }] }))));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ choices: [{ message: { content: '```json\n{"formulas":[{"latex":"x^2","uncertainties":["exponent"]},{"latex":"y=1","uncertainties":[]}],"uncertainties":[]}\n```' } }] })));
+    vi.stubGlobal('fetch', fetchMock);
     const result = await proxyZhipuAPI('data:image/png;base64,AAAA', 'key', { requestId: 'r', mime: 'image/png', formulaType: 'physics', mode: 'multiple' });
     expect(result).toMatchObject({ success: true, formulaCount: 2, uncertainties: ['exponent'], formulas: [{ latex: 'x^2' }, { latex: 'y=1' }] });
+    const request = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
+    expect(request.response_format).toEqual({ type: 'json_object' });
   });
 
   it('maps upstream rate limits without claiming success', async () => {

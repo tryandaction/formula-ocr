@@ -15,5 +15,9 @@ describe('provider contract fixtures', () => {
     expect(prompt).toContain('physics');
     expect(prompt).toContain('一个公式');
     expect(prompt).toContain('{"formulas"');
+    expect(prompt).toContain('保留等号左侧');
+    expect(prompt).toContain('忽略右侧圆括号公式编号');
+    expect(prompt).toContain('禁止 `$`、`$$`、`\\begin{equation}`、`\\begin{aligned}`');
+    expect(prompt).toContain('公式外正文');
   });
 });

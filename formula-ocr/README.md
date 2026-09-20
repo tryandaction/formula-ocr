@@ -42,4 +42,6 @@ API Key 保存在浏览器 localStorage。部署时不要把 `.env`、私有图�
 
 ## 质量声明
 
-自动化测试验证请求契约、严格结果解析、取消、队列、Markdown、DOCX/OMML、PDF 生命周期和主要 UI 交互。仓库尚无足够人工 ground truth，因此不发布 OCR 准确率或 PDF 检测 precision/recall 数字。测试通过只说明软件行为符合当前契约。
+自动化测试验证请求契约、严格结果解析、取消、队列、Markdown、DOCX/OMML、PDF 生命周期和主要 UI 交互。测试通过只说明软件行为符合当前契约。
+
+`repair-baseline/fixtures/real-pdf-v1` 包含第一版真实标注集：3 篇物理论文、10 页、33 个公式。当前实测栅格检测 precision 6.74%、recall 18.18%；`glm-4v-flash` 人工数学可接受率 9.09%。该样本很小，不能外推为通用准确率，但足以证明旧视觉模型和启发式检测尚未达到专业发布标准。专用 `glm-ocr` 因当前测试账户无余额/资源包未完成评估。

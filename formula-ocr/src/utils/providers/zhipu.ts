@@ -29,6 +29,7 @@ export const zhipuProvider: ProviderInterface = {
         body: JSON.stringify({
           model: 'glm-4v-flash',  // 免费的视觉模型
           max_tokens: 1024,
+          response_format: { type: 'json_object' },
           messages: [{
             role: 'user',
             content: [

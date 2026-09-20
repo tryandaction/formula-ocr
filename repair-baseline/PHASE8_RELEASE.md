@@ -13,10 +13,12 @@
 
 ## 基准与指标边界
 
-- `fixtures/manifest.json` 有 8 条人工核对的合成 PDF LaTeX ground truth 和 1 条待复核失败样本。
-- 样本少于 30 条，`evaluate.mjs` 按设计只输出“样本不足”，不输出 OCR 百分比。
-- 尚无 PDF 检测框 ground truth，因此 detection precision、recall、IoU 和页级漏检率均为“未测量”。
-- 未使用授权生产 Key 运行多 Provider 基准，因此云端 OCR 准确率及 P50/P95 为“未测量”。
+- `fixtures/manifest.json` 保留 8 条人工核对的合成 PDF LaTeX ground truth 和 1 条待复核失败样本。
+- `fixtures/real-pdf-v1` 新增 33 条人工 LaTeX、公式框、裁剪和 Provider 配对结果。
+- 真实基准使用授权测试 Key 运行 `glm-4v-flash`；单批观测 P50 1321ms、P95 2711ms、最小/最大 634/2834ms。这不是生产 SLA。
+- 只完成一个云 Provider；其他 Provider 的准确率和延迟仍为“未测量”。
+
+真实基准 v1 包含 3 篇论文、10 页、33 个公式框与人工 LaTeX。栅格检测 precision 6.74%、recall 18.18%、matched mean IoU 0.677；`glm-4v-flash` 最终契约产品可展示 23/33、exact 0/33、strict normalized 0/33、人工数学可接受 3/33。该结果只适用于 v1 样本与指定模型版本。
 
 ## 浏览器证据
 
@@ -34,7 +36,7 @@
 | 命令 | 结果 |
 |---|---|
 | `formula-ocr: npm run lint` | 通过，0 error、0 warning |
-| `formula-ocr: npm run test:run` | 通过，32 个测试文件、258/258 测试通过 |
+| `formula-ocr: npm run test:run` | 通过，33 个测试文件、260/260 测试通过 |
 | `formula-ocr: npm run build` | 通过，76 个模块完成生产构建；PDF Worker 为本地构建资产 |
 | `formula-ocr: npm audit --audit-level=moderate` | 通过，0 vulnerabilities |
 | `formula-ocr-worker: npx tsc --noEmit` | 通过 |

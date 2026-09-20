@@ -1,0 +1,20 @@
+{
+  "policy": "All 33 samples were reviewed. Mathematical content must be complete and equivalent; spacing, delimiter sizing, equivalent environments, and trailing punctuation are ignored. Unlisted samples are rejected.",
+  "reviewedResult": "ocr-product-results-strict-prompt.json",
+  "reviewedCount": 33,
+  "unlistedAcceptable": false,
+  "reviews": [
+    {"id":"bravyi-p6-01","acceptable":true,"reason":"Both labels and both matrices are complete; bold styling and the plain 'and' token are cosmetic."},
+    {"id":"bravyi-p6-03","acceptable":true,"reason":"Both matrix sums are complete; spacing and plain 'and' are cosmetic."},
+    {"id":"jandura-p6-08","acceptable":true,"reason":"The complete F expression is present with equivalent delimiter notation."}
+  ],
+  "rejectionSummary": {
+    "rejectedCount": 30,
+    "categories": [
+      "missing left-hand side, limit, coefficient, term, or formula row",
+      "wrong Greek letter, Latin symbol, subscript, superscript, or transpose",
+      "invalid or product-rejected LaTeX",
+      "changed mathematical structure"
+    ]
+  }
+}

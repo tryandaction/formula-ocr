@@ -1,0 +1,444 @@
+[
+  {
+    "id": "bravyi-p6-01",
+    "success": true,
+    "latex": "\\begin{bmatrix}0 & 1 \\\n1 & 0\\end{bmatrix}\n\n\\begin{bmatrix}0 & 1 & 0 \\\\\n0 & 0 & 1 \\\\\n1 & 0 & 0\\end{bmatrix}",
+    "formulas": [
+      {
+        "latex": "\\begin{bmatrix}0 & 1 \\\n1 & 0\\end{bmatrix}",
+        "uncertainties": []
+      },
+      {
+        "latex": "\\begin{bmatrix}0 & 1 & 0 \\\\\n0 & 0 & 1 \\\\\n1 & 0 & 0\\end{bmatrix}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2103,
+    "httpStatus": 200
+  },
+  {
+    "id": "bravyi-p6-02",
+    "success": false,
+    "latex": "",
+    "processingTime": 1332,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 61 (line 4 column 32)",
+    "rawContent": "```json\n{\n    \"formulas\": [\n        {\n            \"latex\": \"x = S_f \\otimes I_m\",\n            \"uncertainties\": []\n        },\n        {\n            \"latex\": \"y = I_f \\otimes S_m\",\n            \"uncertainties\": []\n        }\n    ],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "bravyi-p6-03",
+    "success": true,
+    "latex": "A=A_1+A_2+A_3\\quad and \\quad B=B_1+B_2+B_3",
+    "formulas": [
+      {
+        "latex": "A=A_1+A_2+A_3\\quad and \\quad B=B_1+B_2+B_3",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1130,
+    "httpStatus": 200
+  },
+  {
+    "id": "bravyi-p6-04",
+    "success": true,
+    "latex": "$H^X = [A|B]$ and $H^Z = [B^T|A]^T$",
+    "formulas": [
+      {
+        "latex": "$H^X = [A|B]$ and $H^Z = [B^T|A]^T$",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 877,
+    "httpStatus": 200
+  },
+  {
+    "id": "bravyi-p6-05",
+    "success": true,
+    "latex": "n=2\\ell m, k=2\\times \\dim(ker(A) \\cap ker(B)) and d = \\min(|v|: v \\in ker(H^*) \\backslash rs(H^Z))",
+    "formulas": [
+      {
+        "latex": "n=2\\ell m, k=2\\times \\dim(ker(A) \\cap ker(B)) and d = \\min(|v|: v \\in ker(H^*) \\backslash rs(H^Z))",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2343,
+    "httpStatus": 200
+  },
+  {
+    "id": "bravyi-p6-06",
+    "success": true,
+    "latex": "\\hat{H}_A^* = [A_2 + A_1 B_3]\\\n\n\\hat{H}_B^* = [B_1^* \\hat{L}_5^* + A_1^*]\\",
+    "formulas": [
+      {
+        "latex": "\\hat{H}_A^* = [A_2 + A_1 B_3]\\",
+        "uncertainties": []
+      },
+      {
+        "latex": "\\hat{H}_B^* = [B_1^* \\hat{L}_5^* + A_1^*]\\",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2224,
+    "httpStatus": 200
+  },
+  {
+    "id": "bravyi-p6-07",
+    "success": true,
+    "latex": "H_F^A=[A_i|B_1+B_2] and H_F^B=[B_1|B_2[4]]",
+    "formulas": [
+      {
+        "latex": "H_F^A=[A_i|B_1+B_2] and H_F^B=[B_1|B_2[4]]",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 978,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p3-01",
+    "success": true,
+    "latex": "H(t)=\\sum_{i=j}^{n}\\frac{\\Omega_j(t)}{2}|1\rangle_j\\langle r|+\\text{h.c.}\n\n+\\sum_{j<k}B_{jk}|rr\rangle_j\\langle rr|_k",
+    "formulas": [
+      {
+        "latex": "H(t)=\\sum_{i=j}^{n}\\frac{\\Omega_j(t)}{2}|1\rangle_j\\langle r|+\\text{h.c.}",
+        "uncertainties": []
+      },
+      {
+        "latex": "+\\sum_{j<k}B_{jk}|rr\rangle_j\\langle rr|_k",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1861,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p4-02",
+    "success": false,
+    "latex": "",
+    "processingTime": 1213,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "invalid_formula",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"H = \\\\sum H_q \\\\quad H_q = P_q H P_q\"}, {\"latex\": \"\"}],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "jandura-p4-03",
+    "success": false,
+    "latex": "",
+    "processingTime": 1320,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 51 (line 2 column 50)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"U(T)|q\\rangle = e^{i\\xi_{q}}|q\\rangle\", \"uncertainties\": []}],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "jandura-p4-04",
+    "success": false,
+    "latex": "",
+    "processingTime": 1079,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 83 (line 2 column 82)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"\\\\int \\\\mathrm{d}\\\\psi \\\\left| \\\\langle \\\\psi | U_0^\\dag U(T) | \\\\psi \\\\rangle \\\\right|^2\"}, ],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "jandura-p4-05",
+    "success": false,
+    "latex": "",
+    "processingTime": 1835,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 95 (line 4 column 66)",
+    "rawContent": "```json\n{\n    \"formulas\": [\n        {\n            \"latex\": \"\\\\frac{1}{2^n(2^n+1)}\\\\left( \\\\sum_q e^{-i\\xi_q} \\\\langle q|U(T)|q\\\\rangle \\\\right. \\\\left. + \\\\sum_q |\\\\langle q|U(T)|q\\\\rangle|^2 \\\\right).\",\n            \"uncertainties\": []\n        }\n    ],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "jandura-p5-06",
+    "success": true,
+    "latex": "F_{bell} = 4^{-n} \\left| \\sum_{q} e^{-i\\xi q} \\langle q | U(T) | q \\rangle \\right|^2",
+    "formulas": [
+      {
+        "latex": "F_{bell} = 4^{-n} \\left| \\sum_{q} e^{-i\\xi q} \\langle q | U(T) | q \\rangle \\right|^2",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1619,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p6-07",
+    "success": true,
+    "latex": "\\frac{1}{20}\\left(\\begin{array}{c}\n1+2|a_{01}|+|a_{11}|^2 \\\\\n+1+2|a_{01}|^2+|a_{11}|^2\\end{array}\\right)",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{20}\\left(\\begin{array}{c}\n1+2|a_{01}|+|a_{11}|^2 \\\\\n+1+2|a_{01}|^2+|a_{11}|^2\\end{array}\\right)",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2396,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p6-08",
+    "success": true,
+    "latex": "F=\\frac{1}{72}(|1+3a_{001}+3a_{011}+a_{111}|^{2}\\) + 1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2})",
+    "formulas": [
+      {
+        "latex": "F=\\frac{1}{72}(|1+3a_{001}+3a_{011}+a_{111}|^{2}\\) + 1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2})",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 2040,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p6-09",
+    "success": true,
+    "latex": "\\frac{\\Omega}{2}\\Big( |11\\rangle\\langle 1r| + |11\\rangle\\langle r1| + |1r\\rangle\\langle rr| \\) + \\langle rr| \\) + h.c. + B \\mid rr\\rangle\\langle rr|\n\n= \\frac{\\sqrt{2}\\Omega}{2}\\Big( |11\\rangle\\langle W| + |W\\rangle\\langle 11| \\) + h.c. + B \\mid rr\\rangle\\langle rr|",
+    "formulas": [
+      {
+        "latex": "\\frac{\\Omega}{2}\\Big( |11\\rangle\\langle 1r| + |11\\rangle\\langle r1| + |1r\\rangle\\langle rr| \\) + \\langle rr| \\) + h.c. + B \\mid rr\\rangle\\langle rr|",
+        "uncertainties": []
+      },
+      {
+        "latex": "= \\frac{\\sqrt{2}\\Omega}{2}\\Big( |11\\rangle\\langle W| + |W\\rangle\\langle 11| \\) + h.c. + B \\mid rr\\rangle\\langle rr|",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 3863,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p6-10",
+    "success": true,
+    "latex": "H_{011}=\\left| 0 \\right>\\left< 0 \\right| \\otimes H_{11}.",
+    "formulas": [
+      {
+        "latex": "H_{011}=\\left| 0 \\right>\\left< 0 \\right| \\otimes H_{11}.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1123,
+    "httpStatus": 200
+  },
+  {
+    "id": "jandura-p6-11",
+    "success": false,
+    "latex": "",
+    "processingTime": 2659,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 86 (line 2 column 85)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"$H_{111}^{sym} = \\\\frac{\\\\sqrt{3}\\\\Omega}{2}|111\\rangle\\langle W_1| + \\\\Omega|W_1\\rangle\\langle W_2| + \\\\frac{\\\\sqrt{3}\\\\Omega}{2}|W_2\\rangle\\langle 111|+ h.c. + B|W_2\\rangle\\langle W_2| + 3B|rrr\\rangle\\langle rrr|$\"}, \"uncertainties\": []]\n}\n```"
+  },
+  {
+    "id": "saffman-p10-18",
+    "success": true,
+    "latex": "\\frac{1}{R^3}((\\mathbf{d})^2 - 3(\\mathbf{d}\\cdot\\hat{\\mathbf{R}}\\mathbf{R}\\cdot\\mathbf{d}))",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{R^3}((\\mathbf{d})^2 - 3(\\mathbf{d}\\cdot\\hat{\\mathbf{R}}\\mathbf{R}\\cdot\\mathbf{d}))",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1916,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p11-19",
+    "success": true,
+    "latex": "|g\rangle, |k\rangle, and |e\rangle|f\rangle,",
+    "formulas": [
+      {
+        "latex": "|g\rangle, |k\rangle, and |e\rangle|f\rangle,",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 877,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p11-20",
+    "success": true,
+    "latex": "\\Omega_N = \\sqrt{\\sum_{\\gamma,k} |\\Omega_k|^2} = \\sqrt{N}\\Omega",
+    "formulas": [
+      {
+        "latex": "\\Omega_N = \\sqrt{\\sum_{\\gamma,k} |\\Omega_k|^2} = \\sqrt{N}\\Omega",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1008,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p11-21",
+    "success": false,
+    "latex": "",
+    "processingTime": 1742,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 31 (line 2 column 30)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\":\"|\\psi\\rangle=c_{s}|\\emptyset\\rangle+c_{s}|\\mathbf{s}\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi k l}|\\varphi k l\\rangle.\"}], \n    \"uncertainties\":[]\n}\n```"
+  },
+  {
+    "id": "saffman-p12-22a",
+    "success": true,
+    "latex": "\\dot{I}_8 = \\frac{\\Omega_N^*}{2} c_s",
+    "formulas": [
+      {
+        "latex": "\\dot{I}_8 = \\frac{\\Omega_N^*}{2} c_s",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 962,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-22b",
+    "success": false,
+    "latex": "",
+    "processingTime": 3223,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 144 (line 2 column 143)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"\\\\dot{c}_s = \\\\frac{\\\\Omega_N}{2} c_g + \\\\frac{\\\\Omega_m}{N} \\\\sum_{\\\\xi, k < l} \\\\kappa^*_{\\\\xi k l} \\\\epsilon_{\\xi k l}\", \"uncertainties\": []}],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "saffman-p12-22c",
+    "success": true,
+    "latex": "\\dot{I}_{\\xi k l} = \\Delta_{\\xi k l}\\dot{I}_k + \\frac{-2N}{N}\\kappa_{\\xi k l}\\mathcal{I}_S.",
+    "formulas": [
+      {
+        "latex": "\\dot{I}_{\\xi k l} = \\Delta_{\\xi k l}\\dot{I}_k + \\frac{-2N}{N}\\kappa_{\\xi k l}\\mathcal{I}_S.",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1170,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-23",
+    "success": true,
+    "latex": "P_2 = \\sum_{\\varphi,k<l} |c_{\\varphi k}|^2 = \\frac{\\prod_{l=1}^{N/2}}{N^2}\\sum_{\\varphi,k<l}\\frac{|\\varphi_k l|}{\\Delta_{\\varphi k l}}",
+    "formulas": [
+      {
+        "latex": "P_2 = \\sum_{\\varphi,k<l} |c_{\\varphi k}|^2 = \\frac{\\prod_{l=1}^{N/2}}{N^2}\\sum_{\\varphi,k<l}\\frac{|\\varphi_k l|}{\\Delta_{\\varphi k l}}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1818,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-24",
+    "success": true,
+    "latex": "\\frac{1}{B^2}=\\frac{2}{N(N-1)}\\sum_{\\epsilon_k<k<l}\\frac{|K_{\\epsilon_k\\epsilon_l}|^2}{\\Delta^{2}_{\\epsilon_k\\epsilon_l}}",
+    "formulas": [
+      {
+        "latex": "\\frac{1}{B^2}=\\frac{2}{N(N-1)}\\sum_{\\epsilon_k<k<l}\\frac{|K_{\\epsilon_k\\epsilon_l}|^2}{\\Delta^{2}_{\\epsilon_k\\epsilon_l}}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1534,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-25",
+    "success": true,
+    "latex": "$P_{2} = \frac{N-1}{N}\frac{|Q_{N}|^{2}}{2B^{2}}$",
+    "formulas": [
+      {
+        "latex": "$P_{2} = \frac{N-1}{N}\frac{|Q_{N}|^{2}}{2B^{2}}$",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 970,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-26",
+    "success": true,
+    "latex": "E=\\frac{7\\pi}{4\\Omega}\\tau(1+\\frac{\\Omega^2}{\\omega_{10}^2}+\\frac{\\Omega^2}{7B^2})\\frac{\\Omega^2}{8B^2}(1+6\\frac{B^2}{\\omega_{10}^2})",
+    "formulas": [
+      {
+        "latex": "E=\\frac{7\\pi}{4\\Omega}\\tau(1+\\frac{\\Omega^2}{\\omega_{10}^2}+\\frac{\\Omega^2}{7B^2})\\frac{\\Omega^2}{8B^2}(1+6\\frac{B^2}{\\omega_{10}^2})",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1902,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-27",
+    "success": true,
+    "latex": "\\Omega_{opt} = (7\\pi)^{1/3}\\frac{B^{2/3}}{r^{1/3}},",
+    "formulas": [
+      {
+        "latex": "\\Omega_{opt} = (7\\pi)^{1/3}\\frac{B^{2/3}}{r^{1/3}},",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1495,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p12-28",
+    "success": true,
+    "latex": "\\frac{L_{\\min}}{8} = \\frac{(B\\tau)^{2/3}}{}",
+    "formulas": [
+      {
+        "latex": "\\frac{L_{\\min}}{8} = \\frac{(B\\tau)^{2/3}}{}",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1787,
+    "httpStatus": 200
+  },
+  {
+    "id": "saffman-p13-29",
+    "success": false,
+    "latex": "",
+    "processingTime": 2112,
+    "httpStatus": 200,
+    "errorClass": "invalid_output",
+    "error": "Bad escaped character in JSON at position 119 (line 2 column 118)",
+    "rawContent": "```json\n{\n    \"formulas\": [{\"latex\": \"\\\\Delta_{dd} \\\\simeq \\\\sum_{\\\\varphi}\\\\frac{K_c^2\\\\Omega_c^{-1}}{K_c^2\\\\Omega^2+\\\\Delta_\\varphi^2}\\\\Delta_\\varphi\", \"uncertainties\": []}],\n    \"uncertainties\": []\n}\n```"
+  },
+  {
+    "id": "saffman-p13-30",
+    "success": true,
+    "latex": "\\frac{\\pi}{7}\\left(\\frac{1}{\\Delta_{dd}}+\\frac{1}{\\Omega}\\right)+\\left(\\frac{2\\Delta_{dd}}{\\Omega^2}+\\frac{\\Sigma^2}{\\omega_0^2}\\right)",
+    "formulas": [
+      {
+        "latex": "\\frac{\\pi}{7}\\left(\\frac{1}{\\Delta_{dd}}+\\frac{1}{\\Omega}\\right)+\\left(\\frac{2\\Delta_{dd}}{\\Omega^2}+\\frac{\\Sigma^2}{\\omega_0^2}\\right)",
+        "uncertainties": []
+      }
+    ],
+    "uncertainties": [],
+    "processingTime": 1924,
+    "httpStatus": 200
+  }
+]

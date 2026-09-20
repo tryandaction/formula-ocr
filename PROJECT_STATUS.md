@@ -27,7 +27,17 @@
 - 浏览器控制台：0 error、0 warning。
 - Lighthouse（本地生产构建）：Performance 98、Accessibility 100、Best Practices 100、SEO 100。
 - 前端与 Worker 完整 `npm audit --audit-level=moderate`：0 vulnerabilities（官方 npm registry）。
-- 自动化：32 个测试文件，258/258 测试通过；前端 lint 0 error、0 warning；前端/Worker typecheck 和生产构建通过。
+- 自动化：33 个测试文件，260/260 测试通过；前端 lint 0 error、0 warning；前端/Worker typecheck 和生产构建通过。
+
+## 真实准确率基线 v1
+
+- 从 3 篇真实物理论文的 10 页中，在查看任何模型结果前人工标注 33 个公式框和 LaTeX ground truth。
+- 栅格页检测器（IoU >= 0.5）：TP 6、FP 83、FN 27；precision 6.74%、recall 18.18%、匹配框平均 IoU 0.677。
+- `glm-4v-flash` 最终请求契约（JSON mode + 严格转录 prompt）：Provider JSON 33/33，产品可展示 23/33，exact 0/33，严格 normalized 0/33，人工数学可接受 3/33（9.09%）。
+- 同一批次请求耗时 P50 1321ms、P95 2711ms；这是本机当前网络观测，不是 SLA。
+- JSON mode 将合法 JSON 从 24/33 提升到 33/33、产品可展示从 16/33 提升到 23/33，但没有解决模型符号识别准确率。
+- 官方专用 `glm-ocr` 端点已做单条预检，当前配置账户返回 HTTP 429（余额不足或无资源包），因此没有发布 GLM-OCR 准确率。
+- 基准、裁剪、源文件 SHA-256、原始结果、人工复核和评估器位于 `repair-baseline/fixtures/real-pdf-v1`。
 
 精确测试数和命令以最新 CI/本地质量门输出为准。
 
@@ -35,8 +45,9 @@
 
 ## 未完成的证据
 
-- 没有足够人工 ground truth，不能发布 OCR exact match 或 PDF precision/recall。
-- 真实云 Provider 准确率与 P95 延迟需使用授权测试 Key 和基准集测量。
+- v1 只有 3 篇物理论文、33 个公式，不能外推到全部出版社、扫描件、手写体、化学式或语言。
+- `glm-4v-flash` 的 v1 结果证明它不满足专业级公式 OCR；生产方案应接入专用公式/文档 OCR 模型并用同一基准复测。
+- PDF 文本层、栅格检测和 OCR 是不同指标；不得用文本层成功掩盖检测器低 precision/recall。
 - 旧式 DOCX OLE 公式不转换，需另存为现代公式、PDF 或图片。
 
 ## Legacy 隔离

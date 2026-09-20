@@ -21,6 +21,20 @@ describe('real response boundaries', () => {
   it('distinguishes an explicit no-formula result from invalid output', () => {
     expect(parseRecognitionText('{"formulas":[]}')).toMatchObject({ status: 'no_formula', formulaCount: 0 });
   });
+  it('repairs JSON control escapes that corrupt known LaTeX commands', () => {
+    const cases = [
+      ['|q' + '\r' + 'angle', '|q\\rangle'],
+      ['\f' + 'rac{1}{2}', '\\frac{1}{2}'],
+      ['\t' + 'ext{ok}', '\\text{ok}'],
+      ['\b' + 'egin{matrix}x' + '\\end{matrix}', '\\begin{matrix}x\\end{matrix}'],
+    ];
+    for (const [damagedLatex, expected] of cases) {
+      expect(parseRecognitionText(JSON.stringify({ formulas: [{ latex: damagedLatex }] }))).toMatchObject({
+        success: true,
+        latex: expected,
+      });
+    }
+  });
   it('preserves uncertainty through a real provider with only HTTP mocked', async () => {
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ latex: 'x^2', uncertainties: ['exponent'] }) } }] }))));
     const request = buildRecognitionRequest({ image: 'data:image/png;base64,AAAA', mime: 'image/png', formulaType: 'physics', mode: 'multiple', source: { kind: 'image' } });
