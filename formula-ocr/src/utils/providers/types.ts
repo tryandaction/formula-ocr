@@ -50,9 +50,11 @@ export interface RecognitionResult {
   errorClass?: string;
 }
 
+export type ProviderRawResponse = string | import('../ocrContract').StructuredRecognitionResult;
+
 export interface ProviderInterface {
   type: ProviderType;
-  recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<string>;
+  recognize(imageBase64: string, apiKey?: string, context?: RecognitionRequestContext): Promise<ProviderRawResponse>;
   validateApiKey?(apiKey: string): Promise<boolean>;
 }
 
@@ -144,11 +146,11 @@ export const PROVIDER_CONFIGS: Record<ProviderType, ProviderConfig> = {
   },
   local: {
     type: 'local',
-    name: '本地模型 (Pix2Tex)',
-    description: '完全离线，无需 API Key',
+    name: '本地 PP-FormulaNet（实验）',
+    description: '本机离线处理，无 API 费用；当前基准未达到推荐门槛',
     requiresApiKey: false,
-    pros: ['完全免费', '离线可用', '隐私安全'],
-    cons: ['需要安装 Python 环境', '首次加载较慢', '精度略低于云端']
+    pros: ['无单次 API 费用', '文件不上传云端', '可离线运行'],
+    cons: ['需安装本地服务', '首次加载较慢', '33 样本人工可接受 10/33，需复核']
   }
 };
 

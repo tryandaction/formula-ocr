@@ -22,3 +22,6 @@ class FakeModelManager:
 
     def formula(self):
         raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "Local formula model is not installed")
+
+    def formula_available(self) -> bool:
+        return False

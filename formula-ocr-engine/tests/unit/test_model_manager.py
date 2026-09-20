@@ -39,6 +39,7 @@ def test_concurrent_first_requests_load_formula_model_once() -> None:
 
     assert loaded == [engine, engine, engine, engine]
     assert calls == 1
+    assert manager.formula_available() is True
     assert manager.statuses()["formula"] == "ready"
 
 
@@ -61,6 +62,8 @@ def test_failed_formula_load_has_stable_error_and_state() -> None:
 def test_missing_formula_factory_is_model_unavailable() -> None:
     model_manager = load_model_manager()
     manager = model_manager.ModelManager()
+
+    assert manager.formula_available() is False
 
     with pytest.raises(EngineError) as captured:
         manager.formula()

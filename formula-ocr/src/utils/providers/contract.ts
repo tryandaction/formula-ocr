@@ -54,6 +54,12 @@ export function mapProviderError(error: unknown): RecognitionErrorClass | 'auth'
   if (/quota|额度/i.test(message)) return 'quota';
   if (/401|403|api.?key|认证|unauthor/i.test(message)) return 'auth';
   if (/network|fetch|网络|连接/i.test(message)) return 'network';
+  if (/model_unavailable/i.test(message)) return 'model_unavailable';
+  if (/model_loading_failed/i.test(message)) return 'model_loading_failed';
+  if (/queue_full/i.test(message)) return 'queue_full';
+  if (/unsupported_format/i.test(message)) return 'unsupported_format';
+  if (/file_too_large/i.test(message)) return 'file_too_large';
+  if (/page_limit/i.test(message)) return 'page_limit';
   if (/invalid_output|latex|响应格式|Invalid API response/i.test(message)) return 'invalid_latex';
   return 'provider_response';
 }
@@ -86,8 +92,30 @@ export function createProviderAdapter(provider: ProviderInterface, apiKey?: stri
           signal: combined,
         });
         combined.throwIfAborted();
-        const parsed = parseRecognitionText(raw);
-        return { ...parsed, provider: provider.type, processingTime: Date.now() - startedAt };
+        const parsed = typeof raw === 'string'
+          ? parseRecognitionText(raw)
+          : raw.success
+            ? {
+                ...parseRecognitionText(JSON.stringify({
+                  success: raw.success,
+                  latex: raw.latex,
+                  formulas: raw.formulas,
+                  uncertainties: raw.uncertainties,
+                  confidence: raw.confidence,
+                  candidates: raw.candidates,
+                })),
+                requestId: raw.requestId,
+                engine: raw.engine,
+                provider: raw.provider,
+                processingTime: raw.processingTime,
+              }
+            : raw;
+        return {
+          ...parsed,
+          requestId: parsed.requestId ?? request.requestId,
+          provider: parsed.provider ?? provider.type,
+          processingTime: parsed.processingTime ?? Date.now() - startedAt,
+        };
       } catch (error) {
         const errorClass = combined.aborted ? mapProviderError(combined.reason) : mapProviderError(error);
         return {

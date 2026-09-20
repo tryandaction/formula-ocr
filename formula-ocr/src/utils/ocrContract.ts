@@ -18,7 +18,15 @@ export type RecognitionErrorClass =
   | 'rate_limit'
   | 'provider_response'
   | 'uncertain_result'
-  | 'invalid_latex';
+  | 'invalid_latex'
+  | 'unsupported_format'
+  | 'file_too_large'
+  | 'page_limit'
+  | 'model_unavailable'
+  | 'model_loading_failed'
+  | 'queue_full'
+  | 'detection_failed'
+  | 'internal';
   
 
 export interface RecognitionSource {
@@ -43,6 +51,7 @@ export interface RecognitionCandidate {
 }
 
 export interface StructuredRecognitionResult {
+  requestId?: string;
   success: boolean;
   status: RecognitionStatus;
   latex: string;
@@ -52,6 +61,7 @@ export interface StructuredRecognitionResult {
   uncertainties: string[];
   candidates?: RecognitionCandidate[];
   provider?: ProviderType | string;
+  engine?: string;
   processingTime?: number;
   error?: string;
   errorClass?: RecognitionErrorClass;

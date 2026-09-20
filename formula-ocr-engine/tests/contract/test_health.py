@@ -77,7 +77,7 @@ async def test_capabilities_reports_limits_and_license_status() -> None:
             "kind": "formula",
             "available": False,
             "state": "not_loaded",
-            "license": "unverified",
+            "license": "verified",
         },
         {
             "id": "pix2text-mfd-1.5",
@@ -94,3 +94,21 @@ async def test_capabilities_reports_limits_and_license_status() -> None:
             "license": "unverified",
         },
     ]
+
+
+@pytest.mark.asyncio
+async def test_default_capabilities_advertise_installed_lazy_formula_adapter() -> None:
+    create_app, settings_type = load_service()
+    transport = httpx.ASGITransport(app=create_app(settings_type()))
+
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/v1/capabilities")
+
+    formula = response.json()["engines"][0]
+    assert formula == {
+        "id": "paddle-pp-formulanet-s",
+        "kind": "formula",
+        "available": True,
+        "state": "not_loaded",
+        "license": "verified",
+    }

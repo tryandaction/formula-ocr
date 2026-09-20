@@ -22,6 +22,9 @@ class ModelManager:
             "document": ModelState.NOT_LOADED,
         }
 
+    def formula_available(self) -> bool:
+        return self._formula_factory is not None
+
     def formula(self) -> FormulaEngine:
         if self._formula_engine is not None:
             return self._formula_engine

@@ -31,6 +31,8 @@ from formula_ocr_engine.services.recognition import RecognitionService
 class ModelStatusProvider(Protocol):
     def statuses(self) -> Mapping[str, str]: ...
 
+    def formula_available(self) -> bool: ...
+
     def formula(self) -> FormulaEngine: ...
 
 
@@ -44,6 +46,9 @@ class UnavailableModelManager:
 
     def formula(self) -> FormulaEngine:
         raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "local formula model is unavailable")
+
+    def formula_available(self) -> bool:
+        return False
 
 
 def _model_states(model_manager: ModelStatusProvider) -> dict[str, ModelState]:
@@ -109,9 +114,9 @@ def create_app(
                 EngineCapability(
                     id="paddle-pp-formulanet-s",
                     kind="formula",
-                    available=False,
+                    available=active_models.formula_available(),
                     state=states["formula"],
-                    license="unverified",
+                    license="verified",
                 ),
                 EngineCapability(
                     id="pix2text-mfd-1.5",
