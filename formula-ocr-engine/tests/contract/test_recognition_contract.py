@@ -1,9 +1,21 @@
 from __future__ import annotations
 
+import base64
+from io import BytesIO
+
 import httpx
 import pytest
 from conftest import FakeModelManager
+from PIL import Image
 from test_health import load_service
+
+
+def valid_nonblank_png() -> str:
+    output = BytesIO()
+    image = Image.new("RGB", (2, 2), "white")
+    image.putpixel((0, 0), (0, 0, 0))
+    image.save(output, format="PNG")
+    return f"data:image/png;base64,{base64.b64encode(output.getvalue()).decode('ascii')}"
 
 
 @pytest.mark.asyncio
@@ -14,7 +26,7 @@ async def test_recognition_returns_stable_model_unavailable_response() -> None:
     )
     request = {
         "requestId": "ocr-contract-1",
-        "image": "data:image/png;base64,iVBORw0KGgo=",
+        "image": valid_nonblank_png(),
         "mime": "image/png",
         "formulaType": "physics",
         "mode": "single",

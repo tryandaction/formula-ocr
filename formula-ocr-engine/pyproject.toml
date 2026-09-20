@@ -5,6 +5,7 @@ description = "Local companion service for Formula OCR"
 requires-python = ">=3.11,<3.12"
 dependencies = [
   "fastapi>=0.115,<1",
+  "numpy>=2,<3",
   "pydantic>=2.10,<3",
   "pillow>=12.3,<13",
   "python-multipart>=0.0.20,<1",
@@ -13,8 +14,10 @@ dependencies = [
 
 [project.optional-dependencies]
 paddle = [
+  "ftfy>=6,<7",
   "paddleocr>=3,<4",
   "paddlepaddle>=3,<4",
+  "tokenizers>=0.19,<1",
 ]
 pix2text = [
   "pix2text>=1.1.4,<2",

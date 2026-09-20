@@ -20,10 +20,18 @@ from formula_ocr_engine.contracts import (
     RecognitionResponse,
     RecognitionStatus,
 )
+from formula_ocr_engine.engines.base import FormulaEngine
+from formula_ocr_engine.engines.paddle_formula import create_paddle_formula_engine
+from formula_ocr_engine.errors import EngineError
+from formula_ocr_engine.image_input import ImageLimits
+from formula_ocr_engine.model_manager import ModelManager
+from formula_ocr_engine.services.recognition import RecognitionService
 
 
 class ModelStatusProvider(Protocol):
     def statuses(self) -> Mapping[str, str]: ...
+
+    def formula(self) -> FormulaEngine: ...
 
 
 class UnavailableModelManager:
@@ -33,6 +41,9 @@ class UnavailableModelManager:
             "detection": ModelState.NOT_LOADED,
             "document": ModelState.NOT_LOADED,
         }
+
+    def formula(self) -> FormulaEngine:
+        raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "local formula model is unavailable")
 
 
 def _model_states(model_manager: ModelStatusProvider) -> dict[str, ModelState]:
@@ -50,7 +61,16 @@ def create_app(
     model_manager: ModelStatusProvider | None = None,
 ) -> FastAPI:
     active_settings = settings or Settings.from_environment()
-    active_models = model_manager or UnavailableModelManager()
+    active_models = model_manager or ModelManager(
+        formula_factory=create_paddle_formula_engine
+    )
+    recognition_service = RecognitionService(
+        active_models,
+        ImageLimits(
+            encoded_bytes=active_settings.encoded_image_bytes,
+            decoded_pixels=active_settings.decoded_pixels,
+        ),
+    )
     app = FastAPI(title="Formula OCR Engine", version=active_settings.version)
     app.add_middleware(
         CORSMiddleware,
@@ -112,21 +132,32 @@ def create_app(
 
     @app.post("/v1/recognize", response_model=RecognitionResponse)
     def recognize(request: RecognitionRequest) -> JSONResponse:
-        response = RecognitionResponse(
-            requestId=request.requestId,
-            success=False,
-            status=RecognitionStatus.FAILED,
-            latex="",
-            formulas=[],
-            formulaCount=0,
-            uncertainties=[],
-            confidence=None,
-            engine="unavailable",
-            processingTime=0,
-            errorClass=ErrorClass.MODEL_UNAVAILABLE,
-            error="Local formula model is not installed",
-        )
-        return JSONResponse(status_code=503, content=response.model_dump(mode="json"))
+        try:
+            response = recognition_service.recognize(request)
+            return JSONResponse(status_code=200, content=response.model_dump(mode="json"))
+        except EngineError as error:
+            status_code = 503 if error.error_class in {
+                ErrorClass.MODEL_UNAVAILABLE,
+                ErrorClass.MODEL_LOADING_FAILED,
+            } else 400
+            response = RecognitionResponse(
+                requestId=request.requestId,
+                success=False,
+                status=(
+                    RecognitionStatus.CANCELLED
+                    if error.error_class == ErrorClass.CANCELLED
+                    else RecognitionStatus.FAILED
+                ),
+                latex="",
+                formulas=[],
+                formulaCount=0,
+                uncertainties=[],
+                engine="unavailable",
+                processingTime=0,
+                errorClass=error.error_class,
+                error=error.message,
+            )
+            return JSONResponse(status_code=status_code, content=response.model_dump(mode="json"))
 
     return app
 

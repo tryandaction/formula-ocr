@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
+from formula_ocr_engine.contracts import ErrorClass
+from formula_ocr_engine.errors import EngineError
+
 
 class FakeModelManager:
     def __init__(self) -> None:
@@ -16,3 +19,6 @@ class FakeModelManager:
 
     def assert_not_loaded(self) -> None:
         assert self.load_calls == 0
+
+    def formula(self):
+        raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "Local formula model is not installed")
