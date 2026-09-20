@@ -12,6 +12,8 @@ from formula_ocr_engine.config import Settings
 from formula_ocr_engine.contracts import (
     CapabilitiesResponse,
     CapabilityLimits,
+    DetectionRequest,
+    DetectionResponse,
     EngineCapability,
     ErrorClass,
     HealthResponse,
@@ -20,11 +22,13 @@ from formula_ocr_engine.contracts import (
     RecognitionResponse,
     RecognitionStatus,
 )
-from formula_ocr_engine.engines.base import FormulaEngine
+from formula_ocr_engine.engines.base import DetectionEngine, FormulaEngine
 from formula_ocr_engine.engines.paddle_formula import create_paddle_formula_engine
+from formula_ocr_engine.engines.pix2text_detection import create_pix2text_detection_engine
 from formula_ocr_engine.errors import EngineError
 from formula_ocr_engine.image_input import ImageLimits
 from formula_ocr_engine.model_manager import ModelManager
+from formula_ocr_engine.services.detection import DetectionService
 from formula_ocr_engine.services.recognition import RecognitionService
 
 
@@ -33,7 +37,11 @@ class ModelStatusProvider(Protocol):
 
     def formula_available(self) -> bool: ...
 
+    def detection_available(self) -> bool: ...
+
     def formula(self) -> FormulaEngine: ...
+
+    def detection(self) -> DetectionEngine: ...
 
 
 class UnavailableModelManager:
@@ -49,6 +57,12 @@ class UnavailableModelManager:
 
     def formula_available(self) -> bool:
         return False
+
+    def detection_available(self) -> bool:
+        return False
+
+    def detection(self) -> DetectionEngine:
+        raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "local detection model is unavailable")
 
 
 def _model_states(model_manager: ModelStatusProvider) -> dict[str, ModelState]:
@@ -67,9 +81,17 @@ def create_app(
 ) -> FastAPI:
     active_settings = settings or Settings.from_environment()
     active_models = model_manager or ModelManager(
-        formula_factory=create_paddle_formula_engine
+        formula_factory=create_paddle_formula_engine,
+        detection_factory=create_pix2text_detection_engine,
     )
     recognition_service = RecognitionService(
+        active_models,
+        ImageLimits(
+            encoded_bytes=active_settings.encoded_image_bytes,
+            decoded_pixels=active_settings.decoded_pixels,
+        ),
+    )
+    detection_service = DetectionService(
         active_models,
         ImageLimits(
             encoded_bytes=active_settings.encoded_image_bytes,
@@ -121,9 +143,9 @@ def create_app(
                 EngineCapability(
                     id="pix2text-mfd-1.5",
                     kind="detection",
-                    available=False,
+                    available=active_models.detection_available(),
                     state=states["detection"],
-                    license="unverified",
+                    license="verified",
                 ),
                 EngineCapability(
                     id="pix2text-document-1.1.4",
@@ -163,6 +185,29 @@ def create_app(
                 error=error.message,
             )
             return JSONResponse(status_code=status_code, content=response.model_dump(mode="json"))
+
+    @app.post("/v1/detect", response_model=DetectionResponse)
+    def detect(request: DetectionRequest) -> JSONResponse:
+        try:
+            response = detection_service.detect(request)
+            return JSONResponse(status_code=200, content=response.model_dump(mode="json"))
+        except EngineError as error:
+            status_code = 503 if error.error_class in {
+                ErrorClass.MODEL_UNAVAILABLE,
+                ErrorClass.MODEL_LOADING_FAILED,
+            } else 400
+            return JSONResponse(
+                status_code=status_code,
+                content={
+                    "requestId": request.requestId,
+                    "status": "failed",
+                    "engine": "unavailable",
+                    "processingTime": 0,
+                    "regions": [],
+                    "errorClass": error.error_class.value,
+                    "error": error.message,
+                },
+            )
 
     return app
 

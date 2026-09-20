@@ -122,3 +122,31 @@ class ErrorResponse(BaseModel):
     requestId: str
     errorClass: ErrorClass
     error: str
+
+
+class DetectionRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    requestId: str = Field(min_length=1, max_length=96, pattern=r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+    image: str = Field(min_length=1)
+    mime: Literal["image/png", "image/jpeg", "image/webp"]
+    source: RecognitionSource
+
+
+class DetectionRegion(BaseModel):
+    id: str
+    x: int = Field(ge=0)
+    y: int = Field(ge=0)
+    width: int = Field(gt=0)
+    height: int = Field(gt=0)
+    confidence: float = Field(ge=0, le=1)
+    formulaType: Literal["display", "inline", "unknown"]
+    detectorVersion: str
+
+
+class DetectionResponse(BaseModel):
+    requestId: str
+    status: Literal["success"] = "success"
+    engine: str
+    processingTime: int = Field(ge=0)
+    regions: list[DetectionRegion]

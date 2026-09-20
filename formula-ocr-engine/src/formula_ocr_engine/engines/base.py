@@ -5,6 +5,8 @@ from typing import Protocol
 
 from PIL import Image
 
+from formula_ocr_engine.contracts import DetectionRegion
+
 
 @dataclass(frozen=True)
 class EngineRecognition:
@@ -23,3 +25,9 @@ class FormulaEngine(Protocol):
         formula_type: str,
         mode: str,
     ) -> EngineRecognition: ...
+
+
+class DetectionEngine(Protocol):
+    engine_id: str
+
+    def detect(self, image: Image.Image) -> list[DetectionRegion]: ...

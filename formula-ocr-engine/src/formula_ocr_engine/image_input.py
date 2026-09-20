@@ -5,10 +5,11 @@ import binascii
 import re
 from dataclasses import dataclass
 from io import BytesIO
+from typing import Protocol
 
 from PIL import Image, ImageOps, ImageStat, UnidentifiedImageError
 
-from formula_ocr_engine.contracts import ErrorClass, RecognitionRequest
+from formula_ocr_engine.contracts import ErrorClass
 from formula_ocr_engine.errors import EngineError
 
 DATA_URL = re.compile(r"^data:(image/(?:png|jpeg|webp));base64,([A-Za-z0-9+/=\r\n]+)$")
@@ -31,6 +32,14 @@ class DecodedImage:
     mime: str
     source_size: tuple[int, int]
     is_blank: bool
+
+
+class ImageRequest(Protocol):
+    @property
+    def image(self) -> str: ...
+
+    @property
+    def mime(self) -> str: ...
 
 
 def _decode_data_url(value: str, declared_mime: str, limit: int) -> bytes:
@@ -66,7 +75,7 @@ def _is_uniform(image: Image.Image) -> bool:
 
 
 def decode_image(
-    request: RecognitionRequest,
+    request: ImageRequest,
     *,
     limits: ImageLimits | None = None,
 ) -> DecodedImage:

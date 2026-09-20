@@ -82,9 +82,9 @@ async def test_capabilities_reports_limits_and_license_status() -> None:
         {
             "id": "pix2text-mfd-1.5",
             "kind": "detection",
-            "available": False,
-            "state": "not_loaded",
-            "license": "unverified",
+                "available": False,
+                "state": "not_loaded",
+                "license": "verified",
         },
         {
             "id": "pix2text-document-1.1.4",

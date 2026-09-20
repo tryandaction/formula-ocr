@@ -20,7 +20,9 @@ paddle = [
   "tokenizers>=0.19,<1",
 ]
 pix2text = [
-  "pix2text>=1.1.4,<2",
+  "cnstd[ort-cpu]>=1.2.8,<2",
+  "huggingface-hub>=0.36,<1",
+  "opencv-python==4.10.0.84",
 ]
 
 [project.scripts]

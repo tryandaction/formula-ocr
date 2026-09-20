@@ -1,0 +1,7984 @@
+[
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 636,
+      "y": 98,
+      "width": 55,
+      "height": 17
+    },
+    "confidence": 0.7913802862167358,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 721,
+      "y": 97,
+      "width": 216,
+      "height": 17
+    },
+    "confidence": 0.8539556264877319,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 535,
+      "y": 117,
+      "width": 34,
+      "height": 14
+    },
+    "confidence": 0.8421928286552429,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 375,
+      "y": 135,
+      "width": 11,
+      "height": 16
+    },
+    "confidence": 0.7643837332725525,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 411,
+      "y": 134,
+      "width": 14,
+      "height": 17
+    },
+    "confidence": 0.7876041531562805,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 353,
+      "y": 152,
+      "width": 29,
+      "height": 15
+    },
+    "confidence": 0.8361998200416565,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 129,
+      "y": 171,
+      "width": 14,
+      "height": 15
+    },
+    "confidence": 0.690811276435852,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 63,
+      "y": 187,
+      "width": 81,
+      "height": 17
+    },
+    "confidence": 0.802869975566864,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 623,
+      "y": 188,
+      "width": 42,
+      "height": 16
+    },
+    "confidence": 0.7631959915161133,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 173,
+      "y": 213,
+      "width": 212,
+      "height": 60
+    },
+    "confidence": 0.9406587481498718,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 844,
+      "y": 241,
+      "width": 49,
+      "height": 17
+    },
+    "confidence": 0.8420165777206421,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 507,
+      "y": 259,
+      "width": 128,
+      "height": 18
+    },
+    "confidence": 0.5123310089111328,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 812,
+      "y": 259,
+      "width": 51,
+      "height": 16
+    },
+    "confidence": 0.658687174320221,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 620,
+      "y": 279,
+      "width": 10,
+      "height": 12
+    },
+    "confidence": 0.3023621141910553,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 656,
+      "y": 278,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7185949683189392,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 739,
+      "y": 278,
+      "width": 11,
+      "height": 13
+    },
+    "confidence": 0.5303782820701599,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 776,
+      "y": 278,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.6903185248374939,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 562,
+      "y": 295,
+      "width": 130,
+      "height": 19
+    },
+    "confidence": 0.8747776746749878,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 907,
+      "y": 296,
+      "width": 26,
+      "height": 15
+    },
+    "confidence": 0.7442142963409424,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 187,
+      "y": 321,
+      "width": 184,
+      "height": 22
+    },
+    "confidence": 0.8817267417907715,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 509,
+      "y": 329,
+      "width": 289,
+      "height": 20
+    },
+    "confidence": 0.8881882429122925,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 507,
+      "y": 350,
+      "width": 45,
+      "height": 17
+    },
+    "confidence": 0.8552325963973999,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 765,
+      "y": 348,
+      "width": 55,
+      "height": 18
+    },
+    "confidence": 0.8656672239303589,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 842,
+      "y": 349,
+      "width": 91,
+      "height": 17
+    },
+    "confidence": 0.8668569326400757,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 143,
+      "y": 366,
+      "width": 125,
+      "height": 19
+    },
+    "confidence": 0.7968957424163818,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 296,
+      "y": 366,
+      "width": 70,
+      "height": 19
+    },
+    "confidence": 0.7712129354476929,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 700,
+      "y": 368,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.5882824659347534,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 779,
+      "y": 368,
+      "width": 42,
+      "height": 13
+    },
+    "confidence": 0.8273671865463257,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 509,
+      "y": 384,
+      "width": 17,
+      "height": 18
+    },
+    "confidence": 0.7326793670654297,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 617,
+      "y": 385,
+      "width": 22,
+      "height": 16
+    },
+    "confidence": 0.6888816356658936,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 659,
+      "y": 385,
+      "width": 53,
+      "height": 17
+    },
+    "confidence": 0.6626415848731995,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 776,
+      "y": 385,
+      "width": 11,
+      "height": 16
+    },
+    "confidence": 0.4300573468208313,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 853,
+      "y": 385,
+      "width": 43,
+      "height": 17
+    },
+    "confidence": 0.8493263721466064,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 579,
+      "y": 400,
+      "width": 25,
+      "height": 20
+    },
+    "confidence": 0.8553624153137207,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 628,
+      "y": 405,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.33633875846862793,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 150,
+      "y": 411,
+      "width": 238,
+      "height": 21
+    },
+    "confidence": 0.8786492347717285,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 605,
+      "y": 420,
+      "width": 41,
+      "height": 17
+    },
+    "confidence": 0.8602701425552368,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 687,
+      "y": 420,
+      "width": 84,
+      "height": 17
+    },
+    "confidence": 0.8668521642684937,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 895,
+      "y": 421,
+      "width": 42,
+      "height": 14
+    },
+    "confidence": 0.8283109664916992,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 216,
+      "y": 457,
+      "width": 13,
+      "height": 16
+    },
+    "confidence": 0.7252936363220215,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 737,
+      "y": 474,
+      "width": 21,
+      "height": 17
+    },
+    "confidence": 0.6452299356460571,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 561,
+      "y": 495,
+      "width": 11,
+      "height": 11
+    },
+    "confidence": 0.6129584908485413,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 643,
+      "y": 493,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.678592324256897,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 64,
+      "y": 511,
+      "width": 15,
+      "height": 18
+    },
+    "confidence": 0.8556903600692749,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 112,
+      "y": 527,
+      "width": 80,
+      "height": 18
+    },
+    "confidence": 0.8764804601669312,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 218,
+      "y": 527,
+      "width": 81,
+      "height": 18
+    },
+    "confidence": 0.8763948082923889,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 401,
+      "y": 529,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7366496920585632,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 64,
+      "y": 565,
+      "width": 51,
+      "height": 14
+    },
+    "confidence": 0.7398695945739746,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 170,
+      "y": 565,
+      "width": 45,
+      "height": 16
+    },
+    "confidence": 0.5183088183403015,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 121,
+      "y": 582,
+      "width": 55,
+      "height": 17
+    },
+    "confidence": 0.529058575630188,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 248,
+      "y": 583,
+      "width": 50,
+      "height": 14
+    },
+    "confidence": 0.8462927341461182,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 754,
+      "y": 600,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.7239174246788025,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 165,
+      "y": 609,
+      "width": 205,
+      "height": 23
+    },
+    "confidence": 0.8873840570449829,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 549,
+      "y": 600,
+      "width": 56,
+      "height": 17
+    },
+    "confidence": 0.883334755897522,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 687,
+      "y": 618,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.5925804972648621,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 721,
+      "y": 618,
+      "width": 97,
+      "height": 16
+    },
+    "confidence": 0.7337844967842102,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 548,
+      "y": 635,
+      "width": 35,
+      "height": 17
+    },
+    "confidence": 0.8333556056022644,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 842,
+      "y": 635,
+      "width": 9,
+      "height": 15
+    },
+    "confidence": 0.7307046055793762,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 482,
+      "y": 654,
+      "width": 13,
+      "height": 14
+    },
+    "confidence": 0.7708786725997925,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 639,
+      "y": 653,
+      "width": 11,
+      "height": 15
+    },
+    "confidence": 0.7962076663970947,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 375,
+      "y": 671,
+      "width": 18,
+      "height": 14
+    },
+    "confidence": 0.6569864153862,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 417,
+      "y": 671,
+      "width": 18,
+      "height": 14
+    },
+    "confidence": 0.6892308592796326,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 688,
+      "y": 671,
+      "width": 28,
+      "height": 15
+    },
+    "confidence": 0.8000779747962952,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 65,
+      "y": 688,
+      "width": 57,
+      "height": 17
+    },
+    "confidence": 0.8695932626724243,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 188,
+      "y": 687,
+      "width": 48,
+      "height": 18
+    },
+    "confidence": 0.8596407175064087,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 254,
+      "y": 688,
+      "width": 19,
+      "height": 14
+    },
+    "confidence": 0.8092101812362671,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 343,
+      "y": 689,
+      "width": 14,
+      "height": 13
+    },
+    "confidence": 0.5029594302177429,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 64,
+      "y": 703,
+      "width": 93,
+      "height": 22
+    },
+    "confidence": 0.9006816148757935,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 217,
+      "y": 704,
+      "width": 79,
+      "height": 19
+    },
+    "confidence": 0.630477786064148,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 351,
+      "y": 706,
+      "width": 14,
+      "height": 14
+    },
+    "confidence": 0.6252695322036743,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 64,
+      "y": 724,
+      "width": 93,
+      "height": 22
+    },
+    "confidence": 0.8763500452041626,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 186,
+      "y": 726,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.4931492209434509,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 223,
+      "y": 726,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.7553634643554688,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 240,
+      "y": 742,
+      "width": 200,
+      "height": 19
+    },
+    "confidence": 0.5484760403633118,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 673,
+      "y": 742,
+      "width": 84,
+      "height": 18
+    },
+    "confidence": 0.5771669745445251,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 905,
+      "y": 743,
+      "width": 32,
+      "height": 15
+    },
+    "confidence": 0.8675441741943359,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 188,
+      "y": 761,
+      "width": 56,
+      "height": 17
+    },
+    "confidence": 0.5976303815841675,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 397,
+      "y": 780,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.36759692430496216,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 203,
+      "y": 797,
+      "width": 55,
+      "height": 17
+    },
+    "confidence": 0.8097259998321533,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 176,
+      "y": 816,
+      "width": 11,
+      "height": 13
+    },
+    "confidence": 0.5707096457481384,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 213,
+      "y": 816,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.8238908648490906,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 683,
+      "y": 815,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.609520435333252,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 765,
+      "y": 815,
+      "width": 54,
+      "height": 17
+    },
+    "confidence": 0.47563862800598145,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 903,
+      "y": 815,
+      "width": 30,
+      "height": 15
+    },
+    "confidence": 0.83623206615448,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 63,
+      "y": 835,
+      "width": 12,
+      "height": 12
+    },
+    "confidence": 0.5935616493225098,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 101,
+      "y": 836,
+      "width": 10,
+      "height": 13
+    },
+    "confidence": 0.6722671985626221,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 331,
+      "y": 834,
+      "width": 35,
+      "height": 14
+    },
+    "confidence": 0.8223057985305786,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 393,
+      "y": 832,
+      "width": 40,
+      "height": 16
+    },
+    "confidence": 0.7738074660301208,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 634,
+      "y": 833,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.585746705532074,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 509,
+      "y": 850,
+      "width": 31,
+      "height": 17
+    },
+    "confidence": 0.8589458465576172,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 667,
+      "y": 851,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.8158450126647949,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 577,
+      "y": 868,
+      "width": 57,
+      "height": 17
+    },
+    "confidence": 0.8783349394798279,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 826,
+      "y": 868,
+      "width": 13,
+      "height": 15
+    },
+    "confidence": 0.5977209210395813,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 509,
+      "y": 886,
+      "width": 66,
+      "height": 18
+    },
+    "confidence": 0.885051429271698,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 600,
+      "y": 886,
+      "width": 66,
+      "height": 18
+    },
+    "confidence": 0.88033127784729,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 110,
+      "y": 905,
+      "width": 17,
+      "height": 14
+    },
+    "confidence": 0.6149789094924927,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 123,
+      "y": 922,
+      "width": 46,
+      "height": 15
+    },
+    "confidence": 0.7853473424911499,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 406,
+      "y": 922,
+      "width": 14,
+      "height": 14
+    },
+    "confidence": 0.44898372888565063,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 605,
+      "y": 919,
+      "width": 18,
+      "height": 17
+    },
+    "confidence": 0.8089622259140015,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 639,
+      "y": 913,
+      "width": 266,
+      "height": 24
+    },
+    "confidence": 0.49882638454437256,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 112,
+      "y": 940,
+      "width": 15,
+      "height": 14
+    },
+    "confidence": 0.7862154245376587,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 189,
+      "y": 957,
+      "width": 54,
+      "height": 17
+    },
+    "confidence": 0.4679970145225525,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 343,
+      "y": 957,
+      "width": 57,
+      "height": 18
+    },
+    "confidence": 0.8438881039619446,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 605,
+      "y": 962,
+      "width": 18,
+      "height": 17
+    },
+    "confidence": 0.7995815873146057,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 640,
+      "y": 957,
+      "width": 262,
+      "height": 24
+    },
+    "confidence": 0.5582277178764343,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 139,
+      "y": 984,
+      "width": 279,
+      "height": 49
+    },
+    "confidence": 0.8819068670272827,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 522,
+      "y": 994,
+      "width": 104,
+      "height": 17
+    },
+    "confidence": 0.7921137809753418,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 650,
+      "y": 995,
+      "width": 89,
+      "height": 16
+    },
+    "confidence": 0.8385953903198242,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 821,
+      "y": 994,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.7616986036300659,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 509,
+      "y": 1013,
+      "width": 49,
+      "height": 16
+    },
+    "confidence": 0.7584453821182251,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 545,
+      "y": 1031,
+      "width": 15,
+      "height": 14
+    },
+    "confidence": 0.6323350071907043,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 652,
+      "y": 1031,
+      "width": 14,
+      "height": 15
+    },
+    "confidence": 0.7974210977554321,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 745,
+      "y": 1031,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8659130930900574,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 789,
+      "y": 1031,
+      "width": 17,
+      "height": 15
+    },
+    "confidence": 0.8416855335235596,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 291,
+      "y": 1049,
+      "width": 13,
+      "height": 13
+    },
+    "confidence": 0.38391444087028503,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 360,
+      "y": 1049,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.6331758499145508,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 613,
+      "y": 1049,
+      "width": 14,
+      "height": 15
+    },
+    "confidence": 0.6338400840759277,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 652,
+      "y": 1049,
+      "width": 14,
+      "height": 16
+    },
+    "confidence": 0.7962216138839722,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 645,
+      "y": 1066,
+      "width": 17,
+      "height": 16
+    },
+    "confidence": 0.7955684661865234,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 591,
+      "y": 1083,
+      "width": 46,
+      "height": 17
+    },
+    "confidence": 0.8448466062545776,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 794,
+      "y": 1084,
+      "width": 33,
+      "height": 16
+    },
+    "confidence": 0.8283714056015015,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 176,
+      "y": 1101,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.5469931364059448,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 217,
+      "y": 1102,
+      "width": 13,
+      "height": 14
+    },
+    "confidence": 0.732416033744812,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 508,
+      "y": 1102,
+      "width": 35,
+      "height": 16
+    },
+    "confidence": 0.8271307945251465,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 685,
+      "y": 1102,
+      "width": 17,
+      "height": 16
+    },
+    "confidence": 0.7548263072967529,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 632,
+      "y": 1119,
+      "width": 47,
+      "height": 17
+    },
+    "confidence": 0.729663610458374,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 834,
+      "y": 1117,
+      "width": 38,
+      "height": 20
+    },
+    "confidence": 0.8763148784637451,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 551,
+      "y": 1138,
+      "width": 32,
+      "height": 16
+    },
+    "confidence": 0.8338775634765625,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 728,
+      "y": 1135,
+      "width": 17,
+      "height": 20
+    },
+    "confidence": 0.8195523023605347,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 800,
+      "y": 1155,
+      "width": 16,
+      "height": 17
+    },
+    "confidence": 0.8154481649398804,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 823,
+      "y": 1194,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7355982661247253,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 527,
+      "y": 1212,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7454302310943604,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 847,
+      "y": 1209,
+      "width": 13,
+      "height": 14
+    },
+    "confidence": 0.3547367751598358,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p6.png",
+    "bbox": {
+      "x": 926,
+      "y": 1210,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7704724073410034,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 3016
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 476,
+      "y": 81,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.7753494381904602,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 356,
+      "y": 97,
+      "width": 17,
+      "height": 19
+    },
+    "confidence": 0.8194947242736816,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 190,
+      "y": 133,
+      "width": 33,
+      "height": 18
+    },
+    "confidence": 0.8638752698898315,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 613,
+      "y": 135,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.7782710194587708,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 887,
+      "y": 134,
+      "width": 14,
+      "height": 15
+    },
+    "confidence": 0.5320612788200378,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 150,
+      "width": 93,
+      "height": 20
+    },
+    "confidence": 0.8794147372245789,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 839,
+      "y": 153,
+      "width": 11,
+      "height": 15
+    },
+    "confidence": 0.6242098808288574,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 254,
+      "y": 169,
+      "width": 198,
+      "height": 18
+    },
+    "confidence": 0.601157546043396,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 690,
+      "y": 171,
+      "width": 35,
+      "height": 15
+    },
+    "confidence": 0.8329898118972778,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 899,
+      "y": 171,
+      "width": 10,
+      "height": 15
+    },
+    "confidence": 0.7456719875335693,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 65,
+      "y": 186,
+      "width": 99,
+      "height": 19
+    },
+    "confidence": 0.8750866651535034,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 253,
+      "y": 189,
+      "width": 35,
+      "height": 14
+    },
+    "confidence": 0.7457583546638489,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 624,
+      "y": 188,
+      "width": 53,
+      "height": 17
+    },
+    "confidence": 0.833309531211853,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 717,
+      "y": 189,
+      "width": 36,
+      "height": 16
+    },
+    "confidence": 0.8560507297515869,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 798,
+      "y": 188,
+      "width": 65,
+      "height": 16
+    },
+    "confidence": 0.7152447700500488,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 186,
+      "y": 206,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.6451967358589172,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 264,
+      "y": 206,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.6921817064285278,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 607,
+      "y": 207,
+      "width": 44,
+      "height": 17
+    },
+    "confidence": 0.8222354054450989,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 863,
+      "y": 207,
+      "width": 45,
+      "height": 16
+    },
+    "confidence": 0.773711085319519,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 475,
+      "y": 221,
+      "width": 18,
+      "height": 20
+    },
+    "confidence": 0.8649163246154785,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 568,
+      "y": 223,
+      "width": 78,
+      "height": 17
+    },
+    "confidence": 0.8360100984573364,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 357,
+      "y": 242,
+      "width": 15,
+      "height": 16
+    },
+    "confidence": 0.47944727540016174,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 825,
+      "y": 240,
+      "width": 55,
+      "height": 18
+    },
+    "confidence": 0.8647902011871338,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 630,
+      "y": 259,
+      "width": 55,
+      "height": 17
+    },
+    "confidence": 0.7250638008117676,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 185,
+      "y": 276,
+      "width": 32,
+      "height": 19
+    },
+    "confidence": 0.8548556566238403,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 361,
+      "y": 275,
+      "width": 32,
+      "height": 20
+    },
+    "confidence": 0.8613573312759399,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 423,
+      "y": 298,
+      "width": 14,
+      "height": 11
+    },
+    "confidence": 0.27646690607070923,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 508,
+      "y": 297,
+      "width": 57,
+      "height": 17
+    },
+    "confidence": 0.8443038463592529,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 675,
+      "y": 298,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7390149235725403,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 711,
+      "y": 296,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.5990538597106934,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 240,
+      "y": 316,
+      "width": 14,
+      "height": 12
+    },
+    "confidence": 0.5914098620414734,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 382,
+      "y": 332,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.7885479927062988,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 246,
+      "y": 365,
+      "width": 207,
+      "height": 20
+    },
+    "confidence": 0.8548983335494995,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 841,
+      "y": 366,
+      "width": 97,
+      "height": 19
+    },
+    "confidence": 0.7479986548423767,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 189,
+      "y": 386,
+      "width": 13,
+      "height": 14
+    },
+    "confidence": 0.3130534887313843,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 228,
+      "y": 386,
+      "width": 13,
+      "height": 16
+    },
+    "confidence": 0.8082677125930786,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 302,
+      "y": 421,
+      "width": 18,
+      "height": 17
+    },
+    "confidence": 0.8373256921768188,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 522,
+      "y": 419,
+      "width": 158,
+      "height": 21
+    },
+    "confidence": 0.7730337381362915,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 119,
+      "y": 439,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8457987308502197,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 414,
+      "y": 439,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8646664619445801,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 592,
+      "y": 438,
+      "width": 83,
+      "height": 20
+    },
+    "confidence": 0.8328421115875244,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 701,
+      "y": 438,
+      "width": 86,
+      "height": 20
+    },
+    "confidence": 0.8781782984733582,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 696,
+      "y": 456,
+      "width": 54,
+      "height": 17
+    },
+    "confidence": 0.4709433317184448,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 857,
+      "y": 458,
+      "width": 76,
+      "height": 18
+    },
+    "confidence": 0.8696866035461426,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 230,
+      "y": 475,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8039730787277222,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 274,
+      "y": 475,
+      "width": 17,
+      "height": 16
+    },
+    "confidence": 0.8155643939971924,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 357,
+      "y": 474,
+      "width": 17,
+      "height": 15
+    },
+    "confidence": 0.40292325615882874,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 475,
+      "y": 475,
+      "width": 18,
+      "height": 14
+    },
+    "confidence": 0.7614227533340454,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 531,
+      "y": 475,
+      "width": 9,
+      "height": 14
+    },
+    "confidence": 0.5190349817276001,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 636,
+      "y": 475,
+      "width": 43,
+      "height": 15
+    },
+    "confidence": 0.7753201723098755,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 812,
+      "y": 475,
+      "width": 93,
+      "height": 19
+    },
+    "confidence": 0.8580594062805176,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 538,
+      "y": 491,
+      "width": 114,
+      "height": 20
+    },
+    "confidence": 0.8824330568313599,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 594,
+      "y": 510,
+      "width": 35,
+      "height": 17
+    },
+    "confidence": 0.8117316961288452,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 772,
+      "y": 511,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.5526512265205383,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 858,
+      "y": 510,
+      "width": 75,
+      "height": 17
+    },
+    "confidence": 0.828205943107605,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 607,
+      "y": 529,
+      "width": 14,
+      "height": 14
+    },
+    "confidence": 0.7784822583198547,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 752,
+      "y": 526,
+      "width": 44,
+      "height": 22
+    },
+    "confidence": 0.8637222051620483,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 509,
+      "y": 546,
+      "width": 128,
+      "height": 17
+    },
+    "confidence": 0.8107458353042603,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 678,
+      "y": 544,
+      "width": 27,
+      "height": 22
+    },
+    "confidence": 0.7120351195335388,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 735,
+      "y": 546,
+      "width": 69,
+      "height": 17
+    },
+    "confidence": 0.5554879903793335,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 830,
+      "y": 547,
+      "width": 13,
+      "height": 13
+    },
+    "confidence": 0.26707303524017334,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 883,
+      "y": 547,
+      "width": 23,
+      "height": 18
+    },
+    "confidence": 0.6081327795982361,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 509,
+      "y": 564,
+      "width": 66,
+      "height": 17
+    },
+    "confidence": 0.7759624719619751,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 735,
+      "y": 562,
+      "width": 93,
+      "height": 22
+    },
+    "confidence": 0.5461647510528564,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 522,
+      "y": 600,
+      "width": 13,
+      "height": 16
+    },
+    "confidence": 0.31006813049316406,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 683,
+      "y": 599,
+      "width": 247,
+      "height": 18
+    },
+    "confidence": 0.27736708521842957,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 518,
+      "y": 618,
+      "width": 13,
+      "height": 15
+    },
+    "confidence": 0.5360730290412903,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 634,
+      "y": 619,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8146206140518188,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 696,
+      "y": 619,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.6910130977630615,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 801,
+      "y": 616,
+      "width": 42,
+      "height": 21
+    },
+    "confidence": 0.8413988947868347,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 884,
+      "y": 619,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.7660164833068848,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 565,
+      "y": 635,
+      "width": 133,
+      "height": 20
+    },
+    "confidence": 0.8270448446273804,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 875,
+      "y": 655,
+      "width": 36,
+      "height": 15
+    },
+    "confidence": 0.7865431308746338,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 507,
+      "y": 671,
+      "width": 32,
+      "height": 15
+    },
+    "confidence": 0.8467069864273071,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 808,
+      "y": 671,
+      "width": 126,
+      "height": 18
+    },
+    "confidence": 0.5484087467193604,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 878,
+      "y": 689,
+      "width": 59,
+      "height": 17
+    },
+    "confidence": 0.8512557744979858,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 509,
+      "y": 706,
+      "width": 74,
+      "height": 18
+    },
+    "confidence": 0.7798947095870972,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 220,
+      "y": 760,
+      "width": 56,
+      "height": 18
+    },
+    "confidence": 0.318453311920166,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 881,
+      "y": 761,
+      "width": 56,
+      "height": 17
+    },
+    "confidence": 0.7850399017333984,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 324,
+      "y": 779,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.49948132038116455,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 548,
+      "y": 778,
+      "width": 153,
+      "height": 18
+    },
+    "confidence": 0.7298945784568787,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 727,
+      "y": 778,
+      "width": 88,
+      "height": 18
+    },
+    "confidence": 0.835016131401062,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 725,
+      "y": 813,
+      "width": 142,
+      "height": 21
+    },
+    "confidence": 0.5371727347373962,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 508,
+      "y": 833,
+      "width": 37,
+      "height": 17
+    },
+    "confidence": 0.6143996715545654,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 876,
+      "y": 833,
+      "width": 61,
+      "height": 16
+    },
+    "confidence": 0.4902248978614807,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 850,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.27571603655815125,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 534,
+      "y": 850,
+      "width": 167,
+      "height": 17
+    },
+    "confidence": 0.860062837600708,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 869,
+      "y": 850,
+      "width": 68,
+      "height": 17
+    },
+    "confidence": 0.7202916145324707,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 544,
+      "y": 869,
+      "width": 118,
+      "height": 17
+    },
+    "confidence": 0.7348812818527222,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 78,
+      "y": 902,
+      "width": 278,
+      "height": 22
+    },
+    "confidence": 0.8860957622528076,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 923,
+      "width": 20,
+      "height": 14
+    },
+    "confidence": 0.8370546698570251,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 940,
+      "width": 52,
+      "height": 18
+    },
+    "confidence": 0.8289783000946045,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 918,
+      "y": 994,
+      "width": 19,
+      "height": 15
+    },
+    "confidence": 0.534226655960083,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 1012,
+      "width": 44,
+      "height": 14
+    },
+    "confidence": 0.7181534171104431,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 124,
+      "y": 1013,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.5369377732276917,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 173,
+      "y": 1010,
+      "width": 41,
+      "height": 22
+    },
+    "confidence": 0.875630795955658,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 401,
+      "y": 1013,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.6894543766975403,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 450,
+      "y": 1010,
+      "width": 38,
+      "height": 22
+    },
+    "confidence": 0.8376784324645996,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 699,
+      "y": 1014,
+      "width": 11,
+      "height": 13
+    },
+    "confidence": 0.5373495817184448,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 807,
+      "y": 1014,
+      "width": 10,
+      "height": 13
+    },
+    "confidence": 0.5082892775535583,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 64,
+      "y": 1047,
+      "width": 32,
+      "height": 19
+    },
+    "confidence": 0.865510106086731,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 124,
+      "y": 1046,
+      "width": 30,
+      "height": 21
+    },
+    "confidence": 0.8646742105484009,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 216,
+      "y": 1048,
+      "width": 19,
+      "height": 15
+    },
+    "confidence": 0.850745677947998,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 398,
+      "y": 1051,
+      "width": 12,
+      "height": 11
+    },
+    "confidence": 0.571907639503479,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 63,
+      "y": 1066,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7665414810180664,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 123,
+      "y": 1102,
+      "width": 10,
+      "height": 14
+    },
+    "confidence": 0.670352041721344,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 271,
+      "y": 1101,
+      "width": 12,
+      "height": 15
+    },
+    "confidence": 0.6231623291969299,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 307,
+      "y": 1138,
+      "width": 85,
+      "height": 16
+    },
+    "confidence": 0.8391815423965454,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 96,
+      "y": 1156,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.6849977970123291,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 219,
+      "y": 1155,
+      "width": 11,
+      "height": 15
+    },
+    "confidence": 0.729070246219635,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 244,
+      "y": 1191,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.6290333867073059,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 347,
+      "y": 1192,
+      "width": 18,
+      "height": 14
+    },
+    "confidence": 0.8376388549804688,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/bravyi-p7.png",
+    "bbox": {
+      "x": 211,
+      "y": 1210,
+      "width": 20,
+      "height": 14
+    },
+    "confidence": 0.7614638805389404,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 2071
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 640,
+      "y": 119,
+      "width": 166,
+      "height": 24
+    },
+    "confidence": 0.921841561794281,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 593,
+      "y": 145,
+      "width": 42,
+      "height": 20
+    },
+    "confidence": 0.9153282642364502,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 345,
+      "y": 168,
+      "width": 32,
+      "height": 17
+    },
+    "confidence": 0.2939078211784363,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 669,
+      "y": 168,
+      "width": 51,
+      "height": 20
+    },
+    "confidence": 0.9286262392997742,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 839,
+      "y": 167,
+      "width": 39,
+      "height": 21
+    },
+    "confidence": 0.9097951650619507,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 543,
+      "y": 236,
+      "width": 42,
+      "height": 19
+    },
+    "confidence": 0.9117772579193115,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 513,
+      "y": 258,
+      "width": 107,
+      "height": 20
+    },
+    "confidence": 0.9094235897064209,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 727,
+      "y": 280,
+      "width": 31,
+      "height": 20
+    },
+    "confidence": 0.9106972217559814,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 857,
+      "y": 327,
+      "width": 41,
+      "height": 16
+    },
+    "confidence": 0.881445050239563,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 782,
+      "y": 348,
+      "width": 116,
+      "height": 20
+    },
+    "confidence": 0.9121482372283936,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 512,
+      "y": 415,
+      "width": 125,
+      "height": 24
+    },
+    "confidence": 0.9144322872161865,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 888,
+      "y": 417,
+      "width": 9,
+      "height": 17
+    },
+    "confidence": 0.8702757358551025,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 549,
+      "y": 439,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.8581404685974121,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 559,
+      "y": 463,
+      "width": 30,
+      "height": 19
+    },
+    "confidence": 0.8842490911483765,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 774,
+      "y": 484,
+      "width": 44,
+      "height": 15
+    },
+    "confidence": 0.8759827613830566,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 581,
+      "y": 515,
+      "width": 248,
+      "height": 110
+    },
+    "confidence": 0.9359158873558044,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 705,
+      "y": 661,
+      "width": 22,
+      "height": 20
+    },
+    "confidence": 0.8754238486289978,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 741,
+      "y": 661,
+      "width": 22,
+      "height": 20
+    },
+    "confidence": 0.8464919924736023,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 809,
+      "y": 661,
+      "width": 21,
+      "height": 20
+    },
+    "confidence": 0.8970786333084106,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 681,
+      "y": 735,
+      "width": 10,
+      "height": 9
+    },
+    "confidence": 0.8749253749847412,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 512,
+      "y": 774,
+      "width": 105,
+      "height": 21
+    },
+    "confidence": 0.522623598575592,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 812,
+      "y": 819,
+      "width": 87,
+      "height": 21
+    },
+    "confidence": 0.8993890285491943,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 658,
+      "y": 932,
+      "width": 102,
+      "height": 21
+    },
+    "confidence": 0.7439106702804565,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 170,
+      "y": 1072,
+      "width": 11,
+      "height": 9
+    },
+    "confidence": 0.8673286437988281,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 306,
+      "y": 1089,
+      "width": 21,
+      "height": 19
+    },
+    "confidence": 0.8171212673187256,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 368,
+      "y": 1089,
+      "width": 21,
+      "height": 19
+    },
+    "confidence": 0.3329358696937561,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 564,
+      "y": 1091,
+      "width": 86,
+      "height": 19
+    },
+    "confidence": 0.9349948167800903,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 768,
+      "y": 1092,
+      "width": 20,
+      "height": 19
+    },
+    "confidence": 0.903100848197937,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 459,
+      "y": 1135,
+      "width": 20,
+      "height": 19
+    },
+    "confidence": 0.9102492332458496,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 559,
+      "y": 1137,
+      "width": 8,
+      "height": 17
+    },
+    "confidence": 0.8706892132759094,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 659,
+      "y": 1136,
+      "width": 20,
+      "height": 19
+    },
+    "confidence": 0.9018687009811401,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 708,
+      "y": 1137,
+      "width": 51,
+      "height": 19
+    },
+    "confidence": 0.9058917760848999,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 512,
+      "y": 1160,
+      "width": 47,
+      "height": 13
+    },
+    "confidence": 0.8945238590240479,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 634,
+      "y": 1158,
+      "width": 117,
+      "height": 20
+    },
+    "confidence": 0.460966557264328,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 763,
+      "y": 1158,
+      "width": 138,
+      "height": 20
+    },
+    "confidence": 0.8721681833267212,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 401,
+      "y": 1181,
+      "width": 44,
+      "height": 13
+    },
+    "confidence": 0.8953951597213745,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 512,
+      "y": 1180,
+      "width": 63,
+      "height": 20
+    },
+    "confidence": 0.7889456152915955,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 615,
+      "y": 1180,
+      "width": 286,
+      "height": 20
+    },
+    "confidence": 0.7519866228103638,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 94,
+      "y": 1204,
+      "width": 45,
+      "height": 12
+    },
+    "confidence": 0.9022948741912842,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 513,
+      "y": 1203,
+      "width": 62,
+      "height": 20
+    },
+    "confidence": 0.8844737410545349,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 303,
+      "y": 1226,
+      "width": 65,
+      "height": 13
+    },
+    "confidence": 0.8528733253479004,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 280,
+      "y": 1247,
+      "width": 29,
+      "height": 23
+    },
+    "confidence": 0.8851585388183594,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 354,
+      "y": 1248,
+      "width": 29,
+      "height": 22
+    },
+    "confidence": 0.91139817237854,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 447,
+      "y": 1249,
+      "width": 9,
+      "height": 17
+    },
+    "confidence": 0.8287011981010437,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 732,
+      "y": 1250,
+      "width": 20,
+      "height": 13
+    },
+    "confidence": 0.7392411828041077,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p3.png",
+    "bbox": {
+      "x": 848,
+      "y": 1248,
+      "width": 55,
+      "height": 20
+    },
+    "confidence": 0.8431460857391357,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 904
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 81,
+      "y": 93,
+      "width": 825,
+      "height": 277
+    },
+    "confidence": 0.621464192867279,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 305,
+      "y": 383,
+      "width": 24,
+      "height": 15
+    },
+    "confidence": 0.3077508211135864,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 546,
+      "y": 384,
+      "width": 43,
+      "height": 14
+    },
+    "confidence": 0.8686754107475281,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 230,
+      "y": 402,
+      "width": 28,
+      "height": 22
+    },
+    "confidence": 0.867893636226654,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 427,
+      "y": 403,
+      "width": 27,
+      "height": 21
+    },
+    "confidence": 0.8724157810211182,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 762,
+      "y": 403,
+      "width": 40,
+      "height": 19
+    },
+    "confidence": 0.9000961780548096,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 384,
+      "y": 423,
+      "width": 102,
+      "height": 20
+    },
+    "confidence": 0.8610998392105103,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 168,
+      "y": 444,
+      "width": 44,
+      "height": 15
+    },
+    "confidence": 0.8707552552223206,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 684,
+      "y": 443,
+      "width": 53,
+      "height": 17
+    },
+    "confidence": 0.8736968040466309,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 347,
+      "y": 484,
+      "width": 14,
+      "height": 14
+    },
+    "confidence": 0.8761476874351501,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 216,
+      "y": 521,
+      "width": 57,
+      "height": 16
+    },
+    "confidence": 0.87047278881073,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 411,
+      "y": 543,
+      "width": 99,
+      "height": 17
+    },
+    "confidence": 0.8581364154815674,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 547,
+      "y": 544,
+      "width": 99,
+      "height": 15
+    },
+    "confidence": 0.8723841309547424,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 748,
+      "y": 543,
+      "width": 99,
+      "height": 17
+    },
+    "confidence": 0.8564131259918213,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 634,
+      "y": 563,
+      "width": 112,
+      "height": 16
+    },
+    "confidence": 0.8587625026702881,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 581,
+      "width": 150,
+      "height": 20
+    },
+    "confidence": 0.916894793510437,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 264,
+      "y": 583,
+      "width": 54,
+      "height": 16
+    },
+    "confidence": 0.8832300901412964,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 355,
+      "y": 583,
+      "width": 75,
+      "height": 15
+    },
+    "confidence": 0.8719837665557861,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 450,
+      "y": 583,
+      "width": 54,
+      "height": 16
+    },
+    "confidence": 0.8787543773651123,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 545,
+      "y": 583,
+      "width": 81,
+      "height": 16
+    },
+    "confidence": 0.8600910902023315,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 661,
+      "y": 583,
+      "width": 84,
+      "height": 14
+    },
+    "confidence": 0.835100531578064,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 198,
+      "y": 604,
+      "width": 18,
+      "height": 15
+    },
+    "confidence": 0.885775625705719,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 376,
+      "y": 601,
+      "width": 42,
+      "height": 15
+    },
+    "confidence": 0.8819503784179688,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 622,
+      "width": 31,
+      "height": 19
+    },
+    "confidence": 0.905860424041748,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 372,
+      "y": 624,
+      "width": 55,
+      "height": 15
+    },
+    "confidence": 0.8509570360183716,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 280,
+      "y": 642,
+      "width": 28,
+      "height": 19
+    },
+    "confidence": 0.8666807413101196,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 461,
+      "y": 642,
+      "width": 30,
+      "height": 19
+    },
+    "confidence": 0.9058985114097595,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 699,
+      "width": 52,
+      "height": 21
+    },
+    "confidence": 0.8517159223556519,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 388,
+      "y": 699,
+      "width": 29,
+      "height": 22
+    },
+    "confidence": 0.9001137018203735,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 446,
+      "y": 698,
+      "width": 29,
+      "height": 24
+    },
+    "confidence": 0.886968731880188,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 641,
+      "y": 700,
+      "width": 78,
+      "height": 18
+    },
+    "confidence": 0.8979095220565796,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 723,
+      "width": 17,
+      "height": 13
+    },
+    "confidence": 0.888837993144989,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 411,
+      "y": 723,
+      "width": 20,
+      "height": 19
+    },
+    "confidence": 0.8896796703338623,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 512,
+      "y": 722,
+      "width": 72,
+      "height": 19
+    },
+    "confidence": 0.8925924301147461,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 512,
+      "y": 746,
+      "width": 51,
+      "height": 14
+    },
+    "confidence": 0.8791438341140747,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 169,
+      "y": 757,
+      "width": 238,
+      "height": 47
+    },
+    "confidence": 0.9315338730812073,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 566,
+      "y": 768,
+      "width": 144,
+      "height": 18
+    },
+    "confidence": 0.9004361629486084,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 853,
+      "y": 768,
+      "width": 45,
+      "height": 13
+    },
+    "confidence": 0.8940178155899048,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 809,
+      "y": 791,
+      "width": 32,
+      "height": 15
+    },
+    "confidence": 0.7890580296516418,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 512,
+      "y": 812,
+      "width": 213,
+      "height": 19
+    },
+    "confidence": 0.8713201880455017,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 764,
+      "y": 813,
+      "width": 134,
+      "height": 17
+    },
+    "confidence": 0.8854514360427856,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 431,
+      "y": 845,
+      "width": 21,
+      "height": 19
+    },
+    "confidence": 0.8916807174682617,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 709,
+      "y": 858,
+      "width": 15,
+      "height": 13
+    },
+    "confidence": 0.9042438268661499,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 393,
+      "y": 868,
+      "width": 24,
+      "height": 19
+    },
+    "confidence": 0.892062783241272,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 117,
+      "y": 891,
+      "width": 17,
+      "height": 13
+    },
+    "confidence": 0.899109959602356,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 617,
+      "y": 880,
+      "width": 37,
+      "height": 20
+    },
+    "confidence": 0.887961208820343,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 592,
+      "y": 913,
+      "width": 227,
+      "height": 44
+    },
+    "confidence": 0.9318581819534302,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 567,
+      "y": 973,
+      "width": 158,
+      "height": 24
+    },
+    "confidence": 0.917827844619751,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 584,
+      "y": 1022,
+      "width": 11,
+      "height": 13
+    },
+    "confidence": 0.8853167295455933,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 342,
+      "y": 1041,
+      "width": 144,
+      "height": 20
+    },
+    "confidence": 0.8756918907165527,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 671,
+      "y": 1041,
+      "width": 46,
+      "height": 17
+    },
+    "confidence": 0.8731252551078796,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 94,
+      "y": 1064,
+      "width": 63,
+      "height": 20
+    },
+    "confidence": 0.9012385010719299,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 228,
+      "y": 1066,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.9088420867919922,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 281,
+      "y": 1066,
+      "width": 18,
+      "height": 13
+    },
+    "confidence": 0.9061650037765503,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 214,
+      "y": 1088,
+      "width": 20,
+      "height": 19
+    },
+    "confidence": 0.9061342477798462,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 261,
+      "y": 1133,
+      "width": 74,
+      "height": 18
+    },
+    "confidence": 0.893843412399292,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 434,
+      "y": 1134,
+      "width": 15,
+      "height": 13
+    },
+    "confidence": 0.8927779197692871,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 177,
+      "y": 1150,
+      "width": 230,
+      "height": 31
+    },
+    "confidence": 0.9307017922401428,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 538,
+      "y": 1099,
+      "width": 310,
+      "height": 113
+    },
+    "confidence": 0.9493829011917114,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 155,
+      "y": 1203,
+      "width": 87,
+      "height": 23
+    },
+    "confidence": 0.9035336971282959,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p4.png",
+    "bbox": {
+      "x": 212,
+      "y": 1241,
+      "width": 151,
+      "height": 27
+    },
+    "confidence": 0.9042941331863403,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1485
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 99,
+      "width": 162,
+      "height": 22
+    },
+    "confidence": 0.8188337087631226,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 319,
+      "y": 99,
+      "width": 39,
+      "height": 20
+    },
+    "confidence": 0.8864549398422241,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 630,
+      "y": 97,
+      "width": 27,
+      "height": 23
+    },
+    "confidence": 0.8871647119522095,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 250,
+      "y": 123,
+      "width": 18,
+      "height": 14
+    },
+    "confidence": 0.9025071263313293,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 377,
+      "y": 122,
+      "width": 107,
+      "height": 20
+    },
+    "confidence": 0.9048216342926025,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 622,
+      "y": 119,
+      "width": 36,
+      "height": 22
+    },
+    "confidence": 0.9021611213684082,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 95,
+      "y": 144,
+      "width": 67,
+      "height": 20
+    },
+    "confidence": 0.9191321134567261,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 405,
+      "y": 145,
+      "width": 53,
+      "height": 15
+    },
+    "confidence": 0.8584263324737549,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 633,
+      "y": 142,
+      "width": 18,
+      "height": 17
+    },
+    "confidence": 0.8870536684989929,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 549,
+      "y": 164,
+      "width": 321,
+      "height": 26
+    },
+    "confidence": 0.8949559926986694,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 324,
+      "y": 190,
+      "width": 38,
+      "height": 20
+    },
+    "confidence": 0.8903792500495911,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 589,
+      "y": 189,
+      "width": 95,
+      "height": 18
+    },
+    "confidence": 0.8701727986335754,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 748,
+      "y": 188,
+      "width": 145,
+      "height": 24
+    },
+    "confidence": 0.89422607421875,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 625,
+      "y": 212,
+      "width": 245,
+      "height": 22
+    },
+    "confidence": 0.9029790163040161,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 138,
+      "y": 235,
+      "width": 48,
+      "height": 20
+    },
+    "confidence": 0.9068753719329834,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 216,
+      "y": 235,
+      "width": 71,
+      "height": 20
+    },
+    "confidence": 0.9275679588317871,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 680,
+      "y": 263,
+      "width": 153,
+      "height": 22
+    },
+    "confidence": 0.9042788743972778,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 847,
+      "y": 262,
+      "width": 52,
+      "height": 24
+    },
+    "confidence": 0.8648988008499146,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 548,
+      "y": 289,
+      "width": 42,
+      "height": 20
+    },
+    "confidence": 0.8976051807403564,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 637,
+      "y": 285,
+      "width": 84,
+      "height": 24
+    },
+    "confidence": 0.9083149433135986,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 576,
+      "y": 330,
+      "width": 168,
+      "height": 23
+    },
+    "confidence": 0.9050580859184265,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 758,
+      "y": 331,
+      "width": 102,
+      "height": 23
+    },
+    "confidence": 0.9048168659210205,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 548,
+      "y": 353,
+      "width": 80,
+      "height": 23
+    },
+    "confidence": 0.8849791884422302,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 836,
+      "y": 352,
+      "width": 64,
+      "height": 24
+    },
+    "confidence": 0.8977787494659424,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 548,
+      "y": 378,
+      "width": 90,
+      "height": 20
+    },
+    "confidence": 0.9079886674880981,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 601,
+      "y": 398,
+      "width": 18,
+      "height": 18
+    },
+    "confidence": 0.8862969875335693,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 645,
+      "y": 398,
+      "width": 187,
+      "height": 23
+    },
+    "confidence": 0.9228326678276062,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 549,
+      "y": 421,
+      "width": 265,
+      "height": 22
+    },
+    "confidence": 0.9130877256393433,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 250,
+      "y": 439,
+      "width": 235,
+      "height": 20
+    },
+    "confidence": 0.9163058996200562,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 461,
+      "width": 56,
+      "height": 20
+    },
+    "confidence": 0.6602386832237244,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 382,
+      "y": 461,
+      "width": 72,
+      "height": 20
+    },
+    "confidence": 0.914528489112854,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 232,
+      "y": 484,
+      "width": 251,
+      "height": 20
+    },
+    "confidence": 0.9080778360366821,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 505,
+      "width": 196,
+      "height": 21
+    },
+    "confidence": 0.8678987622261047,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 728,
+      "y": 517,
+      "width": 113,
+      "height": 23
+    },
+    "confidence": 0.9114224910736084,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 851,
+      "y": 516,
+      "width": 53,
+      "height": 24
+    },
+    "confidence": 0.8315834999084473,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 548,
+      "y": 543,
+      "width": 41,
+      "height": 20
+    },
+    "confidence": 0.9042389392852783,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 631,
+      "y": 539,
+      "width": 72,
+      "height": 24
+    },
+    "confidence": 0.9160329103469849,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 154,
+      "y": 564,
+      "width": 266,
+      "height": 62
+    },
+    "confidence": 0.9305439591407776,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 833,
+      "y": 585,
+      "width": 67,
+      "height": 22
+    },
+    "confidence": 0.9020751714706421,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 548,
+      "y": 609,
+      "width": 86,
+      "height": 21
+    },
+    "confidence": 0.8986966609954834,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 645,
+      "y": 606,
+      "width": 82,
+      "height": 25
+    },
+    "confidence": 0.9025131464004517,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 769,
+      "y": 607,
+      "width": 61,
+      "height": 24
+    },
+    "confidence": 0.8999207019805908,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 677,
+      "y": 630,
+      "width": 157,
+      "height": 22
+    },
+    "confidence": 0.9145048260688782,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 797,
+      "y": 652,
+      "width": 17,
+      "height": 18
+    },
+    "confidence": 0.8794316053390503,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 841,
+      "y": 651,
+      "width": 61,
+      "height": 24
+    },
+    "confidence": 0.8968291878700256,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 549,
+      "y": 675,
+      "width": 155,
+      "height": 23
+    },
+    "confidence": 0.9161388874053955,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 788,
+      "y": 675,
+      "width": 112,
+      "height": 23
+    },
+    "confidence": 0.9016562700271606,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 549,
+      "y": 699,
+      "width": 171,
+      "height": 21
+    },
+    "confidence": 0.9171732068061829,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 761,
+      "y": 932,
+      "width": 45,
+      "height": 20
+    },
+    "confidence": 0.9137839674949646,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 230,
+      "y": 1006,
+      "width": 76,
+      "height": 18
+    },
+    "confidence": 0.8982518911361694,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 409,
+      "y": 1006,
+      "width": 15,
+      "height": 14
+    },
+    "confidence": 0.8624207973480225,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 176,
+      "y": 1027,
+      "width": 38,
+      "height": 21
+    },
+    "confidence": 0.8888477087020874,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 1052,
+      "width": 30,
+      "height": 19
+    },
+    "confidence": 0.9035110473632812,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 290,
+      "y": 1047,
+      "width": 75,
+      "height": 22
+    },
+    "confidence": 0.9194689989089966,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 763,
+      "y": 1046,
+      "width": 67,
+      "height": 14
+    },
+    "confidence": 0.8919527530670166,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 167,
+      "y": 1074,
+      "width": 14,
+      "height": 13
+    },
+    "confidence": 0.9062557220458984,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 682,
+      "y": 1069,
+      "width": 17,
+      "height": 19
+    },
+    "confidence": 0.8893868923187256,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 94,
+      "y": 1092,
+      "width": 38,
+      "height": 24
+    },
+    "confidence": 0.8816214799880981,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 253,
+      "y": 1154,
+      "width": 154,
+      "height": 24
+    },
+    "confidence": 0.909416675567627,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 423,
+      "y": 1154,
+      "width": 58,
+      "height": 25
+    },
+    "confidence": 0.8665202856063843,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 130,
+      "y": 1182,
+      "width": 30,
+      "height": 19
+    },
+    "confidence": 0.9136534333229065,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 206,
+      "y": 1176,
+      "width": 68,
+      "height": 25
+    },
+    "confidence": 0.9206885099411011,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 403,
+      "y": 1186,
+      "width": 72,
+      "height": 14
+    },
+    "confidence": 0.836801290512085,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 325,
+      "y": 1223,
+      "width": 17,
+      "height": 17
+    },
+    "confidence": 0.8817018270492554,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p5.png",
+    "bbox": {
+      "x": 293,
+      "y": 1245,
+      "width": 76,
+      "height": 22
+    },
+    "confidence": 0.9117485880851746,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1322
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 612,
+      "y": 101,
+      "width": 37,
+      "height": 16
+    },
+    "confidence": 0.9063720703125,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 596,
+      "y": 144,
+      "width": 298,
+      "height": 20
+    },
+    "confidence": 0.9016852378845215,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 205,
+      "y": 157,
+      "width": 202,
+      "height": 17
+    },
+    "confidence": 0.8956038951873779,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 514,
+      "y": 166,
+      "width": 292,
+      "height": 21
+    },
+    "confidence": 0.8912927508354187,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 854,
+      "y": 167,
+      "width": 39,
+      "height": 20
+    },
+    "confidence": 0.9040372371673584,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 602,
+      "y": 214,
+      "width": 38,
+      "height": 16
+    },
+    "confidence": 0.8957908153533936,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 512,
+      "y": 235,
+      "width": 241,
+      "height": 20
+    },
+    "confidence": 0.8950409889221191,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 211,
+      "y": 339,
+      "width": 29,
+      "height": 19
+    },
+    "confidence": 0.9125411510467529,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 165,
+      "y": 361,
+      "width": 16,
+      "height": 13
+    },
+    "confidence": 0.9131933450698853,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 539,
+      "y": 276,
+      "width": 310,
+      "height": 126
+    },
+    "confidence": 0.9396686553955078,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 707,
+      "y": 423,
+      "width": 38,
+      "height": 16
+    },
+    "confidence": 0.9024027585983276,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 867,
+      "y": 423,
+      "width": 10,
+      "height": 13
+    },
+    "confidence": 0.3126620948314667,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 94,
+      "y": 450,
+      "width": 170,
+      "height": 20
+    },
+    "confidence": 0.9273217916488647,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 290,
+      "y": 456,
+      "width": 9,
+      "height": 13
+    },
+    "confidence": 0.8726929426193237,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 343,
+      "y": 450,
+      "width": 14,
+      "height": 19
+    },
+    "confidence": 0.9077653288841248,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 135,
+      "y": 497,
+      "width": 60,
+      "height": 19
+    },
+    "confidence": 0.9063373804092407,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 404,
+      "y": 498,
+      "width": 45,
+      "height": 12
+    },
+    "confidence": 0.8875128626823425,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 115,
+      "y": 541,
+      "width": 154,
+      "height": 19
+    },
+    "confidence": 0.9144880771636963,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 326,
+      "y": 542,
+      "width": 83,
+      "height": 17
+    },
+    "confidence": 0.9037337303161621,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 165,
+      "y": 612,
+      "width": 243,
+      "height": 83
+    },
+    "confidence": 0.9244502782821655,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 632,
+      "y": 628,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.6830049157142639,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 138,
+      "y": 711,
+      "width": 158,
+      "height": 22
+    },
+    "confidence": 0.9133824110031128,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 428,
+      "y": 715,
+      "width": 52,
+      "height": 13
+    },
+    "confidence": 0.8824355602264404,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 94,
+      "y": 757,
+      "width": 224,
+      "height": 20
+    },
+    "confidence": 0.9092960357666016,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 373,
+      "y": 759,
+      "width": 112,
+      "height": 17
+    },
+    "confidence": 0.8738822937011719,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 94,
+      "y": 782,
+      "width": 38,
+      "height": 17
+    },
+    "confidence": 0.8933731317520142,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 118,
+      "y": 812,
+      "width": 339,
+      "height": 81
+    },
+    "confidence": 0.9080657362937927,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 380,
+      "y": 932,
+      "width": 24,
+      "height": 18
+    },
+    "confidence": 0.9029009342193604,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 301,
+      "y": 954,
+      "width": 46,
+      "height": 13
+    },
+    "confidence": 0.8962576985359192,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 118,
+      "y": 980,
+      "width": 322,
+      "height": 161
+    },
+    "confidence": 0.9461268782615662,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 590,
+      "y": 1044,
+      "width": 59,
+      "height": 19
+    },
+    "confidence": 0.9043769836425781,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 721,
+      "y": 1090,
+      "width": 48,
+      "height": 20
+    },
+    "confidence": 0.9003543853759766,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 551,
+      "y": 1114,
+      "width": 13,
+      "height": 13
+    },
+    "confidence": 0.9022225141525269,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 727,
+      "y": 1114,
+      "width": 17,
+      "height": 13
+    },
+    "confidence": 0.9129482507705688,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 555,
+      "y": 1136,
+      "width": 32,
+      "height": 19
+    },
+    "confidence": 0.9180612564086914,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 137,
+      "y": 1156,
+      "width": 192,
+      "height": 22
+    },
+    "confidence": 0.9176632165908813,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 449,
+      "y": 1160,
+      "width": 30,
+      "height": 16
+    },
+    "confidence": 0.9108880758285522,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 636,
+      "y": 1159,
+      "width": 32,
+      "height": 19
+    },
+    "confidence": 0.9086258411407471,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 782,
+      "y": 1158,
+      "width": 77,
+      "height": 20
+    },
+    "confidence": 0.8713769912719727,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 322,
+      "y": 1183,
+      "width": 10,
+      "height": 12
+    },
+    "confidence": 0.28107452392578125,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 775,
+      "y": 1182,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.8731751441955566,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 173,
+      "y": 1205,
+      "width": 47,
+      "height": 14
+    },
+    "confidence": 0.907529354095459,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 760,
+      "y": 1203,
+      "width": 31,
+      "height": 20
+    },
+    "confidence": 0.9315028786659241,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 512,
+      "y": 1226,
+      "width": 87,
+      "height": 20
+    },
+    "confidence": 0.9018082618713379,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 629,
+      "y": 1225,
+      "width": 172,
+      "height": 20
+    },
+    "confidence": 0.9198037385940552,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 850,
+      "y": 1225,
+      "width": 49,
+      "height": 19
+    },
+    "confidence": 0.8027375936508179,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 204,
+      "y": 1245,
+      "width": 166,
+      "height": 23
+    },
+    "confidence": 0.9040020108222961,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 512,
+      "y": 1248,
+      "width": 38,
+      "height": 20
+    },
+    "confidence": 0.9105337858200073,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/jandura-p6.png",
+    "bbox": {
+      "x": 606,
+      "y": 1250,
+      "width": 18,
+      "height": 13
+    },
+    "confidence": 0.8970692157745361,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1049
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 142,
+      "y": 104,
+      "width": 103,
+      "height": 20
+    },
+    "confidence": 0.5571733713150024,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 635,
+      "y": 140,
+      "width": 21,
+      "height": 14
+    },
+    "confidence": 0.5947573184967041,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 145,
+      "y": 168,
+      "width": 100,
+      "height": 23
+    },
+    "confidence": 0.6908013224601746,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 816,
+      "y": 187,
+      "width": 82,
+      "height": 19
+    },
+    "confidence": 0.40251368284225464,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 146,
+      "y": 218,
+      "width": 102,
+      "height": 23
+    },
+    "confidence": 0.7083251476287842,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 434,
+      "y": 306,
+      "width": 21,
+      "height": 14
+    },
+    "confidence": 0.27855998277664185,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 633,
+      "y": 302,
+      "width": 23,
+      "height": 14
+    },
+    "confidence": 0.5908716320991516,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 464,
+      "y": 366,
+      "width": 13,
+      "height": 15
+    },
+    "confidence": 0.46190720796585083,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 783,
+      "y": 363,
+      "width": 115,
+      "height": 21
+    },
+    "confidence": 0.4544892907142639,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 82,
+      "y": 386,
+      "width": 41,
+      "height": 14
+    },
+    "confidence": 0.7379655838012695,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 275,
+      "y": 385,
+      "width": 88,
+      "height": 18
+    },
+    "confidence": 0.7824177742004395,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 318,
+      "y": 404,
+      "width": 39,
+      "height": 17
+    },
+    "confidence": 0.8314012289047241,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 378,
+      "y": 404,
+      "width": 42,
+      "height": 18
+    },
+    "confidence": 0.8480671048164368,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 344,
+      "y": 421,
+      "width": 50,
+      "height": 17
+    },
+    "confidence": 0.8423212766647339,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 642,
+      "y": 439,
+      "width": 38,
+      "height": 13
+    },
+    "confidence": 0.38422632217407227,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 157,
+      "y": 468,
+      "width": 43,
+      "height": 20
+    },
+    "confidence": 0.7589391469955444,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 82,
+      "y": 508,
+      "width": 42,
+      "height": 19
+    },
+    "confidence": 0.7955650091171265,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 321,
+      "y": 529,
+      "width": 11,
+      "height": 15
+    },
+    "confidence": 0.7394946217536926,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 342,
+      "y": 566,
+      "width": 38,
+      "height": 18
+    },
+    "confidence": 0.8605591058731079,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 150,
+      "y": 627,
+      "width": 10,
+      "height": 15
+    },
+    "confidence": 0.6841437816619873,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 452,
+      "y": 624,
+      "width": 38,
+      "height": 19
+    },
+    "confidence": 0.8463963866233826,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 756,
+      "y": 634,
+      "width": 20,
+      "height": 16
+    },
+    "confidence": 0.25323301553726196,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 322,
+      "y": 708,
+      "width": 50,
+      "height": 16
+    },
+    "confidence": 0.8307478427886963,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 833,
+      "y": 928,
+      "width": 30,
+      "height": 17
+    },
+    "confidence": 0.65288907289505,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 112,
+      "y": 992,
+      "width": 229,
+      "height": 43
+    },
+    "confidence": 0.9292697906494141,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 418,
+      "y": 1046,
+      "width": 42,
+      "height": 22
+    },
+    "confidence": 0.8696768283843994,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 548,
+      "y": 1125,
+      "width": 46,
+      "height": 19
+    },
+    "confidence": 0.85334312915802,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 560,
+      "y": 1165,
+      "width": 26,
+      "height": 19
+    },
+    "confidence": 0.8797693848609924,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 379,
+      "y": 1202,
+      "width": 73,
+      "height": 23
+    },
+    "confidence": 0.8976932168006897,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p10.png",
+    "bbox": {
+      "x": 781,
+      "y": 1225,
+      "width": 14,
+      "height": 16
+    },
+    "confidence": 0.8209041357040405,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 800
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 398,
+      "y": 197,
+      "width": 42,
+      "height": 15
+    },
+    "confidence": 0.6187546849250793,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 452,
+      "y": 360,
+      "width": 43,
+      "height": 18
+    },
+    "confidence": 0.7611382007598877,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 230,
+      "y": 397,
+      "width": 67,
+      "height": 18
+    },
+    "confidence": 0.36986881494522095,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 190,
+      "y": 415,
+      "width": 50,
+      "height": 15
+    },
+    "confidence": 0.621781587600708,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 348,
+      "y": 417,
+      "width": 11,
+      "height": 14
+    },
+    "confidence": 0.7793940305709839,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 699,
+      "y": 501,
+      "width": 19,
+      "height": 15
+    },
+    "confidence": 0.8710939884185791,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 567,
+      "y": 520,
+      "width": 21,
+      "height": 19
+    },
+    "confidence": 0.8593698740005493,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 737,
+      "y": 520,
+      "width": 22,
+      "height": 20
+    },
+    "confidence": 0.8827961683273315,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 799,
+      "y": 524,
+      "width": 30,
+      "height": 16
+    },
+    "confidence": 0.5756690502166748,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 82,
+      "y": 566,
+      "width": 100,
+      "height": 19
+    },
+    "confidence": 0.8573291301727295,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 438,
+      "y": 585,
+      "width": 56,
+      "height": 17
+    },
+    "confidence": 0.8343026041984558,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 82,
+      "y": 645,
+      "width": 95,
+      "height": 16
+    },
+    "confidence": 0.8416239023208618,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 362,
+      "y": 644,
+      "width": 56,
+      "height": 17
+    },
+    "confidence": 0.7933818697929382,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 549,
+      "y": 645,
+      "width": 147,
+      "height": 25
+    },
+    "confidence": 0.8822920918464661,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 266,
+      "y": 684,
+      "width": 41,
+      "height": 15
+    },
+    "confidence": 0.6139793395996094,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 905,
+      "y": 682,
+      "width": 14,
+      "height": 16
+    },
+    "confidence": 0.642066240310669,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 82,
+      "y": 703,
+      "width": 83,
+      "height": 20
+    },
+    "confidence": 0.45903515815734863,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 203,
+      "y": 703,
+      "width": 83,
+      "height": 19
+    },
+    "confidence": 0.44323045015335083,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 826,
+      "y": 707,
+      "width": 12,
+      "height": 14
+    },
+    "confidence": 0.7932332754135132,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 554,
+      "y": 722,
+      "width": 12,
+      "height": 16
+    },
+    "confidence": 0.7185704708099365,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 920,
+      "y": 726,
+      "width": 13,
+      "height": 15
+    },
+    "confidence": 0.8240510821342468,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 705,
+      "y": 746,
+      "width": 13,
+      "height": 15
+    },
+    "confidence": 0.7770362496376038,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 112,
+      "y": 763,
+      "width": 32,
+      "height": 16
+    },
+    "confidence": 0.8405834436416626,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 184,
+      "y": 762,
+      "width": 30,
+      "height": 18
+    },
+    "confidence": 0.7817131280899048,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 765,
+      "y": 762,
+      "width": 136,
+      "height": 22
+    },
+    "confidence": 0.9008800983428955,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 782,
+      "y": 784,
+      "width": 13,
+      "height": 16
+    },
+    "confidence": 0.8349732160568237,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 731,
+      "y": 803,
+      "width": 24,
+      "height": 18
+    },
+    "confidence": 0.8851150274276733,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 602,
+      "y": 821,
+      "width": 149,
+      "height": 21
+    },
+    "confidence": 0.851246178150177,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 873,
+      "y": 823,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8076322674751282,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 551,
+      "y": 867,
+      "width": 184,
+      "height": 49
+    },
+    "confidence": 0.9311326742172241,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 570,
+      "y": 929,
+      "width": 15,
+      "height": 15
+    },
+    "confidence": 0.8465019464492798,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 550,
+      "y": 998,
+      "width": 125,
+      "height": 50
+    },
+    "confidence": 0.9178269505500793,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 744,
+      "y": 1062,
+      "width": 18,
+      "height": 16
+    },
+    "confidence": 0.8599185347557068,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 550,
+      "y": 1090,
+      "width": 242,
+      "height": 43
+    },
+    "confidence": 0.9272675514221191,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 805,
+      "y": 1145,
+      "width": 43,
+      "height": 21
+    },
+    "confidence": 0.5845543146133423,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 903,
+      "y": 1147,
+      "width": 14,
+      "height": 16
+    },
+    "confidence": 0.7909683585166931,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 213,
+      "y": 1164,
+      "width": 44,
+      "height": 20
+    },
+    "confidence": 0.8439229726791382,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p11.png",
+    "bbox": {
+      "x": 282,
+      "y": 1183,
+      "width": 55,
+      "height": 21
+    },
+    "confidence": 0.8836634159088135,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1050
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 78,
+      "width": 85,
+      "height": 48
+    },
+    "confidence": 0.8607094287872314,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 140,
+      "width": 215,
+      "height": 54
+    },
+    "confidence": 0.8321142196655273,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 112,
+      "y": 211,
+      "width": 196,
+      "height": 43
+    },
+    "confidence": 0.8078287839889526,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 603,
+      "y": 219,
+      "width": 26,
+      "height": 13
+    },
+    "confidence": 0.8073787689208984,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 854,
+      "y": 219,
+      "width": 26,
+      "height": 14
+    },
+    "confidence": 0.8458093404769897,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 884,
+      "y": 235,
+      "width": 17,
+      "height": 15
+    },
+    "confidence": 0.8350071907043457,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 520,
+      "y": 254,
+      "width": 15,
+      "height": 16
+    },
+    "confidence": 0.5616548657417297,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 83,
+      "y": 304,
+      "width": 198,
+      "height": 22
+    },
+    "confidence": 0.8988507986068726,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 82,
+      "y": 363,
+      "width": 55,
+      "height": 21
+    },
+    "confidence": 0.8853909969329834,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 234,
+      "y": 369,
+      "width": 15,
+      "height": 12
+    },
+    "confidence": 0.8043365478515625,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 299,
+      "y": 365,
+      "width": 55,
+      "height": 19
+    },
+    "confidence": 0.8664003610610962,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 274,
+      "y": 404,
+      "width": 59,
+      "height": 19
+    },
+    "confidence": 0.8983125686645508,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 451,
+      "width": 132,
+      "height": 47
+    },
+    "confidence": 0.9331228733062744,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 814,
+      "y": 446,
+      "width": 87,
+      "height": 21
+    },
+    "confidence": 0.9082289934158325,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 562,
+      "y": 486,
+      "width": 81,
+      "height": 20
+    },
+    "confidence": 0.8763408660888672,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 698,
+      "y": 491,
+      "width": 12,
+      "height": 13
+    },
+    "confidence": 0.7513211369514465,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 527,
+      "width": 267,
+      "height": 56
+    },
+    "confidence": 0.9399681687355042,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 768,
+      "y": 526,
+      "width": 89,
+      "height": 20
+    },
+    "confidence": 0.8086569905281067,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 550,
+      "y": 570,
+      "width": 318,
+      "height": 52
+    },
+    "confidence": 0.9352821707725525,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 81,
+      "y": 629,
+      "width": 51,
+      "height": 25
+    },
+    "confidence": 0.8945214748382568,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 742,
+      "y": 632,
+      "width": 28,
+      "height": 18
+    },
+    "confidence": 0.7595542073249817,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 82,
+      "y": 710,
+      "width": 14,
+      "height": 16
+    },
+    "confidence": 0.6825534701347351,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 734,
+      "width": 194,
+      "height": 54
+    },
+    "confidence": 0.9403420090675354,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 657,
+      "y": 805,
+      "width": 86,
+      "height": 21
+    },
+    "confidence": 0.8248296976089478,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 111,
+      "y": 821,
+      "width": 127,
+      "height": 46
+    },
+    "confidence": 0.9245076179504395,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 273,
+      "y": 881,
+      "width": 26,
+      "height": 19
+    },
+    "confidence": 0.868803858757019,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 550,
+      "y": 869,
+      "width": 136,
+      "height": 47
+    },
+    "confidence": 0.9208295345306396,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 578,
+      "y": 929,
+      "width": 67,
+      "height": 23
+    },
+    "confidence": 0.8848142623901367,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 81,
+      "y": 978,
+      "width": 15,
+      "height": 16
+    },
+    "confidence": 0.6368574500083923,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 430,
+      "y": 997,
+      "width": 64,
+      "height": 21
+    },
+    "confidence": 0.9019836783409119,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 550,
+      "y": 973,
+      "width": 170,
+      "height": 50
+    },
+    "confidence": 0.9320715069770813,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 282,
+      "y": 1023,
+      "width": 30,
+      "height": 16
+    },
+    "confidence": 0.8708564043045044,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 842,
+      "y": 1037,
+      "width": 21,
+      "height": 13
+    },
+    "confidence": 0.49919915199279785,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 685,
+      "y": 1054,
+      "width": 89,
+      "height": 18
+    },
+    "confidence": 0.7899995446205139,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 675,
+      "y": 1075,
+      "width": 15,
+      "height": 15
+    },
+    "confidence": 0.830435037612915,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p12.png",
+    "bbox": {
+      "x": 160,
+      "y": 1223,
+      "width": 45,
+      "height": 18
+    },
+    "confidence": 0.5021364688873291,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1005
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 136,
+      "y": 370,
+      "width": 14,
+      "height": 13
+    },
+    "confidence": 0.26836299896240234,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 357,
+      "y": 373,
+      "width": 71,
+      "height": 16
+    },
+    "confidence": 0.48532775044441223,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 294,
+      "y": 390,
+      "width": 197,
+      "height": 19
+    },
+    "confidence": 0.4858853220939636,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 682,
+      "y": 476,
+      "width": 13,
+      "height": 12
+    },
+    "confidence": 0.8342858552932739,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 837,
+      "y": 493,
+      "width": 57,
+      "height": 19
+    },
+    "confidence": 0.8546035289764404,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 178,
+      "y": 524,
+      "width": 42,
+      "height": 17
+    },
+    "confidence": 0.817070722579956,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 681,
+      "y": 512,
+      "width": 53,
+      "height": 23
+    },
+    "confidence": 0.8649259805679321,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 858,
+      "y": 514,
+      "width": 71,
+      "height": 19
+    },
+    "confidence": 0.8701057434082031,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 417,
+      "y": 524,
+      "width": 71,
+      "height": 19
+    },
+    "confidence": 0.5054309368133545,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 581,
+      "y": 534,
+      "width": 53,
+      "height": 22
+    },
+    "confidence": 0.8848620653152466,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 686,
+      "y": 535,
+      "width": 49,
+      "height": 22
+    },
+    "confidence": 0.8920567035675049,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 780,
+      "y": 536,
+      "width": 18,
+      "height": 15
+    },
+    "confidence": 0.8545169830322266,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 893,
+      "y": 536,
+      "width": 11,
+      "height": 15
+    },
+    "confidence": 0.7887497544288635,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 176,
+      "y": 565,
+      "width": 67,
+      "height": 19
+    },
+    "confidence": 0.44076332449913025,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 355,
+      "y": 565,
+      "width": 52,
+      "height": 17
+    },
+    "confidence": 0.7927963733673096,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 620,
+      "y": 556,
+      "width": 22,
+      "height": 19
+    },
+    "confidence": 0.8687725067138672,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 719,
+      "y": 576,
+      "width": 24,
+      "height": 17
+    },
+    "confidence": 0.8834483027458191,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 301,
+      "y": 586,
+      "width": 52,
+      "height": 17
+    },
+    "confidence": 0.7310327291488647,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 641,
+      "y": 600,
+      "width": 15,
+      "height": 11
+    },
+    "confidence": 0.803420901298523,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 267,
+      "y": 626,
+      "width": 60,
+      "height": 17
+    },
+    "confidence": 0.6683744192123413,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 321,
+      "y": 647,
+      "width": 52,
+      "height": 17
+    },
+    "confidence": 0.6111713647842407,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 164,
+      "y": 668,
+      "width": 52,
+      "height": 17
+    },
+    "confidence": 0.7421354055404663,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 557,
+      "y": 673,
+      "width": 98,
+      "height": 19
+    },
+    "confidence": 0.8667595386505127,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 691,
+      "y": 674,
+      "width": 61,
+      "height": 18
+    },
+    "confidence": 0.8841333389282227,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 759,
+      "y": 694,
+      "width": 28,
+      "height": 18
+    },
+    "confidence": 0.8595100045204163,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 550,
+      "y": 747,
+      "width": 186,
+      "height": 54
+    },
+    "confidence": 0.9388481378555298,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 815,
+      "y": 822,
+      "width": 47,
+      "height": 22
+    },
+    "confidence": 0.8642463684082031,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 577,
+      "y": 859,
+      "width": 236,
+      "height": 25
+    },
+    "confidence": 0.8753683567047119,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 905,
+      "y": 862,
+      "width": 29,
+      "height": 18
+    },
+    "confidence": 0.8240063190460205,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 521,
+      "y": 880,
+      "width": 129,
+      "height": 23
+    },
+    "confidence": 0.8749752044677734,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 583,
+      "y": 938,
+      "width": 135,
+      "height": 23
+    },
+    "confidence": 0.8924506902694702,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 784,
+      "y": 940,
+      "width": 82,
+      "height": 21
+    },
+    "confidence": 0.9033701419830322,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 637,
+      "y": 960,
+      "width": 16,
+      "height": 15
+    },
+    "confidence": 0.6782547235488892,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 883,
+      "y": 960,
+      "width": 16,
+      "height": 15
+    },
+    "confidence": 0.8633275032043457,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 741,
+      "y": 980,
+      "width": 29,
+      "height": 19
+    },
+    "confidence": 0.873139500617981,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 681,
+      "y": 1000,
+      "width": 15,
+      "height": 15
+    },
+    "confidence": 0.8584656715393066,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 854,
+      "y": 1000,
+      "width": 16,
+      "height": 15
+    },
+    "confidence": 0.863760232925415,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 847,
+      "y": 1025,
+      "width": 14,
+      "height": 11
+    },
+    "confidence": 0.8094300031661987,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 195,
+      "y": 1044,
+      "width": 34,
+      "height": 17
+    },
+    "confidence": 0.7867989540100098,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 914,
+      "y": 1041,
+      "width": 14,
+      "height": 15
+    },
+    "confidence": 0.8576004505157471,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 550,
+      "y": 1132,
+      "width": 252,
+      "height": 52
+    },
+    "confidence": 0.9402694702148438,
+    "formulaType": "display",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  },
+  {
+    "pageImage": "tmp/pdfs/accuracy-pages/saffman-p13.png",
+    "bbox": {
+      "x": 671,
+      "y": 1209,
+      "width": 42,
+      "height": 15
+    },
+    "confidence": 0.8077885508537292,
+    "formulaType": "inline",
+    "detectorVersion": "pix2text-mfd-1.5",
+    "processingTime": 1011
+  }
+]

@@ -25,3 +25,9 @@ class FakeModelManager:
 
     def formula_available(self) -> bool:
         return False
+
+    def detection_available(self) -> bool:
+        return False
+
+    def detection(self):
+        raise EngineError(ErrorClass.MODEL_UNAVAILABLE, "Local detection model is not installed")
