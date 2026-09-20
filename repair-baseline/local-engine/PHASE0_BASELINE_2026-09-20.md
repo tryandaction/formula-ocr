@@ -1,7 +1,9 @@
 # Local OCR Engine Phase 0 Baseline
 
-Date: 2026-09-20  
-Checkout: `3d0c54291ff1c1efd8e628e9318fa7b0214c3586`  
+Date: 2026-09-20
+
+Checkout: `3d0c54291ff1c1efd8e628e9318fa7b0214c3586`
+
 Scope: evidence collection only; no product implementation changed.
 
 ## Current Evidence
@@ -76,4 +78,3 @@ Phase 1 starts with contract tests proving that `/health` does not load model we
 ## Stop Condition
 
 Phase 0 is complete because command evidence, protected-file status, current detection/OCR metrics, the missing-service boundary, allowed edit scope, and the first failing-test target are reproducible. Any later inability to resolve a Python 3.11 model dependency or verify a weight license stops that adapter rather than weakening the gate.
-
