@@ -1,0 +1,1068 @@
+{
+  "benchmark": "real-pdf-formulas-v1",
+  "sampleCount": 33,
+  "variants": [
+    "original",
+    "upscale",
+    "grayscale",
+    "binary"
+  ],
+  "results": [
+    {
+      "id": "bravyi-p6-01",
+      "variant": "original",
+      "latex": "S_{2}\\!=\\!\\left[\\!\\!\\begin{matrix}{0}&{1}\\\\ {1}&{0}\\end{matrix}\\!\\!\\right]\\;\\;\\;{\\sf a n d}\\;\\;\\;S_{3}\\!=\\!\\left[\\!\\begin matrix}{0}&{1}&{0}\\\\ {0}&{0}&{1}\\\\ {1}&{0}&{0}\\end{array}\\!\\right]\\!.",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1806
+    },
+    {
+      "id": "bravyi-p6-01",
+      "variant": "upscale",
+      "latex": "S_{2}\\!=\\!\\left[\\!\\!\\begin{matrix}{0}&{1}\\\\ {1}&{0}\\end{matrix}\\!\\right]\\!\\!\\!\\!\\!\\!\\!{\\mathrm{a n d}}\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5586
+    },
+    {
+      "id": "bravyi-p6-01",
+      "variant": "grayscale",
+      "latex": "S_{2}\\!=\\!\\left[\\!\\!\\begin{matrix}{0}&{1}\\\\ {1}&{0}\\end{matrix}\\!\\!\\right]\\;\\;\\;{\\sf a n d}\\;\\;\\;S_{3}\\!=\\!\\left[\\!\\begin matrix}{0}&{1}&{0}\\\\ {0}&{0}&{1}\\\\ {1}&{0}&{0}\\end{array}\\!\\right]\\!.",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1335
+    },
+    {
+      "id": "bravyi-p6-01",
+      "variant": "binary",
+      "latex": "\\ !S_{2}\\!=\\!\\left[\\!{array l\\!\\!\\!\\!0}&{{1}}\\\\ {{1}}&{{0}}\\end{array}\\right]\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5310
+    },
+    {
+      "id": "bravyi-p6-02",
+      "variant": "original",
+      "latex": "\\begin{array}{c c c}{{\\mathsf{t r l c s s}}}\\\\ {{=\\\\_S x\\,\\ \\ \\ \\\\\\=,S S_{\\ell}\\otimes I_{m}\\ }}&{{\\ \\ !!,}}\\\\\\{{\\ \\ \\ \\ \\ =\\,S_{\\ell}\\otimes S_{m}.}}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1075
+    },
+    {
+      "id": "bravyi-p6-02",
+      "variant": "upscale",
+      "latex": "\\begin{array}{c c c}{{\\mathsf{t r a c e s}}}\\\\ {{\\ \\ \\ \\ \\ \\ \\ \\ =\\,S_{\\ell}\\otimes I_{m}\\ \\ \\ \\{\\ d n d\\ \\ }\\ y\\!=\\,I_{\\ell}\\otimes S_{m}.}}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1050
+    },
+    {
+      "id": "bravyi-p6-02",
+      "variant": "grayscale",
+      "latex": "\\begin{array}{c c c}{{\\mathsf{t r l c s s}}}\\\\ {{=\\\\_S x\\,\\ \\ \\ \\\\\\=,S S_{\\ell}\\otimes I_{m}\\ }}&{{\\ \\ !!,}}\\\\\\{{\\ \\ \\ \\ \\ =\\,S_{\\ell}\\otimes S_{m}.}}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1149
+    },
+    {
+      "id": "bravyi-p6-02",
+      "variant": "binary",
+      "latex": "\\begin{array}{c}{{\\ \\ {\\tt T r T c c s}}}\\\\ {{\\=\\,S_{\\ell}\\otimes I_{m}\\quad\\mathrm{a n d}\\quad y\\,=\\,I_{\\ell}\\otimes S_{m}.}}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 929
+    },
+    {
+      "id": "bravyi-p6-03",
+      "variant": "original",
+      "latex": "\\begin{array}{c c c c c c}{{{\\ f\\ {\\mathfrak m}a t r i c e s}}}&{{{}}}&{{}}&{{}}&{{}}&{{}}&{{}}&{{}}\\\\ {{\\\\\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5243
+    },
+    {
+      "id": "bravyi-p6-03",
+      "variant": "upscale",
+      "latex": "\\begin{array}{c c c c c c}{{{\\ f\\ {\\mathfrak m}a t r i c e s}}}&{{{}}}&{{}}&{{}}&{{}}&{{}}&{{}}&{{}}\\\\ {{A\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ {A\\mathrm{a n d}}}}&{{{\\\\ B==\\,B_{1}\\ B_{2}+B_{3}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5191
+    },
+    {
+      "id": "bravyi-p6-03",
+      "variant": "grayscale",
+      "latex": "\\begin{array}{c c c c c c}{{{\\ f\\ {\\mathfrak m}a t r i c e s}}}&{{{}}}&{{}}&{{}}&{{}}&{{}}&{{}}&{{}}\\\\ {{\\\\\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5580
+    },
+    {
+      "id": "bravyi-p6-03",
+      "variant": "binary",
+      "latex": "\\begin{array}{c c c c c c}{{{\\mathrm{~a f m a t r i c e s}}}}&{{{}}}&{{}}&{{}}&{{}}&{{}}&{{}}\\\\ {{A A A={\\cal A}_{1}+A_{2}+A_{3}\\quad\\mathrm{~a n d}\\quad{\\cal B}={\\cal B}_{1}+B_{2}+B_{3}\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad\\quad",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5151
+    },
+    {
+      "id": "bravyi-p6-04",
+      "variant": "original",
+      "latex": "H^{X}\\!=\\![A|B]\\quad\\mathrm{a n d}\\quad H^{Z}\\!=\\![B^{T}\\ A^{T}]\\,.\\eq\\ no(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 843
+    },
+    {
+      "id": "bravyi-p6-04",
+      "variant": "upscale",
+      "latex": "H^{X}\\!=\\![A|B]\\quad\\mathrm{a n d}\\quad H^{Z}\\!=\\![B^{\\bar{T}}|A^{\\bar{T}}]\\,.\\eq\\(no2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 895
+    },
+    {
+      "id": "bravyi-p6-04",
+      "variant": "grayscale",
+      "latex": "H^{X}\\!=\\![A|B]\\quad\\mathrm{a n d}\\quad H^{Z}\\!=\\![B^{T}\\ A^{T}]\\,.\\eq\\ no(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 829
+    },
+    {
+      "id": "bravyi-p6-04",
+      "variant": "binary",
+      "latex": "H^{X}\\ [A|B]\\quad\\ \\ \\mathsf{a n d}\\quad H^{Z}\\,[B^{T}]\\,\\qquad\\qquad\\qquad\\ (2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 795
+    },
+    {
+      "id": "bravyi-p6-05",
+      "variant": "original",
+      "latex": "\\begin{array}{r l}&{n\\displaystyle=2\\ell m,\\,k\\!=2\\times\\mathsf{d i m}(\\mathsf{k e r}(A)\\,\\cap\\,\\mathsf{k e r}(B))\\,\\mathsf{a n d}\\,d}\\\\ &{\\displaystyle=\\mathsf{m i n}\\{|\\mathbf{v}|:,\\mathbf{v}\\in\\mathsf{k e r}(H^{X})\\backslash\\,\\mathsf{r s(}^{!Z})\\}.}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1326
+    },
+    {
+      "id": "bravyi-p6-05",
+      "variant": "upscale",
+      "latex": "\\begin{array}{r}{n\\!=\\!2\\ell m,\\,k\\!=\\!2\\times\\mathsf{d i m}(\\mathsf{k e r}(A)\\,\\cap\\,\\mathsf{k e r}(B))\\,\\mathsf{a n d}\\,d}\\\\ {=\\mathsf{m i n}\\{|\\mathbf{v}|:,\\,\\mathbf{v}\\in\\mathsf{k e r}(H^{X})\\backslash\\,\\mathsf{r s}(H^{Z})\\}.}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1265
+    },
+    {
+      "id": "bravyi-p6-05",
+      "variant": "grayscale",
+      "latex": "\\begin{array}{r l}&{n\\displaystyle=2\\ell m,\\,k\\!=2\\times\\mathsf{d i m}(\\mathsf{k e r}(A)\\,\\cap\\,\\mathsf{k e r}(B))\\,\\mathsf{a n d}\\,d}\\\\ &{\\displaystyle=\\mathsf{m i n}\\{|\\mathbf{v}|:,\\mathbf{v}\\in\\mathsf{k e r}(H^{X})\\backslash\\,\\mathsf{r s(}^{!Z})\\}.}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1280
+    },
+    {
+      "id": "bravyi-p6-05",
+      "variant": "binary",
+      "latex": "\\begin{array}{r}{n=2\\ell m,\\;k=!\\ \\ \\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5251
+    },
+    {
+      "id": "bravyi-p6-06",
+      "variant": "original",
+      "latex": "H_{A}^{X}\\!=\\![A_{2}+A_{3}|B_{3}]\\quad\\mathrm{a n d}\\quad H_{A}^{Z}\\!=\\![B_{3}^{T}|A_{2}^{T}+A_{3}^{T}]\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1087
+    },
+    {
+      "id": "bravyi-p6-06",
+      "variant": "upscale",
+      "latex": "H_{A}^{X}\\!=\\![A_{2}\\!+\\!A_{3}|B_{3}]\\quad\\mathrm{a n d}\\quad H_{A}^{Z}\\!=\\![B_{3}^{T}|A_{2}^{T}+A_{3}^{T}]\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1121
+    },
+    {
+      "id": "bravyi-p6-06",
+      "variant": "grayscale",
+      "latex": "H_{A}^{X}\\!=\\![A_{2}+A_{3}|B_{3}]\\quad\\mathrm{a n d}\\quad H_{A}^{Z}\\!=\\![B_{3}^{T}|A_{2}^{T}+A_{3}^{T}]\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1081
+    },
+    {
+      "id": "bravyi-p6-06",
+      "variant": "binary",
+      "latex": "H_{A}^{X}\\!=\\![A_{2}+A_{3}|B_{3}]\\quad\\mathrm{a n d}\\quad H_{A}^{Z}\\!=\\![B_{3}^{T}|A_{2}^{T}+A_{3}^{T}\\,]\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1194
+    },
+    {
+      "id": "bravyi-p6-07",
+      "variant": "original",
+      "latex": "H_{B}^{X}\\!=\\![A_{1}|B_{1}\\!+\\!B_{2}]\\quad\\mathrm{a n d}\\quad H_{B}^{Z}\\!=\\![B_{1}^{T}\\!+\\!B_{2}^{T}|A_{1}^{T}].\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1183
+    },
+    {
+      "id": "bravyi-p6-07",
+      "variant": "upscale",
+      "latex": "H_{B}^{X}\\!=\\![A_{1}|B_{1}\\!+\\!B_{2}]\\quad\\mathrm{a n d}\\quad H_{B}^{Z}\\!=\\![B_{1}^{T}\\!+\\!B_{2}^{T}|A_{1}^{T}].\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1194
+    },
+    {
+      "id": "bravyi-p6-07",
+      "variant": "grayscale",
+      "latex": "H_{B}^{X}\\!=\\![A_{1}|B_{1}\\!+\\!B_{2}]\\quad\\mathrm{a n d}\\quad H_{B}^{Z}\\!=\\![B_{1}^{T}\\!+\\!B_{2}^{T}|A_{1}^{T}].\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1082
+    },
+    {
+      "id": "bravyi-p6-07",
+      "variant": "binary",
+      "latex": "H_{B}^{X}\\!=\\![A_{1}\\,|B_{1}\\!+\\!B_{2}]\\quad\\mathsf{a r d}\\quad H_{B}^{Z}\\!=\\![B_{1}^{T}\\!+\\!B_{2}^{T}\\,|A_{1}^{T}\\,]\\,,\\quad()",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1146
+    },
+    {
+      "id": "jandura-p3-01",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H(t)=}&{{}\\sum_{i=j}^{n}\\frac{\\Omega_{j}(t)}{2}\\left|1\\right>rangle_{{j}}__{j}\\langle r|+\\operatorname{h.c.}\\qquad\\ 11}}\\\\ {{+}}}&{{{{}sumsum_{j<k}B_{j k}\\left|r r\\right>_{{j}k}\\ r\\ \\ {\\ r r}\\ |}.}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1378
+    },
+    {
+      "id": "jandura-p3-01",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{H(t)=}&{{}\\sum_{i=j}^{n}\\frac{\\Omega_{j}(t)}{2}\\left|1\\right>_{j}{}_{j}\\langle r|+\\mathrm{h.c.}\\qquad\\ (1)}\\\\ {+}&{{}\\sum_{j<k}B_{j k}\\left|r r\\right>_{j k}{langle r}{\\ }\\langle r r|\\,}\\\\\\\\\\endendaligned}}\\quad",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1339
+    },
+    {
+      "id": "jandura-p3-01",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{H(t)=}&{{}\\sum_{i=j}^{n}\\frac{\\Omega_{j}(t)}{2}\\left|1\\right>rangle_{{j}}__{j}\\langle r|+\\operatorname{h.c.}\\qquad\\ 11}}\\\\ {{+}}}&{{{{}sumsum_{j<k}B_{j k}\\left|r r\\right>_{{j}k}\\ r\\ \\ {\\ r r}\\ |}.}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1327
+    },
+    {
+      "id": "jandura-p3-01",
+      "variant": "binary",
+      "latex": "\\begin{array}{l l l}{{displaystyle\\displaystyle H(t)=\\sum_{i=j}^{\\mu}\\frac{\\Omega_{j}(t)}{2}\\,|1\\rangle_{j\\,j}\\langle r|+\\mathrm{h.c.}}&&{{\\ \\ 1}}\\\\ {\\displaystyle+\\sum_{j<k}B_{j k}\\,|r\\rangle_{j k\\,k}\\langle r r|\\,.}&&&{{\\ }}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1283
+    },
+    {
+      "id": "jandura-p4-02",
+      "variant": "original",
+      "latex": "H=\\sum H_{q}\\qquad H_{q}=P_{q}H P_{q}.\\qquad\\quad(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 726
+    },
+    {
+      "id": "jandura-p4-02",
+      "variant": "upscale",
+      "latex": "H=\\sum H_{q}\\qquad H_{q}=P_{q}H P_{q}.\\qquad\\quad(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 768
+    },
+    {
+      "id": "jandura-p4-02",
+      "variant": "grayscale",
+      "latex": "H=\\sum H_{q}\\qquad H_{q}=P_{q}H P_{q}.\\qquad\\quad(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 765
+    },
+    {
+      "id": "jandura-p4-02",
+      "variant": "binary",
+      "latex": "H=\\sum H_{q}\\qquad H_{q}=P_{q}H P_{q}.\\qquad\\quad2\\rangle",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 715
+    },
+    {
+      "id": "jandura-p4-03",
+      "variant": "original",
+      "latex": "U(T)\\left|q\\right>=e^{i\\xi_{q}}\\left|q\\right>.\\qquad\\qquad\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 716
+    },
+    {
+      "id": "jandura-p4-03",
+      "variant": "upscale",
+      "latex": "U(T)\\left|q\\right>=e^{i\\xi_{q}}\\left|q\\right>.\\qquad\\qquad\\qquad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 749
+    },
+    {
+      "id": "jandura-p4-03",
+      "variant": "grayscale",
+      "latex": "U(T)\\left|q\\right>=e^{i\\xi_{q}}\\left|q\\right>.\\qquad\\qquad\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 786
+    },
+    {
+      "id": "jandura-p4-03",
+      "variant": "binary",
+      "latex": "U(T)\\left|q\\right>=e^{i\\xi_{q}}\\left|q\\right>.\\qquad\\qquad\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 791
+    },
+    {
+      "id": "jandura-p4-04",
+      "variant": "original",
+      "latex": "F=\\,\\int\\,\\mathrm{d}\\psi\\left|\\left\\langle\\psi|U_{0}^{\\dagger}U(T)|\\psi\\right\\rangle\\right|^{2}\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,(,4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1197
+    },
+    {
+      "id": "jandura-p4-04",
+      "variant": "upscale",
+      "latex": "F=\\int_{\\!{\\mathrm{d}}}\\psi\\left|\\left\\langle\\psi|U_{0}^{\\dagger}U(T)|\\psi\\right\\rangle\\right|^{2}\\qquad\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1125
+    },
+    {
+      "id": "jandura-p4-04",
+      "variant": "grayscale",
+      "latex": "F=\\,\\int\\,\\mathrm{d}\\psi\\left|\\left\\langle\\psi|U_{0}^{\\dagger}U(T)|\\psi\\right\\rangle\\right|^{2}\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,(,4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1111
+    },
+    {
+      "id": "jandura-p4-04",
+      "variant": "binary",
+      "latex": "F=\\int\\mathrm{d}\\psi\\left|\\left\\langle\\psi|U_{0}^{\\dagger}U(T)|\\psi\\right\\rangle\\right|^{2}\\qquad\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 829
+    },
+    {
+      "id": "jandura-p4-05",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{2^{n}(2^{n}+1)}\\Big(}&{{}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|}&{\\quad(5)}\\\\ {}&{{}+\\sum_{q}|\\langle q|U(T)|q\\rangle|^{2}\\Big).}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1253
+    },
+    {
+      "id": "jandura-p4-05",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{2^{n}(2^{n}+1)}\\Big(}&{{}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|}&{\\quad(5)}\\\\ {}&{{}+\\sum_{q}|\\langle q|U(T)|q\\rangle|^{2}\\Big).}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1292
+    },
+    {
+      "id": "jandura-p4-05",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{2^{n}(2^{n}+1)}\\Big(}&{{}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|}&{\\quad(5)}\\\\ {}&{{}+\\sum_{q}|\\langle q|U(T)|q\\rangle|^{2}\\Big).}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1318
+    },
+    {
+      "id": "jandura-p4-05",
+      "variant": "binary",
+      "latex": "\\begin{array}{r l}{F=\\frac{1}{2^{n}(2^{n}+1)}\\Big(\\ }{{\\leftleft\\\\|_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\\\right\\\\\\ \\\\\\ 5\\ \\ \\ (5)}\\right.}&{{}}\\\\ {{}}&{{\\left.+\\sum_{q}{\\left|\\langle q|U(T)|q\\rangle\\right|^{2}}\\right)}.}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1420
+    },
+    {
+      "id": "jandura-p5-06",
+      "variant": "original",
+      "latex": "F_{\\mathrm{b e l l}}=4^{-n}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|^{2}\\qquad(6)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 853
+    },
+    {
+      "id": "jandura-p5-06",
+      "variant": "upscale",
+      "latex": "F_{\\mathrm{b e l l}}=4^{-n}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left<q|U(T)|q\\right>\\right|^{2}\\qquad(6)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 941
+    },
+    {
+      "id": "jandura-p5-06",
+      "variant": "grayscale",
+      "latex": "F_{\\mathrm{b e l l}}=4^{-n}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|^{2}\\qquad(6)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 877
+    },
+    {
+      "id": "jandura-p5-06",
+      "variant": "binary",
+      "latex": "F_{\\mathrm{b e l l}}=4^{-n}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left<q|U(T)|q\\right>\\right|^{2}\\qquad(6)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 871
+    },
+    {
+      "id": "jandura-p6-07",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{20}\\ }&{{}\\Big(\\left|1+2a_{01}+a_{11}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (7)}\\\\ {}&{{}+1+2|a_{01}|^{2}+|a_{11}|^{2}\\Big)\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (\\ )}\\\\\\\\ endend{}}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1360
+    },
+    {
+      "id": "jandura-p6-07",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{20}\\Big(}&{{}\\left|1+2a_{01}+a_{11}\\right|^{2}\\qquad\\qquad\\;(7)}\\\\ {}&{{}+1+2|a_{01}|^{2}+|a_{11}|^{2}\\Big)}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1191
+    },
+    {
+      "id": "jandura-p6-07",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{20}\\ }&{{}\\Big(\\left|1+2a_{01}+a_{11}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (7)}\\\\ {}&{{}+1+2|a_{01}|^{2}+|a_{11}|^{2}\\Big)\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (\\ )}\\\\\\\\ endend{}}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1343
+    },
+    {
+      "id": "jandura-p6-07",
+      "variant": "binary",
+      "latex": "\\begin{array}{l c l}{{displaystyle=F\\ \\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ }}\\\\ {{\\displaystyle\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5178
+    },
+    {
+      "id": "jandura-p6-08",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{72}\\ }&{{}\\Big(\\left|1+3a_{001}+3a_{011}+a_{111}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 8}\\\\ {}&{{}+1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2}\\Big)}\\\\ \\end{aligned}{(8)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1481
+    },
+    {
+      "id": "jandura-p6-08",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{72}\\ }&{{}\\Big(\\left|1+3a_{001}+3a_{011}+a_{111}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 8)}\\\\ {}&{{}+1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2}\\Big)}\\\\ \\end{aligned}{8}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1449
+    },
+    {
+      "id": "jandura-p6-08",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{F=\\frac{1}{72}\\ }&{{}\\Big(\\left|1+3a_{001}+3a_{011}+a_{111}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 8}\\\\ {}&{{}+1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2}\\Big)}\\\\ \\end{aligned}{(8)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1478
+    },
+    {
+      "id": "jandura-p6-08",
+      "variant": "binary",
+      "latex": "\\begin{array}{c}{{F=\\frac{1}{72}\\Big(\\left|1+3a_{001}+3a_{011}+a_{111}\\right|^{2}\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad\\qquad(8),qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad qquad",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5148
+    },
+    {
+      "id": "jandura-p6-09",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H_{11}=}&{{}\\frac{\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle1r\\right|+\\left|11\\right\\rangle\\left\\langle r1\\right|+\\left|1\\\\{}rright\\right rangle left\\\\leftlangle r r right||\\\\\\\\ array{{}}&{{}+\\left|r1\\right\\rangle\\left\\langle r r\\right|\\Big)+\\operatorname{h.c.}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ {=}&{{}\\frac{\\sqrt{2}\\Omega}{2}\\Big(\\left|11right\\right rangle left\\\\langlelangle{W}\\right|+\\left|{W}\\right\\rangle\\left\\langle{11}\\right|\\Big)+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 2118
+    },
+    {
+      "id": "jandura-p6-09",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{H_{11}=}&{{}\\frac{\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle1r\\right|+\\left|11\\right\\rangle\\left\\langle r1\\right|+\\left|1r\\right\\rangle\\left\\langle r r\\right|\\ quad\\ (9)}\\\\ {}&{{}+\\left|r1\\right\\rangle\\left\\langle r r\\right|\\Big)+\\operatorname{h.c.}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ {=}&{{}\\frac{\\sqrt{2}\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle W\\right|+\\left|W\\right\\rangle\\left\\langle11\\right|\\Big)+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1942
+    },
+    {
+      "id": "jandura-p6-09",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{H_{11}=}&{{}\\frac{\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle1r\\right|+\\left|11\\right\\rangle\\left\\langle r1\\right|+\\left|1\\\\{}rright\\right rangle left\\\\leftlangle r r right||\\\\\\\\ array{{}}&{{}+\\left|r1\\right\\rangle\\left\\langle r r\\right|\\Big)+\\operatorname{h.c.}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ {=}&{{}\\frac{\\sqrt{2}\\Omega}{2}\\Big(\\left|11right\\right rangle left\\\\langlelangle{W}\\right|+\\left|{W}\\right\\rangle\\left\\langle{11}\\right|\\Big)+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 2011
+    },
+    {
+      "id": "jandura-p6-09",
+      "variant": "binary",
+      "latex": "\\begin{aligned}{H_{\\downarrow1}=}&{{}\\frac{\\Omega}{2}\\Big(\\left|11\\right\\ langle\\<1r|+|11\\right\\\\langle\\\\mathbf{}r}1|+\\left|11\\right\\rangle\\left\\langle r1|+\\left|1\\right\\rangle\\left\\langle r r\\right\\rangle\\big\\\\ \\langle\\ \\\\\\\\langle\\\\\\ \\rangle right\\\\\\ {}&{{}+\\left|r1\\right\\rangle\\left langlelangle r r|\\right)}\\\\ {=}&{{}\\frac{\\sqrt{2}\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle W|right|+\\left|W\\right\\rangle\\left\\langle11\\right|\\Big)+\\mathrm{h.c.}}\\\\ {}&{{}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1888
+    },
+    {
+      "id": "jandura-p6-10",
+      "variant": "original",
+      "latex": "H_{011}=\\left|0\\right\\rangle\\left\\langle0\\right|\\otimes H_{11}.\\qquad\\qquad(10)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 743
+    },
+    {
+      "id": "jandura-p6-10",
+      "variant": "upscale",
+      "latex": "H_{011}=\\left|0\\right\\rangle\\left\\langle0\\right|\\otimes H_{11}.\\qquad\\qquad(10)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 809
+    },
+    {
+      "id": "jandura-p6-10",
+      "variant": "grayscale",
+      "latex": "H_{011}=\\left|0\\right\\rangle\\left\\langle0\\right|\\otimes H_{11}.\\qquad\\qquad(10)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 765
+    },
+    {
+      "id": "jandura-p6-10",
+      "variant": "binary",
+      "latex": "H_{0\\perp1}=\\left|0\\right\\rangle\\left\\langle0\\right|\\otimes H_{1\\perp}.\\qquad\\qquad\\left(10\\right)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 928
+    },
+    {
+      "id": "jandura-p6-11",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H_{111}^{\\operatorname{s y m}}}&{{}=\\frac{\\sqrt{3}\\Omega}{2}\\left|111\\right\\rangle\\left\\langle W_{1}\\right|+\\Omega\\left|W_{1}\\right\\rangle\\left\\langle W_{2}\\right|}\\\\ {}&{{}+\\frac{\\sqrt{3}\\Omega}{2}\\left|W_{2}\\right\\rangle\\left\\langle111\\right|+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|W_{2}\\right\\rangle\\left\\langle W_{2}\\right|+3B\\left|r r r\\right\\rangle\\left\\langle r r r\\right|.}\\\\ {}&{{}\\quad}\\\\ \\end{aligned}\\ \\ (11)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 2094
+    },
+    {
+      "id": "jandura-p6-11",
+      "variant": "upscale",
+      "latex": "\\begin{aligned}{H_{111}^{\\operatorname{s y m}}}&{{}=\\frac{\\sqrt{3}\\Omega}{2}\\left|111\\right\\rangle\\left\\langle W_{1}\\right|+\\Omega\\left|W_{1}\\right\\rangle\\left\\langle W_{2}\\right|}\\\\ {}&{{}+\\frac{\\sqrt{3}\\Omega}{2}\\left|W_{2}\\right\\rangle\\left\\langle111\\right|+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|W_{2}\\right\\rangle\\left\\langle W_{2}\\right|+3B\\left|r r r\\right\\rangle\\left\\langle r r r\\right|.}\\\\ {}&{{}\\quad}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1772
+    },
+    {
+      "id": "jandura-p6-11",
+      "variant": "grayscale",
+      "latex": "\\begin{aligned}{H_{111}^{\\operatorname{s y m}}}&{{}=\\frac{\\sqrt{3}\\Omega}{2}\\left|111\\right\\rangle\\left\\langle W_{1}\\right|+\\Omega\\left|W_{1}\\right\\rangle\\left\\langle W_{2}\\right|}\\\\ {}&{{}+\\frac{\\sqrt{3}\\Omega}{2}\\left|W_{2}\\right\\rangle\\left\\langle111\\right|+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|W_{2}\\right\\rangle\\left\\langle W_{2}\\right|+3B\\left|r r r\\right\\rangle\\left\\langle r r r\\right|.}\\\\ {}&{{}\\quad}\\\\ \\end{aligned}\\ \\ (11)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1866
+    },
+    {
+      "id": "jandura-p6-11",
+      "variant": "binary",
+      "latex": "\\begin{aligned}{H_{\\ \\ 111}^{\\operatorname{s y m}}}&{{}=\\frac{\\sqrt{3}\\Omega}{2}\\left|111\\right\\rangle\\left\\langle W_{1}\\right|+\\Omega\\left|W_{1}\\right\\rangle\\left\\langle W_{2}\\right|}\\\\ {}&{{}+\\frac{\\sqrt{3}\\Omega}{2}\\left|W_{2}\\right\\rangle\\left\\langle111\\right|+\\mathbf{h.c.}}\\\\ {}&{{}+B\\left|W_{2}\\right\\rangle\\left\\langle W_{2}\\right|+3B\\left|r r r\\right\\rangle\\left\\langle r r r\\right|.}\\\\ \\end{aligned}\\ \\ \\(11)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1838
+    },
+    {
+      "id": "saffman-p10-18",
+      "variant": "original",
+      "latex": "V_{\\mathrm{d d}}\\!=\\!\\frac{1}{R^{3}}(\\langle\\mathbf{d}\\rangle^{2}\\!-\\!3\\langle\\mathbf{d}\\rangle\\cdot\\hat{\\mathbf{R}}\\hat{\\mathbf{R}}\\cdot\\langle\\mathbf{d}\\rangle).eqno(18)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1031
+    },
+    {
+      "id": "saffman-p10-18",
+      "variant": "upscale",
+      "latex": "V_{\\mathrm{d d}}\\!=\\!\\frac{1}{R^{3}}(\\langle\\mathbf{d}\\rangle^{2}\\!-\\!3\\langle\\mathbf{d}\\rangle\\cdot\\hat{\\mathbf{R}}\\hat{\\mathbf{R}}\\cdot\\langle\\mathbf{d}\\rangle).eqno(18)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1153
+    },
+    {
+      "id": "saffman-p10-18",
+      "variant": "grayscale",
+      "latex": "V_{\\mathrm{d d}}\\!=\\!\\frac{1}{R^{3}}(\\langle\\mathbf{d}\\rangle^{2}\\!-\\!3\\langle\\mathbf{d}\\rangle\\cdot\\hat{\\mathbf{R}}\\hat{\\mathbf{R}}\\cdot\\langle\\mathbf{d}\\rangle).eqno(18)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1083
+    },
+    {
+      "id": "saffman-p10-18",
+      "variant": "binary",
+      "latex": "V_{\\mathrm{d d}}\\!=\\!\\frac{1}{R^{3}}\\!\\langle\\!{\\bf d}\\!\\rangle^{2}\\!-\\!3\\langle\\ \\ \\{{\\bf d}}\\rangle\\!\\cdot\\!\\hat{\\bf R}\\,\\hat\\hat{\\bf R}\\!\\cdot\\langle{\\bf d}\\rangle\\!\\ .\\eq\\eqno\\{(18)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 3599
+    },
+    {
+      "id": "saffman-p11-19",
+      "variant": "original",
+      "latex": "|g\\rangle,\\,|\\gamma k\\rangle,\\,\\mathrm{a n d}\\,|\\varphi k l\\rangle,\\eq\\|no19)rangle",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 2469
+    },
+    {
+      "id": "saffman-p11-19",
+      "variant": "upscale",
+      "latex": "|g\\rangle,\\,|\\gamma k\\rangle,\\,\\mathrm{a n d}\\,|\\varphi k l\\rangle,\\eq\\|no19)rangle",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 946
+    },
+    {
+      "id": "saffman-p11-19",
+      "variant": "grayscale",
+      "latex": "|g\\rangle,\\,|\\gamma k\\rangle,\\,\\mathrm{a n d}\\,|\\varphi k l\\rangle,\\eq\\|no19)rangle",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 841
+    },
+    {
+      "id": "saffman-p11-19",
+      "variant": "binary",
+      "latex": "|g\\rangle,\\,|\\gamma k\\rangle,\\,\\,\\mathrm{a n d}\\,|\\varphi k l\\rangle.\\eq\\eqno(19)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 903
+    },
+    {
+      "id": "saffman-p11-20",
+      "variant": "original",
+      "latex": "\\Omega_{N}\\!=\\sqrt{\\sum_{\\gamma k}\\left|\\Omega_{\\gamma k}\\right|^{2}}=!\\\\sqrt{N}\\Omega\\,,\\eqno(20)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 983
+    },
+    {
+      "id": "saffman-p11-20",
+      "variant": "upscale",
+      "latex": "\\Omega_{N}\\!=\\!\\sqrt{\\sum\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 6385
+    },
+    {
+      "id": "saffman-p11-20",
+      "variant": "grayscale",
+      "latex": "\\Omega_{N}\\!=\\sqrt{\\sum_{\\gamma k}\\left|\\Omega_{\\gamma k}\\right|^{2}}=!\\\\sqrt{N}\\Omega\\,,\\eqno(20)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 927
+    },
+    {
+      "id": "saffman-p11-20",
+      "variant": "binary",
+      "latex": "\\Omega_{N}\\!=\\sqrt{\\!\\!\\!_{\\!\\!k}!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\!\\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5452
+    },
+    {
+      "id": "saffman-p11-21",
+      "variant": "original",
+      "latex": "\\big|\\psi\\big\\rangle=c_{g}\\big|g\\big\\rangle+c_{\\tt s}\\big|\\mathbf{s}\\big\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi k l}\\big|\\varphi k l\\big\\rangle.\\eqno\\ no(12)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1004
+    },
+    {
+      "id": "saffman-p11-21",
+      "variant": "upscale",
+      "latex": "\\big|\\psi\\big\\rangle=c_{g}\\big|g\\big\\rangle+c_{\\tt s}\\big|\\mathbf{s}\\big\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi k l}\\big|\\varphi k l\\big\\rangle.\\eqno\\ no(12)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1113
+    },
+    {
+      "id": "saffman-p11-21",
+      "variant": "grayscale",
+      "latex": "\\big|\\psi\\big\\rangle=c_{g}\\big|g\\big\\rangle+c_{\\tt s}\\big|\\mathbf{s}\\big\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi k l}\\big|\\varphi k l\\big\\rangle.\\eqno\\ no(12)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 960
+    },
+    {
+      "id": "saffman-p11-21",
+      "variant": "binary",
+      "latex": "\\big\\ \\big|\\psi\\big\\rangle=c_{g}\\big|g\\big\\rangle+c_{\\tt{s}}\\big|\\mathbf{s{}\\rangle\\!+}sum_{\\varphi,k\\!<!}c_{\\varphi k\\!\\ \\ ;!\\}\\big|\\varphi k l\\big\\rangle.\\eqno\\{(21)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1063
+    },
+    {
+      "id": "saffman-p12-22a",
+      "variant": "original",
+      "latex": "i\\dot{c}_{g}=\\frac{\\Omega_{N}^{*}}{2}c_{\\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\2\\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1381
+    },
+    {
+      "id": "saffman-p12-22a",
+      "variant": "upscale",
+      "latex": "i\\dot{c}_{\\mathrm{g}}=\\frac{\\Omega_{N}^{*}}{2}c_{\\mathrm{s}},\\eqno\\(22\\mathtt{a})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 891
+    },
+    {
+      "id": "saffman-p12-22a",
+      "variant": "grayscale",
+      "latex": "i\\dot{c}_{g}=\\frac{\\Omega_{N}^{*}}{2}c_{\\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\2\\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1284
+    },
+    {
+      "id": "saffman-p12-22a",
+      "variant": "binary",
+      "latex": "i\\mathfrak{c}_{\\mathrm{g}}=\\frac{\\Omega_{N}^{\\star}}{2}\\mathfrak{c}_{\\mathrm{s}}.\\eqno(22mathfrak{a})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 862
+    },
+    {
+      "id": "saffman-p12-22b",
+      "variant": "original",
+      "latex": "i\\dot{c}_{\\mathrm{s}}=\\frac{\\Omega_{N}}{2}c_{g}+\\frac{\\Omega_{N}^{*}}{N}\\sum_{\\varphi,k<I}\\kappa_{\\varphi k l}^{*}c_{\\varphi k l},\\eqno(22\\ )\\,",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1100
+    },
+    {
+      "id": "saffman-p12-22b",
+      "variant": "upscale",
+      "latex": "i\\dot{c}_{\\mathrm{s}}=\\frac{\\Omega_{N}}{2}c_{g}+\\frac{\\Omega_{N}^{*}}{N}\\sum_{\\varphi,k<l}\\kappa_{\\varphi k l}^{*}c_{\\varphi k l},\\eqno(22\\ )\\,",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1295
+    },
+    {
+      "id": "saffman-p12-22b",
+      "variant": "grayscale",
+      "latex": "i\\dot{c}_{\\mathrm{s}}=\\frac{\\Omega_{N}}{2}c_{g}+\\frac{\\Omega_{N}^{*}}{N}\\sum_{\\varphi,k<I}\\kappa_{\\varphi k l}^{*}c_{\\varphi k l},\\eqno(22\\ )\\,",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1119
+    },
+    {
+      "id": "saffman-p12-22b",
+      "variant": "binary",
+      "latex": "i\\dot{c}_{s}=\\frac{\\Omega_{N}}{2}c_{g}+\\frac{\\Omega_{N}^{\\star}}{N}\\sum_{\\varphi,k<I}\\kappa_{\\varphi k}ell_{\\varphi k l},\\eqno(22{mathbf\\mathbf b{b}})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1077
+    },
+    {
+      "id": "saffman-p12-22c",
+      "variant": "original",
+      "latex": "\\begin{array}{r}{i\\dot{c}_{\\varphi k l}=!\\!Delta\\_\\varphi k l_{{}varphi\\!l}c_{\\varphi k l}+\\frac{\\ \\ \\ \\\\\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 2(22\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5435
+    },
+    {
+      "id": "saffman-p12-22c",
+      "variant": "upscale",
+      "latex": "\\begin{array}{r}{i\\dot{c}_{\\varphi k l}=\\Delta_{\\varphi k l}c_{\\varphi k l}+\\frac{\\omega\\cdot_{\\pi N}}{N}\\kappa_{\\varphi k l}c_{\\tt S}..\\eq(nono222)}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1048
+    },
+    {
+      "id": "saffman-p12-22c",
+      "variant": "grayscale",
+      "latex": "\\begin{array}{r}{i\\dot{c}_{\\varphi k l}\\!\\==\\,\\Delta_{\\varphi k l}c_{\\varphi k l}+\\frac{\\ \\ \\ \\\\ \\cdot\\alpha_{j N}}{N}\\kappa_{\\varphi k l}c_{\\ S}.\\eqno(22\\ \\mathsf{C})}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1149
+    },
+    {
+      "id": "saffman-p12-22c",
+      "variant": "binary",
+      "latex": "\\begin{array}{r}{i\\dot{c}_{\\varphi k l}=\\Delta_{\\varphi k l}C_{\\varphi k l}+\\frac{\\pi\\kappa_{\\varphi k l}}{N}\\kappa_{\\varphi k l}C_{}.\\ no(22\\ \\ \\mathsf c",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1056
+    },
+    {
+      "id": "saffman-p12-23",
+      "variant": "original",
+      "latex": "P_{2}=\\sum_{\\varphi,k<l}\\left|c_{\\varphi k l}\\right|^{2}=\\frac{\\left|\\ \\ star\\\\ \\ {}_{N}\\right|}{N^{2}}\\sum_{\\varphi,k<l}\\left|\\frac{\\ \\ \\ \\star\\{}__{{\\varphivarphi}k}}}{\\Delta_{{varphi}k l}\\right|\\ .eqnono{3})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1366
+    },
+    {
+      "id": "saffman-p12-23",
+      "variant": "upscale",
+      "latex": "P_{2}=\\sum_{\\varphi,k<l}\\left|c_{\\varphi k l}\\right|^{2}=\\frac{\\left|\\ \\ star\\star_{N l\\!\\\\}right..}{\\ N N}\\sum{}sum_{\\varphi,k<l}\\left|\\frac{\\ \\star\\ star{\\it}_{\\varphi k l}}{\\Delta_{\\varphi k l}}\\right|\\ .\\\\eqeq{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (23)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1513
+    },
+    {
+      "id": "saffman-p12-23",
+      "variant": "grayscale",
+      "latex": "P_{2}=\\sum_{\\varphi,k<l}\\left|c_{\\varphi k l}\\right|^{2}=\\frac{\\left|\\ \\ star\\\\ \\ {}_{N}\\right|}{N^{2}}\\sum_{\\varphi,k<l}\\left|\\frac{\\ \\ \\ \\star\\{}__{{\\varphivarphi}k}}}{\\Delta_{{varphi}k l}\\right|\\ .eqnono{3})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1380
+    },
+    {
+      "id": "saffman-p12-23",
+      "variant": "binary",
+      "latex": "P_{2}=\\sum_{\\varphi,k<l}\\left|c_{\\varphi k l}\\right|^{2}=\\frac{\\left|^{\\alpha\\ \\ nu N\\!\\\\\\ \\}right.}}{{{N}^{2}}\\sum_{\\varphi,k<l}\\left|\\frac{\\left^^{\\alpha\\ \\nu}\\mu\\right}{\\Delta_{\\varphi k\\ l}}\\right|\\ ..eqeq\\ {\\eq\\no{23}}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1347
+    },
+    {
+      "id": "saffman-p12-24",
+      "variant": "original",
+      "latex": "\\frac{1}{\\mathsf{B}^{2}}\\!=\\!\\frac{2}{N(N-!)}\\!_{\\varphi,k<l}\\!\\frac{\\big|\\kappa_{\\varphi k l}\\big|^{2}}{\\Delta_{\\varphi k k}}\\ \\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\(24)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1309
+    },
+    {
+      "id": "saffman-p12-24",
+      "variant": "upscale",
+      "latex": "\\c{frac{1}{\\mathsf{B}^{2}}}=\\cfrac{2}{N(N-1)}\\sum_{\\varpi,k<l}\\cfrac{\\left|\\kappa_{\\varpi k l}\\right|^{2}}{\\Delta_{\\varpi k l}^{2}}.\\eqno(24)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1079
+    },
+    {
+      "id": "saffman-p12-24",
+      "variant": "grayscale",
+      "latex": "\\frac{1}{\\mathsf{B}^{2}}\\!=\\!\\frac{2}{N(N-!)}\\!_{\\varphi,k<l}\\!\\frac{\\big|\\kappa_{\\varphi k l}\\big|^{2}}{\\Delta_{\\varphi k k}}\\ \\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\(24)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1333
+    },
+    {
+      "id": "saffman-p12-24",
+      "variant": "binary",
+      "latex": "\\c frac{1}{\\ \\mathsf{B}^{2}}=\\cfrac{2}{N(N-1)}\\sum_{c,k<l}\\cfrac{\\left|\\kappa_{c k}\\right|^{2}}{\\Delta_{c k l}^{2}}.\\eqno(24)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1107
+    },
+    {
+      "id": "saffman-p12-25",
+      "variant": "original",
+      "latex": "P_{2}{=}\\frac{N{-}1}{N}\\frac{\\ \\vert\\Omega_{N}\\vert^{2}}{2\\mathsf{B}^{2}}.~eqno(25)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 918
+    },
+    {
+      "id": "saffman-p12-25",
+      "variant": "upscale",
+      "latex": "P_{2}{=}\\frac{N-1}{N}\\frac{|\\Omega_{N}|^{2}}{2{\\sf B}^{2}}.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2(25)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1367
+    },
+    {
+      "id": "saffman-p12-25",
+      "variant": "grayscale",
+      "latex": "P_{2}{=}\\frac{N{-}1}{N}\\frac{\\ \\vert\\Omega_{N}\\vert^{2}}{2\\mathsf{B}^{2}}.~eqno(25)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 924
+    },
+    {
+      "id": "saffman-p12-25",
+      "variant": "binary",
+      "latex": "P_{2}=\\frac{N-1}{N}\\frac{|\\mathbf{\\Omega}_{N}|^{2}}{2\\mathsf{B}^{2}}.~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~2(25)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1229
+    },
+    {
+      "id": "saffman-p12-26",
+      "variant": "original",
+      "latex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\biggl(1+\\frac{\\Omega^{2}}{\\omega_{10}^{2}}+\\frac{\\Omega^{2}}{7{\\sf B}^{2}}\\biggr)+\\frac{\\Omega^{2}}{8{\\sf B}^{2}}\\biggl(1+6\\frac{{\\sf B}^{2}}{\\omega_{10}^{2}}\\biggr).~~~~~~~(26)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1500
+    },
+    {
+      "id": "saffman-p12-26",
+      "variant": "upscale",
+      "latex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\biggl(1+\\frac{\\Omega^{2}}{\\omega_{10}^{2}}+\\frac{\\Omega^{2}}{7{\\sf B}^{2}}\\biggr)+\\frac{\\Omega^{2}}{8{\\sf B}^{2}}\\biggl(1+6\\frac{{\\sf B}^{2}}{\\omega_{10}^{2}}\\biggr).~~~~~~~(26)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1386
+    },
+    {
+      "id": "saffman-p12-26",
+      "variant": "grayscale",
+      "latex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\biggl(1+\\frac{\\Omega^{2}}{\\omega_{10}^{2}}+\\frac{\\Omega^{2}}{7{\\sf B}^{2}}\\biggr)+\\frac{\\Omega^{2}}{8{\\sf B}^{2}}\\biggl(1+6\\frac{{\\sf B}^{2}}{\\omega_{10}^{2}}\\biggr).~~~~~~~(26)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1436
+    },
+    {
+      "id": "saffman-p12-26",
+      "variant": "binary",
+      "latex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\biggl(1+\\frac{\\Omega^{2}}{\\omega_{10}^{2}}+\\frac{\\Omega^{2}}{7{\\sf B}^{2}}\\biggr)+\\frac{\\Omega^{2}}{8{\\sf B}^{2}}\\biggl(1+6\\frac{{\\sf B}^{2}}{\\omega_{10}^{2}}\\biggr).\\qquad(26)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1439
+    },
+    {
+      "id": "saffman-p12-27",
+      "variant": "original",
+      "latex": "\\Omega_{\\mathrm{o p t}}\\!=\\!(7\\pi)^{1/3}\\frac{\\mathsf{B}^{2/3}}{\\tau^{1/3}}.\\eqno(27",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 901
+    },
+    {
+      "id": "saffman-p12-27",
+      "variant": "upscale",
+      "latex": "\\Omega_{\\mathrm{o p t}}\\!=\\!(7\\pi)^{1/3}\\frac{\\mathsf{B}^{2/3}}{\\tau^{1/3}}.\\eqno(27",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 995
+    },
+    {
+      "id": "saffman-p12-27",
+      "variant": "grayscale",
+      "latex": "\\Omega_{\\mathrm{o p t}}\\!=\\!(7\\pi)^{1/3}\\frac{\\mathsf{B}^{2/3}}{\\tau^{1/3}}.\\eqno(27",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 871
+    },
+    {
+      "id": "saffman-p12-27",
+      "variant": "binary",
+      "latex": "\\Omega_{\\tt o p t}\\!=\\!(7\\pi)^{113}\\frac{\\ \\ {tt B B}^{2/3}}{\\tau^{1/3}}.\\eqno\\{27}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 915
+    },
+    {
+      "id": "saffman-p12-28",
+      "variant": "original",
+      "latex": "E_{\\mathrm{m i n}}=\\frac{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5340
+    },
+    {
+      "id": "saffman-p12-28",
+      "variant": "upscale",
+      "latex": "E_{\\mathrm{m i n}}=\\frac{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5403
+    },
+    {
+      "id": "saffman-p12-28",
+      "variant": "grayscale",
+      "latex": "E_{\\mathrm{m i n}}={\\frac{\\ }{8\\ \\\\{}\\ \\ \\\\({\\sf B}\\tau)^{2/3}}}.\\eqno((28\\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 990
+    },
+    {
+      "id": "saffman-p12-28",
+      "variant": "binary",
+      "latex": "E_{n i n}=\\ \\ \\ \\{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5358
+    },
+    {
+      "id": "saffman-p13-29",
+      "variant": "original",
+      "latex": "\\Delta_{\\mathrm{d d}}\\simeq\\sum_{\\varphi}\\frac{|\\kappa_{\\varphi}|^{\\ \\ }}{|\\kappa_{\\varphi}|^{\\ 2}+\\Delta_{\\varphi}^{2}}\\Delta_{\\varphi}.\\eqno(29)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1031
+    },
+    {
+      "id": "saffman-p13-29",
+      "variant": "upscale",
+      "latex": "\\Delta_{\\mathrm{d d}}\\simeq\\sum_{\\varphi}\\frac{|\\kappa_{\\varphi}|^{\\ \\ }Omega{{}}{^\\\\\\ }}{|\\kappa_{\\varphi}|^{2}\\Omega^{2}+\\Delta_{\\varphi}^{2}}\\Delta_{\\varphi}.\\eqno(29)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1215
+    },
+    {
+      "id": "saffman-p13-29",
+      "variant": "grayscale",
+      "latex": "\\Delta_{\\mathrm{d d}}\\simeq\\sum_{\\varphi}\\frac{|\\kappa_{\\varphi}|^{\\ \\ }}{|\\kappa_{\\varphi}|^{\\ 2}+\\Delta_{\\varphi}^{2}}\\Delta_{\\varphi}.\\eqno(29)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1087
+    },
+    {
+      "id": "saffman-p13-29",
+      "variant": "binary",
+      "latex": "\\Delta_{\\mathrm{d d}}\\simeq\\sum_{\\varphi}\\frac{|\\kappa_{\\varphi}|^{2}\\Omega^{\\ }}{|\\kappa_{\\varphi}|^{2}\\Omega^{2}+\\Delta_{\\varphi}^{2}}\\Delta_{\\varphi}.~eqno(29)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1080
+    },
+    {
+      "id": "saffman-p13-30",
+      "variant": "original",
+      "latex": "E\\simeq\\frac{\\pi}{\\tau}\\Big(\\frac{1}{\\Delta_{\\mathrm{d d}}}+\\frac{1}{\\Omega}\\Big)+\\Big(\\frac{\\angle\\Delta_{\\mathrm{d d}}}{\\Omega^{2}}+\\frac{\\angle L^{-}}{\\omega_{10}^{2}}\\Big).\\eqno(30)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1235
+    },
+    {
+      "id": "saffman-p13-30",
+      "variant": "upscale",
+      "latex": "E\\simeq\\frac{\\pi}{\\tau}\\Big(\\frac{1}{\\Delta_{\\mathrm{d d}}}+\\frac{1}{\\Omega}\\Big)+\\Big(\\frac{\\angle\\Delta_{\\mathrm{d d}}}{\\Omega^{2}}+\\frac{\\Delta L^{-}}{\\omega_{10}^{2}}\\Big).\\eqno(30)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1283
+    },
+    {
+      "id": "saffman-p13-30",
+      "variant": "grayscale",
+      "latex": "E\\simeq\\frac{\\pi}{\\tau}\\Big(\\frac{1}{\\Delta_{\\mathrm{d d}}}+\\frac{1}{\\Omega}\\Big)+\\Big(\\frac{\\angle\\Delta_{\\mathrm{d d}}}{\\Omega^{2}}+\\frac{\\angle L^{-}}{\\omega_{10}^{2}}\\Big).\\eqno(30)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1244
+    },
+    {
+      "id": "saffman-p13-30",
+      "variant": "binary",
+      "latex": "E\\simeq\\frac{\\pi}{\\tau}\\Big[\\frac{1}{\\Delta_{\\mathrm{d d}}}+\\frac{1}{\\Omega}\\Big]+\\Big\\langle\\frac{\\angle\\Delta_{\\mathrm{d d}}}{\\Omega^{2}}+\\frac{\\angle L^{-}}{\\omega_{10}^{2}}\\Big\\rangle.~eqno(30)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1164
+    }
+  ]
+}

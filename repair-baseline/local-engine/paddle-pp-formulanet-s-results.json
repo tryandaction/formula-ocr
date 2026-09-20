@@ -1,0 +1,273 @@
+{
+  "benchmark": "real-pdf-formulas-v1",
+  "sampleCount": 33,
+  "variants": [
+    "original"
+  ],
+  "results": [
+    {
+      "id": "bravyi-p6-01",
+      "variant": "original",
+      "latex": "S_{2}\\!=\\!\\left[\\!\\!\\begin{matrix}{0}&{1}\\\\ {1}&{0}\\end{matrix}\\!\\!\\right]\\;\\;\\;{\\sf a n d}\\;\\;\\;S_{3}\\!=\\!\\left[\\!\\begin matrix}{0}&{1}&{0}\\\\ {0}&{0}&{1}\\\\ {1}&{0}&{0}\\end{array}\\!\\right]\\!.",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1707
+    },
+    {
+      "id": "bravyi-p6-02",
+      "variant": "original",
+      "latex": "\\begin{array}{c c c}{{\\mathsf{t r l c s s}}}\\\\ {{=\\\\_S x\\,\\ \\ \\ \\\\\\=,S S_{\\ell}\\otimes I_{m}\\ }}&{{\\ \\ !!,}}\\\\\\{{\\ \\ \\ \\ \\ =\\,S_{\\ell}\\otimes S_{m}.}}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1267
+    },
+    {
+      "id": "bravyi-p6-03",
+      "variant": "original",
+      "latex": "\\begin{array}{c c c c c c}{{{\\ f\\ {\\mathfrak m}a t r i c e s}}}&{{{}}}&{{}}&{{}}&{{}}&{{}}&{{}}&{{}}\\\\ {{\\\\\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5569
+    },
+    {
+      "id": "bravyi-p6-04",
+      "variant": "original",
+      "latex": "H^{X}\\!=\\![A|B]\\quad\\mathrm{a n d}\\quad H^{Z}\\!=\\![B^{T}\\ A^{T}]\\,.\\eq\\ no(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 885
+    },
+    {
+      "id": "bravyi-p6-05",
+      "variant": "original",
+      "latex": "\\begin{array}{r l}&{n\\displaystyle=2\\ell m,\\,k\\!=2\\times\\mathsf{d i m}(\\mathsf{k e r}(A)\\,\\cap\\,\\mathsf{k e r}(B))\\,\\mathsf{a n d}\\,d}\\\\ &{\\displaystyle=\\mathsf{m i n}\\{|\\mathbf{v}|:,\\mathbf{v}\\in\\mathsf{k e r}(H^{X})\\backslash\\,\\mathsf{r s(}^{!Z})\\}.}\\end{array}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1299
+    },
+    {
+      "id": "bravyi-p6-06",
+      "variant": "original",
+      "latex": "H_{A}^{X}\\!=\\![A_{2}+A_{3}|B_{3}]\\quad\\mathrm{a n d}\\quad H_{A}^{Z}\\!=\\![B_{3}^{T}|A_{2}^{T}+A_{3}^{T}]\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1054
+    },
+    {
+      "id": "bravyi-p6-07",
+      "variant": "original",
+      "latex": "H_{B}^{X}\\!=\\![A_{1}|B_{1}\\!+\\!B_{2}]\\quad\\mathrm{a n d}\\quad H_{B}^{Z}\\!=\\![B_{1}^{T}\\!+\\!B_{2}^{T}|A_{1}^{T}].\\quad(4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1099
+    },
+    {
+      "id": "jandura-p3-01",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H(t)=}&{{}\\sum_{i=j}^{n}\\frac{\\Omega_{j}(t)}{2}\\left|1\\right>rangle_{{j}}__{j}\\langle r|+\\operatorname{h.c.}\\qquad\\ 11}}\\\\ {{+}}}&{{{{}sumsum_{j<k}B_{j k}\\left|r r\\right>_{{j}k}\\ r\\ \\ {\\ r r}\\ |}.}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1395
+    },
+    {
+      "id": "jandura-p4-02",
+      "variant": "original",
+      "latex": "H=\\sum H_{q}\\qquad H_{q}=P_{q}H P_{q}.\\qquad\\quad(2)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 702
+    },
+    {
+      "id": "jandura-p4-03",
+      "variant": "original",
+      "latex": "U(T)\\left|q\\right>=e^{i\\xi_{q}}\\left|q\\right>.\\qquad\\qquad\\quad(3)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 699
+    },
+    {
+      "id": "jandura-p4-04",
+      "variant": "original",
+      "latex": "F=\\,\\int\\,\\mathrm{d}\\psi\\left|\\left\\langle\\psi|U_{0}^{\\dagger}U(T)|\\psi\\right\\rangle\\right|^{2}\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,\\,(,4)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1098
+    },
+    {
+      "id": "jandura-p4-05",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{2^{n}(2^{n}+1)}\\Big(}&{{}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|}&{\\quad(5)}\\\\ {}&{{}+\\sum_{q}|\\langle q|U(T)|q\\rangle|^{2}\\Big).}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1236
+    },
+    {
+      "id": "jandura-p5-06",
+      "variant": "original",
+      "latex": "F_{\\mathrm{b e l l}}=4^{-n}\\left|\\sum_{q}e^{-i\\xi_{q}}\\left\\langle q|U(T)|q\\right\\rangle\\right|^{2}\\qquad(6)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 849
+    },
+    {
+      "id": "jandura-p6-07",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{20}\\ }&{{}\\Big(\\left|1+2a_{01}+a_{11}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (7)}\\\\ {}&{{}+1+2|a_{01}|^{2}+|a_{11}|^{2}\\Big)\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ (\\ )}\\\\\\\\ endend{}}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1358
+    },
+    {
+      "id": "jandura-p6-08",
+      "variant": "original",
+      "latex": "\\begin{aligned}{F=\\frac{1}{72}\\ }&{{}\\Big(\\left|1+3a_{001}+3a_{011}+a_{111}\\right|^{2}\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 8}\\\\ {}&{{}+1+3|a_{001}|^{2}+3|a_{011}|^{2}+|a_{111}|^{2}\\Big)}\\\\ \\end{aligned}{(8)}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1433
+    },
+    {
+      "id": "jandura-p6-09",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H_{11}=}&{{}\\frac{\\Omega}{2}\\Big(\\left|11\\right\\rangle\\left\\langle1r\\right|+\\left|11\\right\\rangle\\left\\langle r1\\right|+\\left|1\\\\{}rright\\right rangle left\\\\leftlangle r r right||\\\\\\\\ array{{}}&{{}+\\left|r1\\right\\rangle\\left\\langle r r\\right|\\Big)+\\operatorname{h.c.}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ {=}&{{}\\frac{\\sqrt{2}\\Omega}{2}\\Big(\\left|11right\\right rangle left\\\\langlelangle{W}\\right|+\\left|{W}\\right\\rangle\\left\\langle{11}\\right|\\Big)+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|r r\\right\\rangle\\left\\langle r r\\right|}\\\\ \\end{aligned}",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 2051
+    },
+    {
+      "id": "jandura-p6-10",
+      "variant": "original",
+      "latex": "H_{011}=\\left|0\\right\\rangle\\left\\langle0\\right|\\otimes H_{11}.\\qquad\\qquad(10)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 731
+    },
+    {
+      "id": "jandura-p6-11",
+      "variant": "original",
+      "latex": "\\begin{aligned}{H_{111}^{\\operatorname{s y m}}}&{{}=\\frac{\\sqrt{3}\\Omega}{2}\\left|111\\right\\rangle\\left\\langle W_{1}\\right|+\\Omega\\left|W_{1}\\right\\rangle\\left\\langle W_{2}\\right|}\\\\ {}&{{}+\\frac{\\sqrt{3}\\Omega}{2}\\left|W_{2}\\right\\rangle\\left\\langle111\\right|+\\operatorname{h.c.}}\\\\ {}&{{}+B\\left|W_{2}\\right\\rangle\\left\\langle W_{2}\\right|+3B\\left|r r r\\right\\rangle\\left\\langle r r r\\right|.}\\\\ {}&{{}\\quad}\\\\ \\end{aligned}\\ \\ (11)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1820
+    },
+    {
+      "id": "saffman-p10-18",
+      "variant": "original",
+      "latex": "V_{\\mathrm{d d}}\\!=\\!\\frac{1}{R^{3}}(\\langle\\mathbf{d}\\rangle^{2}\\!-\\!3\\langle\\mathbf{d}\\rangle\\cdot\\hat{\\mathbf{R}}\\hat{\\mathbf{R}}\\cdot\\langle\\mathbf{d}\\rangle).eqno(18)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1068
+    },
+    {
+      "id": "saffman-p11-19",
+      "variant": "original",
+      "latex": "|g\\rangle,\\,|\\gamma k\\rangle,\\,\\mathrm{a n d}\\,|\\varphi k l\\rangle,\\eq\\|no19)rangle",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 757
+    },
+    {
+      "id": "saffman-p11-20",
+      "variant": "original",
+      "latex": "\\Omega_{N}\\!=\\sqrt{\\sum_{\\gamma k}\\left|\\Omega_{\\gamma k}\\right|^{2}}=!\\\\sqrt{N}\\Omega\\,,\\eqno(20)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 855
+    },
+    {
+      "id": "saffman-p11-21",
+      "variant": "original",
+      "latex": "\\big|\\psi\\big\\rangle=c_{g}\\big|g\\big\\rangle+c_{\\tt s}\\big|\\mathbf{s}\\big\\rangle+\\sum_{\\varphi,k<l}c_{\\varphi k l}\\big|\\varphi k l\\big\\rangle.\\eqno\\ no(12)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1012
+    },
+    {
+      "id": "saffman-p12-22a",
+      "variant": "original",
+      "latex": "i\\dot{c}_{g}=\\frac{\\Omega_{N}^{*}}{2}c_{\\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\2\\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1335
+    },
+    {
+      "id": "saffman-p12-22b",
+      "variant": "original",
+      "latex": "i\\dot{c}_{\\mathrm{s}}=\\frac{\\Omega_{N}}{2}c_{g}+\\frac{\\Omega_{N}^{*}}{N}\\sum_{\\varphi,k<I}\\kappa_{\\varphi k l}^{*}c_{\\varphi k l},\\eqno(22\\ )\\,",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1084
+    },
+    {
+      "id": "saffman-p12-22c",
+      "variant": "original",
+      "latex": "\\begin{array}{r}{i\\dot{c}_{\\varphi k l}=!\\!Delta\\_\\varphi k l_{{}varphi\\!l}c_{\\varphi k l}+\\frac{\\ \\ \\ \\\\\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ 2(22\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5266
+    },
+    {
+      "id": "saffman-p12-23",
+      "variant": "original",
+      "latex": "P_{2}=\\sum_{\\varphi,k<l}\\left|c_{\\varphi k l}\\right|^{2}=\\frac{\\left|\\ \\ star\\\\ \\ {}_{N}\\right|}{N^{2}}\\sum_{\\varphi,k<l}\\left|\\frac{\\ \\ \\ \\star\\{}__{{\\varphivarphi}k}}}{\\Delta_{{varphi}k l}\\right|\\ .eqnono{3})",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1270
+    },
+    {
+      "id": "saffman-p12-24",
+      "variant": "original",
+      "latex": "\\frac{1}{\\mathsf{B}^{2}}\\!=\\!\\frac{2}{N(N-!)}\\!_{\\varphi,k<l}\\!\\frac{\\big|\\kappa_{\\varphi k l}\\big|^{2}}{\\Delta_{\\varphi k k}}\\ \\ \\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\\\ \\\\(24)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1284
+    },
+    {
+      "id": "saffman-p12-25",
+      "variant": "original",
+      "latex": "P_{2}{=}\\frac{N{-}1}{N}\\frac{\\ \\vert\\Omega_{N}\\vert^{2}}{2\\mathsf{B}^{2}}.~eqno(25)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 880
+    },
+    {
+      "id": "saffman-p12-26",
+      "variant": "original",
+      "latex": "E\\simeq\\frac{7\\pi}{4\\Omega\\tau}\\biggl(1+\\frac{\\Omega^{2}}{\\omega_{10}^{2}}+\\frac{\\Omega^{2}}{7{\\sf B}^{2}}\\biggr)+\\frac{\\Omega^{2}}{8{\\sf B}^{2}}\\biggl(1+6\\frac{{\\sf B}^{2}}{\\omega_{10}^{2}}\\biggr).~~~~~~~(26)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1433
+    },
+    {
+      "id": "saffman-p12-27",
+      "variant": "original",
+      "latex": "\\Omega_{\\mathrm{o p t}}\\!=\\!(7\\pi)^{1/3}\\frac{\\mathsf{B}^{2/3}}{\\tau^{1/3}}.\\eqno(27",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 865
+    },
+    {
+      "id": "saffman-p12-28",
+      "variant": "original",
+      "latex": "E_{\\mathrm{m i n}}=\\frac{\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 5228
+    },
+    {
+      "id": "saffman-p13-29",
+      "variant": "original",
+      "latex": "\\Delta_{\\mathrm{d d}}\\simeq\\sum_{\\varphi}\\frac{|\\kappa_{\\varphi}|^{\\ \\ }}{|\\kappa_{\\varphi}|^{\\ 2}+\\Delta_{\\varphi}^{2}}\\Delta_{\\varphi}.\\eqno(29)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 999
+    },
+    {
+      "id": "saffman-p13-30",
+      "variant": "original",
+      "latex": "E\\simeq\\frac{\\pi}{\\tau}\\Big(\\frac{1}{\\Delta_{\\mathrm{d d}}}+\\frac{1}{\\Omega}\\Big)+\\Big(\\frac{\\angle\\Delta_{\\mathrm{d d}}}{\\Omega^{2}}+\\frac{\\angle L^{-}}{\\omega_{10}^{2}}\\Big).\\eqno(30)",
+      "status": "success",
+      "errorClass": null,
+      "processingTime": 1185
+    }
+  ]
+}

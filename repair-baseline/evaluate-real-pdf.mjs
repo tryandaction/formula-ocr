@@ -63,7 +63,9 @@ export function normalizeLatex(value) {
 }
 
 export function evaluateOcr(truth, results, minimumSampleSize = 30, reviews = []) {
-  const byId = new Map(results.map(result => [result.id, result]));
+  const resultItems = Array.isArray(results) ? results : results?.results;
+  if (!Array.isArray(resultItems)) throw new TypeError('OCR results must be an array or a report with results[]');
+  const byId = new Map(resultItems.map(result => [result.id, result]));
   const reviewById = new Map(reviews.map(review => [review.id, review]));
   const latexOf = result => Object.prototype.hasOwnProperty.call(result ?? {}, 'productLatex') ? result.productLatex : result?.latex;
   const scored = truth.filter(sample => sample.groundTruthLatex && byId.has(sample.id));

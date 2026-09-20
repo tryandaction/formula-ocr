@@ -59,3 +59,13 @@ test('OCR evaluation applies a separate human review without mutating raw result
   assert.equal(result.humanAcceptableCount, 3);
   assert.equal(result.humanAcceptableRate, 0.1);
 });
+
+test('OCR evaluation accepts a versioned benchmark report object', () => {
+  const truth = Array.from({ length: 30 }, (_, index) => ({ id: String(index), groundTruthLatex: 'x' }));
+  const results = truth.map(sample => ({ id: sample.id, latex: 'x' }));
+
+  const evaluated = evaluateOcr(truth, { results });
+
+  assert.equal(evaluated.scoredSamples, 30);
+  assert.equal(evaluated.exactMatch, 1);
+});
